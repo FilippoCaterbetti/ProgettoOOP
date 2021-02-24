@@ -9,7 +9,6 @@ public class OpenweatherApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OpenweatherApplication.class, args);
 		
-		//42
 	}
 
 }
