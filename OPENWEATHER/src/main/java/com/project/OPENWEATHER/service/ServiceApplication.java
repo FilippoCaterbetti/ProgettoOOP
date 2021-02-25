@@ -38,10 +38,4 @@ public class ServiceApplication implements Service {
 	}
 	
 	
-	/**
-	 * Questo metodo va a prendere da OpenWeather le previsioni meteo di una città.
-	 * @param è il nome della città di cui si vuole conoscere le previsioni meteo.
-	 * @return un JSONObject contenente le previsioni meteo complete.
-	 */
-	
 }
