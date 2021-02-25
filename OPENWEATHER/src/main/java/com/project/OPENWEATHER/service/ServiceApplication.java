@@ -30,7 +30,7 @@ public class ServiceApplication implements Service {
 	}
 
 	@Override
-	public String saveEveryfiveHour(String cityName) {
+	public String FiveHourInfo(String cityName) {
 		// TODO Auto-generated method stub
 		
 		
