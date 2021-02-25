@@ -1,12 +1,18 @@
 package com.project.OPENWEATHER.service;
 
+import java.util.ArrayList;
+
+import com.project.OPENWEATHER.exception.InvalidStringException;
+import com.project.OPENWEATHER.model.City;
+
+
 public class ServiceApplication implements Service {
 	
 	 
-	private String api_key = "069782b0f7fc9729e6c7151ffd1448ed";
+	private String api_key = "";//mettere alla fine
 
 	@Override
-	public JSONObject getCityWeather(String city) {
+	public JSONObject getCityWeather(String name) {
 		// TODO Auto-generated method stub
 		
 		
@@ -14,7 +20,7 @@ public class ServiceApplication implements Service {
 	}
 
 	@Override
-	public City getTempfromApi(String city) {
+	public City getTempfromApi(String name) {
 		// TODO Auto-generated method stub
 		
 		
@@ -22,7 +28,7 @@ public class ServiceApplication implements Service {
 	}
 
 	@Override
-	public String save(String city) throws invalidException {
+	public String save(String name) throws InvalidStringException {
 		// TODO Auto-generated method stub
 		
 		
@@ -30,7 +36,7 @@ public class ServiceApplication implements Service {
 	}
 
 	@Override
-	public String FiveHourInfo(String cityName) {
+	public String FiveHourInfo(String name) {
 		// TODO Auto-generated method stub
 		
 		
