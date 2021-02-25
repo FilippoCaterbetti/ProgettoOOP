@@ -1,5 +1,13 @@
 package com.project.OPENWEATHER.Exception;
 
-public class CitynotFoundException {
-
+public class CitynotFoundException extends Exception{
+String error;
+	
+	public CitynotFoundException(String error) {
+		this.error=error;
+	}
+	
+	public String getError() {
+		return error;
+	}
 }
