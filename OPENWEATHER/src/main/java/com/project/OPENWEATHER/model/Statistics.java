@@ -101,4 +101,11 @@ public class Statistics  {
 		this.description = description;
 	}
 	
+	@Override
+	public String toString() {
+		return "Statistics [main=" + main + ", description=" + description + ", temp_max=" + temp_max + ", temp_min="
+				+ temp_min + ", temp_avg=" + temp_avg + ", feels_like=" + feels_like + ", temp=" + temp + ", data="
+				+ data + "]";
+	}
+	
 }
