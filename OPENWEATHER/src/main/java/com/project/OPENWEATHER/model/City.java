@@ -75,5 +75,10 @@ public class City {
 	public void setTemp(double temp) {
 		this.temp = temp;
 	}
+	
+	@Override
+	public String toString() {
+		return "City [name=" + name + ", country=" + country + ", id=" + id + ", temp=" + temp + "]";
+	}
 					
 }
