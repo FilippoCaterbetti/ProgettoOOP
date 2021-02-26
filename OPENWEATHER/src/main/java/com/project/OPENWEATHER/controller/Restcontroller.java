@@ -26,7 +26,7 @@ import com.project.OPENWEATHER.service.Service;
 
 @RestController
 
-public class RestController {
+public class Restcontroller {
 	
 	@Autowired 
 	Statistics stats = new Statistics();
