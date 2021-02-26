@@ -1,44 +1,48 @@
 package com.project.OPENWEATHER.model;
 
+import java.util.Date;
 
+import org.json.JSONObject;
 
-public class Statistics  {
+public class Temperature{
 	
 	
-
+	//Group of weather parameters (Rain, Snow, Extreme etc.)
 	private String main;
-	private String description;
-	private double temp_max;
-	private double temp_min;
-	private double temp_avg;
-	private double feels_like;
-	private double temp;
-	private String data;
 	
-	public Statistics() {
-		super();
-	}
-
+	//Weather condition within the group
+	private String description;
+	
 	/**
-	 * @param temp_max
-	 * @param temp_min
-	 * @param temp_avg
-	 * @param feels_like
-	 * @param temp
-	 * @param data
+	 * @param data the data to set
 	 */
-	public Statistics(double temp_max, double temp_min, double temp_avg, double feels_like, double temp, String data) {
-		super();
-		this.temp_max = temp_max;
-		this.temp_min = temp_min;
-		this.temp_avg = temp_avg;
-		this.feels_like = feels_like;
-		this.temp = temp;
+	public void setData(Date data) {
 		this.data = data;
 	}
 
+	//Temperature
+	private double temp;
+	
+	//Maximum temperature at the moment of calculation
+	private double temp_max;
+	
+	//Minimum temperature at the moment of calculation
+	private double temp_min;
+	
+	//Average temperature
+	private double temp_avg;
+	
+	//This temperature parameter accounts for the human perception of weather
+	private double feels_like;
 
-
+	
+	//The "dd/mm/yyyy" at the moment of calculation from library java.util.Date;
+	Date data;
+	
+	public Temperature() {
+		super();
+	}
+	
 	/**
 	 * @param main
 	 * @param description
@@ -49,8 +53,8 @@ public class Statistics  {
 	 * @param temp
 	 * @param data
 	 */
-	public Statistics(String main, String description, double temp_max, double temp_min, double temp_avg,
-			double feels_like, double temp, String data) {
+	public Temperature(String main, String description, double temp_max, double temp_min, double temp_avg,
+			double feels_like, double temp, long data) {
 		super();
 		this.main = main;
 		this.description = description;
@@ -59,9 +63,35 @@ public class Statistics  {
 		this.temp_avg = temp_avg;
 		this.feels_like = feels_like;
 		this.temp = temp;
-		this.data = data;
+		this.data = new Date(data);
 	}
+
+	/**
+	 * Costruttore per DatoMeteo
+	 * 
+	 * @param datoMeteo JSONObject da parsare per costruire il dato meteo
+	 * 
+	 * Il JSONObject deve avere questa struttura
+	 * "temp" 			temperatura
+	 * "feels_like"  	temperatura percepita	
+	 * "temp_max"		temperatura massima
+	 * "temp_min"		temperatura minima
+	 * "temp_avg"		temperatura media
+	 * "data"			data della misurazione 
+	 * 
+	 */
+	public Temperature(JSONObject temperature) {
+		this.temp = Double.parseDouble((String)temperature.get("temp")); //oppure (?) aggiungere alla fine .toString() Penso siano la stessa cosa
+		this.feels_like = Double.parseDouble((String)temperature.get("feels_like"));
+		this.temp_max = Double.parseDouble((String)temperature.get("temp_max"));
+		this.temp_min = Double.parseDouble((String)temperature.get("temp_min"));
+		this.temp_avg = (this.temp_min+this.temp_max)/2; 			
+		this.data = new Date((long)temperature.get("data"));
+	}
+	//45 datameteo 178 citta
+
 	
+
 	/**
 	 * @return the main
 	 */
@@ -158,20 +188,6 @@ public class Statistics  {
 	 */
 	public void setTemp(double temp) {
 		this.temp = temp;
-	}
-
-	/**
-	 * @return the data
-	 */
-	public String getData() {
-		return data;
-	}
-
-	/**
-	 * @param data the data to set
-	 */
-	public void setData(String data) {
-		this.data = data;
 	}
 
 	@Override
