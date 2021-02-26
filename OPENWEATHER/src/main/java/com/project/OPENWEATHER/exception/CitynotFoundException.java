@@ -1,4 +1,4 @@
-package com.project.OPENWEATHER.Exception;
+package com.project.OPENWEATHER.exception;
 
 import java.lang.Exception;
 
