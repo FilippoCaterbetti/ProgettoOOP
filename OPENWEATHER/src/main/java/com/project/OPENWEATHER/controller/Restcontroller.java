@@ -2,6 +2,15 @@ package com.project.OPENWEATHER.controller;
 
 import java.io.IOException;
 
+import java.lang.Exception;
+
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +25,11 @@ import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
 import com.project.OPENWEATHER.model.Statistics;
 import com.project.OPENWEATHER.service.Service;
 
-/*
- * import org.springframework.web.bind.annotation.GetMapping;
- *import org.springframework.web.bind.annotation.RequestParam;
- *import org.springframework.web.bind.annotation.RestController;
- * */
- 
-//DA FINIRE
 
 @RestController
-
 public class Restcontroller {
 	
-	@Autowired 
+	@Autowired
 	Statistics stats = new Statistics();
 	Service service;
 	
@@ -47,7 +48,7 @@ public class Restcontroller {
 	 */
 		
 	@GetMapping("/FiveHourInfo")
-public ResponseEntity<Object> saveHour(@RequestParam String name) throws IOException {
+	public ResponseEntity<Object> saveHour(@RequestParam String name) throws IOException {
 		
 		String file = service.FiveHourInfo(name);
 		
@@ -91,11 +92,12 @@ public ResponseEntity<Object> saveHour(@RequestParam String name) throws IOExcep
 	/**
 	 * Mostra le previsioni della città inserita nei 5 giorni successivi (temperatura massima, minima, reale e percepita)
 	 * 
-	 * @param name = città.
+	 * @param name = città
 	 */
 	@GetMapping("/FiveDaysInfo")
 	public ResponseEntity<Object> FiveDaysInfo(@RequestParam String name){
-		return
+		return null;
+		
 	}
 	
 	
