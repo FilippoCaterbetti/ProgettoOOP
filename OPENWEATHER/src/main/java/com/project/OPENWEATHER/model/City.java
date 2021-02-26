@@ -1,13 +1,14 @@
 package com.project.OPENWEATHER.model;
 
-public class City {
+import org.json.JSONObject;
+
+public class City implements JSONClass {
 	
 	//Implementazione costrutttori
 	
 	private String name;
 	private String country;
 	private long id;
-	private double temp;
 	
 	public City() {
 		super();
@@ -68,17 +69,22 @@ public class City {
 		this.id = id;
 	}
 	
-	public double getTemp() {
-		return temp;
+
+	
+	public JSONObject getJson() {
+		JSONObject datiCity = new JSONObject();
+		datiCity.put("name", this.name);
+		datiCity.put("country", this.country);
+		datiCity.put("id", this.id);
+		
+		//da finire
+		return datiCity;
 	}
 	
-	public void setTemp(double temp) {
-		this.temp = temp;
-	}
-	
+
 	@Override
 	public String toString() {
-		return "City [name=" + name + ", country=" + country + ", id=" + id + ", temp=" + temp + "]";
+		return "City [name=" + name + ", country=" + country + ", id=" + id + ", temp=" + "]";
 	}
-					
+			
 }
