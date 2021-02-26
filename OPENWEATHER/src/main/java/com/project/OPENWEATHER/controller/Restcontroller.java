@@ -38,7 +38,7 @@ public class Restcontroller {
 	
 	@GetMapping("/temp")
 	public ResponseEntity<Object> getTemp(@RequestParam String name) {
-		return new ResponseEntity<> (service.getTempfromApi(name), HttpStatus.OK);
+		return new ResponseEntity<> (service.getTempApi(name), HttpStatus.OK);
     }
 	
 	 /* @param name indichiamo la città da cui vogliamo la temperatura
