@@ -12,7 +12,7 @@ import com.project.OPENWEATHER.model.City;
 public class ServiceApplication implements Service {
 	
 	 //da completare
-	private String ApiKey = ""; //mettere alla fine DATO SENSIBILE
+	private String ApiKey = ""; //mettere alla fine
 
 	
 	
@@ -23,7 +23,9 @@ public class ServiceApplication implements Service {
 	//in un tipo JSONObject che useremo poi in seguito nelle altre classi
 	public JSONObject getCityApi(String name) {
 		JSONObject obj;
-		String url = "http://api.openweathermap.org/data/2.5/forecast?q=" +name+ "&appid="+ ApiKey;
+		// per avere in italiano aggiungere alla fine " &lang=it "
+		//unit metric permette di avere le misurazioni in gradi centigradi
+		String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + name + "&units=metric"+"&appid="+ ApiKey;
 		
 		RestTemplate rest = new RestTemplate();
 		obj = new JSONObject(rest.getForObject(url, String.class));
