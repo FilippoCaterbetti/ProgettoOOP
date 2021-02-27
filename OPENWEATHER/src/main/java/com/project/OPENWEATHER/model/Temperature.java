@@ -35,10 +35,7 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 	
 	//chiamata al costruttore Average per calcolare la temperatura media
 	Average avg = new Average(temp_max, temp_min);
-	
-	public Temperature() {
-		super();
-	}
+
 	
 	/**
 	 * @param main
