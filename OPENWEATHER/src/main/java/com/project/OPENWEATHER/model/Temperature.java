@@ -1,10 +1,10 @@
 package com.project.OPENWEATHER.model;
 
+import java.util.Collection;
 import java.util.Date;
-
 import org.json.JSONObject;
 
-public class Temperature{
+public class Temperature implements JSONClass, Cloneable { //JSONClass,
 	
 	
 	//Group of weather parameters (Rain, Snow, Extreme etc.)
@@ -13,13 +13,6 @@ public class Temperature{
 	//Weather condition within the group
 	private String description;
 	
-	/**
-	 * @param data the data to set
-	 */
-	public void setData(Date data) {
-		this.data = data;
-	}
-
 	//Temperature
 	private double temp;
 	
@@ -36,8 +29,12 @@ public class Temperature{
 	private double feels_like;
 
 	
-	//The "dd/mm/yyyy" at the moment of calculation from library java.util.Date;
+	//The date at the moment of calculation from library java.util.Date;
 	Date data;
+	
+	
+	//chiamata al costruttore Average per calcolare la temperatura media
+	Average avg = new Average(temp_max, temp_min);
 	
 	public Temperature() {
 		super();
@@ -55,19 +52,20 @@ public class Temperature{
 	 */
 	public Temperature(String main, String description, double temp_max, double temp_min, double temp_avg,
 			double feels_like, double temp, long data) {
-		super();
-		this.main = main;
-		this.description = description;
+		this.temp = temp;
+		this.feels_like = feels_like;
 		this.temp_max = temp_max;
 		this.temp_min = temp_min;
-		this.temp_avg = temp_avg;
-		this.feels_like = feels_like;
-		this.temp = temp;
+		this.temp_avg = avg.getAvg();
 		this.data = new Date(data);
+		this.main = main;
+		this.description = description;
 	}
 
+		
+	
 	/**
-	 * Costruttore per DatoMeteo
+	 * Costruttore per Temperature
 	 * 
 	 * @param datoMeteo JSONObject da parsare per costruire il dato meteo
 	 * 
@@ -81,17 +79,53 @@ public class Temperature{
 	 * 
 	 */
 	public Temperature(JSONObject temperature) {
-		this.temp = Double.parseDouble((String)temperature.get("temp")); //oppure (?) aggiungere alla fine .toString() Penso siano la stessa cosa
-		this.feels_like = Double.parseDouble((String)temperature.get("feels_like"));
-		this.temp_max = Double.parseDouble((String)temperature.get("temp_max"));
-		this.temp_min = Double.parseDouble((String)temperature.get("temp_min"));
-		this.temp_avg = (this.temp_min+this.temp_max)/2; 			
+		this.temp = Double.parseDouble(temperature.get("temp").toString()); //oppure (?) aggiungere alla fine .toString() Penso siano la stessa cosa
+		this.feels_like = Double.parseDouble(temperature.get("feels_like").toString());
+		this.temp_max = Double.parseDouble(temperature.get("temp_max").toString());
+		this.temp_min = Double.parseDouble(temperature.get("temp_min").toString());	
+		this.temp_avg = avg.getAvg();   //this.temp_avg = (this.temp_min+this.temp_max)/2; 
 		this.data = new Date((long)temperature.get("data"));
+		this.main = (String) temperature.get("main");
+		this.description = (String) temperature.get("description");
+	}	
+	
+	/**
+	 * JSONObject per ottenere con tutti i dati del rilevamento
+	 * 
+	 * @return JSONObject con i dati meteo
+	 */
+	public JSONObject toJSONObject() {
+		
+		JSONObject t = new JSONObject();
+		
+		t.put("temp", this.temp);
+		t.put("feels_like", this.feels_like);
+		t.put("temp_max", this.temp_max);
+		t.put("temp_min", this.temp_min);
+		t.put("temp_avg", this.temp_avg);
+		t.put("data", this.data.getTime());
+		t.put("main", this.main);
+		t.put("description", this.description);
+		
+		return t;
 	}
-	//45 datameteo 178 citta
-
 	
 
+	/**
+	 * Creazione di una copia delle temperature
+	 * 
+	 * @return una copia delle temperature
+	 */
+	public Temperature clone() {
+		return new Temperature (this.toJSONObject());
+	}
+	
+	//JSONObject clone = new JSONObject(Temperature.toString());
+	
+	
+	
+	
+	
 	/**
 	 * @return the main
 	 */
@@ -189,6 +223,20 @@ public class Temperature{
 	public void setTemp(double temp) {
 		this.temp = temp;
 	}
+	
+	/**
+	 * @return the data
+	 */
+	public Date getData() {
+		return data;
+	}
+	
+	/**
+	 * @param data the data to set
+	 */
+	public void setData(Date data) {
+		this.data = data;
+	}
 
 	@Override
 	public String toString() {
@@ -196,5 +244,6 @@ public class Temperature{
 				+ temp_min + ", temp_avg=" + temp_avg + ", feels_like=" + feels_like + ", temp=" + temp + ", data="
 				+ data + "]";
 	}
+
 
 }
