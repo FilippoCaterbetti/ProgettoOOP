@@ -2,6 +2,8 @@ package com.project.OPENWEATHER.controller;
 
 import java.io.IOException;
 
+
+
 import java.lang.Exception;
 
 
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
-import com.project.OPENWEATHER.model.Statistics;
+import com.project.OPENWEATHER.model.Temperature;
 import com.project.OPENWEATHER.service.Service;
 
 
@@ -30,7 +32,7 @@ import com.project.OPENWEATHER.service.Service;
 public class Restcontroller {
 	
 	@Autowired
-	Statistics stats = new Statistics();
+	Temperature stats = new Temperature();
 	Service service;
 	
 	
@@ -96,10 +98,22 @@ public class Restcontroller {
 	 */
 	@GetMapping("/FiveDaysInfo")
 	public ResponseEntity<Object> FiveDaysInfo(@RequestParam String name){
+		
 		return null;
 		
 	}
 	
-	
-	
+	/**
+	 * Rotta GET che salva ogni 5 ore le previsioni della città inserita.
+	 * 
+	 * @param name è la città di cui salviamo le informazioni.
+	 * @return il path dove viene salvato il file.
+	 * @throws IOException per errori di output su file.
+	 * 
+	 */
+	@GetMapping(value="/FiveHoursInfo")
+    public ResponseEntity<Object> FiveHoursInfo(@RequestParam String name) throws IOException {
+			String report5hour = service.FiveHoursInfo(name);
+		return new ResponseEntity<> (report5hour, HttpStatus.OK);
+	}
 }
