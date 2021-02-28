@@ -19,12 +19,12 @@ public interface Service {
 	
 	public String URLgenerator (String name,int cnt);
 	public abstract JSONObject getCityApi(String name, int cnt);
-	public abstract JSONArray getTempApi(String name, int cnt);
+	public abstract JSONArray getTempApi(String name);
 	public abstract String save(String name) throws InvalidStringException;
 	public String FiveHoursInfo(String name);
 	public String FiveDaysInfo(String name);
-	public abstract JSONArray getTempAPI(String name);
-
+	//public abstract JSONArray getTempAPI(String name);
+	public abstract JSONArray getTempFutureApi(String name);
 	public abstract ArrayList<JSONObject> PeriodCity (String name, String period ) throws InvalidStringException, NotAllowedPeriodException;  //inserire vari errori 
 	
 	
