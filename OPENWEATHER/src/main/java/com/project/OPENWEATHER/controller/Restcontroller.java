@@ -4,6 +4,7 @@ import java.io.IOException;
 
 
 
+
 import java.lang.Exception;
 
 
@@ -35,27 +36,30 @@ public class Restcontroller {
 	Temperature stats = new Temperature();
 	Service service;
 	
-	
-	//con @param name indichiamo la città da cui vogliamo la temperatura.
-	//con @return restituiamo le previsioni della città indicata
+	/**
+	 * @param name indichiamo la città da cui vogliamo la temperatura.
+	 * @return restituiamo le previsioni della città indicata
+	 * 
+	 */
 	
 	@GetMapping("/temp")
 	public ResponseEntity<Object> getTemp(@RequestParam String name) {
 		return new ResponseEntity<> (service.getTempApi(name), HttpStatus.OK);
     }
 	
-	 /* @param name indichiamo la città da cui vogliamo la temperatura
-	 * @return il file dove vengono salvati i dati.
-	 * @throws IOException per gli errori di output del file.
+	 /**
+	 *  @param name indichiamo la città da cui vogliamo la temperatura
+	 * 	@return il file dove vengono salvati i dati.
+	 * 	@throws IOException per gli errori di output del file.
 	 */
 		
-	@GetMapping("/FiveHourInfo")
+	/*@GetMapping("/FiveHoursInfo")
 	public ResponseEntity<Object> saveHour(@RequestParam String name) throws IOException {
 		
-		String file = service.FiveHourInfo(name);
+		String file = service.FiveHoursInfo(name);
 		
 		return new ResponseEntity<> (file, HttpStatus.OK);
-	}
+	}*/
 	
 	
 	/*
