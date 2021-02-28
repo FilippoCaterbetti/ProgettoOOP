@@ -14,6 +14,8 @@ public class City implements JSONClass, Cloneable {
 	private long id;
 	private Vector<Temperature> temps;
 	
+	//ciao
+	
 	/*
 	public City (long id) {
 		
