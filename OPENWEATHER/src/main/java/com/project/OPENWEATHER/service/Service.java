@@ -17,8 +17,8 @@ import com.project.OPENWEATHER.model.City;
 
 public interface Service {
 	
-	public String URLgenerator (String name,int cnt);
-	public abstract JSONObject getCityApi(String name, int cnt);
+	public String URLgenerator (String name);
+	public abstract JSONObject getCityApi(String name);
 	public abstract JSONArray getTempApi(String name);
 	public abstract String save(String name) throws InvalidStringException;
 	public String FiveHoursInfo(String name);
