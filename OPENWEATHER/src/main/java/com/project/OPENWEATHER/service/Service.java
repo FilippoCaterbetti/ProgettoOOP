@@ -3,6 +3,7 @@ package com.project.OPENWEATHER.service;
 
 import java.util.ArrayList;
 
+
 import java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject;
 
 import org.json.JSONArray;
@@ -16,8 +17,9 @@ import com.project.OPENWEATHER.model.City;
 
 public interface Service {
 	
-	public abstract JSONObject getCityApi(String name);
-	public abstract JSONArray getTempApi(String name);
+	public String URLgenerator (String name,int cnt);
+	public abstract JSONObject getCityApi(String name, int cnt);
+	public abstract JSONArray getTempApi(String name, int cnt);
 	public abstract String save(String name) throws InvalidStringException;
 	public String FiveHoursInfo(String name);
 	public String FiveDaysInfo(String name);
