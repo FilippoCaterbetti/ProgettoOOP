@@ -15,6 +15,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.model.City;
+import com.project.OPENWEATHER.model.JSONClass;
 
 public class ServiceApplication implements Service {
 	
@@ -71,14 +72,8 @@ public class ServiceApplication implements Service {
 		double temp_avg;
 		double feels_like;
 		double temp;
-		String data;
-		
-		
+		String data;	
 	}*/
-	
-	
-	
-	
 	
 	/**
 	 * 
@@ -130,15 +125,17 @@ public class ServiceApplication implements Service {
 		return tmp;
 	}
 
-	
+
 	
 	public String save(String name) throws InvalidStringException {
 		
-		//String report = System.get
+		City city = getTempFutureApi(name);
+		JSONObject obj = new JSONObject();
+		JSONClass tj = new JSONClass();
 		
-		return null;
+		
 	}
-
+	
 	/**
 	 * 
 	 * Questo metodo richiama x e salva le previsioni ogni 5 ore.
@@ -154,15 +151,15 @@ public class ServiceApplication implements Service {
 		scheduler.scheduleAtFixedRate( new Runnable() {										// run after a givendelay, or to execute periodically.
 			public void run () {
 				@Override
-				JSONArray temp = new JSONArray();
-		    	temp = getTempApi(name);
+				City temp = new City();
+				temp = getTempApi(name);
 			}
 		}, 0, 0, null);
 		return null;
 	}
 	
 	@Override 
-	public ArrayList<JSONObject> PeriodCity (String name,  String period ){
+	public ArrayList<JSONObject> PeriodCity (String name,  String period){
 			return ;
 		}
 	
