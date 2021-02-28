@@ -1,7 +1,8 @@
 package com.project.OPENWEATHER.service;
+import java.io.BufferedWriter;
 import java.io.File;
-
-
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.Exception;
 import java.net.URL;
 
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.model.City;
@@ -27,20 +29,15 @@ public class ServiceApplication implements Service {
 	// in italiano aggiungere alla fine " &lang=it "
 			//unit metric permette di avere le misurazioni in 
 
-	
-	
-
-
 	//RestTemplate permette di effettuare la richiesta e di convertire 
 	//automaticamente il json ricevuto in un oggetto Java strutturato in maniera 
 	//conforme al json atteso; Noi di seguito usiamo questa funzionalità e trasferiamo i dati
 	//in un tipo JSONObject che useremo poi in seguito nelle altre classi
-	public JSONObject getCityApi(String name, int cnt) {
+	public JSONObject getCityApi(String name) {
 		
 		String url = "http://api.openweathermap.org/data/2.5/forecast?q=";
 		url += ( name );
 		url += ( "&units=metric" );
-		url += ( "&cnt=" + cnt);
 		url += ( "&appid=" + ApiKey);
 		
 		JSONObject obj;
@@ -77,14 +74,14 @@ public class ServiceApplication implements Service {
 	
 	/**
 	 * 
-	 * Questo metodo utilizza getCityWeather per andare a prendere le temperature sulla temperatura della città.
+	 * Questo metodo utilizza getCityWeather per andare a prendere i dati sulla temperatura della città.
 	 * @param name è il nome della città
 	 * @return restituisce il JSONArray contente la temperatura reale 
 	 * 
 	 */
 	
-	public JSONArray getTempApi(String name, int cnt) {		
-		JSONObject object = getCityApi(name, cnt);
+	public JSONArray getTempApi(String name) {		
+		JSONObject object = getCityApi(name);
 		JSONArray tmp = new JSONArray();
 		
 		JSONArray TempArray = object.getJSONArray("list");
@@ -108,7 +105,7 @@ public class ServiceApplication implements Service {
 			feels_like = Double.parseDouble(sp.get("feels_like").toString());
 			data =  sp.get("dt_txt").toString(); //?
 			main = sp.get("main").toString();
-			description =  sp.get("description").toString();
+			description= sp.get("description").toString();
 			
 			JSONObject g = new JSONObject();
 			g.put("temp", temp);
@@ -116,16 +113,20 @@ public class ServiceApplication implements Service {
 			g.put("temp_min", temp_min);
 			g.put("temp_avg", temp_avg);
 			g.put("feels_like", feels_like);
-			g.put("description", description);
-			g.put("main", main);
 			g.put("Data", data);
+			g.put("main", main);
+			g.put("description", description);
 			tmp.put(g);
 			
 		}
 		return tmp;
 	}
 
-
+	/** Questo metodo ci serve per andare a salvare le informazioni 
+	 * dei prossimi cinque giorni delle città e le salva in uno storico.
+	 * @param nome della città.
+	 * @return un oggetto di tipo città popolato delle informazioni sulla città.
+	 */
 	
 	public String save(String name) throws InvalidStringException {
 		
@@ -144,23 +145,51 @@ public class ServiceApplication implements Service {
 	 * 
 	 */
 	public String FiveHoursInfo(String name) {
-		String report = System.getProperty("user.dir") + "/" + name + "FiveHoursInfo.txt";
-		File file = new File(report);
+		//String report = System.getProperty("user.dir") + "/" + name + "HourlyReport.txt";
+		//File file = new File(report);
 		
-		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();  //ScheduledExecutorService can  schedule commands to
-		scheduler.scheduleAtFixedRate( new Runnable() {										// run after a givendelay, or to execute periodically.
-			public void run () {
-				@Override
-				City temp = new City();
-				temp = getTempApi(name);
-			}
-		}, 0, 0, null);
-		return null;
-	}
+		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+		scheduler.scheduleAtFixedRate(new Runnable() {
+		    @Override
+		    public void run() {
+		    	
+		    	File file = new File("Report.txt");
+		    	JSONArray temps = new JSONArray();
+		    	temps = getTempApi(name);
+		    	JSONObject temps2 = new JSONObject();
+		    	
+		    	for(int i=0;i<temps.length();i++ ) {
+		    	
+		    		temps2= temps.getJSONObject(i);
+		    	
+		    			try{
+		    				
+		    			    if(!file.exists()) {
+		    			        file.createNewFile();
+		    			    }
+
+		    			    FileWriter fileWriter = new FileWriter(file, true);
+		    				
+		    				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+		    			    bufferedWriter.write(temps2.toString());
+		    			    bufferedWriter.write("\n");
+		    			    
+		    			    bufferedWriter.close();
+		    			    
+		    			} catch(IOException e) {
+		    			    System.out.println(e);
+		    		}
+		    }
+		  }
+		}, 0, 5, TimeUnit.HOURS); 
+		
+		return "I dati sono stati inseriti";
+		 
+	}	
 	
 	@Override 
 	public ArrayList<JSONObject> PeriodCity (String name,  String period){
-			return ;
+			return null ;
 		}
 	
 	@Override 
