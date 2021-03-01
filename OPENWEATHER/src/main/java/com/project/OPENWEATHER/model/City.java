@@ -15,7 +15,18 @@ public class City implements JSONClass, Cloneable {
 	private Vector<Temperature> temps;
 	
 	
-	/*
+	
+	public City() {
+		super();
+	}
+	
+	
+	/** 
+	 * 
+	 * Costruttore dell'oggetto.
+     * @param id è ID città
+     * 
+     */
 	public City (long id) {
 		
 		this.id=id;
@@ -24,12 +35,25 @@ public class City implements JSONClass, Cloneable {
 			
 	}
 	
+	/** 
+	 * Costruttore dell'oggetto.
+     * @param nome Nome della città
+     * 
+     */
 	public City (String name){
 		this.id=0;
 		this.name=null;
 		this.country=null;
 	}
 	
+	
+	/** 
+	 * 
+	 * Costruttore dell'oggetto.
+     * @param name     Nome città
+     * @param country  Stato della città
+     * 
+     */
 	public City (String name, String country) {
 		
 		this.id=0;
@@ -37,7 +61,6 @@ public class City implements JSONClass, Cloneable {
 		this.country=country;
 			
 	}
-	*/
 	
 	/**
 	 * Costruttore per City
@@ -68,9 +91,9 @@ public class City implements JSONClass, Cloneable {
 	 */
 	public City(JSONObject city) {
 		
-		this.name= (String) city.get("name"); 			//(String) city.get("name") o city.getString("name") forse
+		this.name = city.get("name").toString(); 			//(String) city.get("name") o city.getString("name") forse
 		this.id = (long) city.get("id");   				//(long) city.get("id"); o city.getLong("id")
-		this.country = (String) city.get("country");
+		this.country = city.get("country").toString();
 		this.temps = new Vector<Temperature>();
 		
 		JSONArray temps = (JSONArray) city.get("temperature");
