@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.JSONClass;
+import com.project.OPENWEATHER.model.Temperature;
 
 public abstract class ServiceApplication implements Service {
 	
@@ -149,8 +150,7 @@ public abstract class ServiceApplication implements Service {
 		
 		try {
 			PrintWriter write = new PrintWriter(new BufferedWriter( new FileWriter(path)));
-			write.println(obj);
-			write.println();
+			write.println(obj.toString());
 			write.close();
 		}
 		catch(IOException e){
@@ -210,15 +210,39 @@ public abstract class ServiceApplication implements Service {
 		return "I dati sono stati inseriti";
 		 
 	}	
-	
-	//161finire
-	public JSONArray getTempFutureApi(String name) {
-		
+	//da finire
+	public City getTempFutureApi(String name) {
+		City gg = new City();
 		JSONObject obj = new JSONObject();
+		JSONArray arr = new JSONArray();
+		arr = getTempApi(name);
 		
+		JSONArray wa = obj.getJSONArray("ciao");
+		JSONObject cc = new JSONObject();
 		
+		Vector<Temperature> vec = new Vector<Temperature> (wa.length());
+		
+		try {
+			for(int j=0; j<wa.length();j++){
+				Temperature temp = new Temperature();
+				cc = wa.getJSONObject(j);
+				temp.setTemp(cc.getDouble("temp"));
+				temp.setTemp_max(cc.getDouble("temp_max"));
+				temp.setTemp_min(cc.getDouble("temp_min"));
+				temp.setTemp_avg(cc.getDouble("temp_avg"));
+				temp.setFeels_like(cc.getDouble("feels_like"));
+				temp.setData(cc.getString("dt_txt"));
+				temp.setDescription(cc.getString("description"));
+				temp.setMain(cc.getString("main"));
+				vec.add(temp);
+				}
+			}
+		catch(Exception e){
+			
+				e.printStackTrace();
+			}
+		arr
 		return null;
-		
 	}
 
 	
