@@ -1,25 +1,33 @@
 package com.project.OPENWEATHER.service;
 import java.io.BufferedWriter;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.Exception;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.project.OPENWEATHER.exception.InvalidStringException;
+
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.JSONClass;
 
-public class ServiceApplication implements Service {
+public abstract class ServiceApplication implements Service {
 	
 	 //da completare
 	private String ApiKey = ""; //mettere alla fine 
@@ -128,13 +136,29 @@ public class ServiceApplication implements Service {
 	 * @return un oggetto di tipo città popolato delle informazioni sulla città.
 	 */
 	
-	public String save(String name) throws InvalidStringException {
+	public String save(String name) throws IOException  {
 		
-		City city = getTempFutureApi(name);
+		JSONArray city = getTempFutureApi(name);
 		JSONObject obj = new JSONObject();
-		JSONClass tj = new JSONClass();
+		obj = city.toJSONObject(city);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
+		LocalDateTime now = LocalDateTime.now();	//dtf.format(now)
+		
+		String path = name+dtf.format(now)+".txt";
 		
 		
+		try {
+			PrintWriter write = new PrintWriter(new BufferedWriter( new FileWriter(path)));
+			write.println(obj);
+			write.println();
+			write.close();
+		}
+		catch(IOException e){
+			System.out.println("ERRORE di I/O"); 
+			System.out.println(e);
+		}
+		
+		return path;
 	}
 	
 	/**
@@ -153,7 +177,7 @@ public class ServiceApplication implements Service {
 		    @Override
 		    public void run() {
 		    	
-		    	File file = new File("Report.txt");
+		    	File file = new File(name+"Report.txt");
 		    	JSONArray temps = new JSONArray();
 		    	temps = getTempApi(name);
 		    	JSONObject temps2 = new JSONObject();
@@ -178,14 +202,25 @@ public class ServiceApplication implements Service {
 		    			    
 		    			} catch(IOException e) {
 		    			    System.out.println(e);
+		    			}
 		    		}
 		    }
-		  }
 		}, 0, 5, TimeUnit.HOURS); 
 		
 		return "I dati sono stati inseriti";
 		 
 	}	
+	
+	//161finire
+	public JSONArray getTempFutureApi(String name) {
+		
+		JSONObject obj = new JSONObject();
+		
+		
+		return null;
+		
+	}
+
 	
 	@Override 
 	public ArrayList<JSONObject> PeriodCity (String name,  String period){
