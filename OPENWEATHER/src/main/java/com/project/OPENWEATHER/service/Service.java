@@ -1,6 +1,7 @@
 package com.project.OPENWEATHER.service;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -20,7 +21,7 @@ public interface Service {
 	public String URLgenerator (String name);
 	public abstract JSONObject getCityApi(String name);
 	public abstract JSONArray getTempApi(String name);
-	public abstract String save(String name) throws InvalidStringException;
+	public abstract String save(String name) throws  IOException;
 	public String FiveHoursInfo(String name);
 	public String FiveDaysInfo(String name);
 	//public abstract JSONArray getTempAPI(String name);
