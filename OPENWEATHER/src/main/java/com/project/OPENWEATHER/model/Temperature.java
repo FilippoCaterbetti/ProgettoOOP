@@ -28,15 +28,28 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 	//This temperature parameter accounts for the human perception of weather
 	private double feels_like;
 
-	
 	//The date at the moment of calculation from library java.util.Date;
-	Date data;
-	
+	String data;
 	
 	//chiamata al costruttore Average per calcolare la temperatura media
 	Average avg = new Average(temp_max, temp_min);
 
 	
+	
+	/** 
+	 * Costruttore dell'oggetto.
+	 * 
+     */
+	public Temperature() {
+		this.main = null;
+		this.description = null;
+		this.temp = 0;
+		this.temp_avg = 0;
+		this.temp_max = 0;
+		this.temp_min = 0;
+		this.feels_like = 0;
+		this.data = null;
+	}
 	/**
 	 * @param main
 	 * @param description
@@ -48,13 +61,13 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 	 * @param data
 	 */
 	public Temperature(String main, String description, double temp_max, double temp_min, double temp_avg,
-			double feels_like, double temp, long data) {
+			double feels_like, double temp, String data) {
 		this.temp = temp;
 		this.feels_like = feels_like;
 		this.temp_max = temp_max;
 		this.temp_min = temp_min;
 		this.temp_avg = avg.getAvg();
-		this.data = new Date(data);
+		this.data = data;
 		this.main = main;
 		this.description = description;
 	}
@@ -81,7 +94,7 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 		this.temp_max = Double.parseDouble(temperature.get("temp_max").toString());
 		this.temp_min = Double.parseDouble(temperature.get("temp_min").toString());	
 		this.temp_avg = avg.getAvg();   //this.temp_avg = (this.temp_min+this.temp_max)/2; 
-		this.data = new Date((long)temperature.get("data"));
+		this.data = (String)temperature.get("data");
 		this.main = (String) temperature.get("main");
 		this.description = (String) temperature.get("description");
 	}	
@@ -100,7 +113,7 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 		t.put("temp_max", this.temp_max);
 		t.put("temp_min", this.temp_min);
 		t.put("temp_avg", this.temp_avg);
-		t.put("data", this.data.getTime());
+		t.put("data", this.data);
 		t.put("main", this.main);
 		t.put("description", this.description);
 		
@@ -224,14 +237,14 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 	/**
 	 * @return the data
 	 */
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 	
 	/**
 	 * @param data the data to set
 	 */
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
@@ -240,7 +253,6 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 		return "Statistics [main=" + main + ", description=" + description + ", temp_max=" + temp_max + ", temp_min="
 				+ temp_min + ", temp_avg=" + temp_avg + ", feels_like=" + feels_like + ", temp=" + temp + ", data="
 				+ data + "]";
-	}
-
+	
 
 }
