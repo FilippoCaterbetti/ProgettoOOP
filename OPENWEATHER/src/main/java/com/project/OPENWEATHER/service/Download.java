@@ -1,6 +1,7 @@
 package com.project.OPENWEATHER.service;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,8 +29,11 @@ public class Download {
 			ServiceApplication sa = new ServiceApplication();
 			
 			URLgeneration u = new URLgeneration();
+			
 			String url = u.getUrl();
+			
 			String ApiKey = u.getApiKey();
+			
 			ServiceApplication ss = new ServiceApplication() {
 				
 			};
