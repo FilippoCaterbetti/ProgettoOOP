@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import org.json.JSONObject;
 
-public class Temperature implements JSONClass, Cloneable { //JSONClass,
+public class Temperature implements  Cloneable { //JSONClass,
 	
 	
 	//Group of weather parameters (Rain, Snow, Extreme etc.)
@@ -37,7 +37,8 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 	
 	
 	/** 
-	 * Costruttore dell'oggetto.
+	 * 
+	 * Costruttore
 	 * 
      */
 	public Temperature() {
@@ -51,6 +52,7 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 		this.data = null;
 	}
 	/**
+	 * 
 	 * @param main
 	 * @param description
 	 * @param temp_max
@@ -59,6 +61,7 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 	 * @param feels_like
 	 * @param temp
 	 * @param data
+	 * 
 	 */
 	public Temperature(String main, String description, double temp_max, double temp_min, double temp_avg,
 			double feels_like, double temp, String data) {
@@ -253,6 +256,7 @@ public class Temperature implements JSONClass, Cloneable { //JSONClass,
 		return "Statistics [main=" + main + ", description=" + description + ", temp_max=" + temp_max + ", temp_min="
 				+ temp_min + ", temp_avg=" + temp_avg + ", feels_like=" + feels_like + ", temp=" + temp + ", data="
 				+ data + "]";
+	}
 	
 
 }
