@@ -23,7 +23,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-
+import com.project.OPENWEATHER.exception.CitynotFoundException;
+import com.project.OPENWEATHER.exception.InvalidStringException;
+import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
@@ -156,7 +158,42 @@ public class ServiceApplication implements Service {
 		
 		
 	}
+	
+	/**
+	 * 
+	 * Questo metodo rilegge le informazioni salvate nel periodo selezionato.
+	 * Poi salva le informazioni  in un ArrayList di JSONArray e lo passa al metodo per calcolare le varie
+	 * statistiche.
+	 * 
+	 * @param names rappresenta la città o le città su cui si vogliono avere le statistiche.
+	 * @param period è il periodo
+	 * @throws InvalidStringException se almeno una delle stringhe immesse è vuota.
+	 * @throws CitynotFoundException se la città non esiste.
+	 * @throws NotAllowedPeriodException se viene inserito un period errato.
+	 * @throws IOException se si verifica un errore di lettura del file.
+	 * 
+	 */
+	public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, String period)throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException{
+		
+		ArrayList<JSONArray> tempinfo = new ArrayList<JSONArray>();
+		ArrayList<JSONArray> info = new ArrayList<JSONArray>();
+		
+		
+		//isblank Returns true if the string is empty or contains only white space codepoints,otherwise false.
+		for(int j = 0; j<names.size();j++) {
+			if(names.get(j).isBlank()) {
+				throw new InvalidStringException ("città non valida");
+			}
+			
+			6
+		}
+		
+	}
 
+	
+	
+	
+	
 	/**
 	 *  Questo metodo ci serve per andare a salvare le temperature  
 	 * dei 5 giorni successivi e le salva in uno storico.
@@ -294,6 +331,13 @@ public class ServiceApplication implements Service {
 	
 		@Override
 		public String URLgenerator(String name) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, String period)
+				throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException {
 			// TODO Auto-generated method stub
 			return null;
 		}
