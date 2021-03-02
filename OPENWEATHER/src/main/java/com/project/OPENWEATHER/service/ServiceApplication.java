@@ -27,16 +27,31 @@ import java.util.concurrent.TimeUnit;
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
+import com.project.OPENWEATHER.model.URLgeneration;
 
-public abstract class ServiceApplication implements Service {
-	
-	 //da completare
-	private String ApiKey = ""; //mettere alla fine 
+public class ServiceApplication implements Service {
 	
 	
+	
+	
+	public String url(String name) {
+		
+		URLgeneration urlgen = new URLgeneration();
+		String url = "http://api.openweathermap.org/data/2.5/forecast?q=";
+		
+		String ApiKey = "";
+		urlgen.setApiKey(ApiKey);
+		url += ( name );
+		url += ( "&units=metric" );
+		url += ( "&appid=" + ApiKey);
+		urlgen.setUrl(url);
+		return url;
+	}
 	
 	// in italiano aggiungere alla fine " &lang=it "
 			//unit metric permette di avere le misurazioni in 
+
+
 
 	//RestTemplate permette di effettuare la richiesta e di convertire 
 	//automaticamente il json ricevuto in un oggetto Java strutturato in maniera 
@@ -44,10 +59,10 @@ public abstract class ServiceApplication implements Service {
 	//in un tipo JSONObject che useremo poi in seguito nelle altre classi
 	public JSONObject getCityApi(String name) {
 		
-		String url = "http://api.openweathermap.org/data/2.5/forecast?q=";
-		url += ( name );
-		url += ( "&units=metric" );
-		url += ( "&appid=" + ApiKey);
+		
+		URLgeneration urlgen = new URLgeneration();
+
+		String url = urlgen.getUrl();
 		
 		JSONObject obj;
 		RestTemplate rest = new RestTemplate();
@@ -130,18 +145,30 @@ public abstract class ServiceApplication implements Service {
 		}
 		return tmp;
 	}
+	
+	
+	public City getTempAPIconverter(String name) {
+		JSONArray jj = new JSONArray();
+		jj = getTempApi(name);
+		
+		
+		return null;
+		
+		
+	}
 
-	/** Questo metodo ci serve per andare a salvare le informazioni 
-	 * dei prossimi cinque giorni delle città e le salva in uno storico.
+	/**
+	 *  Questo metodo ci serve per andare a salvare le temperature  
+	 * dei 5 giorni successivi e le salva in uno storico.
 	 * @param nome della città.
-	 * @return un oggetto di tipo città popolato delle informazioni sulla città.
+	 * @return file dove vengono salvate le informazioni.
 	 */
 	
 	public String save(String name) throws IOException  {
 		
-		JSONArray city = getTempFutureApi(name);
+		City city = getTempFutureApi(name);
 		JSONObject obj = new JSONObject();
-		obj = city.toJSONObject(city);
+		obj = city.toJSONObject();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
 		LocalDateTime now = LocalDateTime.now();	//dtf.format(now)
 		
@@ -210,7 +237,16 @@ public abstract class ServiceApplication implements Service {
 		return "I dati sono stati inseriti";
 		 
 	}	
-	//da finire
+	
+	
+	
+	
+	/**
+	 * Questo metodo prende le previsioni meteo future (temperatura
+	 * massima, minima, percepita e visibilità).
+	 * @param name è il nome della città di cui si vogliono conoscere le previsioni ristrette.
+	 * @return un vettore di tipo City che contiene tutte le informazioni richieste e anche le informazioni sulla città.
+	 */
 	public City getTempFutureApi(String name) {
 		City gg = new City();
 		JSONObject obj = new JSONObject();
@@ -241,8 +277,8 @@ public abstract class ServiceApplication implements Service {
 			
 				e.printStackTrace();
 			}
-		arr
-		return null;
+		gg.setTemps(vec);
+		return gg;
 	}
 
 	
@@ -255,4 +291,12 @@ public abstract class ServiceApplication implements Service {
 	public String FiveDaysInfo(String name) {
 		return null;
 		}
+	
+		@Override
+		public String URLgenerator(String name) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+		
 	}
