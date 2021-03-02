@@ -5,7 +5,7 @@ import java.util.Vector;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class City implements JSONClass, Cloneable {
+public class City implements  Cloneable { //jsonclass
 	
 	//Implementazione costrutttori
 	
