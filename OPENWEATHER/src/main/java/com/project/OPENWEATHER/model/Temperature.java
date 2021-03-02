@@ -130,7 +130,9 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @return una copia delle temperature
 	 */
 	public Temperature clone() {
-		return new Temperature (this.toJSONObject());
+		
+		return new Temperature (this.toJSONObject()  );
+		
 	}
 	
 	//JSONObject clone = new JSONObject(Temperature.toString());
@@ -138,7 +140,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	
 	
 	
-	
+
 	/**
 	 * @return the main
 	 */
