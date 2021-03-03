@@ -335,12 +335,6 @@ public class ServiceApplication implements Service {
 			return null;
 		}
 
-		@Override
-		public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, String period)
-				throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException {
-			// TODO Auto-generated method stub
-			return null;
-		}
 		
 		
 	}
