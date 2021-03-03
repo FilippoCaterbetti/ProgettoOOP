@@ -20,16 +20,28 @@ public class Filters {
 	/**
 	 * 
 	 * Costruttore della classe
-	 * public Filters(ArrayList<String> cities, String param, String value, String period) {
-		super();
-		this.cities=cities;
-		this.param=param;
-		this.value=value;
-		this.period=period;
-	}
+	 * 
+	
 	 */
-	
-	
+	public Filters(ArrayList<String> cities, String param, String value, String period) {
+	super();
+	this.cities=cities;
+	this.param=param;
+	this.value=value;
+	this.period=period;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public Filters() {
+		super();
+	}
 	
 	/**
 	 * 
