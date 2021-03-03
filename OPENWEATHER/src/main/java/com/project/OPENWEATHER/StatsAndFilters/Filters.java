@@ -17,12 +17,14 @@ public class Filters {
 	private String value;
 	private String period;
 	
-	/**
-	 * 
-	 * Costruttore della classe
-	 * 
+/**
+* Questo è il costruttore della classe.
+* @param cities è un ArrayList di Stringhe contenenti i nomi delle città che si vogliono filtrare
+* @param param parametro per cui si vuole effettuare il filtraggio
+* @param value valore che viene passato
+* @param period periodo per il quale si vuole sapere le statistiche
+*/
 	
-	 */
 	public Filters(ArrayList<String> cities, String param, String value, String period) {
 	super();
 	this.cities=cities;
@@ -47,7 +49,7 @@ public class Filters {
 	 * 
 	 * @return
 	 * @throws NotAllowedPeriodException se non viene inserito il periodo giusto
-	 * @throws WrongMethodTypeException 
+	 * @throws InvalidStringException se non viene inserita la stringa esatta
 	 */
 	
 	public JSONArray analyze() throws NotAllowedPeriodException, InvalidStringException {
@@ -75,7 +77,6 @@ public class Filters {
 					RealTempAvg filters = new RealTempAvg();
 					double x = filters.DAY1(dati);
 				}
-	
 			}
 			
 		if(period=="settimanale") {
@@ -96,8 +97,8 @@ public class Filters {
 						RealTempAvg filters = new RealTempAvg();
 						double x = filters.DAY7(dati);
 					}
-		
 				}
+		
 		if(period=="mensile") {
 			
 			if(param.equals("temp_max")){
