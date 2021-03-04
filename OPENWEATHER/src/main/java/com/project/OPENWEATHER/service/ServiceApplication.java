@@ -36,19 +36,7 @@ public class ServiceApplication implements Service {
 	
 	
 	
-	public String url(String name) {
-		
-		URLgeneration urlgen = new URLgeneration();
-		String url = "http://api.openweathermap.org/data/2.5/forecast?q=";
-		
-		String ApiKey = "";
-		urlgen.setApiKey(ApiKey);
-		url += ( name );
-		url += ( "&units=metric" );
-		url += ( "&appid=" + ApiKey);
-		urlgen.setUrl(url);
-		return url;
-	}
+	
 	
 	// in italiano aggiungere alla fine " &lang=it "
 			//unit metric permette di avere le misurazioni in 
