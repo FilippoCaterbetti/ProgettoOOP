@@ -33,12 +33,7 @@ public class Download {
 			String url = u.getUrl();
 			
 			String ApiKey = u.getApiKey();
-			
-			ServiceApplication ss = new ServiceApplication() {
-				
-			};
-			String s = ss.URLgenerator(null);
-			
+					
 			
 			try {
 
