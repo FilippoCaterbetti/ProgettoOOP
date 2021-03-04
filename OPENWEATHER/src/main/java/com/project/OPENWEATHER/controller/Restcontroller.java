@@ -244,18 +244,19 @@ public class Restcontroller {
 		
 		try {
 			if(period.equals("giornaliero")) {
-				req = tempavg.DAY1(null)
+				req = object.toJSONOBject();
+						
 				return new ResponseEntity<> ( stats.   HttpStatus.OK);
 			}
 			
 			else if(period.equals("settimanale")) {
 				
-				return new ResponseEntity<> (statistic.fiveDayAverage(cityName).toString(), HttpStatus.OK);
+				return new ResponseEntity<> (toString(), HttpStatus.OK);
 
 			}
 			else if(period.equals("mensile")) {
 				
-				return new ResponseEntity<> (statistic.fiveDayAverage(cityName).toString(), HttpStatus.OK);
+				return new ResponseEntity<> (statistic.fiveDayAverage(name).toString(), HttpStatus.OK);
 
 			}
 			else {
