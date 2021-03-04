@@ -10,8 +10,8 @@ import com.project.OPENWEATHER.model.Temperature;
 
 public interface  FiltersStatistics {
 
-	public abstract double DAY1(Vector <Temperature> dati) throws InvalidStringException;
-	public abstract double DAY7(Vector <Temperature> dati) throws InvalidStringException;
-	public abstract double DAY30(Vector <Temperature> dati) throws InvalidStringException;
+	public abstract double Day1(Vector <Temperature> dati) throws InvalidStringException;
+	public abstract double Day7(Vector <Temperature> dati) throws InvalidStringException;
+	public abstract double Day30(Vector <Temperature> dati) throws InvalidStringException;
 
 }
