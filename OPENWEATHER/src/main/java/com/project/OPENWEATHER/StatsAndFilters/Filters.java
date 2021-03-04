@@ -38,14 +38,11 @@ public class Filters {
 		this.period = period;
 	}
 
-	
-	
-	
 	public Filters() {
+		
 	}
-
-
-
+	
+	
 	/**
 	 * 
 	 * @return
@@ -66,22 +63,22 @@ public class Filters {
 				if(param.equals("temp_max")){
 					
 					TempMaxAvg filters = new TempMaxAvg();
-					double x = filters.DAY1(dati);
+					double x = filters.Day1(dati);
 					
 				} else if (param.equals("temp_min")) {
 					
 					TempMinAvg filters = new TempMinAvg();
-					double x = filters.DAY1(dati);
+					double x = filters.Day1(dati);
 					
 				} else if(param.equals("feels_like")) {
 					
 					FeelsLikeAvg filters = new FeelsLikeAvg();
-					double x = filters.DAY1(dati);
+					double x = filters.Day1(dati);
 					
 				} else if(param.equals("temp")) {
 					
 					RealTempAvg filters = new RealTempAvg();
-					double x = filters.DAY1(dati);
+					double x = filters.Day1(dati);
 				}
 	
 			}
@@ -91,22 +88,22 @@ public class Filters {
 					if(param.equals("temp_max")){
 						
 						TempMaxAvg filters = new TempMaxAvg();
-						double x = filters.DAY7(dati);
+						double x = filters.Day7(dati);
 						
 					} else if (param.equals("temp_min")) {
 						
 						TempMinAvg filters = new TempMinAvg();
-						double x = filters.DAY7(dati);
+						double x = filters.Day7(dati);
 						
 					} else if(param.equals("feels_like")) {
 						
 						FeelsLikeAvg filters = new FeelsLikeAvg();
-						double x = filters.DAY7(dati);
+						double x = filters.Day7(dati);
 						
 					} else if(param.equals("temp")) {
 						
 						RealTempAvg filters = new RealTempAvg();
-						double x = filters.DAY7(dati);
+						double x = filters.Day7(dati);
 					}
 		
 				}
@@ -115,25 +112,25 @@ public class Filters {
 			if(param.equals("temp_max")){
 				
 				TempMaxAvg filters = new TempMaxAvg();
-				double x = filters.DAY30(dati);
+				double x = filters.Day30(dati);
 				
 			} 
 			else if (param.equals("temp_min")) {
 				
 				TempMinAvg filters = new TempMinAvg();
-				double x = filters.DAY30(dati);
+				double x = filters.Day30(dati);
 				
 			} 
 			else if(param.equals("feels_like")) {
 				
 				FeelsLikeAvg filters = new FeelsLikeAvg();
-				double x = filters.DAY30(dati);
+				double x = filters.Day30(dati);
 				
 			} 
 			else if(param.equals("temp")) {
 				
 				RealTempAvg filters = new RealTempAvg();
-				double x = filters.DAY30(dati);
+				double x = filters.Day30(dati);
 			}
 		} else 
 			throw new NotAllowedPeriodException (period+"Inserisci un valore che sia giornaliero, settimanale o mensile");
