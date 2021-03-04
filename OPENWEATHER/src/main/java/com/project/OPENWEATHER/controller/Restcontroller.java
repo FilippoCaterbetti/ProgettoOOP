@@ -80,7 +80,7 @@ public class Restcontroller {
 	/*
 	 * JSONObject deve essere come indicato:
 	 * {
-     *     "city": [
+     *     "cities": [
      *        {
      *          "name": "Ancona"
      *        },
@@ -94,21 +94,39 @@ public class Restcontroller {
 		
 		
 		JSONObject object = new JSONObject(body);
+		JSONObject obj = new JSONObject();
 		
-		String name = object.getString("name");
+		
 		String period = object.getString("period");
 		
+		JSONArray arr  = new JSONArray();
+        arr = obj.getJSONArray("cities");
+        
+        ArrayList<String> cities = new ArrayList<String>(arr.length());
+        
+        /*
+        for(int i=0; i<arr.length();i++) {
+        	
+            JSONObject jj = new JSONObject();
+            object = arr.getJSONObject(i);
+            cities.add(jj.getString("names"));
+        */
+		
 		try {
-			return new ResponseEntity<>(service.PeriodCity(name, period),HttpStatus.OK);
+			
+			return new ResponseEntity<>(service.PeriodCity(cities, period),HttpStatus.OK);
 		}
 		catch(InvalidStringException e) {
+			
 			return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
 		}
 		catch(NotAllowedPeriodException e) {
+			
 			return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
 		}
-		
 	}
+	
+	
 	
 	/**
 	 * Mostra le previsioni della città inserita nei 5 giorni successivi (temperatura massima, minima, reale e percepita)
@@ -158,14 +176,14 @@ public class Restcontroller {
 	 * @return un JSONArray contenente i JSONObject con tutte le informazioni sulle previsioni azzeccate 
 	 * @throws CityNotFoundException per errori di città
 	 * @throws NotAllowedStringException se città vuota
-	 * @throws NotAllowedValueException  stringa non ammessa
+	 * 
 	 * @throws NotAllowedPeriodException  per invalid period.
 	 * @throws IOException per errori di input da file.
 	 */
 	
 	@PostMapping("/errors")
 	public ResponseEntity<Object> filtersHistory(@RequestBody String body) 
-			throws InvalidStringException, CitynotFoundException, NotAllowedValueException, NotAllowedPeriodException, IOException {
+			throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException { //NotAllowedValueException
 		
 		JSONObject object = new JSONObject(body);
         JSONArray array = new JSONArray();
@@ -192,11 +210,6 @@ public class Restcontroller {
         	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
         }
         catch(CitynotFoundException e) {
-        	
-        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
-        }
-        catch(NotAllowedValueException e) {
-        	
         	
         	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
         }
@@ -235,18 +248,17 @@ public class Restcontroller {
 	 * @throws IOException per errori di lettura del file.
 	 */
 	
-	@PostMapping(value="/stats")   //finire
+	@PostMapping(value="/stats")   //finire SERVE UN JSONOBJECT 
     public ResponseEntity<Object> stats(@RequestBody String body) throws NotAllowedPeriodException, IOException {
 		
 		JSONObject req = new JSONObject(body);
-		String period = req.getString("period");
+		
 		String cityName = req.getString("city");
+		String period = req.getString("period");
 		
 		try {
-			if(period.equals("giornaliero")) {
-				req = object.toJSONOBject();
-						
-				return new ResponseEntity<> ( stats.   HttpStatus.OK);
+			if(period.equals("giornaliero")) {						
+				//return new ResponseEntity<> ( stats  );
 			}
 			
 			else if(period.equals("settimanale")) {
@@ -256,7 +268,7 @@ public class Restcontroller {
 			}
 			else if(period.equals("mensile")) {
 				
-				return new ResponseEntity<> (statistic.fiveDayAverage(name).toString(), HttpStatus.OK);
+				//return new ResponseEntity<> (statistic.fiveDayAverage(name).toString(), HttpStatus.OK);
 
 			}
 			else {
@@ -326,13 +338,7 @@ public class Restcontroller {
         String period = object.getString("period");
         
         try {
-        	return new ResponseEntity<>(service.HistoryOfTemps(cities,period).toString(),HttpStatus.OK);
-        }
-        
-        catch (CitynotFoundException e) {
-        	
-			return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
-		
+        	return new ResponseEntity<>(service.PeriodCity(cities,period).toString(),HttpStatus.OK);
         }
         catch (InvalidStringException e) {
         	
