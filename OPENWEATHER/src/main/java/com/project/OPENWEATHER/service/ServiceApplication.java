@@ -177,7 +177,7 @@ public class ServiceApplication implements Service {
 		
 		ArrayList<JSONArray> tempinfo = new ArrayList<JSONArray>();
 		ArrayList<JSONArray> info = new ArrayList<JSONArray>();
-		
+	
 		
 		//isblank Returns true if the string is empty or contains only white space codepoints,otherwise false.
 		for(int j = 0; j<names.size();j++) {
@@ -319,10 +319,6 @@ public class ServiceApplication implements Service {
 	}
 
 	
-	@Override 
-	public ArrayList<JSONObject> PeriodCity (String name,  String period){
-			return null ;
-		}
 	
 	@Override 
 	public String FiveDaysInfo(String name) {
@@ -331,6 +327,20 @@ public class ServiceApplication implements Service {
 	
 		@Override
 		public String URLgenerator(String name) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public ArrayList<JSONObject> PeriodCity(ArrayList<String> names, String period) throws InvalidStringException,
+				NotAllowedPeriodException, InvalidStringException, NotAllowedPeriodException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, int error, String value, int period)
+				throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException {
 			// TODO Auto-generated method stub
 			return null;
 		}
