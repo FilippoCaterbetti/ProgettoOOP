@@ -1,5 +1,5 @@
 package com.project.OPENWEATHER.exception;
-
+import java.lang.Exception;
 
 //errore per param
 public class NotAllowedParamException extends Exception{
@@ -10,7 +10,7 @@ public class NotAllowedParamException extends Exception{
 	 * @param error è il messaggio di errore.
 	 */
 	public NotAllowedParamException(String error) {
-		
+		super(error);
 		this.error = error;
 	}
 	
