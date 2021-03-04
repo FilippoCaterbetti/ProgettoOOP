@@ -2,18 +2,42 @@ package com.project.OPENWEATHER.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+import java.util.Vector;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.project.OPENWEATHER.model.City;
+import com.project.OPENWEATHER.model.Temperature;
+
 class TestTemperature {
+	
+	private Temperature number;		
+		
+		@BeforeEach
+		void setUp() throws Exception {
+			number = new Temperature("sunny","clouds",30,0,15,17,16,"04-03-2021");
+		}
 
-	@BeforeEach
-	void setUp() throws Exception {
+		@AfterEach
+		void tearDown() throws Exception {
+		}
+		
+		
+		void toJSONObject() {
+		assertEquals("sunny", number.toJSONObject().get("main"));
+		assertEquals("clouds", number.toJSONObject().get("description"));
+		assertEquals(30D, number.toJSONObject().get("temp_max"));
+		assertEquals(0D, number.toJSONObject().get("temp_min"));
+		assertEquals(15D, number.toJSONObject().get("temp_avg"));
+		assertEquals(17D, number.toJSONObject().get("feel_like"));
+		assertEquals(16D, number.toJSONObject().get("temp"));
+		assertEquals("04-03-2021", number.toJSONObject().get("data"));
 	}
-
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
-
+		
 }
