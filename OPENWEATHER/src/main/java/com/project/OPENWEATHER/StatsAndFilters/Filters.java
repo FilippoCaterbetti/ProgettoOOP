@@ -15,14 +15,14 @@ public class Filters {
 	private ArrayList<String> cities = new ArrayList<String>();
 	private String param;
 	private String value;
-	private String period;
+	private int period;
 	
 	/**
 	 * 
 	 * Costruttore della classe
 	 * 
 	 */
-	public Filters(ArrayList<String> cities, String param, String value, String period) {
+	public Filters(ArrayList<String> cities, String param, String value, int period) {
 	super();
 	this.cities=cities;
 	this.param=param;
@@ -32,7 +32,7 @@ public class Filters {
 
 
 	
-	public Filters(ArrayList<String> cities, String param,  String period) {
+	public Filters(ArrayList<String> cities, String param, int period) {
 		this.cities = cities;
 		this.param = param;
 		this.period = period;
@@ -58,7 +58,7 @@ public class Filters {
 		City c = new City(); 
 		dati = c.getTemps();
 		
-			if(period =="giornaliero") {
+			if(period ==1) {
 				
 				if(param.equals("temp_max")){
 					
@@ -83,7 +83,7 @@ public class Filters {
 	
 			}
 			
-		if(period=="settimanale") {
+		if(period==7) {
 					
 					if(param.equals("temp_max")){
 						
@@ -107,7 +107,7 @@ public class Filters {
 					}
 		
 				}
-		if(period=="mensile") {
+		if(period==30) {
 			
 			if(param.equals("temp_max")){
 				
