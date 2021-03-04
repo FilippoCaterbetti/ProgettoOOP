@@ -10,8 +10,6 @@ import com.project.OPENWEATHER.model.City;
 
 class TestCity {
 
-	class TestCitta {
-
 		private City citta1;
 		private City citta2;
 		
@@ -37,5 +35,5 @@ class TestCity {
 		void testClone() {
 			assertEquals(citta1.toJSONObject(), citta1.clone().toJSONObject());
 		}
-	}
 }
+
