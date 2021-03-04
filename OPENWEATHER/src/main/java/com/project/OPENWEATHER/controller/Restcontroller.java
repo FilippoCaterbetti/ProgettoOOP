@@ -248,7 +248,7 @@ public class Restcontroller {
 	 * @throws IOException per errori di lettura del file.
 	 */
 	
-	@PostMapping(value="/stats")   //finire SERVE UN JSONOBJECT 
+	@PostMapping(value="/stats")   //finire SERVE UN #JSONOBJECT 
     public ResponseEntity<Object> stats(@RequestBody String body) throws NotAllowedPeriodException, IOException {
 		
 		JSONObject req = new JSONObject(body);
