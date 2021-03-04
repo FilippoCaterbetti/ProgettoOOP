@@ -96,7 +96,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 		this.feels_like = Double.parseDouble(temperature.get("feels_like").toString());
 		this.temp_max = Double.parseDouble(temperature.get("temp_max").toString());
 		this.temp_min = Double.parseDouble(temperature.get("temp_min").toString());	
-		this.temp_avg = avg.getAvg();   //this.temp_avg = (this.temp_min+this.temp_max)/2; 
+		this.temp_avg = avg.getAvg();    
 		this.data = (String)temperature.get("data");
 		this.main = (String) temperature.get("main");
 		this.description = (String) temperature.get("description");
