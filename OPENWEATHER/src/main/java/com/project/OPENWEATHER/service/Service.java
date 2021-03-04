@@ -27,8 +27,9 @@ public interface Service {
 	public String FiveDaysInfo(String name);
 	//public abstract JSONArray getTempAPI(String name);
 	public abstract City getTempFutureApi(String name);
-	public abstract ArrayList<JSONObject> PeriodCity (String name, String period ) throws InvalidStringException, NotAllowedPeriodException, InvalidStringException, NotAllowedPeriodException;  //inserire vari errori 
-	public abstract ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, String period) throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException;
+	public abstract ArrayList<JSONObject> PeriodCity (ArrayList <String> names, String period ) throws InvalidStringException, NotAllowedPeriodException, InvalidStringException, NotAllowedPeriodException;  //inserire vari errori 
+	public abstract ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, int error, String value, int period) throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException;
+	
 	
 	
 }

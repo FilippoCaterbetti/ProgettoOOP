@@ -1,21 +1,18 @@
 package com.project.OPENWEATHER.exception;
-
 import java.lang.Exception;
 
-
-//generiamo questo errore se la città è errata o non esiste
-
-public class CitynotFoundException extends Exception{
+//errore per param
+public class NotAllowedParamException extends Exception{
 	
 	String error;
 	
 	/**
 	 * @param error è il messaggio di errore.
 	 */
-	public CitynotFoundException(String error) {
-		this.error=error;
+	public NotAllowedParamException(String error) {
+		super(error);
+		this.error = error;
 	}
-	
 	
 	/**
 	 * @return String con messaggio di errore

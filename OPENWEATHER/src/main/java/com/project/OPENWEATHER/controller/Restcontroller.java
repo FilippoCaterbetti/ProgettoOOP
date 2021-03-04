@@ -5,6 +5,7 @@ import java.io.IOException;
 
 
 
+
 import java.lang.Exception;
 
 
@@ -27,9 +28,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.OPENWEATHER.exception.CitynotFoundException;
 import com.project.OPENWEATHER.exception.InvalidStringException;
+import com.project.OPENWEATHER.exception.NotAllowedParamException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
+import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.Temperature;
 import com.project.OPENWEATHER.service.Service;
+import com.project.OPENWEATHER.StatsAndFilters.*;
 
 
 @RestController
@@ -37,6 +41,10 @@ public class Restcontroller {
 	
 	@Autowired
 	Temperature stats = new Temperature();
+	RealTempAvg tempavg = new RealTempAvg();
+	TempMaxAvg maxavg = new TempMaxAvg();
+	TempMinAvg minavg = new TempMinAvg();
+	
 	Service service;
 	
 	/**
@@ -72,7 +80,7 @@ public class Restcontroller {
 	/*
 	 * JSONObject deve essere come indicato:
 	 * {
-     *     "city": [
+     *     "cities": [
      *        {
      *          "name": "Ancona"
      *        },
@@ -86,21 +94,39 @@ public class Restcontroller {
 		
 		
 		JSONObject object = new JSONObject(body);
+		JSONObject obj = new JSONObject();
 		
-		String name = object.getString("name");
+		
 		String period = object.getString("period");
 		
+		JSONArray arr  = new JSONArray();
+        arr = obj.getJSONArray("cities");
+        
+        ArrayList<String> cities = new ArrayList<String>(arr.length());
+        
+        /*
+        for(int i=0; i<arr.length();i++) {
+        	
+            JSONObject jj = new JSONObject();
+            object = arr.getJSONObject(i);
+            cities.add(jj.getString("names"));
+        */
+		
 		try {
-			return new ResponseEntity<>(service.PeriodCity(name, period),HttpStatus.OK);
+			
+			return new ResponseEntity<>(service.PeriodCity(cities, period),HttpStatus.OK);
 		}
 		catch(InvalidStringException e) {
+			
 			return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
 		}
 		catch(NotAllowedPeriodException e) {
+			
 			return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
 		}
-		
 	}
+	
+	
 	
 	/**
 	 * Mostra le previsioni della città inserita nei 5 giorni successivi (temperatura massima, minima, reale e percepita)
@@ -128,6 +154,137 @@ public class Restcontroller {
 			
 		return new ResponseEntity<> (report5hour, HttpStatus.OK);
 	}
+	
+	
+	
+	/**
+	 * Rotta POST che filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione (da 1 a 5 giorni successivi)
+	 * L'utente inserisce un JSONObject
+	 * >, $gte >=, $lt <, $lte <=
+	 * {
+     *     "cities": [
+     *        {
+     *          "name": "Ancona"
+     *        }
+     *      ],
+     *     "error": 1,
+     *     "value": "$gt" 
+     *     "period": 3    
+     *  }
+	 * 
+	 * @param body è un JSONObject 
+	 * @return un JSONArray contenente i JSONObject con tutte le informazioni sulle previsioni azzeccate 
+	 * @throws CityNotFoundException per errori di città
+	 * @throws NotAllowedStringException se città vuota
+	 * 
+	 * @throws NotAllowedPeriodException  per invalid period.
+	 * @throws IOException per errori di input da file.
+	 */
+	
+	@PostMapping("/errors")
+	public ResponseEntity<Object> filtersHistory(@RequestBody String body) 
+			throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException { //NotAllowedValueException
+		
+		JSONObject object = new JSONObject(body);
+        JSONArray array = new JSONArray();
+
+        array = object.getJSONArray("cities");
+        
+        ArrayList<String> cities = new ArrayList<String>(array.length());
+        
+        for(int i=0; i<array.length();i++) {
+            JSONObject obj = new JSONObject();
+            obj = array.getJSONObject(i);
+            cities.add(obj.getString("name"));
+        }
+        
+        int error = object.getInt("error");
+        String value = object.getString("value");
+        int period = object.getInt("period");
+        
+        try {
+        	return new ResponseEntity<>(service.HistoryOfTemps(cities,error,value,period).toString(),HttpStatus.OK);
+        }
+        catch(InvalidStringException e) {
+        	
+        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+        }
+        catch(CitynotFoundException e) {
+        	
+        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+        }
+        catch(NotAllowedPeriodException e) {
+        	
+        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+        }
+		
+	}
+	
+	
+	/**
+	 * Rotta di tipo GET che mostra le previsioni ristrette (temperatura massima, minima, percepita e
+	 * visibilità) per i 5 giorni successivi alla richiesta della città inserita dall'utente.
+	 * 
+	 * @param cityName rappresenta la città di cui si richiedono le previsioni meteo ristrette.
+	 * @return un JSONObject contenente le previsioni meteo ristrette della città richiesta e 
+	 *         le informazioni generali su di essa.
+	 */
+
+	
+	
+	/**
+	 * Rotta POST che mostra la media della temperatura massima, minima, percepita e la media, la minima,
+	 * la massima 5 giorni, a seconda del periodo (giornaliero, settimanale, mensile) 
+	 * 
+	 * 
+	 * {
+     *		"city" : "name",
+     *		"period" : "period"
+	 *	}
+	 * 
+	 * @param body è il JSONObject 
+	 * @return il JSONObject con le statistiche richieste.
+	 * @throws NotAllowedPeriodException per period non ammessi
+	 * @throws IOException per errori di lettura del file.
+	 */
+	
+	@PostMapping(value="/stats")   //finire SERVE UN #JSONOBJECT 
+    public ResponseEntity<Object> stats(@RequestBody String body) throws NotAllowedPeriodException, IOException {
+		
+		JSONObject req = new JSONObject(body);
+		
+		String cityName = req.getString("city");
+		String period = req.getString("period");
+		
+		try {
+			if(period.equals("giornaliero")) {						
+				//return new ResponseEntity<> ( stats  );
+			}
+			
+			else if(period.equals("settimanale")) {
+				
+				return new ResponseEntity<> (toString(), HttpStatus.OK);
+
+			}
+			else if(period.equals("mensile")) {
+				
+				//return new ResponseEntity<> (statistic.fiveDayAverage(name).toString(), HttpStatus.OK);
+
+			}
+			else {
+			
+				throw new NotAllowedPeriodException("Questo "+ period + " è invalido ");
+				
+			}
+		}catch (NotAllowedPeriodException e) {
+			
+			return new ResponseEntity<> (e.getError(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -181,13 +338,7 @@ public class Restcontroller {
         String period = object.getString("period");
         
         try {
-        	return new ResponseEntity<>(service.HistoryOfTemps(cities,period).toString(),HttpStatus.OK);
-        }
-        
-        catch (CitynotFoundException e) {
-        	
-			return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
-		
+        	return new ResponseEntity<>(service.PeriodCity(cities,period).toString(),HttpStatus.OK);
         }
         catch (InvalidStringException e) {
         	
@@ -203,6 +354,80 @@ public class Restcontroller {
         
 	}
 	
+	
+	/**
+	 * Rotta  POST che filtra le statistiche in base alle informazioni che si vogliono
+	 * è richiesto un JSONObject di questo tipo:
+	 * 
+	 * {
+     *     "cities": [
+     *        {
+     *          "name": ""
+     *        },
+     *        {
+     *          "name": ""
+     *        }
+     *      ],
+     *     "param": "max",
+     *     "period": "giornaliero"
+     *  }
+	 * 
+	 * a seconda del "param"(temp max o min o feels_like o average) della città 
+	 * e in che "period"(giornaliero, settimanale o mensile).
+	 * 
+	 * 
+	 * @param body è un JSONObject 
+	 * @return il JSONArray che contiene tanti JSONObject quante sono le città specificate nella richiesta
+	 *         ognuno dei quali contiene il nome della città e la media del "param" indicato. In più il JSONArray contiene
+	 *         un ultimo JSONObject al cui interno è contenuta la massima o minima media a seconda del valore indicato.
+	 * @throws NotAllowedPeriodException se il numero immesso è errato.
+	 * @throws NotAllowedParamException se viene inserita una stringa errata per param.
+	 * @throws InvalidStringException 
+	 *  
+	 */
+	@PostMapping(value="/filters")
+	public ResponseEntity<Object> filters(@RequestBody String body) throws NotAllowedPeriodException, NotAllowedParamException, InvalidStringException {
+		
+		JSONObject obj = new JSONObject(body);
+        JSONArray arr = new JSONArray();
+
+ 
+
+        arr = obj.getJSONArray("cities");
+        
+        ArrayList<String> cities = new ArrayList<String>(arr.length());
+        
+        for(int i=0; i<arr.length();i++) {
+        	
+            JSONObject object = new JSONObject();
+            object = arr.getJSONObject(i);
+            cities.add(object.getString("name"));
+        }
+        
+        String param = obj.getString("param");
+        String period = obj.getString("period");
+		
+        Filters filter;
+        
+		filter = new Filters(cities,param, period);
+		
+		try {
+        	return new ResponseEntity<>(filter.analyze().toString(),HttpStatus.OK);
+        }
+		catch(NotAllowedPeriodException e) {
+			
+	        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+	        	
+	        }
+		/*catch(NotAllowedParamException e) {
+			
+        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+        	
+        }
+        */
+		
+		
+	}
 	
 	
 	
