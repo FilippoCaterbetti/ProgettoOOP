@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.Exception;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -47,12 +49,13 @@ public class ServiceApplication implements Service {
 	//automaticamente il json ricevuto in un oggetto Java strutturato in maniera 
 	//conforme al json atteso; Noi di seguito usiamo questa funzionalità e trasferiamo i dati
 	//in un tipo JSONObject che useremo poi in seguito nelle altre classi
-	public JSONObject getCityApi(String name) {
+	public JSONObject getCityApi(String name) throws MalformedURLException, IOException, ParseException {
 		
 		
 		URLgeneration urlgen = new URLgeneration();
 
 		String url = urlgen.getUrl();
+		urlgen.richiesta(name);
 		
 		JSONObject obj;
 		RestTemplate rest = new RestTemplate();
