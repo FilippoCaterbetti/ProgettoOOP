@@ -39,12 +39,10 @@ public class URLgeneration {
 	
 	/**
 	 * 
-	 * Metodo per ottenere le coordinate di una città partendo dal suo nome tramite l'API di OpenWeather
 	 * 
-	 * @param nomeCitta Nome della città della quale vogliamo sapere le coordinate
-	 * @return 
-	 * @return Le coordinate della città cercata in un vettore di double, nel quale, alla posizione 0 c'è 
-	 * la latitudine, alla posizione 1 la longitudine;
+	 * 
+	 * @param name Nome della città 
+	 * @return void
 	 * @throws IOException Se si verificano problemi durante l'input/output
 	 * @throws MalformedURLException Se l'URL per la richiesta di dati all'API di OpenWeather non è corretto
 	 * @throws ParseException Se il parsing del body genera eccezioni
