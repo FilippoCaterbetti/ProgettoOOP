@@ -57,7 +57,7 @@ public class Filters {
 		City c = new City(); 
 		dati = c.getTemps();
 		
-			if(period=="giornaliero") {
+			if(period =="giornaliero") {
 				
 				if(param.equals("temp_max")){
 					TempMaxAvg filters = new TempMaxAvg();
