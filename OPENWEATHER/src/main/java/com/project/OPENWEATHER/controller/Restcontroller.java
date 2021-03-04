@@ -142,7 +142,7 @@ public class Restcontroller {
 	/**
 	 * Rotta POST che filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione (da 1 a 5 giorni successivi)
 	 * L'utente inserisce un JSONObject
-	 * 
+	 * >, $gte >=, $lt <, $lte <=
 	 * {
      *     "cities": [
      *        {
@@ -153,9 +153,6 @@ public class Restcontroller {
      *     "value": "$gt" 
      *     "period": 3    
      *  }
-	 * 
-	 * >, $gte >=, $lt <, $lte <=
-	 * 
 	 * 
 	 * @param body è un JSONObject 
 	 * @return un JSONArray contenente i JSONObject con tutte le informazioni sulle previsioni azzeccate 
@@ -199,6 +196,7 @@ public class Restcontroller {
         	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
         }
         catch(NotAllowedValueException e) {
+        	
         	
         	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
         }
