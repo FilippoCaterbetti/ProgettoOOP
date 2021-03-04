@@ -1,20 +1,27 @@
 package com.project.OPENWEATHER.exception;
 
-public class NotAllowedValueException {
+import java.lang.Exception;
+
+public class NotAllowedValueException extends Exception{
 	String error;
 	
 	
 	/**
-	 * @param mex rappresenta il messaggio di errore.
+	 * @param error rappresenta il messaggio di errore.
 	 */
 	public NotAllowedValueException(String error) {
 		
 		this.error = error;
 	}
 	
+
+    /*public NotAllowedValueException(Throwable error) {
+        super(error);
+    }*/
+	
 	/**
-	 * Restituisce un messaggio di errore passato al costruttore quando viene inserita una stringa non ammessa per il value.
-	 * @return String che contiene il messaggio d'errore che viene stampato.
+	 * Messaggio di errore quando viene inserita una stringa errata per il value.
+	 * @return String con il messaggio d'errore
 	 */
 	public String getError() {
 		return error;
