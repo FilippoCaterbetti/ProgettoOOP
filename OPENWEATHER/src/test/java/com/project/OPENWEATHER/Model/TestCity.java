@@ -15,19 +15,17 @@ class TestCity {
 		
 		@BeforeEach
 		void setUp() throws Exception {
-			citta1 = new City("Roma","Italy",1);
-			citta2 = new City("Milano","Italy",2);
+			citta1 = new City("Milan","Italy",1);
+			citta2 = new City("Roma","Italy",2);
 		}
 
 		@AfterEach
 		void tearDown() throws Exception {
 		}
 
-		
-		
 		@Test
 		void testToJSONObject() {
-			assertEquals("Roma", citta1.toJSONObject().get("name"));
+			assertEquals("Milan", citta1.toJSONObject().get("name"));
 			assertEquals("Italy", citta1.toJSONObject().get("country"));
 			assertEquals(1L, citta1.toJSONObject().get("id"));
 			}
