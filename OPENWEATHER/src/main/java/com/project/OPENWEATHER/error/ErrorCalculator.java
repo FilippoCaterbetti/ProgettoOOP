@@ -13,11 +13,11 @@ public class ErrorCalculator extends ResearchDay {
 	}
 	/**
 	 * Questo metodo serve per calcolare l'errore sulle predizioni di ogni città indicata nell'ArrayList. Chiamerà, infine,
-	 * il metodo errorFilter di ErrorFilter responsabile del filtraggio della soglia di errore. Richiama il metodo
+	 * il metodo errorFilter di Errors responsabile del filtraggio della soglia di errore. Richiama il metodo
 	 * findDay della classe FindDay, che si occupa di calcolare il giorno e l'ora da cui partire per il calcolo.
 	 * 
-	 * @param cities è l'ArrayList di Stringhe contenenti i nomi delle città di cui si vuole conoscere la soglia di errore.
-	 * @param visibilityInfo è l'ArrayList contenente le informazioni relative alla visibilità di ogni città indicata 
+	 * @param cities è l'ArrayList di Stringhe dei nomi delle città di cui si vuole conoscere la soglia di errore.
+	 * @param visibilityInfo è l'ArrayList contenente le informazioni relative alla temperatura di ogni città indicata 
 	 *        nell'ArrayList di Stringhe cities.
 	 * @param error è la soglia di errore su cui si vuole effettuare il filtraggio.
 	 * @param value è l'indicazione sul filtraggio.
@@ -25,11 +25,11 @@ public class ErrorCalculator extends ResearchDay {
 	 * @return l'ArrayList di JSONObject contenente le informazioni sull'errore di ogni città e, come ultimo elemento,
 	 *         il JSONObject contenente le città che rispettano le condizioni indicate da error e value.
 	 */
-	public ArrayList<JSONObject> calculate(ArrayList<String> cities,ArrayList<JSONArray> visibilityInfo,int error,String value,int period) {
+	public ArrayList<JSONObject> calculate(ArrayList<String> cities,ArrayList<JSONArray> tempInfo,int error,String value,int period) {
 		
 		ArrayList<JSONObject> ret = new ArrayList<JSONObject> ();
 		
-		Iterator<JSONArray> visibilityIt = visibilityInfo.iterator();
+		Iterator<JSONArray> visibilityIt = tempInfo.iterator();
 		Iterator<String> citiesIt = cities.iterator();
 		
 		while(visibilityIt.hasNext() && citiesIt.hasNext()) {
@@ -82,7 +82,7 @@ public class ErrorCalculator extends ResearchDay {
 		  }
             JSONObject errorInfo = new JSONObject();
             errorInfo.put("error AME", errortot);
-            errorInfo.put("previsioni azzeccate su "+contatore, azzeccate);
+            errorInfo.put("previsioni azzeccate su "+ contatore, azzeccate);
             errorInfo.put("City", citiesIt.next());
             ret.add(errorInfo);
            
