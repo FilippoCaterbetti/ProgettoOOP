@@ -143,8 +143,6 @@ public class ServiceApplication implements Service {
 	public City getTempAPIconverter(String name) {
 		JSONArray jj = new JSONArray();
 		jj = getTempApi(name);
-		
-		
 		return null;
 		
 		
