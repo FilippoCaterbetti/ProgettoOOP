@@ -148,40 +148,6 @@ public class ServiceApplication implements Service {
 		
 	}
 	
-	/**
-	 * 
-	 * Questo metodo rilegge le informazioni salvate nel periodo selezionato.
-	 * Poi salva le informazioni  in un ArrayList di JSONArray e lo passa al metodo per calcolare le varie
-	 * statistiche.
-	 * 
-	 * @param names rappresenta la città o le città su cui si vogliono avere le statistiche.
-	 * @param period è il periodo
-	 * @throws InvalidStringException se almeno una delle stringhe immesse è vuota.
-	 * @throws CitynotFoundException se la città non esiste.
-	 * @throws NotAllowedPeriodException se viene inserito un period errato.
-	 * @throws IOException se si verifica un errore di lettura del file.
-	 * 
-	 */
-	public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, String period)throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException{
-		
-		ArrayList<JSONArray> tempinfo = new ArrayList<JSONArray>();
-		ArrayList<JSONArray> info = new ArrayList<JSONArray>();
-	
-		
-		//isblank Returns true if the string is empty or contains only white space codepoints,otherwise false.
-		for(int j = 0; j<names.size();j++) {
-			if(names.get(j).isBlank()) {
-				throw new InvalidStringException ("città non valida");
-			}
-			
-			
-		}
-		return null;
-	}
-
-	
-	
-	
 	
 	/**
 	 *  Questo metodo ci serve per andare a salvare le temperature  
@@ -264,15 +230,103 @@ public class ServiceApplication implements Service {
 		 
 	}	
 	
+	/**
+	 * Questo metodo viene richiamato da readHistoryError e da readVisibilityHistory.
+	 * Si occupa della lettura dello storico della città passata in ingresso. A seconda che il flag sia true o false, il 
+	 * metodo andrà a leggere lo storico per il calcolo della soglia di errore e delle previsioni azzeccate oppure per 
+	 * le statistiche sulla visibilità.
+	 * 
+	 * @param name è il nome della città di cui si vuole leggere lo storico.
+	 * @param flag indica quale storico andare a leggere.
+	 * @return il JSONArray che contiene tutte le informazioni sulla visibilità.
+	 * @throws IOException se si verificano errori di input da file.
+	 */
+	//DA VEDERE!!!!!
+	public JSONArray readHistory(String name, boolean flag) throws IOException {
+		
+	}
+	
+	/**
+	 * 
+	 * Questo metodo rilegge le informazioni salvate nel periodo selezionato.
+	 * Poi salva le informazioni  in un ArrayList di JSONArray e lo passa al metodo per calcolare le varie
+	 * statistiche.
+	 * 
+	 * @param names rappresenta la città o le città su cui si vogliono avere le statistiche.
+	 * @param period è il periodo
+	 * @throws InvalidStringException se almeno una delle stringhe immesse è vuota.
+	 * @throws CitynotFoundException se la città non esiste.
+	 * @throws NotAllowedPeriodException se viene inserito un period errato.
+	 * @throws IOException se si verifica un errore di lettura del file.
+	 * 
+	 */
+	public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, String period)throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException{
+		
+		ArrayList<JSONArray> tempinfo = new ArrayList<JSONArray>();
+		ArrayList<JSONArray> info = new ArrayList<JSONArray>();
+	
+		
+		//isblank Returns true if the string is empty or contains only white space codepoints,otherwise false.
+		for(int j = 0; j<names.size();j++) {
+			if(names.get(j).isBlank()) {
+				throw new InvalidStringException ("città non valida");
+			}
+			
+			
+		}
+		return null;
+	}
+	
+	/**
+	 * Questo metodo serve per raccogliere le informazioni dallo storico di ogni città passata in ingresso 
+	 * e richiama altri metodi che servono per leggere lo storico stesso e metodi per calcolare statistiche e filtrarle.
+	 * 
+	 * @param names contiene i nomi di tutte le città su cui si vogliono fare statistiche sulla soglia di
+	 *        errore e applicare i filtri.
+	 * @param error è l'intero che rappresenta la soglia con cui si vuole filtrare.
+	 * @param value esprime il filtro che si vuole applicare, cioè se si vuole sapere quali città hanno un errore maggiore
+	 *        o minore dell'intero error che è stato inserito. Le stringhe ammesse sono: "$lt", "$gt" e "=".
+	 * @param period rappresenta i giorni di predizione (da 1 a 5 inclusi).
+	 * @return restituisce l'ArrayList di JSONObject filtrati secondo i filtri indicati.
+	 * @throws EmptyStringException se almeno uno dei nomi inseriti è uguale alla stringa vuota.
+	 * @throws CityNotFoundException se l'utente ha inserito una città di cui non è presente lo storico. Le stringhe ammesse
+	 *         sono: "Ancona","Milano","Roma","Bologna", "Parigi".
+	 * @throws WrongPeriodException se l'utente ha inserito un numero che non è compreso tra 1 e 5 (inclusi).
+	 * @throws WrongValueException se l'utente ha inserito una stringa non ammessa per il value.
+	 * @throws IOException se si verificano problemi nella lettura del file.
+	 */
+	public ArrayList<JSONObject> readHistoryError(ArrayList<String> names ,int error,String value,int period) throws EmptyStringException, CityNotFoundException, WrongPeriodException, WrongValueException, IOException {
+		
+		for(int i=0; i < names.size(); i++) {
+			if(names.get(i).isEmpty())
+				throw new EmptyStringException("Hai dimenticato di inserire la città...");
+			else if(!(names.get(i).equals("Ancona") || names.get(i).equals("Milano") || names.get(i).equals("Roma") || names.get(i).equals("Bologna") || names.get(i).equals("Parigi")))
+				throw new CityNotFoundException("Città non trovata nello storico");
+			
+		if(period < 1 || period > 5)
+				throw new WrongPeriodException(period + " Il peridodo che hai inserito non è valido. Devi inserire un numero compreso tra 1 e 5 inclusi.");
+		}
+		
+		if(!(value.equals("$gt") || value.equals("$lt") || value.equals("=")))
+			throw new WrongValueException(value + " non è una stringa ammessa. "
+					+ "Devi inserire una stringa tra \"$gt\", \"$lt\" e \"=\"");
+		
+		Iterator<String> list = names.iterator();
+		
+		//ArrayList<JSONArray> visibilityArray = new ArrayList<JSONArray>(); TUTTE LE TEMPERATURE??
+		ArrayList<JSONObject> errors = new ArrayList<JSONObject>();
+		
+	}
 	
 	
 	
 	/**
 	 * Questo metodo prende le previsioni meteo future (temperatura
-	 * massima, minima, percepita e visibilità).
+	 * massima, minima, percepita).
 	 * @param name è il nome della città di cui si vogliono conoscere le previsioni ristrette.
 	 * @return un vettore di tipo City che contiene tutte le informazioni richieste e anche le informazioni sulla città.
 	 */
+	
 	public City getTempFutureApi(String name) {
 		City gg = new City();
 		JSONObject obj = new JSONObject();
