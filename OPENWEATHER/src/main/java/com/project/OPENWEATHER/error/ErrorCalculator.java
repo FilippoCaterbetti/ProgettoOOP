@@ -1,5 +1,11 @@
 package com.project.OPENWEATHER.error;
 
-public class ErrorCalculator {
+public class ErrorCalculator extends ResearchDay {
+	
+	public ErrorCalculator() {
+		
+	}
+	
+	
 
 }
