@@ -35,7 +35,29 @@ public class City implements Cloneable { //jsonclass
 		this.country=country;
 		this.temps= new Vector <Temperature>();
 	}
+	
+	public City(String name) {
+		
+		this.id=0;
+		this.name=name;
+		this.country=null;
+		this.temps= null;
+	}
 
+	public City (long id) {
+		
+		this.id=id;
+		this.name=null;
+		this.country=null;
+		this.temps= null;
+	}
+	
+	public City(String name, String country) {
+		this.id=0;
+		this.name=name;
+		this.country=country;
+		//this.weatherArray = null;
+	}
 	
 	/**
 	 * Costruttore per City

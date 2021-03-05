@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.Temperature;
 

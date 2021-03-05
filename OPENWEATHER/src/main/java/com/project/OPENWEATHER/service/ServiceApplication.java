@@ -25,7 +25,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import com.project.OPENWEATHER.error.ErrorCalculator;
 import com.project.OPENWEATHER.exception.CitynotFoundException;
+import com.project.OPENWEATHER.exception.EmptyStringException;
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
 import com.project.OPENWEATHER.model.City;
@@ -241,7 +243,7 @@ public class ServiceApplication implements Service {
 	 * @return il JSONArray che contiene tutte le informazioni sulla visibilità.
 	 * @throws IOException se si verificano errori di input da file.
 	 */
-	//DA VEDERE!!!!!
+	
 	public JSONArray readHistory(String name, boolean flag) throws IOException {
 		
 	}
@@ -313,9 +315,49 @@ public class ServiceApplication implements Service {
 		
 		Iterator<String> list = names.iterator();
 		
-		//ArrayList<JSONArray> visibilityArray = new ArrayList<JSONArray>(); TUTTE LE TEMPERATURE??
+		ArrayList<JSONArray> statisticArray = new ArrayList<JSONArray>(); 
 		ArrayList<JSONObject> errors = new ArrayList<JSONObject>();
 		
+		while(list.hasNext()) {
+			
+			JSONArray array = new JSONArray();
+			array = readHistory(list.next(),true);
+			JSONArray visibilityInfo = new JSONArray();
+			
+			for(int i=0; i<array.length(); i++) {
+				
+				JSONArray visibilityday = new JSONArray();
+				
+				JSONObject weather = new JSONObject();
+				weather = array.getJSONObject(i);
+				
+				JSONArray arr = new JSONArray();
+				arr = weather.getJSONArray("Weather");
+				
+				
+				for(int j=0; j<arr.length();j++) {
+					
+					JSONObject visibility = new JSONObject();
+					JSONObject all = new JSONObject();
+					all = arr.getJSONObject(j);
+					
+					visibility.put("visibility", all.get("visibility"));
+					visibility.put("data", all.get("data"));
+					visibilityday.put(visibility);
+					
+				}
+				
+				visibilityInfo.put(visibilityday);
+				
+			}
+			
+			statisticArray.add(visibilityInfo);
+		}
+		
+		ErrorCalculator errorcalculator = new ErrorCalculator();
+		errors = errorcalculator.calculate(names,tempInfo, error, value, period);
+		
+		return errors;
 	}
 	
 	
