@@ -22,5 +22,14 @@ public class Statistics extends ErrorCalculator{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public JSONObject weekAvg(String next) {
 		
+		return null;
+	}
+	
+	public JSONObject monthAvg(String next) {
+		return null;
+	}
+	
+	
 	}

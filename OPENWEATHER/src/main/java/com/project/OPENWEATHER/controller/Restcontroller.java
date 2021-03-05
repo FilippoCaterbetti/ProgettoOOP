@@ -31,6 +31,8 @@ import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedParamException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
 import com.project.OPENWEATHER.exception.NotAllowedValueException;
+import com.project.OPENWEATHER.model.City;
+import com.project.OPENWEATHER.model.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
 import com.project.OPENWEATHER.service.Service;
 import com.project.OPENWEATHER.StatsAndFilters.*;
@@ -41,41 +43,67 @@ public class Restcontroller {
 	
 	@Autowired
 	Temperature stats = new Temperature();
-	RealTempAvg tempavg = new RealTempAvg();
-	TempMaxAvg maxavg = new TempMaxAvg();
-	TempMinAvg minavg = new TempMinAvg();
+	//RealTempAvg tempavg = new RealTempAvg();
+	//TempMaxAvg maxavg = new TempMaxAvg();
+	//TempMinAvg minavg = new TempMinAvg();
 	
 	Service service;
 	Statistics statistic = new Statistics();
 	
 	/**
 	 * 
-	 * * Rotta di tipo GET che mostra le temperature 
+	 *  Rotta GET che mostra le temperature 
 	 * per i 5 giorni successivi della città.
 	 * 
-	 * @param name indichiamo la città da cui vogliamo la temperatura.
+	 * @param name indica la città da cui vogliamo la temperatura.
 	 * @return restituiamo le previsioni della città indicata
 	 * 
 	 */
 	
 	@GetMapping(value="/temp")
 	public ResponseEntity<Object> getTemp(@RequestParam String name) {
-		return new ResponseEntity<> (service.getTempApi(name), HttpStatus.OK);
+		
+		return new ResponseEntity<> (service.getTempApi(name).toString(), HttpStatus.OK);
+		
     }
 	
+	/**
+	 * Rotta  GET che mostra le temperature future (temperatura massima, minima, percepita e
+	 * media) dei 5 giorni successivi della città
+	 * 
+	 * @param name è la città 
+	 * @return un JSONObject contenente temperature
+	 */
+	@GetMapping(value="/OpenWeather")
+	public ResponseEntity<Object> getCityApi(@RequestParam String name){
+		
+		City citta = service.getTempFutureApi(name);
+		JSONObject object = new JSONObject();
+		
+		JSONClass gjson = new JSONClass();
+		
+		object = gjson.JSONClass(citta);
+		
+		return new ResponseEntity<>(object.toString(),HttpStatus.OK);
+		
+	}
+	
+	
 	 /**
-	 *  @param name indichiamo la città da cui vogliamo la temperatura
+	  *Rotta GET che salva ogni cnque ore le temperature della città.
+	  * 
+	 *  @param name indica la città da cui vogliamo la temperatura
 	 * 	@return il file dove vengono salvati i dati.
 	 * 	@throws IOException per gli errori di output del file.
 	 */
 		
-	/*@GetMapping("/FiveHoursInfo")
-	public ResponseEntity<Object> saveHour(@RequestParam String name) throws IOException {
+	@GetMapping("/FiveHoursInfo")
+	public ResponseEntity<Object> saveFiveHour(@RequestParam String name) throws IOException {
 		
 		String file = service.FiveHoursInfo(name);
 		
 		return new ResponseEntity<> (file, HttpStatus.OK);
-	}*/
+	}
 	
 	
 	/*
@@ -87,7 +115,7 @@ public class Restcontroller {
      *        },
      *      ],
      *     "period": "giornaliero"
-     *  }*/
+     *  }
 	
 	//il "period"(giornaliero, settimanale, mensile) indica il periodo di tempo da selezionare
 	@PostMapping(value="/PeriodCity")
@@ -111,7 +139,7 @@ public class Restcontroller {
             JSONObject jj = new JSONObject();
             object = arr.getJSONObject(i);
             cities.add(jj.getString("names"));
-        */
+        
 		
 		try {
 			
@@ -126,36 +154,7 @@ public class Restcontroller {
 			return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	
-	
-	/**
-	 * Mostra le previsioni della città inserita nei 5 giorni successivi (temperatura massima, minima, reale e percepita)
-	 * 
-	 * @param name = città
-	 */
-	@GetMapping(value="/FiveDaysInfo")
-	public ResponseEntity<Object> FiveDaysInfo(@RequestParam String name){
-		
-		return null;
-		
-	}
-	
-	/**
-	 * Rotta GET che salva ogni 5 ore le previsioni della città inserita.
-	 * 
-	 * @param name è la città di cui salviamo le informazioni.
-	 * @return il path dove viene salvato il file.
-	 * @throws IOException per errori di output su file.
-	 * 
-	 */
-	@GetMapping(value="/FiveHoursInfo")
-    public ResponseEntity<Object> FiveHoursInfo(@RequestParam String name) throws IOException {
-			String report5hour = service.FiveHoursInfo(name);
-			
-		return new ResponseEntity<> (report5hour, HttpStatus.OK);
-	}
-	
+	*/
 	
 	
 	/**
@@ -163,7 +162,7 @@ public class Restcontroller {
 	 * L'utente inserisce un JSONObject
 	 * >, $gte >=, $lt <, $lte <=
 	 * {
-     *     "cities": [
+     *     "città": [
      *        {
      *          "name": "Ancona"
      *        }
@@ -189,14 +188,16 @@ public class Restcontroller {
 		JSONObject object = new JSONObject(body);
         JSONArray array = new JSONArray();
 
-        array = object.getJSONArray("cities");
+        array = object.getJSONArray("città");
         
-        ArrayList<String> cities = new ArrayList<String>(array.length());
+        ArrayList<String> city = new ArrayList<String>(array.length());
         
         for(int i=0; i<array.length();i++) {
+        	
             JSONObject obj = new JSONObject();
             obj = array.getJSONObject(i);
-            cities.add(obj.getString("name"));
+            city.add(obj.getString("name"));
+            
         }
         
         int error = object.getInt("error");
@@ -204,7 +205,8 @@ public class Restcontroller {
         int period = object.getInt("period");
         
         try {
-        	return new ResponseEntity<>(service.HistoryOfTemps(cities,error,value,period).toString(),HttpStatus.OK);
+        	
+        	return new ResponseEntity<>(service.HistoryOfTemps(city,error,value,period).toString(),HttpStatus.OK);
         }
         catch(InvalidStringException e) {
         	
@@ -220,27 +222,18 @@ public class Restcontroller {
         }
 		
 	}
-	
-	
-	/**
-	 * Rotta di tipo GET che mostra le previsioni ristrette (temperatura massima, minima, percepita e
-	 * visibilità) per i 5 giorni successivi alla richiesta della città inserita dall'utente.
-	 * 
-	 * @param cityName rappresenta la città di cui si richiedono le previsioni meteo ristrette.
-	 * @return un JSONObject contenente le previsioni meteo ristrette della città richiesta e 
-	 *         le informazioni generali su di essa.
-	 */
+
 
 	
 	
 	/**
 	 * Rotta POST che mostra la media della temperatura massima, minima, percepita e la media, la minima,
-	 * la massima 5 giorni, a seconda del periodo (giornaliero, settimanale, mensile) 
+	 * la massima 5 giorni, a seconda del periodo (da oggi a 5 giorni )
 	 * 
 	 * 
 	 * {
-     *		"city" : "name",
-     *		"period" : "period"
+     *		"città" : "name",
+     *		"period" : "oggi"
 	 *	}
 	 * 
 	 * @param body è il JSONObject 
@@ -249,27 +242,23 @@ public class Restcontroller {
 	 * @throws IOException per errori di lettura del file.
 	 */
 	
-	@PostMapping(value="/stats")   //finire SERVE UN #JSONOBJECT 
+	@PostMapping(value="/stats") 
     public ResponseEntity<Object> stats(@RequestBody String body) throws NotAllowedPeriodException, IOException {
 		
 		JSONObject req = new JSONObject(body);
 		
-		String cityName = req.getString("city");
+		String cityName = req.getString("città");
 		String period = req.getString("period");
 		
 		try {
-			if(period.equals("1")) {						
-				return new ResponseEntity<>(stats.);
+			if(period.equals("oggi")) {		
+				
+				return new ResponseEntity<>(statistic.todayAvg(cityName).toString(), HttpStatus.OK);
 			}
 			
-			else if(period.equals("7")) {
+			else if(period.equals("5 giorni")) {
 				
-				return new ResponseEntity<> (toString(), HttpStatus.OK);
-
-			}
-			else if(period.equals("30")) {
-				
-				//return new ResponseEntity<> (statistic.fiveDayAverage(name).toString(), HttpStatus.OK);
+				return new ResponseEntity<> (statistic.weekAvg(cityName).toString(), HttpStatus.OK);
 
 			}
 			else {
@@ -281,6 +270,7 @@ public class Restcontroller {
 			
 			return new ResponseEntity<> (e.getError(), HttpStatus.BAD_REQUEST);
 		}
+		
 	}
 	
 	
@@ -294,7 +284,7 @@ public class Restcontroller {
 	 * Il JSONObject deve essere di questo tipo per funzionare: 
 	 * 
 	 * {
-     *     "cities": [
+     *     "città": [
      *        {
      *          "name": "Ancona"
      *        },
@@ -319,24 +309,26 @@ public class Restcontroller {
 	 */
 	
 	@PostMapping(value="/statsHistory")
-    public ResponseEntity<Object> statsHistory(@RequestBody String body) 
-    		throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException {
+    public ResponseEntity<Object> statsHistory(@RequestBody String body) throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException {
 		
 		JSONObject object = new JSONObject(body);
         JSONArray array = new JSONArray();
 
-        array = object.getJSONArray("cities");
+        array = object.getJSONArray("città");
         
         ArrayList<String> cities = new ArrayList<String>(array.length());
         
-        for(int i=0; i<array.length();i++) {
+        String period = object.getString("period");
+
+        
+        for(int i=0; i<array.length(); i++) {
         	
             JSONObject obj = new JSONObject();
             obj = array.getJSONObject(i);
             cities.add(obj.getString("name"));
+            
         }
 		
-        String period = object.getString("period");
         
         try {
         	return new ResponseEntity<>(service.PeriodCity(cities,period).toString(),HttpStatus.OK);
@@ -352,7 +344,7 @@ public class Restcontroller {
         	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
         
         }
-        
+                
 	}
 	
 	
@@ -361,7 +353,7 @@ public class Restcontroller {
 	 * è richiesto un JSONObject di questo tipo:
 	 * 
 	 * {
-     *     "cities": [
+     *     "città": [
      *        {
      *          "name": ""
      *        },
@@ -369,20 +361,18 @@ public class Restcontroller {
      *          "name": ""
      *        }
      *      ],
-     *     "param": "max",
-     *     "period": "giornaliero"
+     *     "period": 1
      *  }
 	 * 
 	 * a seconda del "param"(temp max o min o feels_like o average) della città 
-	 * e in che "period"(giornaliero, settimanale o mensile).
+	 * e in che "period"(da 1 a 5 giorni).
 	 * 
 	 * 
 	 * @param body è un JSONObject 
 	 * @return il JSONArray che contiene tanti JSONObject quante sono le città specificate nella richiesta
-	 *         ognuno dei quali contiene il nome della città e la media del "param" indicato. In più il JSONArray contiene
-	 *         un ultimo JSONObject al cui interno è contenuta la massima o minima media a seconda del valore indicato.
+	 *         ognuno dei quali contiene il nome della città
+	 *         In più il JSONArray contienenun ultimo JSONObject al cui interno è contenuta la massima o minima media a seconda del valore indicato.
 	 * @throws NotAllowedPeriodException se il numero immesso è errato.
-	 * @throws NotAllowedParamException se viene inserita una stringa errata per param.
 	 * @throws InvalidStringException 
 	 *  
 	 */
@@ -391,26 +381,23 @@ public class Restcontroller {
 		
 		JSONObject obj = new JSONObject(body);
         JSONArray arr = new JSONArray();
-
- 
-
-        arr = obj.getJSONArray("cities");
+        arr = obj.getJSONArray("città");
         
         ArrayList<String> cities = new ArrayList<String>(arr.length());
         
-        for(int i=0; i<arr.length();i++) {
+        for( int i=0; i<arr.length(); i++) {
         	
             JSONObject object = new JSONObject();
             object = arr.getJSONObject(i);
             cities.add(object.getString("name"));
+            
         }
         
-        String param = obj.getString("param");
-        String period = obj.getString("period");
+        int period = obj.getInt("period");
 		
         Filters filter;
         
-		filter = new Filters(cities,param, period);
+		filter = new Filters(cities, period);
 		
 		try {
         	return new ResponseEntity<>(filter.analyze().toString(),HttpStatus.OK);
@@ -425,8 +412,7 @@ public class Restcontroller {
         	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
         	
         }
-        */
-		
+        */ 		
 		
 	}
 	
