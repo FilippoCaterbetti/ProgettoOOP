@@ -13,10 +13,9 @@ import com.project.OPENWEATHER.service.ServiceApplication;
 public class Statistics extends ErrorCalculator{
 	ServiceApplication service = new ServiceApplication();
 	
-	
 	public JSONObject todayAvg(String next) {
-		// TODO Auto-generated method stub
-		return null;
+	// TODO Auto-generated method stub
+			return null;
 	}
 
 	public JSONObject fiveDayAvg(String next) {
@@ -24,7 +23,4 @@ public class Statistics extends ErrorCalculator{
 		return null;
 	}
 		
-	
-
-}
-
+	}
