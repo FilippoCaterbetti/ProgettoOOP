@@ -7,6 +7,7 @@ import org.json.JSONArray;
 
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
+import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.Temperature;
 
@@ -33,14 +34,13 @@ public class Filters {
 
 	
 	public Filters(ArrayList<String> cities, String param, int period) {
+		super();
 		this.cities = cities;
 		this.param = param;
 		this.period = period;
 	}
 
-	public Filters() {
-		
-	}
+	
 	
 	
 	/**
@@ -51,91 +51,61 @@ public class Filters {
 	 * 
 	 */
 	
-	public JSONArray analyze() throws NotAllowedPeriodException, InvalidStringException {
+	public JSONArray analyze() throws NotAllowedPeriodException, NotAllowedValueException, InvalidStringException {
 		
 		JSONArray array = new JSONArray ();
-		Vector <Temperature> dati= new Vector <Temperature>();
-		City c = new City(); 
-		dati = c.getTemps();
-		
+	
+	
 			if(period ==1) {
 				
 				if(param.equals("temp_max")){
 					
 					TempMaxAvg filters = new TempMaxAvg();
-					double x = filters.Day1(dati);
-					
+					array = filters.Day1Avg(cities, value);
+
 				} else if (param.equals("temp_min")) {
 					
 					TempMinAvg filters = new TempMinAvg();
-					double x = filters.Day1(dati);
+					array = filters.Day1Avg(cities, value);
 					
 				} else if(param.equals("feels_like")) {
 					
 					FeelsLikeAvg filters = new FeelsLikeAvg();
-					double x = filters.Day1(dati);
+					array = filters.Day1Avg(cities, value);
 					
 				} else if(param.equals("temp")) {
 					
 					RealTempAvg filters = new RealTempAvg();
-					double x = filters.Day1(dati);
+					array = filters.Day1Avg(cities, value);
 				}
 	
 			}
 			
-		if(period==7) {
+		if(period==5) {
 					
 					if(param.equals("temp_max")){
 						
 						TempMaxAvg filters = new TempMaxAvg();
-						double x = filters.Day7(dati);
+						array = filters.Day5Avg(cities, value);
 						
 					} else if (param.equals("temp_min")) {
 						
 						TempMinAvg filters = new TempMinAvg();
-						double x = filters.Day7(dati);
+						array = filters.Day5Avg(cities, value);
 						
 					} else if(param.equals("feels_like")) {
 						
 						FeelsLikeAvg filters = new FeelsLikeAvg();
-						double x = filters.Day7(dati);
+						array = filters.Day5Avg(cities, value);
 						
 					} else if(param.equals("temp")) {
 						
 						RealTempAvg filters = new RealTempAvg();
-						double x = filters.Day7(dati);
+						array = filters.Day5Avg(cities,value);
 					}
 		
 				}
-		if(period==30) {
-			
-			if(param.equals("temp_max")){
-				
-				TempMaxAvg filters = new TempMaxAvg();
-				double x = filters.Day30(dati);
-				
-			} 
-			else if (param.equals("temp_min")) {
-				
-				TempMinAvg filters = new TempMinAvg();
-				double x = filters.Day30(dati);
-				
-			} 
-			else if(param.equals("feels_like")) {
-				
-				FeelsLikeAvg filters = new FeelsLikeAvg();
-				double x = filters.Day30(dati);
-				
-			} 
-			else if(param.equals("temp")) {
-				
-				RealTempAvg filters = new RealTempAvg();
-				double x = filters.Day30(dati);
-			}
-		} else 
-			throw new NotAllowedPeriodException (period+"Inserisci un valore che sia giornaliero, settimanale o mensile");
 	
-		
 		return array;
 	}
 	
