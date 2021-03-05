@@ -362,9 +362,10 @@ public class Restcontroller {
      *        }
      *      ],
      *     "period": 1
+     *     "param" : "max"
      *  }
 	 * 
-	 * a seconda del "param"(temp max o min o feels_like o average) della città 
+	 *  "param"(temp max o min o feels_like o average) della città 
 	 * e in che "period"(da 1 a 5 giorni).
 	 * 
 	 * 
@@ -374,10 +375,11 @@ public class Restcontroller {
 	 *         In più il JSONArray contienenun ultimo JSONObject al cui interno è contenuta la massima o minima media a seconda del valore indicato.
 	 * @throws NotAllowedPeriodException se il numero immesso è errato.
 	 * @throws InvalidStringException 
+	 * @throws NotAllowedValueException 
 	 *  
 	 */
 	@PostMapping(value="/filters")
-	public ResponseEntity<Object> filters(@RequestBody String body) throws NotAllowedPeriodException, NotAllowedParamException, InvalidStringException {
+	public ResponseEntity<Object> filters(@RequestBody String body) throws NotAllowedPeriodException, NotAllowedParamException, InvalidStringException, NotAllowedValueException {
 		
 		JSONObject obj = new JSONObject(body);
         JSONArray arr = new JSONArray();
@@ -390,29 +392,29 @@ public class Restcontroller {
             JSONObject object = new JSONObject();
             object = arr.getJSONObject(i);
             cities.add(object.getString("name"));
-            
+            cities.add(object.getString("param"));
         }
         
         int period = obj.getInt("period");
-		
+		String param = obj.getString("param");
         Filters filter;
         
-		filter = new Filters(cities, period);
+		filter = new Filters(cities, param, period);
 		
 		try {
-        	return new ResponseEntity<>(filter.analyze().toString(),HttpStatus.OK);
+        	return new ResponseEntity<>(filter.analyze().toString()   ,HttpStatus.OK);
         }
 		catch(NotAllowedPeriodException e) {
 			
-	        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+	        	return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
 	        	
 	        }
 		/*catch(NotAllowedParamException e) {
 			
-        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+        	return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
         	
-        }
-        */ 		
+        }*/
+        	
 		
 	}
 	
