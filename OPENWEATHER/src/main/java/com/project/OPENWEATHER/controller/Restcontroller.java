@@ -257,23 +257,23 @@ public class Restcontroller {
 		String period = req.getString("period");
 		
 		try {
-			if(period.equals("giornaliero")) {						
-				//return new ResponseEntity<> ( stats  );
+			if(period.equals("1")) {						
+				return new ResponseEntity<>(stats.);
 			}
 			
-			else if(period.equals("settimanale")) {
+			else if(period.equals("7")) {
 				
 				return new ResponseEntity<> (toString(), HttpStatus.OK);
 
 			}
-			else if(period.equals("mensile")) {
+			else if(period.equals("30")) {
 				
 				//return new ResponseEntity<> (statistic.fiveDayAverage(name).toString(), HttpStatus.OK);
 
 			}
 			else {
 			
-				throw new NotAllowedPeriodException("Questo "+ period + " è invalido ");
+				throw new NotAllowedPeriodException("Questo"+ period + "è invalido");
 				
 			}
 		}catch (NotAllowedPeriodException e) {
