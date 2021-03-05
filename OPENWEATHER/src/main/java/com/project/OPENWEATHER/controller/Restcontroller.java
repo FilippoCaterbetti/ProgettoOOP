@@ -46,6 +46,7 @@ public class Restcontroller {
 	TempMinAvg minavg = new TempMinAvg();
 	
 	Service service;
+	Statistics statistic = new Statistics();
 	
 	/**
 	 * 
