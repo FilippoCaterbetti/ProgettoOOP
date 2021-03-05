@@ -21,9 +21,10 @@ class TestTemperature {
 		
 		@BeforeEach
 		void setUp() throws Exception {
-			number = new Temperature("sunny","clouds",30,0,15,17,16,"04-03-2021");
+			number = new Temperature("sunny","clouds",30,0,15,17,16,"05-03-2021");
 		}
 
+		
 		@AfterEach
 		void tearDown() throws Exception {
 		}
