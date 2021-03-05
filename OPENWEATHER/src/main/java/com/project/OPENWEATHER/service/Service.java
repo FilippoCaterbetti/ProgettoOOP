@@ -24,7 +24,7 @@ public interface Service {
 	public String URLgenerator (String name);
 	public abstract JSONObject getCityApi(String name) throws MalformedURLException, IOException, ParseException;
 	public abstract JSONArray getTempApi(String name);
-	public abstract String save(String name) throws  IOException;
+	public abstract String saveFiveH(String name) throws  IOException;
 	public String FiveHoursInfo(String name);
 	public String FiveDaysInfo(String name);
 	//public abstract JSONArray getTempAPI(String name);
