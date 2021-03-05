@@ -9,7 +9,7 @@ public class ResearchDay {
 		
 	}
 	
-    public JSONObject findDay(JSONArray cityVisibility, int period) {
+    public JSONObject researchDay(JSONArray cityVisibility, int period) {
 		
 		String date="";
 		
