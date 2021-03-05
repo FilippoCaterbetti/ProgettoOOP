@@ -7,60 +7,17 @@ import org.json.JSONObject;
 
 public class City implements Cloneable { //jsonclass
 	
-	//Implementazione costrutttori
+	//Implementazione costruttori
 	
 	private String name;
 	private String country;
 	private long id;
 	private Vector<Temperature> temps;
 	
-	
-	
 	public City() {
 		super();
 	}
 	
-	
-	/** 
-	 * 
-	 * Costruttore dell'oggetto.
-     * @param id è ID città
-     * 
-     */
-	public City (long id) {
-		
-		this.id=id;
-		this.name=null;
-		this.country=null;
-			
-	}
-	
-	/** 
-	 * Costruttore dell'oggetto.
-     * @param nome Nome della città
-     * 
-     */
-	public City (String name){
-		this.id=0;
-		this.name=null;
-		this.country=null;
-	}
-	
-	
-	/** 
-	 * 
-	 * Costruttore dell'oggetto.
-     * @param name     Nome città
-     * @param country  Stato della città
-     * 
-     */
-	public City (String name, String country) {
-		
-		this.id=0;
-		this.name=name;
-		this.country=country;
-			
-	}
 	
 	/**
 	 * Costruttore per City
