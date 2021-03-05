@@ -6,7 +6,12 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
+/**
+ * 
+ * Questa classe contiene il metodo necessario a filtrare
+ *  le città in base alla soglia di errore e al valore.
+ *
+ */
 public class Errors{
 
 /**
