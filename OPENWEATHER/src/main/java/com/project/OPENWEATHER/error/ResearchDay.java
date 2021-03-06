@@ -27,7 +27,7 @@ public class ResearchDay {
 		obj = Day1.getJSONObject(0);
 		date = obj.getString("data");
 		
-		//formato date : 'dd-mm-yyyy'
+		//formato data : 'dd-mm-yyyy'
 		String firstDate="";
 		firstDate += date.charAt(0);
 		firstDate += date.charAt(1);
