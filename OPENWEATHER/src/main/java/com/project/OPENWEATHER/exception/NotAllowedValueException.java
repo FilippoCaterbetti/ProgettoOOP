@@ -1,7 +1,10 @@
 package com.project.OPENWEATHER.exception;
 
 import java.lang.Exception;
-
+/**
+ * genera l'eccezione riguardante l'inserimento errato del valore
+ *
+ */
 public class NotAllowedValueException extends Exception{
 	String error;
 	
@@ -20,8 +23,8 @@ public class NotAllowedValueException extends Exception{
     }*/
 	
 	/**
-	 * Messaggio di errore quando viene inserita una stringa errata per il value.
-	 * @return String con il messaggio d'errore
+	 * Restituisce un messaggio di errore 
+	 * @return String che contiene il messaggio d'errore
 	 */
 	public String getError() {
 		return error;
