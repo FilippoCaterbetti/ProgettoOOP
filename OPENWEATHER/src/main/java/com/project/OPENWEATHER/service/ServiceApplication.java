@@ -1,7 +1,9 @@
 package com.project.OPENWEATHER.service;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -85,7 +87,7 @@ public class ServiceApplication implements Service {
 	
 	/**
 	 * 
-	 * Questo metodo utilizza getCityWeather per andare a prendere i dati sulla temperatura della città.
+	 * Questo metodo utilizza getCityWeather per andare a prendere i dati sulle varie temperature della città.
 	 * @param name è il nome della città
 	 * @return restituisce il JSONArray contente la temperatura reale 
 	 * @throws ParseException 
@@ -93,7 +95,6 @@ public class ServiceApplication implements Service {
 	 * @throws MalformedURLException 
 	 * 
 	 */
-	//CONTROLARE PARSEEXCEPTION
 	public JSONArray getTempApi(String name) throws MalformedURLException, IOException, ParseException {		
 		JSONObject object = getCityApi(name);
 		JSONArray tmp = new JSONArray();
@@ -135,7 +136,6 @@ public class ServiceApplication implements Service {
 		}
 		return tmp;
 	}
-	
 	
 	
 	/**
@@ -234,8 +234,7 @@ public class ServiceApplication implements Service {
 	}	
 	
 	/**
-	 * Questo metodo viene richiamato da readHistoryError e da readVisibilityHistory.
-	 * Si occupa della lettura dello storico della città passata in ingresso. A seconda che il flag sia true o false, il 
+	 * Questo metodo della lettura dello storico della città passata in ingresso. A seconda che il flag sia true o false, il 
 	 * metodo andrà a leggere lo storico per il calcolo della soglia di errore e delle previsioni azzeccate oppure per 
 	 * le statistiche sulla visibilità.
 	 * 
@@ -244,42 +243,44 @@ public class ServiceApplication implements Service {
 	 * @return il JSONArray che contiene tutte le informazioni sulla visibilità.
 	 * @throws IOException se si verificano errori di input da file.
 	 */
-	
+	//DA CONTROLLARE!!!!
 	public JSONArray readHistory(String name, boolean flag) throws IOException {
 		
-	}
-	
-	/**
-	 * 
-	 * Questo metodo rilegge le informazioni salvate nel periodo selezionato.
-	 * Poi salva le informazioni  in un ArrayList di JSONArray e lo passa al metodo per calcolare le varie
-	 * statistiche.
-	 * 
-	 * @param names rappresenta la città o le città su cui si vogliono avere le statistiche.
-	 * @param period è il periodo
-	 * @throws InvalidStringException se almeno una delle stringhe immesse è vuota.
-	 * @throws CitynotFoundException se la città non esiste.
-	 * @throws NotAllowedPeriodException se viene inserito un period errato.
-	 * @throws IOException se si verifica un errore di lettura del file.
-	 * 
-	 */
-	public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, String period)throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException{
+        String path = "";
 		
-		ArrayList<JSONArray> tempinfo = new ArrayList<JSONArray>();
-		ArrayList<JSONArray> info = new ArrayList<JSONArray>();
-	
-		
-		//isblank Returns true if the string is empty or contains only white space codepoints,otherwise false.
-		for(int j = 0; j<names.size();j++) {
-			if(names.get(j).isBlank()) {
-				throw new InvalidStringException ("città non valida");
-			}
-			
-			
+		if(flag) {
+			path = System.getProperty("user.dir") + "/error/" + name +".txt";
 		}
-		return null;
+		else path = System.getProperty("user.dir") + "/temp/" + name +".txt";
+		
+		String everything;
+			
+		BufferedReader br = new BufferedReader(new FileReader(path));
+		
+			try {
+			    StringBuilder sb = new StringBuilder();
+			    String line = br.readLine();
+
+			    while (line != null) {
+			        sb.append(line);
+			        sb.append(System.lineSeparator());
+			        line = br.readLine();
+			    }
+			    everything = sb.toString();
+			} finally {
+			    br.close();
+			}
+				
+		
+			JSONArray array = new JSONArray(everything);
+	
+			return array;
+			
 	}
 	
+	
+	
+
 	/**
 	 * Questo metodo serve per raccogliere le informazioni dallo storico di ogni città passata in ingresso 
 	 * e richiama altri metodi che servono per leggere lo storico stesso e metodi per calcolare statistiche e filtrarle.
@@ -298,7 +299,7 @@ public class ServiceApplication implements Service {
 	 * @throws WrongValueException se l'utente ha inserito una stringa non ammessa per il value.
 	 * @throws IOException se si verificano problemi nella lettura del file.
 	 */
-	public ArrayList<JSONObject> readHistoryError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException {
+	public ArrayList<JSONObject> HistoryOfError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException {
 		
 		for(int i=0; i < names.size(); i++) {
 			if(names.get(i).isEmpty())
@@ -360,6 +361,36 @@ public class ServiceApplication implements Service {
 		return errors;
 	}
 	
+	/**
+	 * 
+	 * Questo metodo rilegge le informazioni salvate nel periodo selezionato.
+	 * Poi salva le informazioni  in un ArrayList di JSONArray e lo passa al metodo per calcolare le varie
+	 * statistiche.
+	 * 
+	 * @param names rappresenta la città o le città su cui si vogliono avere le statistiche.
+	 * @param period è il periodo
+	 * @throws InvalidStringException se almeno una delle stringhe immesse è vuota.
+	 * @throws CitynotFoundException se la città non esiste.
+	 * @throws NotAllowedPeriodException se viene inserito un period errato.
+	 * @throws IOException se si verifica un errore di lettura del file.
+	 * 
+	 */
+	public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, String period)throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException{
+		
+		ArrayList<JSONArray> tempinfo = new ArrayList<JSONArray>();
+		ArrayList<JSONArray> info = new ArrayList<JSONArray>();
+	
+		
+		//isblank Returns true if the string is empty or contains only white space codepoints,otherwise false.
+		for(int j = 0; j<names.size();j++) {
+			if(names.get(j).isBlank()) {
+				throw new InvalidStringException ("città non valida");
+			}
+			
+			
+		}
+		return null;
+	}
 	
 	
 	/**
