@@ -2,9 +2,10 @@ package com.project.OPENWEATHER.exception;
 
 import java.lang.Exception;
 
-//contiene eccezione per un periodo non valido
-//periodi ammessi: giornaliero , settimanale, mensile
-
+/**
+ * genera l'eccezione riguardante l'inserimento errato del periodo
+ *
+ */
 
 public class NotAllowedPeriodException extends Exception {
 	String error;
