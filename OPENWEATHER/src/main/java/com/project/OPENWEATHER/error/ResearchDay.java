@@ -21,39 +21,37 @@ public class ResearchDay {
 		
 		String date="";
 		
-		JSONArray firstDay = new JSONArray();
-		firstDay = cityVisibility.getJSONArray(0);
-		
+		JSONArray Day1 = new JSONArray();
+		Day1 = cityVisibility.getJSONArray(0);
 		JSONObject obj = new JSONObject();
-		obj = firstDay.getJSONObject(0);
+		obj = Day1.getJSONObject(0);
 		date = obj.getString("data");
 		
+		//formato date : 'dd-mm-yyyy'
 		String firstDate="";
-		firstDate += date.charAt(8);
-		firstDate += date.charAt(9);
+		firstDate += date.charAt(0);
+		firstDate += date.charAt(1);
 		
-		int numero=0;
-		int i=0;
-		
-		while(numero<period) {
+	
+		// periodo da 1 a 5 (inclusi)
+		for(int j = 0; j < period; j++) {
 			
 			boolean control = true;
-			while(i<firstDay.length() && control) {
+			for(int i = 0 ; i < Day1.length() && control; i++) {
 			
-				String alldate = firstDay.getJSONObject(i).getString("data");
+				String alldate = Day1.getJSONObject(i).getString("data");
 				
 				String justday = "";
-				justday += alldate.charAt(8);
-				justday += alldate.charAt(9);
+				justday += alldate.charAt(0);
+				justday += alldate.charAt(1);
 				
 				if(!justday.equals(firstDate))
-					control = false;
+					 control = false;
 			
-				i++;
 				
 		}
 			JSONObject obje = new JSONObject();
-			obje = firstDay.getJSONObject(i-1);
+			obje = Day1.getJSONObject(i-1);
 			
 			date = obje.getString("data");
 			
@@ -61,7 +59,6 @@ public class ResearchDay {
 			firstDate += date.charAt(8);
 			firstDate += date.charAt(9);
 			
-			numero++;
 		
 		}
 		
