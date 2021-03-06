@@ -50,7 +50,7 @@ public class Errors{
 			
 			JSONObject max = new JSONObject();
 			max.put("maggiore" + error, cities);
-			cityErrors.add(max);//associa alle città individuata il valore max		
+			cityErrors.add(max);	
 		}
 		
 		else 
