@@ -14,6 +14,7 @@ import com.project.OPENWEATHER.model.Temperature;
 import com.project.OPENWEATHER.service.ServiceApplication;
 
 public class Statistics extends ErrorCalculator{
+	
 	ServiceApplication service = new ServiceApplication();
 	 
 	public JSONObject todayAvg(String next) throws MalformedURLException, IOException, ParseException{
