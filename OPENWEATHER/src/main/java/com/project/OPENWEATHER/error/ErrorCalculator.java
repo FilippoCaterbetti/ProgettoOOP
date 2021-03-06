@@ -39,26 +39,26 @@ public class ErrorCalculator extends ResearchDay {
 			int contatore = 0;
 			
 			//mettiamo le informazioni della città che si trova al posto i
-			JSONArray cityVisibility = new JSONArray();
-			cityVisibility = visibilityIt.next();
+			JSONArray CityInfo = new JSONArray();
+			CityInfo = visibilityIt.next();
 			
 			//vado a prendere le informazioni sulla visibilità solo del primo giorno di previsione
 			JSONArray app = new JSONArray();
-			app = cityVisibility.getJSONArray(0); //ho tutto il primo giorno di visibilità
+			app = CityInfo.getJSONArray(0); //ho tutto il primo giorno di visibilità
 			
 			
 			JSONObject information = new JSONObject();
-			information = researchDay(cityVisibility,period);
+			information = researchDay(CityInfo,period);
 		    String dataInizio = information.getString("date");
 		    int startPosition = information.getInt("position");
-		    int endPosition = researchDay(cityVisibility,period+1).getInt("position");
+		    int endPosition = researchDay(CityInfo,period+1).getInt("position");
 		    
 		    while(startPosition<endPosition) {
 		    	
-		    	for(int k=0; k<cityVisibility.getJSONArray(period).length();k++) {
+		    	for(int k=0; k<CityInfo.getJSONArray(period).length();k++) {
 		    		
 		    		JSONObject visibility = new JSONObject();
-		    		visibility = cityVisibility.getJSONArray(period).getJSONObject(k);
+		    		visibility = CityInfo.getJSONArray(period).getJSONObject(k);
 		    		
 		    		if(dataInizio.equals(visibility.getString("data"))) {
 		    			int errore;
