@@ -19,7 +19,7 @@ public class ResearchDay {
 	 */
     public JSONObject researchDay(JSONArray CityInfo, int period) {
 		
-		String date="";
+		String date = "";
 		
 		JSONArray Day1 = new JSONArray();
 		Day1 = CityInfo.getJSONArray(0);//tutte le informazioni del 1° giorno salvate nello storico
@@ -62,7 +62,7 @@ public class ResearchDay {
 		
 		JSONObject info = new JSONObject();
 		info.put("date", Day1.getJSONObject(i-1).getString("data"));
-		info.put("position", i-1);
+		info.put("position", i-1);//posizione che ha nell'array
 		
 		System.out.print(info);
 		return info;
