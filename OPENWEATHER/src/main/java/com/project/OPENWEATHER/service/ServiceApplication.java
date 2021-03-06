@@ -31,8 +31,6 @@ import com.project.OPENWEATHER.exception.EmptyStringException;
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
 import com.project.OPENWEATHER.exception.NotAllowedValueException;
-import com.project.OPENWEATHER.exception.WrongPeriodException;
-import com.project.OPENWEATHER.exception.WrongValueException;
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
@@ -361,8 +359,6 @@ public class ServiceApplication implements Service {
 		return errors;
 	}
 	
-	
-	
 	/**
 	 * Questo metodo prende le previsioni meteo future (temperatura
 	 * massima, minima, percepita).
@@ -391,7 +387,10 @@ public class ServiceApplication implements Service {
 				temp.setTemp(cc.getDouble("temp"));
 				temp.setTemp_max(cc.getDouble("temp_max"));
 				temp.setTemp_min(cc.getDouble("temp_min"));
+<<<<<<< HEAD
 				//temp.setTemp_avg(cc.getDouble("temp_avg"));
+=======
+>>>>>>> cd3fff9660e686eae07eb84437c3c2adf273ddcc
 				temp.setFeels_like(cc.getDouble("feels_like"));
 				temp.setData(cc.getString("dt_txt"));
 				temp.setDescription(cc.getString("description"));
