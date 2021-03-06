@@ -181,17 +181,34 @@ public class ServiceApplication implements Service {
 	public String FiveHoursInfo(String name) {
 		//String report = System.getProperty("user.dir") + "/" + name + "HourlyReport.txt";
 		//File file = new File(report);
+		String report;
+		report = System.getProperty("user.dir")+"/"+name+"report.txt";
+		File file = new File(name+"Report.txt");
+    
 		
 		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 		scheduler.scheduleAtFixedRate(new Runnable() {
 		    @Override
 		    public void run() {
 		    	
-		    	File file = new File(name+"Report.txt");
-		    	JSONObject temps = new JSONObject(); 
-		    	temps = getTempApi(name);
+		    	JSONArray tempApi = new JSONArray();
+		    	try {
+					tempApi = getTempApi(name);
+				} catch (MalformedURLException e1) {
+					
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					
+					e1.printStackTrace();
+				}
 		    	
-		    	for(int i=0;i<temps.length();i++ ) {
+		    	JSONObject oggetto = new JSONObject(); 
+		    	oggetto = tempApi.getJSONObject(0);
+		    	
+		    	for(int i=0;i<oggetto.length();i++ ) {
 		    			    	
 		    			try{
 		    				
@@ -200,9 +217,8 @@ public class ServiceApplication implements Service {
 		    			    }
 
 		    			    FileWriter fileWriter = new FileWriter(file, true);
-		    				
 		    				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-		    			    bufferedWriter.write(temps.toString());
+		    			    bufferedWriter.write(oggetto.toString());
 		    			    bufferedWriter.write("\n");
 		    			    
 		    			    bufferedWriter.close();
@@ -214,7 +230,7 @@ public class ServiceApplication implements Service {
 		    }
 		}, 0, 5, TimeUnit.HOURS); 
 		
-		return "I dati sono stati inseriti";
+		return "I dati sono stati inseriti nel file txt "+report;
 		 
 	}	
 	
