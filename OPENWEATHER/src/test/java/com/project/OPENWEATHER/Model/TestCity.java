@@ -29,9 +29,12 @@ class TestCity {
 			assertEquals("Italy", citta1.toJSONObject().get("country"));
 			assertEquals(1L, citta1.toJSONObject().get("id"));
 			}
-		@Test
+		
+		
+	   /* @Test
 		void testClone() {
 			assertEquals(citta1.toJSONObject(), citta1.clone().toJSONObject());
-		}
+		}*/
+		
 }
 
