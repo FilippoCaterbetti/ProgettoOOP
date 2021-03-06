@@ -14,10 +14,10 @@ public class ErrorCalculator extends ResearchDay {
 	/**
 	 * Questo metodo serve per calcolare l'errore sulle predizioni di ogni città indicata nell'ArrayList. Chiamerà, infine,
 	 * il metodo errorFilter di Errors responsabile del filtraggio della soglia di errore. Richiama il metodo
-	 * findDay della classe FindDay, che si occupa di calcolare il giorno e l'ora da cui partire per il calcolo.
+	 * findDay della classe FindDay, che si occupa di calcolare il giorno e  da cui partire per il calcolo.
 	 * 
 	 * @param cities è l'ArrayList di Stringhe dei nomi delle città di cui si vuole conoscere la soglia di errore.
-	 * @param visibilityInfo è l'ArrayList contenente le informazioni relative alla temperatura di ogni città indicata 
+	 * @param tempInfo è l'ArrayList contenente le informazioni relative alla temperatura di ogni città indicata 
 	 *        nell'ArrayList di Stringhe cities.
 	 * @param error è la soglia di errore su cui si vuole effettuare il filtraggio.
 	 * @param value è l'indicazione sul filtraggio.
@@ -27,12 +27,12 @@ public class ErrorCalculator extends ResearchDay {
 	 */
 	public ArrayList<JSONObject> calculate(ArrayList<String> cities,ArrayList<JSONArray> tempInfo,int error,String value,int period) {
 		
-		ArrayList<JSONObject> ret = new ArrayList<JSONObject> ();
+		ArrayList<JSONObject> acceptableCities = new ArrayList<JSONObject> ();
 		
-		Iterator<JSONArray> visibilityIt = tempInfo.iterator();
+		Iterator<JSONArray> tempInfoIt = tempInfo.iterator();
 		Iterator<String> citiesIt = cities.iterator();
 		
-		while(visibilityIt.hasNext() && citiesIt.hasNext()) {
+		while(tempInfoIt.hasNext() && citiesIt.hasNext()) {
 			
 			int errortot = 0;
 			int azzeccate = 0;
@@ -84,16 +84,16 @@ public class ErrorCalculator extends ResearchDay {
             errorInfo.put("error AME", errortot);
             errorInfo.put("previsioni azzeccate su "+ contatore, azzeccate);
             errorInfo.put("City", citiesIt.next());
-            ret.add(errorInfo);
+            acceptableCities.add(errorInfo);
            
            
         }
        
         Errors filter = new Errors();
        
-        ret = filter.ErrorFilter(ret,error,value);
+        acceptableCities = filter.ErrorFilter(ret,error,value);
 		
-		return ret;
+		return acceptableCities;
 	}
 
 	
