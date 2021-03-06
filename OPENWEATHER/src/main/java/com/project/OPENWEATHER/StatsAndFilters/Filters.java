@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.simple.parser.ParseException;
 
 import com.project.OPENWEATHER.exception.InvalidStringException;
+import com.project.OPENWEATHER.exception.NotAllowedParamException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
 import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.City;
@@ -57,16 +58,17 @@ public class Filters {
 	 * @throws ParseException 
 	 * @throws IOException 
 	 * @throws MalformedURLException 
+	 * @throws NotAllowedValueException 
 	 * @throws WrongMethodTypeException 
 	 * 
 	 */
 	
-	public JSONArray analyze() throws NotAllowedPeriodException, NotAllowedValueException, InvalidStringException, MalformedURLException, IOException, ParseException {
+	public JSONArray analyze() throws NotAllowedPeriodException, NotAllowedParamException, MalformedURLException, IOException, ParseException, NotAllowedValueException {
 		
 		JSONArray array = new JSONArray ();
 	
 	
-			if(period ==1) {
+			if(period == 1) {
 				
 				if(param.equals("temp_max")){
 					
@@ -88,7 +90,7 @@ public class Filters {
 					RealTempAvg filters = new RealTempAvg();
 					array = filters.Day1Avg(cities, value);
 				}
-	
+				else  throw new NotAllowedParamException (param + " non è una stringa ammessa.Inserisci una stringa tra temp_min,temp_max,feels_like e temp");   
 			}
 			
 		if(period==5) {
@@ -113,9 +115,9 @@ public class Filters {
 						RealTempAvg filters = new RealTempAvg();
 						array = filters.Day5Avg(cities,value);
 					}
-		
+					else  throw new NotAllowedParamException (param + " non è una stringa ammessa.Inserisci una stringa tra temp_min,temp_max,feels_like e temp");
 				}
-	
+		else  throw new NotAllowedPeriodException (period + " non è un numero ammesso. Inserisci un numero che sia o 1 o 5.");
 		return array;
 	}
 	
