@@ -34,56 +34,60 @@ public class ErrorCalculator extends ResearchDay {
 		
 		while(tempInfoIt.hasNext() && citiesIt.hasNext()) {
 			
-			int errortot = 0;
-			int azzeccate = 0;
-			int contatore = 0;
+			int completeError = 0;
+			int guessPrediction = 0;
+			int cont = 0;
 			
-			//mettiamo le informazioni della città che si trova al posto i
-			JSONArray CityInfo = new JSONArray();
-			CityInfo = visibilityIt.next();
+		
+			JSONArray cityInfo = new JSONArray();
+			cityInfo = tempInfoIt.next();
 			
-			//vado a prendere le informazioni sulla visibilità solo del primo giorno di previsione
-			JSONArray app = new JSONArray();
-			app = CityInfo.getJSONArray(0); //ho tutto il primo giorno di visibilità
+			//vado a prendere le informazioni sulle temperature solo del primo giorno di previsione
+			JSONArray infoTempDayOne = new JSONArray();
+			infoTempDayOne = cityInfo.getJSONArray(0); //ho tutte le previsioni del primo giorno riguardanti le temperature
 			
 			
 			JSONObject information = new JSONObject();
-			information = researchDay(CityInfo,period);
-		    String dataInizio = information.getString("date");
+			information = researchDay(cityInfo,period);
+		    String startDay = information.getString("date");
 		    int startPosition = information.getInt("position");
-		    int endPosition = researchDay(CityInfo,period+1).getInt("position");
+		    int endPosition = researchDay(cityInfo, period + 1).getInt("position");
 		    
-		    while(startPosition<endPosition) {
+		    while(startPosition < endPosition) {
 		    	
-		    	for(int k=0; k<CityInfo.getJSONArray(period).length();k++) {
+		    	for(int j = 0; j < cityInfo.getJSONArray(period).length(); j++) {
 		    		
-		    		JSONObject visibility = new JSONObject();
-		    		visibility = CityInfo.getJSONArray(period).getJSONObject(k);
+		    		JSONObject tempStats = new JSONObject();
+		    		tempStats = cityInfo.getJSONArray(period).getJSONObject(j);
 		    		
-		    		if(dataInizio.equals(visibility.getString("data"))) {
-		    			int errore;
-		    			errore = (app.getJSONObject(startPosition).getInt("visibility")-visibility.getInt("visibility"));
-		    			if(errore==0)
-		    				azzeccate++;
-		    			errortot+=errore;
-		    			contatore++;
+		    		if(startDay.equals(tempStats.getString("data"))) {
+		    			
+		    			
+		    			int errore = (infoTempDayOne.getJSONObject(startPosition).getInt("temperature")-tempStats.getInt("temperature"));
+		    			
+		    			if(errore == 0)
+		    				guessPrediction++;
+		    			completeError += errore;
+		    			cont++;
 		    		}
 		    		
 		    	}
+		    	
 		    	startPosition++;
-		    	dataInizio = app.getJSONObject(startPosition).getString("data");
+		    	startDay = infoTempDayOne.getJSONObject(startPosition).getString("data");
 		    
 		    }
 		  try {
-		    errortot/=contatore;
+			  completeError /= cont;
 		  }
 		  catch (ArithmeticException e) {
 			  e.printStackTrace();
 		  }
+		  
             JSONObject errorInfo = new JSONObject();
-            errorInfo.put("error AME", errortot);
-            errorInfo.put("previsioni azzeccate su "+ contatore, azzeccate);
-            errorInfo.put("City", citiesIt.next());
+            errorInfo.put("errori testati ", completeError);
+            errorInfo.put("previsioni azzeccate su "+ cont, guessPrediction);
+            errorInfo.put("Città", citiesIt.next());
             acceptableCities.add(errorInfo);
            
            
@@ -91,7 +95,7 @@ public class ErrorCalculator extends ResearchDay {
        
         Errors filter = new Errors();
        
-        acceptableCities = filter.ErrorFilter(ret,error,value);
+        acceptableCities = filter.ErrorFilter(acceptableCities,error,value);
 		
 		return acceptableCities;
 	}
