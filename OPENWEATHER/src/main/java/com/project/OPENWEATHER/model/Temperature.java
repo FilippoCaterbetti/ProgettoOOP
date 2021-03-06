@@ -22,9 +22,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 	//Minimum temperature at the moment of calculation
 	private double temp_min;
 	
-	//Average temperature
-	private double temp_avg;
-	
 	//This temperature parameter accounts for the human perception of weather
 	private double feels_like;
 
@@ -43,7 +40,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 		this.main = null;
 		this.description = null;
 		this.temp = 0;
-		//this.temp_avg = 0;
 		this.temp_max = 0;
 		this.temp_min = 0;
 		this.feels_like = 0;
@@ -55,19 +51,17 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @param description
 	 * @param temp_max
 	 * @param temp_min
-	 * @param temp_avg
 	 * @param feels_like
 	 * @param temp
 	 * @param data
 	 * 
 	 */
-	public Temperature(String main, String description, double temp_max, double temp_min, double temp_avg,
+	public Temperature(String main, String description, double temp_max, double temp_min,
 			double feels_like, double temp, String data) {
 		this.temp = temp;
 		this.feels_like = feels_like;
 		this.temp_max = temp_max;
 		this.temp_min = temp_min;
-		//this.temp_avg = avg.getAvg();
 		this.data = data;
 		this.main = main;
 		this.description = description;
@@ -94,7 +88,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 		this.feels_like = Double.parseDouble(temperature.get("feels_like").toString());
 		this.temp_max = Double.parseDouble(temperature.get("temp_max").toString());
 		this.temp_min = Double.parseDouble(temperature.get("temp_min").toString());	
-		//this.temp_avg = avg.getAvg();    
 		this.data = temperature.get("data").toString();
 		this.main = temperature.get("main").toString();
 		this.description = temperature.get("description").toString();
@@ -113,7 +106,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 		t.put("feels_like", this.feels_like);
 		t.put("temp_max", this.temp_max);
 		t.put("temp_min", this.temp_min);
-		t.put("temp_avg", this.temp_avg);
 		t.put("data", this.data);
 		t.put("main", this.main);
 		t.put("description", this.description);
@@ -196,20 +188,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 	}
 
 	/**
-	 * @return the temp_avg
-	 */
-	public double getTemp_avg() {
-		return temp_avg;
-	}
-
-	/**
-	 * @param temp_avg the temp_avg to set
-	 */
-	public void setTemp_avg(double temp_avg) {
-		this.temp_avg = temp_avg;
-	}
-
-	/**
 	 * @return the feels_like
 	 */
 	public double getFeels_like() {
@@ -254,7 +232,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	@Override
 	public String toString() {
 		return "Statistics [main=" + main + ", description=" + description + ", temp_max=" + temp_max + ", temp_min="
-				+ temp_min + ", temp_avg=" + temp_avg + ", feels_like=" + feels_like + ", temp=" + temp + ", data="
+				+ temp_min + ", feels_like=" + feels_like + ", temp=" + temp + ", data="
 				+ data + "]";
 	}
 	
