@@ -1,11 +1,14 @@
 package com.project.OPENWEATHER.StatsAndFilters;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedValueException;
@@ -22,9 +25,12 @@ public class RealTempAvg implements FiltersStatistics{
 	 * @param value
 	 * @return
 	 * @throws NotAllowedValueException
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 */
 
-	public JSONArray Day1Avg (ArrayList<String> cities, String value) throws NotAllowedValueException {
+	public JSONArray Day1Avg (ArrayList<String> cities, String value) throws NotAllowedValueException, MalformedURLException, IOException, ParseException {
 
 		JSONArray array = new JSONArray();
 				
@@ -104,9 +110,12 @@ public class RealTempAvg implements FiltersStatistics{
 	* 
 	* Questo metodo calcola la media delle 
 	* temperature percepita delle città in 5 giorno 
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	* 
 	*/	
-			public JSONArray Day5Avg (ArrayList<String> cities, String value) throws NotAllowedValueException {
+			public JSONArray Day5Avg (ArrayList<String> cities, String value) throws NotAllowedValueException, MalformedURLException, IOException, ParseException {
 				JSONArray array = new JSONArray();
 				
 				ArrayList<JSONObject> average = new ArrayList<JSONObject>();
