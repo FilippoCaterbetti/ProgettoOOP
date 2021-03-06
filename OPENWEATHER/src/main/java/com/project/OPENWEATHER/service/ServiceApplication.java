@@ -143,9 +143,10 @@ public class ServiceApplication implements Service {
 	 * dei 5 giorni successivi e le salva in uno storico.
 	 * @param nome della città.
 	 * @return file dove vengono salvate le informazioni.
+	 * @throws ParseException 
 	 */
 	
-	public String save(String name) throws IOException  {
+	public String save(String name) throws IOException, ParseException  {
 		
 		City city = getTempFutureApi(name);
 		JSONObject obj = new JSONObject();
@@ -228,7 +229,7 @@ public class ServiceApplication implements Service {
 		    }
 		}, 0, 5, TimeUnit.HOURS); 
 		
-		return "I dati sono stati inseriti nel file txt "+report;
+		return "I dati sono stati inseriti";
 		 
 	}	
 	
@@ -359,6 +360,8 @@ public class ServiceApplication implements Service {
 		return errors;
 	}
 	
+	
+	
 	/**
 	 * Questo metodo prende le previsioni meteo future (temperatura
 	 * massima, minima, percepita).
@@ -387,10 +390,6 @@ public class ServiceApplication implements Service {
 				temp.setTemp(cc.getDouble("temp"));
 				temp.setTemp_max(cc.getDouble("temp_max"));
 				temp.setTemp_min(cc.getDouble("temp_min"));
-<<<<<<< HEAD
-				//temp.setTemp_avg(cc.getDouble("temp_avg"));
-=======
->>>>>>> cd3fff9660e686eae07eb84437c3c2adf273ddcc
 				temp.setFeels_like(cc.getDouble("feels_like"));
 				temp.setData(cc.getString("dt_txt"));
 				temp.setDescription(cc.getString("description"));
