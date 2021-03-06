@@ -1,7 +1,10 @@
 package com.project.OPENWEATHER.exception;
 import java.lang.Exception;
 
-//errore per param
+  /**
+   * generiamo l'eccezione a causa di una stringa non ammessa per param
+   *
+   */
 public class NotAllowedParamException extends Exception{
 	
 	String error;
