@@ -28,8 +28,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 	//The date at the moment of calculation from library java.util.Date;
 	String data;
 	
-
-	
 	
 	/** 
 	 * 
@@ -126,10 +124,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 	}
 	
 	//JSONObject clone = new JSONObject(Temperature.toString());
-	
-	
-	
-	
 
 	/**
 	 * @return the main
@@ -232,9 +226,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	@Override
 	public String toString() {
 		return "Statistics [main=" + main + ", description=" + description + ", temp_max=" + temp_max + ", temp_min="
-				+ temp_min + ", feels_like=" + feels_like + ", temp=" + temp + ", data="
-				+ data + "]";
+				+ temp_min + ", feels_like=" + feels_like + ", temp=" + temp + ", data=" + data + "]";
 	}
-	
 
 }
