@@ -1,9 +1,12 @@
 package com.project.OPENWEATHER.StatsAndFilters;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import org.json.JSONArray;
+import org.json.simple.parser.ParseException;
 
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
@@ -51,11 +54,14 @@ public class Filters {
 	 * 
 	 * @return
 	 * @throws NotAllowedPeriodException se non viene inserito il periodo giusto
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 * @throws WrongMethodTypeException 
 	 * 
 	 */
 	
-	public JSONArray analyze() throws NotAllowedPeriodException, NotAllowedValueException, InvalidStringException {
+	public JSONArray analyze() throws NotAllowedPeriodException, NotAllowedValueException, InvalidStringException, MalformedURLException, IOException, ParseException {
 		
 		JSONArray array = new JSONArray ();
 	
