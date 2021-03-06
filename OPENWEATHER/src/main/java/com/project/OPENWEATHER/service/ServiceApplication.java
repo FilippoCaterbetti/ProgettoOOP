@@ -154,8 +154,10 @@ public class ServiceApplication implements Service {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
 		LocalDateTime now = LocalDateTime.now();	//dtf.format(now)
 		
-		String path = name+dtf.format(now)+".txt";
-		
+		String s = name+dtf.format(now)+".txt";
+		String path;
+		path = System.getProperty("user.dir")+"/"+s+"report.txt";
+
 		
 		try {
 			PrintWriter write = new PrintWriter(new BufferedWriter( new FileWriter(path)));
