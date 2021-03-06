@@ -32,12 +32,13 @@ public class ResearchDay {
 		firstDate += date.charAt(0);
 		firstDate += date.charAt(1);
 		
-	
+		int i=0;
+		
 		// periodo da 1 a 5 (inclusi)
 		for(int j = 0; j < period; j++) {
 			
 			boolean control = true;
-			for(int i = 0 ; i < Day1.length() && control; i++) {
+			for(i=0; i < Day1.length() && control; i++) {
 			
 				String alldate = Day1.getJSONObject(i).getString("data");
 				
@@ -50,28 +51,26 @@ public class ResearchDay {
 			
 				
 		}
-			JSONObject obje = new JSONObject();
-			obje = Day1.getJSONObject(i-1);
+			JSONObject object = new JSONObject();
+			object = Day1.getJSONObject(i-1);
 			
-			date = obje.getString("data");
+			date = object.getString("data");
 			
 			firstDate="";
-			firstDate += date.charAt(8);
-			firstDate += date.charAt(9);
+			firstDate += date.charAt(0);
+			firstDate += date.charAt(1);
 			
 		
 		}
 		
-		JSONObject information = new JSONObject();
-		information.put("date", firstDay.getJSONObject(i-1).getString("data"));
-		information.put("position", i-1);
+		JSONObject info = new JSONObject();
+		info.put("date", Day1.getJSONObject(i-1).getString("data"));
+		info.put("position", i-1);
 		
-		System.out.print(information);
+		System.out.print(info);
 		
-		return information;
-		
+		return info;
 		
 	}
-
 }
 
