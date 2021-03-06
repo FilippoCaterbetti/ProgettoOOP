@@ -17,12 +17,12 @@ public class ResearchDay {
 	 * @param period rappresenta i giorni di predizione, che indicano il giorno da ricercare.
 	 * @return il JSONObject che contiene la data ricercata e la posizione in cui si trova nel JSONArray.
 	 */
-    public JSONObject researchDay(JSONArray cityVisibility, int period) {
+    public JSONObject researchDay(JSONArray CityInfo, int period) {
 		
 		String date="";
 		
 		JSONArray Day1 = new JSONArray();
-		Day1 = cityVisibility.getJSONArray(0);
+		Day1 = CityInfo.getJSONArray(0);
 		JSONObject obj = new JSONObject();
 		obj = Day1.getJSONObject(0);
 		date = obj.getString("data");
@@ -40,16 +40,14 @@ public class ResearchDay {
 			boolean control = true;
 			for(i=0; i < Day1.length() && control; i++) {
 			
-				String alldate = Day1.getJSONObject(i).getString("data");
+				String dates = Day1.getJSONObject(i).getString("data");
 				
 				String justday = "";
-				justday += alldate.charAt(0);
-				justday += alldate.charAt(1);
+				justday += dates.charAt(0);
+				justday += dates.charAt(1);
 				
 				if(!justday.equals(firstDate))
-					 control = false;
-			
-				
+					 control = false;		
 		}
 			JSONObject object = new JSONObject();
 			object = Day1.getJSONObject(i-1);
@@ -59,7 +57,6 @@ public class ResearchDay {
 			firstDate="";
 			firstDate += date.charAt(0);
 			firstDate += date.charAt(1);
-			
 		
 		}
 		
@@ -68,7 +65,6 @@ public class ResearchDay {
 		info.put("position", i-1);
 		
 		System.out.print(info);
-		
 		return info;
 		
 	}
