@@ -18,6 +18,11 @@ public class URLgeneration {
 	
 	/**
 	 * 
+	 * 	
+	 *
+	 *in italiano aggiungere alla fine " &lang=it "
+	 *unit metric permette di avere le misurazioni in gradi centigradi
+	 * 
 	 * @param name nome della città
 	 * @return String url
 	 */
