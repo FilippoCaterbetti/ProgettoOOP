@@ -368,9 +368,12 @@ public class ServiceApplication implements Service {
 	 * massima, minima, percepita).
 	 * @param name è il nome della città di cui si vogliono conoscere le previsioni ristrette.
 	 * @return un vettore di tipo City che contiene tutte le informazioni richieste e anche le informazioni sulla città.
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 */
 	
-	public City getTempFutureApi(String name) {
+	public City getTempFutureApi(String name) throws MalformedURLException, IOException, ParseException {
 		City gg = new City();
 		JSONObject obj = new JSONObject();
 		JSONArray arr = new JSONArray();
@@ -388,7 +391,7 @@ public class ServiceApplication implements Service {
 				temp.setTemp(cc.getDouble("temp"));
 				temp.setTemp_max(cc.getDouble("temp_max"));
 				temp.setTemp_min(cc.getDouble("temp_min"));
-				temp.setTemp_avg(cc.getDouble("temp_avg"));
+				//temp.setTemp_avg(cc.getDouble("temp_avg"));
 				temp.setFeels_like(cc.getDouble("feels_like"));
 				temp.setData(cc.getString("dt_txt"));
 				temp.setDescription(cc.getString("description"));
