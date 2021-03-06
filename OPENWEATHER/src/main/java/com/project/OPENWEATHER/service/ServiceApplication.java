@@ -30,6 +30,9 @@ import com.project.OPENWEATHER.exception.CitynotFoundException;
 import com.project.OPENWEATHER.exception.EmptyStringException;
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
+import com.project.OPENWEATHER.exception.NotAllowedValueException;
+import com.project.OPENWEATHER.exception.WrongPeriodException;
+import com.project.OPENWEATHER.exception.WrongValueException;
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
@@ -297,21 +300,20 @@ public class ServiceApplication implements Service {
 	 * @throws WrongValueException se l'utente ha inserito una stringa non ammessa per il value.
 	 * @throws IOException se si verificano problemi nella lettura del file.
 	 */
-	public ArrayList<JSONObject> readHistoryError(ArrayList<String> names ,int error,String value,int period) throws EmptyStringException, CityNotFoundException, WrongPeriodException, WrongValueException, IOException {
+	public ArrayList<JSONObject> readHistoryError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException {
 		
 		for(int i=0; i < names.size(); i++) {
 			if(names.get(i).isEmpty())
-				throw new EmptyStringException("Hai dimenticato di inserire la città...");
+				throw new EmptyStringException("Hai dimenticato di inserire la città");
 			else if(!(names.get(i).equals("Ancona") || names.get(i).equals("Milano") || names.get(i).equals("Roma") || names.get(i).equals("Bologna") || names.get(i).equals("Parigi")))
-				throw new CityNotFoundException("Città non trovata nello storico");
+				throw new CitynotFoundException("La città inserita non è presente nello storico");
 			
 		if(period < 1 || period > 5)
-				throw new WrongPeriodException(period + " Il peridodo che hai inserito non è valido. Devi inserire un numero compreso tra 1 e 5 inclusi.");
+				throw new NotAllowedPeriodException(period + " Il periodo inserito non è valido. Inserisci un numero compreso tra 1 e 5 inclusi.");
 		}
 		
 		if(!(value.equals("$gt") || value.equals("$lt") || value.equals("=")))
-			throw new WrongValueException(value + " non è una stringa ammessa. "
-					+ "Devi inserire una stringa tra \"$gt\", \"$lt\" e \"=\"");
+			throw new NotAllowedValueException(value + " La stringa immessa non è consentita. Devi inserire una stringa tra \"$gt\", \"$lt\" e \"=\"");
 		
 		Iterator<String> list = names.iterator();
 		
