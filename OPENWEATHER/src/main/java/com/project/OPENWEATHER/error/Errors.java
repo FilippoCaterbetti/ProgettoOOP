@@ -23,60 +23,73 @@ public class Errors{
 	
 /** 
 * Questo metodo filtra le città in base alla soglia di errore che l'utente inserisce 
-* In base alla stringa value, il metodo troverà le città che hanno errore maggiore, 
-* minore o uguale alla soglia
-* di errore inserita dall'utente.
+* in base alla stringa value, il metodo troverà le città che hanno errore maggiore, 
+* minore o uguale alla soglia di errore inserita dall'utente.
 * 
-* @param errors ArrayList di JSONObject, ciascuno dei quali contiene il nome delle città e il relativo errore.
+* @param cityErrors ArrayList di JSONObject, ciascuno dei quali contiene il nome delle città e il relativo errore.
 * @param error rappresenta la soglia di errore immessa dall'utente.
 * @param value può assumere i valori "&gt","&lt" e "=" a seconda che l'utente voglia sapere quali città abbiano un
 *        errore maggiore, minore o uguale 
 */
 	
-	public ArrayList<JSONObject> ErrorFilter(ArrayList<JSONObject> errors, int error, String value) {
+	public ArrayList<JSONObject> ErrorFilter(ArrayList<JSONObject> cityErrors, int error, String value) {
 		
-		String names = "";
+		String cities = "";
 		
 		if(value.equals("&gt")) {
-			for(int i=0;i<errors.size();i++) {
+			
+			for(int i=0; i < cityErrors.size(); i++) {
+				
 				JSONObject cityInfo = new JSONObject();
-				cityInfo = errors.get(i);
+				cityInfo = cityErrors.get(i);
 				int cityError = cityInfo.getInt("error");
-				if (cityError>error)
-					names+=cityInfo.getString("Città")+" ";
+				
+				if (cityError > error)
+					cities += cityInfo.getString("Città") + " ";
 			}
+			
 			JSONObject max = new JSONObject();
-			max.put("&gt"+error,names);
-			errors.add(max);		
+			max.put("maggiore" + error, cities);
+			cityErrors.add(max);//associa alle città individuata il valore max		
 		}
-		else if(value.equals("&lt")) {
-			for(int i=0;i<errors.size();i++) {
+		
+		else 
+			if(value.equals("&lt")) {
+				
+			for(int i=0;i < cityErrors.size();i++) {
+				
 				JSONObject cityInfo = new JSONObject();
-				cityInfo = errors.get(i);
+				cityInfo = cityErrors.get(i);
 				int cityError = cityInfo.getInt("error");
-				if (cityError<error)
-					names+=cityInfo.getString("Città")+" ";
+				
+				if (cityError < error)
+					cities += cityInfo.getString("Città") + " ";
 			}
-			JSONObject max = new JSONObject();
-			max.put("&lt"+error,names);
-			errors.add(max);
+			
+			JSONObject min = new JSONObject();
+			min.put("minore"+ error, cities);
+			cityErrors.add(min);//associa alla città individuata il valore min	
 		}
-		else if(value.equals("=")) {
-			for(int i=0;i<errors.size();i++) {
+		else 
+			if(value.equals("=")) {
+				
+			for(int i=0;i < cityErrors.size(); i++) {
+				
 				JSONObject cityInfo = new JSONObject();
-				cityInfo = errors.get(i);
+				cityInfo = cityErrors.get(i);
 				int cityError = cityInfo.getInt("error");
-				if (cityError==error)
-					names+=cityInfo.getString("Città")+" ";
+				
+				if (cityError == error)
+					cities += cityInfo.getString("Città")+ " ";
 			}
-			JSONObject max = new JSONObject();
-			max.put("="+error,names);
-			errors.add(max);
+			
+			JSONObject similar = new JSONObject();
+			similar.put("uguale"+ error,cities);
+			cityErrors.add(similar);
 				
 		}
 		
-		return errors;
-		///
+		return cityErrors;
 	}
 	
 }
