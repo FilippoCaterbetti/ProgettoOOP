@@ -40,15 +40,6 @@ import com.project.OPENWEATHER.model.URLgeneration;
 
 public class ServiceApplication implements Service {
 	
-	
-	
-	
-	
-	
-	// in italiano aggiungere alla fine " &lang=it "
-			//unit metric permette di avere le misurazioni in 
-
-
 
 	//RestTemplate permette di effettuare la richiesta e di convertire 
 	//automaticamente il json ricevuto in un oggetto Java strutturato in maniera 
@@ -99,10 +90,13 @@ public class ServiceApplication implements Service {
 	 * Questo metodo utilizza getCityWeather per andare a prendere i dati sulla temperatura della città.
 	 * @param name è il nome della città
 	 * @return restituisce il JSONArray contente la temperatura reale 
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 * 
 	 */
-	
-	public JSONArray getTempApi(String name) {		
+	//CONTROLARE PARSEEXCEPTION
+	public JSONArray getTempApi(String name) throws MalformedURLException, IOException, ParseException {		
 		JSONObject object = getCityApi(name);
 		JSONArray tmp = new JSONArray();
 		
@@ -144,14 +138,6 @@ public class ServiceApplication implements Service {
 		return tmp;
 	}
 	
-	
-	public City getTempAPIconverter(String name) {
-		JSONArray jj = new JSONArray();
-		jj = getTempApi(name);
-		return null;
-		
-		
-	}
 	
 	
 	/**
@@ -202,14 +188,11 @@ public class ServiceApplication implements Service {
 		    public void run() {
 		    	
 		    	File file = new File(name+"Report.txt");
-		    	JSONArray temps = new JSONArray();
+		    	JSONObject temps = new JSONObject(); 
 		    	temps = getTempApi(name);
-		    	JSONObject temps2 = new JSONObject();
 		    	
 		    	for(int i=0;i<temps.length();i++ ) {
-		    	
-		    		temps2= temps.getJSONObject(i);
-		    	
+		    			    	
 		    			try{
 		    				
 		    			    if(!file.exists()) {
@@ -219,7 +202,7 @@ public class ServiceApplication implements Service {
 		    			    FileWriter fileWriter = new FileWriter(file, true);
 		    				
 		    				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-		    			    bufferedWriter.write(temps2.toString());
+		    			    bufferedWriter.write(temps.toString());
 		    			    bufferedWriter.write("\n");
 		    			    
 		    			    bufferedWriter.close();
