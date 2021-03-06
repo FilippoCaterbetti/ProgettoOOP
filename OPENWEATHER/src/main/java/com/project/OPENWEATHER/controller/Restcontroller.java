@@ -7,8 +7,7 @@ import java.io.IOException;
 
 
 import java.lang.Exception;
-
-
+import java.net.MalformedURLException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +16,7 @@ import java.util.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,11 +57,14 @@ public class Restcontroller {
 	 * 
 	 * @param name indica la città da cui vogliamo la temperatura.
 	 * @return restituiamo le previsioni della città indicata
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 * 
 	 */
 	
 	@GetMapping(value="/temp")
-	public ResponseEntity<Object> getTemp(@RequestParam String name) {
+	public ResponseEntity<Object> getTemp(@RequestParam String name) throws MalformedURLException, IOException, ParseException {
 		
 		return new ResponseEntity<> (service.getTempApi(name).toString(), HttpStatus.OK);
 		
