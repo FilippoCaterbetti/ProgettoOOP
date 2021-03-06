@@ -45,7 +45,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 		this.main = null;
 		this.description = null;
 		this.temp = 0;
-		this.temp_avg = 0;
+		//this.temp_avg = 0;
 		this.temp_max = 0;
 		this.temp_min = 0;
 		this.feels_like = 0;
@@ -69,7 +69,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 		this.feels_like = feels_like;
 		this.temp_max = temp_max;
 		this.temp_min = temp_min;
-		this.temp_avg = avg.getAvg();
+		//this.temp_avg = avg.getAvg();
 		this.data = data;
 		this.main = main;
 		this.description = description;
@@ -96,7 +96,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 		this.feels_like = Double.parseDouble(temperature.get("feels_like").toString());
 		this.temp_max = Double.parseDouble(temperature.get("temp_max").toString());
 		this.temp_min = Double.parseDouble(temperature.get("temp_min").toString());	
-		this.temp_avg = avg.getAvg();    
+		//this.temp_avg = avg.getAvg();    
 		this.data = temperature.get("data").toString();
 		this.main = temperature.get("main").toString();
 		this.description = temperature.get("description").toString();
