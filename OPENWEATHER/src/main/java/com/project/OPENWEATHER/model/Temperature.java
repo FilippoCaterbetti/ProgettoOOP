@@ -31,8 +31,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 	//The date at the moment of calculation from library java.util.Date;
 	String data;
 	
-	//chiamata al costruttore Average per calcolare la temperatura media
-	Average avg = new Average(temp_max, temp_min);
 
 	
 	
