@@ -13,8 +13,10 @@ import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import com.project.OPENWEATHER.exception.CitynotFoundException;
+import com.project.OPENWEATHER.exception.EmptyStringException;
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
+import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.City;
 // name indica la città desiderata
 
@@ -28,6 +30,7 @@ public interface Service {
 	public String FiveHoursInfo(String name);
 	public String FiveDaysInfo(String name);
 	//public abstract JSONArray getTempAPI(String name);
+	public ArrayList<JSONObject> readHistoryError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException;
 	public abstract City getTempFutureApi(String name) throws MalformedURLException, IOException, ParseException;
 	public abstract ArrayList<JSONObject> PeriodCity (ArrayList <String> names, String period ) throws InvalidStringException, NotAllowedPeriodException, InvalidStringException, NotAllowedPeriodException;  //inserire vari errori 
 	public abstract ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, int error, String value, int period) throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException;
