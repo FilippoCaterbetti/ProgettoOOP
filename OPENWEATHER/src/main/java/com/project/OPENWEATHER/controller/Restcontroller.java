@@ -187,7 +187,7 @@ public class Restcontroller {
 	 * @throws IOException per errori di input da file.
 	 */
 	
-	@PostMapping("/errors")
+	@PostMapping(value="/errors")
 	public ResponseEntity<Object> filtersHistory(@RequestBody String body) 
 			throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException { //NotAllowedValueException
 		
@@ -281,6 +281,38 @@ public class Restcontroller {
 	}
 	
 	
+	
+	
+	/**
+	 * Rotta POST per cercare una regex all'interno della lista delle città disponibili in 
+	 * OPenWeather e restituire un JSONArrray con i nomi delle città
+	 * 
+	 * Body deve essere di questo tipo
+	 * con .*to.* per esempio cerchiamo tutte le città con all'interno la stringa to ovunque sia posizionata all'interno del nome
+	 * 
+	 * {
+     *		"regex" : ".*to.*"
+	 *	}
+	 * 
+	 * @param body è il JSONObject 
+	 * @return il JSONObject con le statistiche richieste.
+	 * @throws FileNotFoundException
+	 * @throws IOException per errori di lettura del file.
+	 * @throws ParseException 
+	 */
+	@PostMapping(value="/findRegex") 
+    public ResponseEntity<Object> Substring(@RequestBody String body) throws FileNotFoundException, IOException, ParseException {
+		
+		JSONObject req = new JSONObject(body);
+		
+		String regex = req.getString("regex");
+		JSONArray reg = new JSONArray();
+		reg = service.Substring(regex);
+			
+		return new ResponseEntity<>(reg.toString(), HttpStatus.OK);
+				
+
+	}
 	
 	
 	
