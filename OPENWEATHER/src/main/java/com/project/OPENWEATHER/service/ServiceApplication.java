@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,16 +17,16 @@ import java.time.format.DateTimeFormatter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 import com.project.OPENWEATHER.error.ErrorCalculator;
 import com.project.OPENWEATHER.exception.CitynotFoundException;
@@ -58,32 +59,7 @@ public class ServiceApplication implements Service {
 		obj = new JSONObject(rest.getForObject(url, String.class));
 		return obj;
 	}
-	
-	
-	/**
-	 * 
-	 * Genera l'URL per chimare l'API di Openwheather Cities in circle
-	 * 
-	 * @param name è nome della città
-	 * @param lon Longitudine
-	 * @param cnt Numero di città da cercare
-	 * @param units Stringa che definisce il tipo di unità con le quali l'API di Openweather deve fornire i dati
-	 * @return URL sotto forma di stringa per chiamare l'API di OpenWeather
-	 * 
-	 */
-	
-	
-	//previsioni temperatura città scelta 
-	/*public JSONArray getTempApi( String name) {
-		JSONObject obj = getCityApi(name);
-		JSONArray mainTemp = new JSONArray();
-		double temp_max;
-		double temp_min;
-		double temp_avg;
-		double feels_like;
-		double temp;
-		String data;	
-	}*/
+
 	
 	/**
 	 * 
@@ -136,6 +112,49 @@ public class ServiceApplication implements Service {
 		}
 		return tmp;
 	}
+	
+	
+	
+	/**
+	 * Metedo per la ricerca delle regex
+	 * 
+	 * @param regex indica la regex da cercare 
+	 * @return JSONArray con all0interno la lista delle città con all'interno la regex richiesta
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ParseException
+	 * 
+	 */
+	public JSONArray Substring(String regex) throws FileNotFoundException, IOException, ParseException{
+		
+
+			JSONParser parser = new JSONParser();
+			List<String> names = new ArrayList<>();
+
+			JSONArray a = (JSONArray) parser.parse(new FileReader("city.list.json"));
+			for (Object o : a){
+					
+				JSONObject person = (JSONObject) o;
+				String name = (String) person.get("name");
+				names.add(name);
+			}
+
+			ArrayList<String> matches = new ArrayList<String>();
+
+			Pattern p = Pattern.compile(regex);
+
+			 for (String s:names) {
+			   if (p.matcher(s).matches()) {
+			      matches.add(s);
+			   }
+			 }
+			 JSONArray jsArray = new JSONArray(matches);
+			 
+			 return jsArray;
+	}
+	
+	
+	
 	
 	
 	/**
