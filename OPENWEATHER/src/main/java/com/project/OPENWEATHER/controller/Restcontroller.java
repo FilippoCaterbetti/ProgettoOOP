@@ -76,9 +76,12 @@ public class Restcontroller {
 	 * 
 	 * @param name è la città 
 	 * @return un JSONObject contenente temperature
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 */
 	@GetMapping(value="/OpenWeather")
-	public ResponseEntity<Object> getCityApi(@RequestParam String name){
+	public ResponseEntity<Object> getCityApi(@RequestParam String name) throws MalformedURLException, IOException, ParseException{
 		
 		City citta = service.getTempFutureApi(name);
 		JSONObject object = new JSONObject();
@@ -243,10 +246,11 @@ public class Restcontroller {
 	 * @return il JSONObject con le statistiche richieste.
 	 * @throws NotAllowedPeriodException per period non ammessi
 	 * @throws IOException per errori di lettura del file.
+	 * @throws ParseException 
 	 */
 	
 	@PostMapping(value="/stats") 
-    public ResponseEntity<Object> stats(@RequestBody String body) throws NotAllowedPeriodException, IOException {
+    public ResponseEntity<Object> stats(@RequestBody String body) throws NotAllowedPeriodException, IOException, ParseException {
 		
 		JSONObject req = new JSONObject(body);
 		
@@ -261,7 +265,7 @@ public class Restcontroller {
 			
 			else if(period.equals("5 giorni")) {
 				
-				return new ResponseEntity<> (statistic.weekAvg(cityName).toString(), HttpStatus.OK);
+				return new ResponseEntity<> (statistic.fiveDayAvg(cityName).toString(), HttpStatus.OK);
 
 			}
 			else {
@@ -379,10 +383,13 @@ public class Restcontroller {
 	 * @throws NotAllowedPeriodException se il numero immesso è errato.
 	 * @throws InvalidStringException 
 	 * @throws NotAllowedValueException 
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 *  
 	 */
 	@PostMapping(value="/filters")
-	public ResponseEntity<Object> filters(@RequestBody String body) throws NotAllowedPeriodException, NotAllowedParamException, InvalidStringException, NotAllowedValueException {
+	public ResponseEntity<Object> filters(@RequestBody String body) throws NotAllowedPeriodException, NotAllowedParamException, InvalidStringException, NotAllowedValueException, MalformedURLException, IOException, ParseException {
 		
 		JSONObject obj = new JSONObject(body);
         JSONArray arr = new JSONArray();
