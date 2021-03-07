@@ -356,7 +356,7 @@ public class ServiceApplication implements Service {
 		}
 		
 		ErrorCalculator errorcalculator = new ErrorCalculator();
-		errors = errorcalculator.calculate(names,tempInfo, error, value, period);
+		errors = errorcalculator.calculate(names ,statisticArray, error, value, period);
 		
 		return errors;
 	}
