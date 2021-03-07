@@ -55,10 +55,13 @@ public class URLgeneration {
 	 */
 	public  void richiesta(String name) throws MalformedURLException, IOException, ParseException{
 		
+		JSONParser parser = new JSONParser();
 		URLConnection OPENWEATHER = (HttpURLConnection) new URL(this.url(name)).openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(OPENWEATHER.getInputStream()));
-				
-
+		String input = in.readLine();
+		
+		JSONObject risposta = (JSONObject) parser.parse(input);
+		
 		return;
 	}
 	
