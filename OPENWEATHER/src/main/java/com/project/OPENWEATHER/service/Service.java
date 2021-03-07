@@ -1,6 +1,7 @@
 package com.project.OPENWEATHER.service;
 
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public interface Service {
 	public abstract City getTempFutureApi(String name) throws MalformedURLException, IOException, ParseException;
 	public abstract ArrayList<JSONObject> PeriodCity (ArrayList <String> names, String period ) throws InvalidStringException, NotAllowedPeriodException, InvalidStringException, NotAllowedPeriodException;  //inserire vari errori 
 	public abstract ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, int error, String value, int period) throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException;
-	
+	public JSONArray Substring(String regex) throws FileNotFoundException, IOException, ParseException;
 	
 	
 }
