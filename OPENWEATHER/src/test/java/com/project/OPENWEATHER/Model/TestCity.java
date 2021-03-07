@@ -30,11 +30,5 @@ class TestCity {
 			assertEquals(1L, citta1.toJSONObject().get("id"));
 			}
 		
-		
-	   /* @Test
-		void testClone() {
-			assertEquals(citta1.toJSONObject(), citta1.clone().toJSONObject());
-		}*/
-		
 }
 
