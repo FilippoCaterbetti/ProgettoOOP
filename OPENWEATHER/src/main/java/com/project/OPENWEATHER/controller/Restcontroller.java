@@ -123,7 +123,7 @@ public class Restcontroller {
      *     "period": "giornaliero"
      *  }
 	
-	//il "period"(giornaliero, settimanale, mensile) indica il periodo di tempo da selezionare
+	il "period"(giornaliero, settimanale, mensile) indica il periodo di tempo da selezionare
 	@PostMapping(value="/PeriodCity")
 	public ResponseEntity<Object> PeriodCity(@RequestBody String body) throws InvalidStringException, NotAllowedPeriodException{
 		
@@ -139,7 +139,7 @@ public class Restcontroller {
         
         ArrayList<String> cities = new ArrayList<String>(arr.length());
         
-        /*
+        
         for(int i=0; i<arr.length();i++) {
         	
             JSONObject jj = new JSONObject();
@@ -160,8 +160,8 @@ public class Restcontroller {
 			return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	*/
-	
+}
+*/	
 	
 	/**
 	 * Rotta POST che filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione (da 1 a 5 giorni successivi)
@@ -280,12 +280,9 @@ public class Restcontroller {
 		
 	}
 	
-	
-	
-	
 	/**
 	 * Rotta POST per cercare una regex all'interno della lista delle città disponibili in 
-	 * OPenWeather e restituire un JSONArrray con i nomi delle città
+	 * OPENWEATHER e restituire un JSONArrray con i nomi delle città
 	 * 
 	 * Body deve essere di questo tipo
 	 * con .*to.* per esempio cerchiamo tutte le città con all'interno la stringa to ovunque sia posizionata all'interno del nome
