@@ -383,27 +383,6 @@ public class Restcontroller {
                 
 	}
 	
-	/**
-	 * {
-	 * 
-	 * }
-	 * @param body
-	 * @return
-	 * @throws IOException
-	 */
-	@PostMapping(value = "/choice")
-     public ResponseEntity<Object> choice(@RequestBody String body) throws IOException {
-		
-		JSONObject req = new JSONObject(body);
-		
-		String scelta = req.getString("scelta");
-		JSONArray reg = new JSONArray();
-		reg = service.Substring(regex);
-			
-		return new ResponseEntity<>(reg.toString(), HttpStatus.OK);
-				
-
-	}
 	
 	/**
 	 * Rotta  POST che filtra le statistiche in base alle informazioni che si vogliono
