@@ -31,11 +31,11 @@ public interface Service {
 	public String FiveHoursInfo(String name);
 	public String FiveDaysInfo(String name);
 	//public abstract JSONArray getTempAPI(String name);
-	public ArrayList<JSONObject> readHistoryError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException;
+	public ArrayList<JSONObject> HistoryOfError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException, InvalidStringException;
 	public abstract City getTempFutureApi(String name) throws MalformedURLException, IOException, ParseException;
 	public abstract ArrayList<JSONObject> PeriodCity (ArrayList <String> names, String period ) throws InvalidStringException, NotAllowedPeriodException, InvalidStringException, NotAllowedPeriodException;  //inserire vari errori 
 	public abstract ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, int error, String value, int period) throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException;
 	public JSONArray Substring(String regex) throws FileNotFoundException, IOException, ParseException;
-	
+	public ArrayList<JSONArray> PeriodHistory(ArrayList<String> cities, String period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, IOException, InvalidStringException;
 	
 }
