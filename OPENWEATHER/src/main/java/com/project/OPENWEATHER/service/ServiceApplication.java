@@ -71,6 +71,7 @@ public class ServiceApplication implements Service {
 	 * @throws MalformedURLException 
 	 * 
 	 */
+	//DA CONTROLLARE
 	public JSONArray getTempApi(String name) throws MalformedURLException, IOException, ParseException {		
 		JSONObject object = getCityApi(name);
 		JSONArray tmp = new JSONArray();
@@ -459,4 +460,5 @@ public class ServiceApplication implements Service {
 		gg.setTemps(vec);
 		return gg;
 	}
+
 }
