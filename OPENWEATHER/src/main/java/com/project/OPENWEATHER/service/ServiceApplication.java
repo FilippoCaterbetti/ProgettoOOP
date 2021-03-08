@@ -28,6 +28,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
+import com.project.OPENWEATHER.StatsAndFilters.PeriodStatistics;
 import com.project.OPENWEATHER.error.ErrorCalculator;
 import com.project.OPENWEATHER.exception.CitynotFoundException;
 import com.project.OPENWEATHER.exception.EmptyStringException;
@@ -323,8 +324,11 @@ public class ServiceApplication implements Service {
 	 * @throws WrongPeriodException se l'utente ha inserito un numero che non è compreso tra 1 e 5 (inclusi).
 	 * @throws WrongValueException se l'utente ha inserito una stringa non ammessa per il value.
 	 * @throws IOException se si verificano problemi nella lettura del file.
+	 * @throws InvalidStringException 
 	 */
-	public ArrayList<JSONObject> HistoryOfError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException {
+	
+	//MODIFICA!!!!!
+	public ArrayList<JSONObject> HistoryOfError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException, InvalidStringException {
 		
 		for(int i=0; i < names.size(); i++) {
 			if(names.get(i).isEmpty())
@@ -347,7 +351,7 @@ public class ServiceApplication implements Service {
 		while(list.hasNext()) {
 			
 			JSONArray array = new JSONArray();
-			array = readHistory(list.next(),true);
+			array = readHistory(list.next(),"errors");
 			JSONArray visibilityInfo = new JSONArray();
 			
 			for(int i=0; i<array.length(); i++) {
@@ -385,6 +389,77 @@ public class ServiceApplication implements Service {
 		
 		return errors;
 	}
+	
+	
+	
+	/**
+	 * Questo metodo va a richiamare readHistory per leggere i file su cui sono salvate le informazioni relative 
+	 * alla visibilità per 3 settimane. Dopo aver salvato in un ArrayList di JSONArray le informazioni di ogni città, 
+	 * lo passa al metodo che serve per calcolare le statistiche sulla visibilità.
+	 * 
+	 * @param cities rappresenta i nomi delle città su cui si vogliono fare statistiche. Le città ammesse sono
+	 *        Ancona, Campobasso, Macerata, Roma, San Martino in Pensilis e Tolentino.
+	 * @param period rappresenta il periodo su cui si vuole fare la statistica.
+	 * @throws EmptyStringException se almeno una delle stringhe immesse è vuota.
+	 * @throws CityNotFoundException se la città immessa non è una tra quelle indicate sopra.
+	 * @throws WrongPeriodException se viene inserita una stringa errata per period.
+	 * @throws IOException se si verifica un errore di lettura del file.
+	 * @throws InvalidStringException 
+	 */
+	
+	//MODIFICA!!!!
+	public ArrayList<JSONArray> PeriodHistory(ArrayList<String> cities, String period) 
+			throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, IOException, InvalidStringException {
+		
+		Iterator<String> it1 = cities.iterator();
+		Iterator<String> it2 = cities.iterator();
+		ArrayList<JSONArray> visibilityInfo = new ArrayList<JSONArray>();
+		ArrayList<JSONArray> info = new ArrayList<JSONArray>();
+		
+		for(int i=0; i<cities.size(); i++) {
+			if(cities.get(i).isEmpty())
+				throw new EmptyStringException ("Hai dimenticato di inserire la città...");
+			else if(!(cities.get(i).equals("Ancona") || cities.get(i).equals("Campobasso") || cities.get(i).equals("Macerata") || cities.get(i).equals("Roma") || cities.get(i).equals("San Martino in Pensilis") || cities.get(i).equals("Tolentino")))
+				throw new CitynotFoundException(cities.get(i) + " non è presente nello storico. Puoi scegliere tra: \"Ancona\", \"Campobasso\", \"Macerata\", \"Roma\", \"San Martino in Pensilis\" e \"Tolentino\".");
+		}
+		
+		
+		while(it1.hasNext()) {
+			
+			JSONArray array = new JSONArray();
+			array = readHistory(it1.next(),"temperature");
+			
+			visibilityInfo.add(array);
+			
+		}
+		
+		int i=0;
+		while(it2.hasNext()) {
+			
+			PeriodStatistics stats = new PeriodStatistics();
+			JSONArray array = new JSONArray();
+			
+			if(period.equals("giornaliera"))
+				array = stats.DailyStats(it2.next(),visibilityInfo.get(i));
+			else if(period.equals("settimanale"))
+				array = stats.OneWeekStats(it2.next(),visibilityInfo.get(i));
+			else if(period.equals("mensile"))
+				array = stats.OneMonthStats(it2.next(),visibilityInfo.get(i));
+			else throw new NotAllowedPeriodException(period+" non è permessa. Devi inserire una stringa tra \"giornaliera\","
+					+ "\"settimanale\" e \"trisettimanale\". ");
+				
+			info.add(array);
+			i++;
+		}
+		
+		return info;
+		
+		
+		
+	}
+	
+    
+	
 	
 	/**
 	 * 
