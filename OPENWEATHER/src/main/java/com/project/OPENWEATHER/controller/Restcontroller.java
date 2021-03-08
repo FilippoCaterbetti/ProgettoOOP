@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.OPENWEATHER.exception.CitynotFoundException;
+import com.project.OPENWEATHER.exception.EmptyStringException;
 import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedParamException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
@@ -185,24 +186,26 @@ public class Restcontroller {
 	 * 
 	 * @throws NotAllowedPeriodException  per invalid period.
 	 * @throws IOException per errori di input da file.
+	 * @throws NotAllowedValueException 
+	 * @throws EmptyStringException 
 	 */
 	
 	@PostMapping(value="/errors")
 	public ResponseEntity<Object> filtersHistory(@RequestBody String body) 
-			throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException { //NotAllowedValueException
+			throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException, EmptyStringException, NotAllowedValueException { //NotAllowedValueException
 		
 		JSONObject object = new JSONObject(body);
         JSONArray array = new JSONArray();
 
         array = object.getJSONArray("città");
         
-        ArrayList<String> city = new ArrayList<String>(array.length());
+        ArrayList<String> names = new ArrayList<String>(array.length());
         
         for(int i=0; i<array.length();i++) {
         	
             JSONObject obj = new JSONObject();
             obj = array.getJSONObject(i);
-            city.add(obj.getString("name"));
+            names.add(obj.getString("name"));
             
         }
         
@@ -212,11 +215,7 @@ public class Restcontroller {
         
         try {
         	
-        	return new ResponseEntity<>(service.HistoryOfTemps(city,error,value,period).toString(),HttpStatus.OK);
-        }
-        catch(InvalidStringException e) {
-        	
-        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+        	return new ResponseEntity<>(service.HistoryOfError(names,error,value,period).toString(),HttpStatus.OK);
         }
         catch(CitynotFoundException e) {
         	
