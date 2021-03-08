@@ -263,17 +263,21 @@ public class ServiceApplication implements Service {
 	 * @param flag indica quale storico andare a leggere.
 	 * @return il JSONArray che contiene tutte le informazioni sulla visibilità.
 	 * @throws IOException se si verificano errori di input da file.
+	 * @throws InvalidStringException 
 	 */
 	//DA CONTROLLARE!!!!
-	public JSONArray readHistory(String name, boolean flag) throws IOException {
+	public JSONArray readHistory(String name, String choiche) throws IOException, InvalidStringException {
 		
         String path = "";
-		
-		if(flag) {
-			path = System.getProperty("user.dir") + "/error/" + name +".txt";
+		if(choiche == "errors") {
+			
+			path = System.getProperty("user.dir") + "/errors/" + name +".txt";
 		}
-		else path = System.getProperty("user.dir") + "/temp/" + name +".txt";
-		
+		else if (choiche == "temperature") {
+			path = System.getProperty("user.dir") + "/temperature/" + name +".txt";
+		}
+		else throw new InvalidStringException(path); 
+			
 		String everything;
 			
 		BufferedReader br = new BufferedReader(new FileReader(path));
@@ -299,8 +303,7 @@ public class ServiceApplication implements Service {
 			
 	}
 	
-	
-	
+
 
 	/**
 	 * Questo metodo serve per raccogliere le informazioni dallo storico di ogni città passata in ingresso 
@@ -456,34 +459,4 @@ public class ServiceApplication implements Service {
 		gg.setTemps(vec);
 		return gg;
 	}
-
-	
-	
-	@Override 
-	public String FiveDaysInfo(String name) {
-		return null;
-		}
-	
-		@Override
-		public String URLgenerator(String name) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public ArrayList<JSONObject> PeriodCity(ArrayList<String> names, String period) throws InvalidStringException,
-				NotAllowedPeriodException, InvalidStringException, NotAllowedPeriodException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, int error, String value, int period)
-				throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		
-		
-	}
+}
