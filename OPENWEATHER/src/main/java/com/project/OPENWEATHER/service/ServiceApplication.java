@@ -71,6 +71,7 @@ public class ServiceApplication implements Service {
 	 * @throws MalformedURLException 
 	 * 
 	 */
+	//DA CONTROLLARE
 	public JSONArray getTempApi(String name) throws MalformedURLException, IOException, ParseException {		
 		JSONObject object = getCityApi(name);
 		JSONArray tmp = new JSONArray();
@@ -456,34 +457,5 @@ public class ServiceApplication implements Service {
 		gg.setTemps(vec);
 		return gg;
 	}
-
-	
-	
-	@Override 
-	public String FiveDaysInfo(String name) {
-		return null;
-		}
-	
-		@Override
-		public String URLgenerator(String name) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public ArrayList<JSONObject> PeriodCity(ArrayList<String> names, String period) throws InvalidStringException,
-				NotAllowedPeriodException, InvalidStringException, NotAllowedPeriodException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, int error, String value, int period)
-				throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
 		
-		
-	}
+}
