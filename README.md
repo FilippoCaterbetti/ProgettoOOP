@@ -10,7 +10,10 @@ Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui 
    * 4.1 [ Diagramma casi d'uso](#casiuso) 
    * 4.2 [ Diagramma delle classi](#classi)
    * 4.3 [ Diagramma delle sequenze](#sequenze)
-
+ * 5.[ Rotte ](#rotte)
+ * 6.[ Test](#test)
+ * 7.[ Software utilizzati ](#software)
+ * 8.[ Autori ](#autori)
  
  
  <a name="descr"></a>
@@ -55,6 +58,24 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 
 <a name="sequenze"></a>
 ### 4.3 Diagramma delle sequenze
+
+<a name="rotte"></a>
+## 5. Rotte
+
+<a name="test"></a>
+## 6. Test
+
+<a name="software"></a>
+## 7. Software utilizzati
+
+
+<a name="autori"></a>
+## 8. Autori
+|         Autori          |    Github           |  Commmit   |
+|-------------------------|---------------------|------------|
+| Filippo Caterbetti      | @FilippoCaterbetti  |   33.3%    |
+| Leandro Falasca Zamponi | @leandrofalasca     |   33.3%    |
+| Roberta Cantarini       | @RobertaCantarini   |   33.3%    |
 
 esempi di città e relativi ID da poter usare velocemente per i test
 
