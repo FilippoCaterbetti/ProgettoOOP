@@ -17,9 +17,9 @@ Una volta clonata può essere importata su un ambiente di sviluppo Java (come [E
 É necessario installare un json-simple-1.1.1.jar disponibile [qui](http://www.java2s.com/Code/Jar/j/Downloadjsonsimple111jar.htm)
 
 Per un'esecuzione più veloce del programma la ricerca della regex nella lista delle città si avvierà su un file JSON salvato in locale e inserito al'interno del progetto come:
-```
-city.list.json 
-```
+
+>city.list.json 
+
 
 Questo file può essere scaricato dal sito ufficiale [qui](https://bulk.openweathermap.org/sample/) . Il file che ci serve è nominato *city.list.json.gz*
 
