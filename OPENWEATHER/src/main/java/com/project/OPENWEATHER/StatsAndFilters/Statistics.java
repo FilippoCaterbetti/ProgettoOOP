@@ -17,6 +17,14 @@ public class Statistics extends ErrorCalculator{
 	
 	ServiceApplication service = new ServiceApplication();
 	 
+	/**
+	 
+	 * @param next è il nome della città che viene passata della quale si vuole sapere la media delle statistiche raccolte
+	 * @return
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public JSONObject todayAvg(String next) throws MalformedURLException, IOException, ParseException{
 		
 	City city = new City(next);
