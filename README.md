@@ -3,11 +3,17 @@
 Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui l'applicazione sviluppata è un servizio meteo che, data una o più città, faccia visualizzare tutte le informazioni attuali relative alla temperatura e le relative previsioni per i successivi 5 giorni. Il servizio dovrà salvare le informazioni attuali ogni 5 ore, infine dovrà generare delle statistiche. Il sistema potrà suggerire all'utente una lista predefinita di città da poter utilizzare.
  
  ### Indice
- 1.[ Installazione ](#descr)
- 2.[ Guida all'uso ](#guida)
- 3.[ API reference ](#api)
- 4.[ Diagrammi UML ](#uml)
-  * 4.1[ Diagramma casi d'uso](#casiuso) 
+ * 1.[ Installazione ](#descr)
+ * 2.[ Guida all'uso ](#guida)
+ * 3.[ API reference ](#api)
+ * 4.[ Diagrammi UML ](#uml)
+   * 4.1 [ Diagramma casi d'uso](#casiuso) 
+   * 4.2 [ Diagramma delle classi](#classi)
+   * 4.3 [ Diagramma delle sequenze](#sequenze)
+ * 5.[ Rotte ](#rotte)
+ * 6.[ Test](#test)
+ * 7.[ Software utilizzati ](#software)
+ * 8.[ Autori ](#autori)
  
  
  <a name="descr"></a>
@@ -38,13 +44,38 @@ Come API abbiamo usato **5 day weather forecast** disponibile [qui](https://open
 
 Questa API, disponibile anche tramite un piano gratuito, permette di avere le previsioni a 5 giorni che sono disponibili in qualsiasi località o città. Include i dati delle previsioni del tempo con incrementi di 3 ore. La previsione è disponibile in formato JSON o XML.
 
-Aprendo un account gratuito è possibile avere accesso a delle API Key personali che possono essre usati. Una volta ottenuta, è possibile sostituirla all'interno del progetto modificando il valore della variabile ApiKey nella classe [URLGeneration](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/785c5a309c5c8286b0e6573580c183d8d20fcc27/OPENWEATHER/src/main/java/com/project/OPENWEATHER/model/URLgeneration.java#L17)
+Aprendo un account gratuito è possibile avere accesso a delle API Key personali che possono essre usati. Una volta ottenuta, è possibile sostituirla all'interno del progetto modificando il valore della variabile `ApiKey` nella classe [URLGeneration](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/785c5a309c5c8286b0e6573580c183d8d20fcc27/OPENWEATHER/src/main/java/com/project/OPENWEATHER/model/URLgeneration.java#L17)
 
 
 <a name="uml"></a>
 ## 4. Diagrammi UML
 
+<a name="casiuso"></a>
+### 4.1 Diagramma dei casi d'uso
 
+<a name="classi"></a>
+### 4.2 Diagramma delle classi
+
+<a name="sequenze"></a>
+### 4.3 Diagramma delle sequenze
+
+<a name="rotte"></a>
+## 5. Rotte
+
+<a name="test"></a>
+## 6. Test
+
+<a name="software"></a>
+## 7. Software utilizzati
+
+
+<a name="autori"></a>
+## 8. Autori
+|         Autori          |    Github           |  Commmit   |
+|-------------------------|---------------------|------------|
+| Filippo Caterbetti      | @FilippoCaterbetti  |   33.3%    |
+| Leandro Falasca Zamponi | @leandrofalasca     |   33.3%    |
+| Roberta Cantarini       | @RobertaCantarini   |   33.3%    |
 
 esempi di città e relativi ID da poter usare velocemente per i test
 
