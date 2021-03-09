@@ -1,4 +1,4 @@
-# <h1 align="center">Progetto Esame Programmazione ad Oggetti 2020/2021</h1>
+# <h1 align="center">Progetto Esame Programmazione ad Oggetti</h1>
 
 
 
