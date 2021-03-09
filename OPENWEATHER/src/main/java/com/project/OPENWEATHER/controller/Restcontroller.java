@@ -340,11 +340,12 @@ public class Restcontroller {
 	 * @throws CitynotFoundException se la città non esiste.
 	 * @throws NotAllowedPeriodException se viene inserita un  period errato
 	 * @throws IOException se ci sono errori di input da file.
+	 * @throws EmptyStringException 
 	 * 
 	 */
 	
 	@PostMapping(value="/statsHistory")
-    public ResponseEntity<Object> statsHistory(@RequestBody String body) throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException {
+    public ResponseEntity<Object> statsHistory(@RequestBody String body) throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException, EmptyStringException {
 		
 		JSONObject object = new JSONObject(body);
         JSONArray array = new JSONArray();
@@ -366,7 +367,7 @@ public class Restcontroller {
 		
         
         try {
-        	return new ResponseEntity<>(service.PeriodCity(cities,period).toString(),HttpStatus.OK);
+        	return new ResponseEntity<>(service.PeriodHistory(cities,period).toString(),HttpStatus.OK);
         }
         catch (InvalidStringException e) {
         	
