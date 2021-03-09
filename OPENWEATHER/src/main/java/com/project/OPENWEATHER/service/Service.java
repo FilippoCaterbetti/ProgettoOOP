@@ -24,18 +24,14 @@ import com.project.OPENWEATHER.model.City;
 
 public interface Service {
 	
-	public String URLgenerator (String name);
 	public abstract JSONObject getCityApi(String name) throws MalformedURLException, IOException, ParseException;
 	public abstract JSONArray getTempApi(String name) throws MalformedURLException, IOException, ParseException;
-	public abstract String saveFiveH(String name) throws  IOException;
 	public String FiveHoursInfo(String name);
-	public String FiveDaysInfo(String name);
-	//public abstract JSONArray getTempAPI(String name);
 	public ArrayList<JSONObject> HistoryOfError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException, InvalidStringException;
 	public abstract City getTempFutureApi(String name) throws MalformedURLException, IOException, ParseException;
-	public abstract ArrayList<JSONObject> PeriodCity (ArrayList <String> names, String period ) throws InvalidStringException, NotAllowedPeriodException, InvalidStringException, NotAllowedPeriodException;  //inserire vari errori 
-	public abstract ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, int error, String value, int period) throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException;
 	public JSONArray Substring(String regex) throws FileNotFoundException, IOException, ParseException;
 	public ArrayList<JSONArray> PeriodHistory(ArrayList<String> cities, String period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, IOException, InvalidStringException;
-	
+	public String save(String name) throws IOException, ParseException; 
+	public JSONArray readHistory(String name, String choiche) throws IOException, InvalidStringException;
+
 }
