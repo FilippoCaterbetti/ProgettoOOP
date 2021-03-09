@@ -2,7 +2,7 @@
 
 Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui l'applicazione sviluppata è un servizio meteo che, data una o più città, faccia visualizzare tutte le informazioni attuali relative alla temperatura e le relative previsioni per i successivi 5 giorni. Il servizio dovrà salvare le informazioni attuali ogni 5 ore, infine dovrà generare delle statistiche. Il sistema potrà suggerire all'utente una lista predefinita di città da poter utilizzare.
  
- ###Indice
+ ### Indice
  1. [ Installazione ](#descr)
  2. [ Guida all'uso ](#guida)
  3. [ API reference ](#api)
