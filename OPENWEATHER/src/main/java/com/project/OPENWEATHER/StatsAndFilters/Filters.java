@@ -27,6 +27,7 @@ public class Filters {
 	 * Costruttore della classe
 	 * 
 	 */
+	
 	public Filters(ArrayList<String> cities, String param, String value, int period) {
 	super();
 	this.cities=cities;
@@ -52,15 +53,14 @@ public class Filters {
 	
 	
 	/**
-	 * 
+	 * Questo metodo fa si che a secodna che si scelga 1 o 5 vengano generate le statistiche 
+	 * in un giorno o per 5 giorni
 	 * @return
 	 * @throws NotAllowedPeriodException se non viene inserito il periodo giusto
 	 * @throws ParseException 
 	 * @throws IOException 
 	 * @throws MalformedURLException 
-	 * @throws NotAllowedValueException 
-	 * @throws WrongMethodTypeException 
-	 * 
+	 * @throws NotAllowedValueException 	 * 
 	 */
 	
 	public JSONArray analyze() throws NotAllowedPeriodException, NotAllowedParamException, MalformedURLException, IOException, ParseException, NotAllowedValueException {
@@ -120,26 +120,6 @@ public class Filters {
 		else  throw new NotAllowedPeriodException (period + " non è un numero ammesso. Inserisci un numero che sia o 1 o 5.");
 		return array;
 	}
-	
-	
-
-
-	/**
-	 * @return the value
-	 */
-	public String getValue() {
-		return value;
-	}
-
-
-
-	/**
-	 * @param value the value to set
-	 */
-	public void setValue(String value) {
-		this.value = value;
-	}
-	
 	
 	
 }
