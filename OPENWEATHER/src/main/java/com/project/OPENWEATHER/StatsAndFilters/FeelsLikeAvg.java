@@ -29,7 +29,7 @@ public class FeelsLikeAvg implements FiltersStatistics{
  */
 	public JSONArray Day1Avg (ArrayList<String> cities, String value) throws NotAllowedValueException, MalformedURLException, IOException, ParseException{
 
-JSONArray array = new JSONArray();
+        JSONArray array = new JSONArray();
 		
 		ArrayList<JSONObject> avg = new ArrayList<JSONObject>();
 		ArrayList<Double> avgFeelsLike = new ArrayList<Double>();
