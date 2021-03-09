@@ -81,6 +81,7 @@ public class Restcontroller {
 	 * @throws IOException 
 	 * @throws MalformedURLException 
 	 */
+	
 	@GetMapping(value="/OpenWeather")
 	public ResponseEntity<Object> getCityApi(@RequestParam String name) throws MalformedURLException, IOException, ParseException{
 		
@@ -112,57 +113,6 @@ public class Restcontroller {
 		return new ResponseEntity<> (file, HttpStatus.OK);
 	}
 	
-	
-	/*
-	 * JSONObject deve essere come indicato:
-	 * {
-     *     "cities": [
-     *        {
-     *          "name": "Ancona"
-     *        },
-     *      ],
-     *     "period": "giornaliero"
-     *  }
-	
-	il "period"(giornaliero, settimanale, mensile) indica il periodo di tempo da selezionare
-	@PostMapping(value="/PeriodCity")
-	public ResponseEntity<Object> PeriodCity(@RequestBody String body) throws InvalidStringException, NotAllowedPeriodException{
-		
-		
-		JSONObject object = new JSONObject(body);
-		JSONObject obj = new JSONObject();
-		
-		
-		String period = object.getString("period");
-		
-		JSONArray arr  = new JSONArray();
-        arr = obj.getJSONArray("cities");
-        
-        ArrayList<String> cities = new ArrayList<String>(arr.length());
-        
-        
-        for(int i=0; i<arr.length();i++) {
-        	
-            JSONObject jj = new JSONObject();
-            object = arr.getJSONObject(i);
-            cities.add(jj.getString("names"));
-        
-		
-		try {
-			
-			return new ResponseEntity<>(service.PeriodCity(cities, period),HttpStatus.OK);
-		}
-		catch(InvalidStringException e) {
-			
-			return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
-		}
-		catch(NotAllowedPeriodException e) {
-			
-			return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
-		}
-	}
-}
-*/	
 	
 	/**
 	 * Rotta POST che filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione (da 1 a 5 giorni successivi)
