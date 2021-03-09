@@ -14,7 +14,7 @@ import org.json.simple.parser.ParseException;
 
 public class URLgeneration {
 	String url;
-	String ApiKey;
+	String ApiKey = "";
 	
 	/**
 	 * 
@@ -31,13 +31,12 @@ public class URLgeneration {
 		URLgeneration urlgen = new URLgeneration();
 		String url = "http://api.openweathermap.org/data/2.5/forecast?q=";
 		
-		String ApiKey = "";
-		urlgen.setApiKey(ApiKey);
 		url += ( name );
 		url += ( "&units=metric" );
-		url += ( "&appid=" + ApiKey);
+		url += ( "&appid=" + this.ApiKey);
 		urlgen.setUrl(url);
 		return url;
+		
 	}
 	
 	
