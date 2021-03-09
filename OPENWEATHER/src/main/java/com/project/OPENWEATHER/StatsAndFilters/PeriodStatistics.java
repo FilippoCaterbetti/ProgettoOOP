@@ -78,7 +78,6 @@ public class PeriodStatistics {
 		
 		/**
 		 * Questo metodo restituisce il JSONArray con le statistiche sulle temperature di ogni settimana presente nello storico.
-		 * Richiama il metodo che va a calcolare la statistica giorno per giorno.
 		 * @param city rappresenta il nome della città di cui si vuole fare statistica.
 		 * @param temp contiene tutte le informazioni sulla temperatura presenti nello storico.
 		 * @return un JSONArray con le statistiche di ogni settimana
@@ -150,7 +149,6 @@ public class PeriodStatistics {
 		
 		/**
 		 * Questo metodo restituisce il JSONArray con le statistiche sulle temperature del mese presenti nello storico.
-		 * Richiama il metodo che va a calcolare la statistica settimana per settimana.
 		 * @param city rappresenta il nome della città di cui si vuole fare statistica.
 		 * @param temp contiene tutte le informazioni sulla temperatura presenti nello storico.
 		 * @return un JSONArray con le statistiche di un mese
