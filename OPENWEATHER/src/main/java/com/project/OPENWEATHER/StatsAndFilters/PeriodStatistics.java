@@ -9,7 +9,7 @@ public class PeriodStatistics {
 		 * Questo metodo restituisce il JSONArray con le statistiche sulle temperature di tutti i giorni presenti nello storico.
 		 * @param city rappresenta il nome della città di cui si vuole fare statistica.
 		 * @param temp contiene tutte le informazioni sulla visibilità presenti nello storico.
-		 * @return un JSONArray con le statistiche giorno per giorno.
+		 * @return un JSONArray con le statistiche di ogni giorno
 		 */
 		public JSONArray DailyStats(String city, JSONArray temp) {
 			
@@ -24,6 +24,8 @@ public class PeriodStatistics {
 				JSONArray oneDayVisibility = new JSONArray();
 				oneDayVisibility = temp.getJSONArray(i);
 				
+				//preimpostiamo dei valori predefiniti di max min affinchè sia più semplice trovare i relativi max e min
+
 				int average=0;
 				int j=0;
 				int max=0;
@@ -78,8 +80,8 @@ public class PeriodStatistics {
 		 * Questo metodo restituisce il JSONArray con le statistiche sulle temperature di ogni settimana presente nello storico.
 		 * Richiama il metodo che va a calcolare la statistica giorno per giorno.
 		 * @param city rappresenta il nome della città di cui si vuole fare statistica.
-		 * @param temp contiene tutte le informazioni sulla visibilità presenti nello storico.
-		 * @return un JSONArray con le statistiche settimana per settimana.
+		 * @param temp contiene tutte le informazioni sulla temperatura presenti nello storico.
+		 * @return un JSONArray con le statistiche di ogni settimana
 		 */
 		public JSONArray  OneWeekStats(String city, JSONArray temp) {
 			
@@ -117,6 +119,12 @@ public class PeriodStatistics {
 					
 				}
 				
+				/**
+				 * 
+				 * Facciamo il tutto diviso 7 in quanto in una settimana ci sono 7 giorni
+				 * e utilizziamo il metodo precedente in cui troviamo le statistiche di ogni giorno della settimana
+				 */	
+				
 				average /= 7;
 				variance /= 7;
 				
@@ -144,8 +152,8 @@ public class PeriodStatistics {
 		 * Questo metodo restituisce il JSONArray con le statistiche sulle temperature del mese presenti nello storico.
 		 * Richiama il metodo che va a calcolare la statistica settimana per settimana.
 		 * @param city rappresenta il nome della città di cui si vuole fare statistica.
-		 * @param visibility contiene tutte le informazioni sulla visibilità presenti nello storico.
-		 * @return un JSONArray con le statistiche per tre settimane.
+		 * @param temp contiene tutte le informazioni sulla temperatura presenti nello storico.
+		 * @return un JSONArray con le statistiche di un mese
 		 */
 		public JSONArray  OneMonthStats(String city, JSONArray temp) {
 			
@@ -154,7 +162,7 @@ public class PeriodStatistics {
 			oneWeek = OneWeekStats(city, temp);
 			
 			stats.put(oneWeek.get(0));
-			
+						
 			int average = 0;
 			int max = 0;
 			int min = 10000;
@@ -176,6 +184,12 @@ public class PeriodStatistics {
 				i++;
 					
 			}
+			
+			/**
+			 * 
+			 * Facciamo il tutto diviso 4 in quanto in un mese ci sono 4 settimane 
+			 * e utilizziamo il metodo precedente in cui troviamo le statistiche di ogni settimana del mese
+			 */
 			
 			average /= 4;
 			variance /= 4;
