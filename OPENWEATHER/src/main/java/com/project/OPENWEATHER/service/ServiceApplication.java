@@ -354,22 +354,22 @@ public class ServiceApplication implements Service {
 			array = readHistory(list.next(),"errors");
 			JSONArray visibilityInfo = new JSONArray();
 			
-			for(int i=0; i<array.length(); i++) {
+			for(int i=0; i < array.length(); i++) {
 				
 				JSONArray visibilityday = new JSONArray();
 				
 				JSONObject weather = new JSONObject();
 				weather = array.getJSONObject(i);
 				
-				JSONArray arr = new JSONArray();
-				arr = weather.getJSONArray("Weather");
+				JSONArray temp = new JSONArray();
+				temp = weather.getJSONArray("Weather");
 				
 				
-				for(int j=0; j<arr.length();j++) {
+				for(int k = 0; k < temp.length(); k++) {
 					
 					JSONObject visibility = new JSONObject();
 					JSONObject all = new JSONObject();
-					all = arr.getJSONObject(j);
+					all = temp.getJSONObject(k);
 					
 					visibility.put("visibility", all.get("visibility"));
 					visibility.put("data", all.get("data"));
@@ -394,11 +394,10 @@ public class ServiceApplication implements Service {
 	
 	/**
 	 * Questo metodo va a richiamare readHistory per leggere i file su cui sono salvate le informazioni relative 
-	 * alla visibilità per 3 settimane. Dopo aver salvato in un ArrayList di JSONArray le informazioni di ogni città, 
-	 * lo passa al metodo che serve per calcolare le statistiche sulla visibilità.
+	 * alle temperature per 1 giorno/1 settimana/1mese. Dopo aver salvato in un ArrayList di JSONArray le informazioni di ogni città, 
+	 * lo passa al metodo che serve per calcolare le statistiche sulle temperature.
 	 * 
-	 * @param cities rappresenta i nomi delle città su cui si vogliono fare statistiche. Le città ammesse sono
-	 *        Ancona, Campobasso, Macerata, Roma, San Martino in Pensilis e Tolentino.
+	 * @param cities rappresenta i nomi delle città su cui si vogliono fare statistiche.
 	 * @param period rappresenta il periodo su cui si vuole fare la statistica.
 	 * @throws EmptyStringException se almeno una delle stringhe immesse è vuota.
 	 * @throws CityNotFoundException se la città immessa non è una tra quelle indicate sopra.
@@ -407,90 +406,52 @@ public class ServiceApplication implements Service {
 	 * @throws InvalidStringException 
 	 */
 	
-	//MODIFICA!!!!
 	public ArrayList<JSONArray> PeriodHistory(ArrayList<String> cities, String period) 
 			throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, IOException, InvalidStringException {
 		
-		Iterator<String> it1 = cities.iterator();
-		Iterator<String> it2 = cities.iterator();
-		ArrayList<JSONArray> visibilityInfo = new ArrayList<JSONArray>();
+		Iterator<String> pam1 = cities.iterator();
+		Iterator<String> pam2 = cities.iterator();
+		ArrayList<JSONArray> tempInfo = new ArrayList<JSONArray>();
 		ArrayList<JSONArray> info = new ArrayList<JSONArray>();
 		
-		for(int i=0; i<cities.size(); i++) {
+		for(int i=0; i < cities.size(); i++) {
 			if(cities.get(i).isEmpty())
-				throw new EmptyStringException ("Hai dimenticato di inserire la città...");
-			else if(!(cities.get(i).equals("Ancona") || cities.get(i).equals("Campobasso") || cities.get(i).equals("Macerata") || cities.get(i).equals("Roma") || cities.get(i).equals("San Martino in Pensilis") || cities.get(i).equals("Tolentino")))
-				throw new CitynotFoundException(cities.get(i) + " non è presente nello storico. Puoi scegliere tra: \"Ancona\", \"Campobasso\", \"Macerata\", \"Roma\", \"San Martino in Pensilis\" e \"Tolentino\".");
+				throw new EmptyStringException("Hai dimenticato di inserire la città");
+			else if(!(cities.get(i).equals("Ancona") || cities.get(i).equals("Milano") || cities.get(i).equals("Roma") || cities.get(i).equals("Bologna") || cities.get(i).equals("Parigi")))
+				throw new CitynotFoundException("La città inserita non è presente nello storico");
 		}
 		
-		
-		while(it1.hasNext()) {
+		while(pam1.hasNext()) {
 			
-			JSONArray array = new JSONArray();
-			array = readHistory(it1.next(),"temperature");
-			
-			visibilityInfo.add(array);
+			JSONArray arrayTemp = new JSONArray();
+			arrayTemp = readHistory(pam1.next(),"temperature");
+			tempInfo.add(arrayTemp);
 			
 		}
 		
-		int i=0;
-		while(it2.hasNext()) {
+		int i = 0;
+		while(pam2.hasNext()) {
 			
 			PeriodStatistics stats = new PeriodStatistics();
-			JSONArray array = new JSONArray();
+			JSONArray arrayStats = new JSONArray();
 			
 			if(period.equals("giornaliera"))
-				array = stats.DailyStats(it2.next(),visibilityInfo.get(i));
+				arrayStats = stats.DailyStats(pam2.next(),tempInfo.get(i));
 			else if(period.equals("settimanale"))
-				array = stats.OneWeekStats(it2.next(),visibilityInfo.get(i));
+				arrayStats = stats.OneWeekStats(pam2.next(),tempInfo.get(i));
 			else if(period.equals("mensile"))
-				array = stats.OneMonthStats(it2.next(),visibilityInfo.get(i));
-			else throw new NotAllowedPeriodException(period+" non è permessa. Devi inserire una stringa tra \"giornaliera\","
-					+ "\"settimanale\" e \"trisettimanale\". ");
+				arrayStats = stats.OneMonthStats(pam2.next(),tempInfo.get(i));
+			else throw new NotAllowedPeriodException(period + "non è permessa. Devi inserire una stringa tra \"giornaliera\","
+					+ "\"settimanale\" e \"mensile\". ");
 				
-			info.add(array);
+			info.add(arrayStats);
 			i++;
 		}
 		
 		return info;
 		
-		
-		
 	}
 	
-    
-	
-	
-	/**
-	 * 
-	 * Questo metodo rilegge le informazioni salvate nel periodo selezionato.
-	 * Poi salva le informazioni  in un ArrayList di JSONArray e lo passa al metodo per calcolare le varie
-	 * statistiche.
-	 * 
-	 * @param names rappresenta la città o le città su cui si vogliono avere le statistiche.
-	 * @param period è il periodo
-	 * @throws InvalidStringException se almeno una delle stringhe immesse è vuota.
-	 * @throws CitynotFoundException se la città non esiste.
-	 * @throws NotAllowedPeriodException se viene inserito un period errato.
-	 * @throws IOException se si verifica un errore di lettura del file.
-	 * 
-	 */
-	public ArrayList<JSONArray> HistoryOfTemps(ArrayList<String> names, String period)throws InvalidStringException, NotAllowedPeriodException, CitynotFoundException{
-		
-		ArrayList<JSONArray> tempinfo = new ArrayList<JSONArray>();
-		ArrayList<JSONArray> info = new ArrayList<JSONArray>();
-	
-		
-		//isblank Returns true if the string is empty or contains only white space codepoints,otherwise false.
-		for(int j = 0; j<names.size();j++) {
-			if(names.get(j).isBlank()) {
-				throw new InvalidStringException ("città non valida");
-			}
-			
-			
-		}
-		return null;
-	}
 	
 	
 	/**
@@ -515,7 +476,7 @@ public class ServiceApplication implements Service {
 		Vector<Temperature> vec = new Vector<Temperature> (wa.length());
 		
 		try {
-			for(int j=0; j<wa.length();j++){
+			for(int j = 0; j < wa.length(); j++){
 				Temperature temp = new Temperature();
 				cc = wa.getJSONObject(j);
 				temp.setTemp(cc.getDouble("temp"));
