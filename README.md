@@ -36,6 +36,7 @@ Come API abbiamo usato **5 day weather forecast** disponibile [qui](https://open
 
 Questa API, disponibile anche tramite un piano gratuito, permette di avere le previsioni a 5 giorni che sono disponibili in qualsiasi località o città. Include i dati delle previsioni del tempo con incrementi di 3 ore. La previsione è disponibile in formato JSON o XML.
 
+Aprendo un account gratuito è possibile avere accesso a delle API Key personali che possono essre usati. Una volta ottenuta, è possibile sostituirla all'interno del progetto modificando il valore della variabile ApiKey nella classe [URLGeneration](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/785c5a309c5c8286b0e6573580c183d8d20fcc27/OPENWEATHER/src/main/java/com/project/OPENWEATHER/model/URLgeneration.java#L17)
 
 
 <a name="uml"></a>
