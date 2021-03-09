@@ -262,27 +262,29 @@ public class ServiceApplication implements Service {
 	 * le statistiche sulla visibilità.
 	 * 
 	 * @param name è il nome della città di cui si vuole leggere lo storico.
-	 * @param flag indica quale storico andare a leggere.
+	 * @param choiche è la stringa che l'utente digita per scegliere se vuole le statistiche degli errori o solo le statistiche
 	 * @return il JSONArray che contiene tutte le informazioni sulla visibilità.
 	 * @throws IOException se si verificano errori di input da file.
 	 * @throws InvalidStringException 
 	 */
-	//DA CONTROLLARE!!!!
+	
 	public JSONArray readHistory(String name, String choiche) throws IOException, InvalidStringException {
 		
-        String path = "";
+        String string = "";
 		if(choiche == "errors") {
 			
-			path = System.getProperty("user.dir") + "/errors/" + name +".txt";
+			string = System.getProperty("user.dir") + "/errors/" + name +".txt";
 		}
 		else if (choiche == "temperature") {
-			path = System.getProperty("user.dir") + "/temperature/" + name +".txt";
+			string = System.getProperty("user.dir") + "/temperature/" + name +".txt";
 		}
-		else throw new InvalidStringException(path); 
+		else throw new InvalidStringException(string); 
 			
-		String everything;
-			
-		BufferedReader br = new BufferedReader(new FileReader(path));
+		String lines;
+		
+		//Apriamo e leggiamo il file	
+		
+		BufferedReader br = new BufferedReader(new FileReader(string));
 		
 			try {
 			    StringBuilder sb = new StringBuilder();
@@ -293,13 +295,13 @@ public class ServiceApplication implements Service {
 			        sb.append(System.lineSeparator());
 			        line = br.readLine();
 			    }
-			    everything = sb.toString();
+			    lines = sb.toString();
 			} finally {
 			    br.close();
 			}
 				
 		
-			JSONArray array = new JSONArray(everything);
+			JSONArray array = new JSONArray(lines);
 	
 			return array;
 			
