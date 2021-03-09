@@ -7,7 +7,8 @@ Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui 
  2.[ Guida all'uso ](#guida)
  3.[ API reference ](#api)
  4.[ Diagrammi UML ](#uml)
- * [4.1 Diagramma casi d'uso](#casiuso) 
+  * 4.1[ Diagramma casi d'uso](#casiuso) 
+ 
  
  <a name="descr"></a>
 ## 1. Installazione
