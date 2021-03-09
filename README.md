@@ -6,13 +6,13 @@ Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui 
  1. [ Installazione ](#descr)
  2. [ Guida all'uso ](#guida)
  3. [ API reference ](#api)
+ 4. [ Diagrammi UML ](#uml)
  
  <a name="descr"></a>
 ## 1. Installazione
 
 La nostra applicazione può essere clonata su Github tramite l'applicazione o tramite comando sul Prompt dei comandi.
  
-
 ```
 git clone https://github.com/FilippoCaterbetti/ProgettoOOP
 ```
@@ -21,12 +21,11 @@ Una volta clonata può essere importata su un ambiente di sviluppo Java (come [E
 
 <a name="guida"></a>
 ## 2. Guida all'uso
-É necessario installare un json-simple-1.1.1.jar disponibile [qui](http://www.java2s.com/Code/Jar/j/Downloadjsonsimple111jar.htm)
+É necessario installare un json-simple-1.1.1.jar disponibile [qui](http://www.java2s.com/Code/Jar/j/Downloadjsonsimple111jar.htm) e aggiungerlo alla libreria del progetto.
 
-Per un'esecuzione più veloce del programma la ricerca della regex nella lista delle città si avvierà su un file JSON salvato in locale e inserito al'interno del progetto come:
+Per un'esecuzione più veloce del programma, la ricerca della regex nella lista delle città si avvierà su un file JSON che deve essere salvato in locale e inserito al'interno del progetto con nome:
 
 >city.list.json 
-
 
 Questo file può essere scaricato dal sito ufficiale [qui](https://bulk.openweathermap.org/sample/) . Il file che ci serve è nominato *city.list.json.gz*
 
@@ -35,10 +34,12 @@ Questo file può essere scaricato dal sito ufficiale [qui](https://bulk.openweat
 ## 3. API Reference
 Come API abbiamo usato **5 day weather forecast** disponibile [qui](https://openweathermap.org/forecast5#name5)
 
-Questa API disponibile anche tramite un piano gratuito, permette di avere le previsioni a 5 giorni che sono disponibili in qualsiasi località o città. Include i dati delle previsioni del tempo con incrementi di 3 ore. La previsione è disponibile in formato JSON o XML.
+Questa API, disponibile anche tramite un piano gratuito, permette di avere le previsioni a 5 giorni che sono disponibili in qualsiasi località o città. Include i dati delle previsioni del tempo con incrementi di 3 ore. La previsione è disponibile in formato JSON o XML.
 
 
 
+<a name="uml"></a>
+## Diagrammi UML
 
 
 
