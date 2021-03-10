@@ -43,16 +43,7 @@ public class URLgeneration {
 	
 	
 	/**
-	 * 
-	 * 
-	 * 
-	 * @param name Nome della città 
-	 * @return void
-	 * @throws IOException se si verificano problemi durante l'input/output
-	 * @throws MalformedURLException Se l'URL di OpenWeather è errato
-	 * @throws ParseException Se il parsing del body genera eccezioni
-	 */
-	public  void richiesta(String name) throws MalformedURLException, IOException, ParseException{
+	 * public void richiesta(String name) throws MalformedURLException, IOException, ParseException{
 		
 		JSONParser parser = new JSONParser();
 		URLConnection OPENWEATHER = (HttpURLConnection) new URL(this.url(name)).openConnection();
@@ -63,6 +54,15 @@ public class URLgeneration {
 		
 		return;
 	}
+	 * 
+	 * 
+	 * @param name Nome della città 
+	 * @return void
+	 * @throws IOException se si verificano problemi durante l'input/output
+	 * @throws MalformedURLException Se l'URL di OpenWeather è errato
+	 * @throws ParseException Se il parsing del body genera eccezioni
+	 */
+	
 	
 	
 	/**
@@ -89,13 +89,11 @@ public class URLgeneration {
 	public String getUrl() {
 		return url;
 	}
-
 	/**
 	 * @param url the url to set
 	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
 	
 }
