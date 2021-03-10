@@ -67,7 +67,7 @@ Tramite L'API di [OpenWeather](https://openweathermap.org/forecast5#name5) il pr
 Precisamente con dati meteo vengono restituiti la temperatura reale, percepita, massima, minima e media.
 Ecco alcuni esempi di città
 |    "id"   |  "name"    |  "country" |
-|-----------|------------|------------|
+|:---------:|:----------:|:----------:|
 |  3173435  |   "Milan"  |    "IT"    |
 |  3169070  |   "Rome"   |    "IT"    |
 |  3181927  |  "Bologna" |    "IT"    |
@@ -99,7 +99,7 @@ Sono stati implementati diversi test per controllare la correttezza dell'applica
 <a name="autori"></a>
 ## 9. Autori
 |         Autori          |   Commit  |
-|-------------------------|-----------|
+|-------------------------|:---------:|
 | Filippo Caterbetti      |   33.3%   |
 | Leandro Falasca Zamponi |   33.3%   |
 | Roberta Cantarini       |   33.3%   |
