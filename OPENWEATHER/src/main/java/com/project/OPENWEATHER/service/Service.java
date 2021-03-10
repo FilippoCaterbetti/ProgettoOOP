@@ -21,7 +21,6 @@ import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.City;
 // name indica la città desiderata
 
-
 public interface Service {
 	
 	public abstract JSONObject getCityApi(String name) throws MalformedURLException, IOException, ParseException;
