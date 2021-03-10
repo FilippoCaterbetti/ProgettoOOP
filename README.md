@@ -76,11 +76,11 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 
 <a name="autori"></a>
 ## 8. Autori
-|         Autori          |   Commmit  |
-|-------------------------|------------|
-| Filippo Caterbetti      |   33.3%    |
-| Leandro Falasca Zamponi |   33.3%    |
-| Roberta Cantarini       |   33.3%    |
+|         Autori          |   Commit  |
+|-------------------------|-----------|
+| Filippo Caterbetti      |   33.3%   |
+| Leandro Falasca Zamponi |   33.3%   |
+| Roberta Cantarini       |   33.3%   |
 
 esempi di città e relativi ID da poter usare velocemente per i test
 
