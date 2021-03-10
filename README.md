@@ -67,15 +67,20 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 
 <a name="software"></a>
 ## 7. Software utilizzati
+* Ambiente di sviluppo : [Eclipse](https://www.eclipse.org/downloads/)
+* Software per diagrammi UML : [StarUML](https://staruml.io/) 
+* Software per la gestione di librerie : [Maven](https://maven.apache.org/)
+* Framework per applicazioni in Java : [Spring Boot](https://spring.io/projects/spring-boot)
+* Ambiente di sviluppo API : [Postman](https://www.postman.com/)
 
 
 <a name="autori"></a>
 ## 8. Autori
-|         Autori          |    Github           |  Commmit   |
-|-------------------------|---------------------|------------|
-| Filippo Caterbetti      | @FilippoCaterbetti  |   33.3%    |
-| Leandro Falasca Zamponi | @leandrofalasca     |   33.3%    |
-| Roberta Cantarini       | @RobertaCantarini   |   33.3%    |
+|         Autori          |   Commmit  |
+|-------------------------|------------|
+| Filippo Caterbetti      |   33.3%    |
+| Leandro Falasca Zamponi |   33.3%    |
+| Roberta Cantarini       |   33.3%    |
 
 esempi di città e relativi ID da poter usare velocemente per i test
 
