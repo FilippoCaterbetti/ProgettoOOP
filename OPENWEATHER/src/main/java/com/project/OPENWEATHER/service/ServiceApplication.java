@@ -52,9 +52,10 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		
 		URLgeneration urlgen = new URLgeneration();
-
+		
+		urlgen.url(name);
 		String url = urlgen.getUrl();
-		urlgen.richiesta(name);
+		//urlgen.richiesta(name);
 		
 		JSONObject obj;
 		RestTemplate rest = new RestTemplate();
