@@ -36,19 +36,25 @@ public class Filters {
 	this.period=period;
 	}
 
-	public Filters(ArrayList<String> cities, int period) {
-		super();
+	/**
+	 * 
+	 * public Filters(ArrayList<String> cities, int period) {
+	 * super();
 		this.cities=cities;
 		this.period=period;
 	}
 	
+	 * 
+	 * 
+	 * 
+	 */
+		
 	public Filters(ArrayList<String> cities, String param, int period) {
 		super();
 		this.cities = cities;
 		this.param = param;
 		this.period = period;
 	}
-
 	
 	
 	
