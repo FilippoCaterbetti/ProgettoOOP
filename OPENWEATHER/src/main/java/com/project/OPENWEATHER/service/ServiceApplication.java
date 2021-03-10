@@ -40,7 +40,8 @@ import com.project.OPENWEATHER.model.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
 import com.project.OPENWEATHER.model.URLgeneration;
 
-public class ServiceApplication implements Service {
+
+public class ServiceApplication implements com.project.OPENWEATHER.service.Service {
 	
 
 	//RestTemplate permette di effettuare la richiesta e di convertire 
@@ -84,7 +85,7 @@ public class ServiceApplication implements Service {
 		double temp_min;
 		double temp_avg;
 		double feels_like;
-		String data;
+		//String data;
 		String main;
 		String description;
 		
@@ -96,7 +97,7 @@ public class ServiceApplication implements Service {
 			temp_min = Double.parseDouble(sp.get("temp_min").toString());
 			temp_avg = Double.parseDouble(sp.get("temp_avg").toString());
 			feels_like = Double.parseDouble(sp.get("feels_like").toString());
-			data =  sp.get("dt_txt").toString(); //?
+			//data =  sp.get("dt_txt").toString(); //?
 			main = sp.get("main").toString();
 			description= sp.get("description").toString();
 			
@@ -106,7 +107,7 @@ public class ServiceApplication implements Service {
 			g.put("temp_min", temp_min);
 			g.put("temp_avg", temp_avg);
 			g.put("feels_like", feels_like);
-			g.put("Data", data);
+			//g.put("Data", data);
 			g.put("main", main);
 			g.put("description", description);
 			tmp.put(g);
