@@ -349,6 +349,7 @@ public class Restcontroller {
      *      ],
      *     "period": 1
      *     "param" : "temp_max"
+     *     "value": "max"
      *  }
 	 * 
 	 *  "param"(temp max o min o feels_like o average) della città 
@@ -381,29 +382,29 @@ public class Restcontroller {
             JSONObject object = new JSONObject();
             object = arr.getJSONObject(i);
             cities.add(object.getString("name"));
-            cities.add(object.getString("param"));
         }
         
         int period = obj.getInt("period");
 		String param = obj.getString("param");
+		String value = obj.getString("value");
+		
         Filters filter;
-        
-		filter = new Filters(cities, param, period);
+       
+		filter = new Filters(cities, param, value, period);
 		
 		try {
-        	return new ResponseEntity<>(filter.analyze().toString()   ,HttpStatus.OK);
+        	return new ResponseEntity<>(filter.analyze().toString(),HttpStatus.OK);
         }
 		catch(NotAllowedPeriodException e) {
 			
 	        	return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
 	        	
+	        }catch(NotAllowedValueException e) {
+	        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
 	        }
-		/*catch(NotAllowedParamException e) {
-			
-        	return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
-        	
-        }*/
-        	
+			catch(NotAllowedParamException e) {
+	        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+	        }	
 		
 	}
 	
