@@ -72,7 +72,7 @@ public class ServiceApplication implements Service {
 	 * @throws MalformedURLException 
 	 * 
 	 */
-	//DA CONTROLLARE
+
 	public JSONArray getTempApi(String name) throws MalformedURLException, IOException, ParseException {		
 		JSONObject object = getCityApi(name);
 		JSONArray tmp = new JSONArray();
@@ -329,7 +329,6 @@ public class ServiceApplication implements Service {
 	 * @throws InvalidStringException 
 	 */
 	
-	//MODIFICA!!!!!
 	public ArrayList<JSONObject> HistoryOfError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException, InvalidStringException {
 		
 		for(int i=0; i < names.size(); i++) {
@@ -354,11 +353,11 @@ public class ServiceApplication implements Service {
 			
 			JSONArray array = new JSONArray();
 			array = readHistory(list.next(),"errors");
-			JSONArray visibilityInfo = new JSONArray();
+			JSONArray tempInfo = new JSONArray();
 			
 			for(int i=0; i < array.length(); i++) {
 				
-				JSONArray visibilityday = new JSONArray();
+				JSONArray tempDay = new JSONArray();
 				
 				JSONObject weather = new JSONObject();
 				weather = array.getJSONObject(i);
@@ -373,17 +372,17 @@ public class ServiceApplication implements Service {
 					JSONObject all = new JSONObject();
 					all = temp.getJSONObject(k);
 					
-					visibility.put("visibility", all.get("visibility"));
+					visibility.put("temperature", all.get("temperature"));
 					visibility.put("data", all.get("data"));
-					visibilityday.put(visibility);
+					tempDay.put(visibility);
 					
 				}
 				
-				visibilityInfo.put(visibilityday);
+				tempInfo.put(tempDay);
 				
 			}
 			
-			statisticArray.add(visibilityInfo);
+			statisticArray.add(tempInfo);
 		}
 		
 		ErrorCalculator errorcalculator = new ErrorCalculator();
