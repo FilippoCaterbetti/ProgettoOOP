@@ -36,6 +36,7 @@ Per un'esecuzione più veloce del programma, la ricerca della regex nella lista 
 >city.list.json 
 
 Questo file può essere scaricato dal sito ufficiale [qui](https://bulk.openweathermap.org/sample/) . Il file che ci serve è nominato *city.list.json.gz*
+![immagine](https://user-images.githubusercontent.com/74785620/110610278-5f59ec80-818e-11eb-997d-bd4684e27708.png)
 
 
 <a name="api"></a>
