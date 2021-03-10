@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.project.OPENWEATHER.exception.CitynotFoundException;
 import com.project.OPENWEATHER.exception.EmptyStringException;
 import com.project.OPENWEATHER.exception.InvalidStringException;
@@ -32,6 +30,7 @@ import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
 import com.project.OPENWEATHER.service.Service;
+import com.project.OPENWEATHER.service.ServiceApplication;
 import com.project.OPENWEATHER.StatsAndFilters.*;
 
 
@@ -40,17 +39,19 @@ public class Restcontroller {
 	
 	@Autowired
 	Temperature stats = new Temperature();
-	//RealTempAvg tempavg = new RealTempAvg();
-	//TempMaxAvg maxavg = new TempMaxAvg();
-	//TempMinAvg minavg = new TempMinAvg();
-	
-	Service service;
+	ServiceApplication service = new ServiceApplication();
 	Statistics statistic = new Statistics();
 	
 	/**
 	 * 
-	 *  Rotta GET che mostra le temperature 
-	 * per i 5 giorni successivi della città.
+	 *  Rotta POST che mostra le temperature per i 5 giorni successivi della città.
+	 * 	
+	 * {
+     *        
+     *       "name": "Ancona"
+     *        
+     *  }      
+	 * 
 	 * 
 	 * @param name indica la città da cui vogliamo la temperatura.
 	 * @return restituiamo le previsioni della città indicata
@@ -60,8 +61,13 @@ public class Restcontroller {
 	 * 
 	 */
 	
-	@GetMapping(value="/temp")
-	public ResponseEntity<Object> getTemp(@RequestParam String name) throws MalformedURLException, IOException, ParseException {
+	@PostMapping(value="/temp")
+	public ResponseEntity<Object> getTemp(@RequestBody String body) throws MalformedURLException, IOException, ParseException {
+		
+		JSONObject req = new JSONObject(body);
+		
+		String name = req.getString("name");
+		
 		
 		return new ResponseEntity<> (service.getTempApi(name).toString(), HttpStatus.OK);
 		
@@ -91,8 +97,6 @@ public class Restcontroller {
 		return new ResponseEntity<>(object.toString(),HttpStatus.OK);
 		
 	}
-	
-	
 	 /**
 	  *Rotta GET che salva ogni cnque ore le temperature della città.
 	  * 
@@ -344,7 +348,7 @@ public class Restcontroller {
      *        }
      *      ],
      *     "period": 1
-     *     "param" : "max"
+     *     "param" : "temp_max"
      *  }
 	 * 
 	 *  "param"(temp max o min o feels_like o average) della città 
@@ -402,12 +406,5 @@ public class Restcontroller {
         	
 		
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }
