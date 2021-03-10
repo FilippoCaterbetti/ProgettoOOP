@@ -36,7 +36,7 @@ Per un'esecuzione più veloce del programma, la ricerca della regex nella lista 
 >city.list.json 
 
 Questo file può essere scaricato dal sito ufficiale [qui](https://bulk.openweathermap.org/sample/) . Il file che ci serve è nominato *city.list.json.gz*
-
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/794fe3f3a130d005049a36febe5b3118b3502047/UML/indexOfSimpleJson.png?raw=true" width="500" height="350"/></h1>
 
 <a name="api"></a>
 ## 3. API Reference
@@ -64,6 +64,8 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 
 <a name="test"></a>
 ## 6. Test
+Sono stati implementati diversi test per controllare la correttezza dell'applicazione. Sono disponibili [qui](https://github.com/FilippoCaterbetti/ProgettoOOP/tree/main/OPENWEATHER/src/test/java/com/project/OPENWEATHER)
+
 
 <a name="software"></a>
 ## 7. Software utilizzati
