@@ -10,13 +10,14 @@ Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui 
    * 4.1 [ Diagramma casi d'uso](#casiuso) 
    * 4.2 [ Diagramma delle classi](#classi)
    * 4.3 [ Diagramma delle sequenze](#sequenze)
- * 5.[ Rotte ](#rotte)
- * 6.[ Test](#test)
- * 7.[ Software utilizzati ](#software)
- * 8.[ Autori ](#autori)
+ * 5.[ Applicazione ](#app)
+ * 6.[ Rotte ](#rotte)
+ * 7.[ Test](#test)
+ * 8.[ Software utilizzati ](#software)
+ * 9.[ Autori ](#autori)
  
  
- <a name="descr"></a>
+<a name="descr"></a>
 ## 1. Installazione
 
 La nostra applicazione può essere clonata su Github tramite l'applicazione o tramite comando sul Prompt dei comandi.
@@ -59,16 +60,36 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 <a name="sequenze"></a>
 ### 4.3 Diagramma delle sequenze
 
+<a name="app"></a>
+## 5. Applicazione
+Tramite L'API di [OpenWeather](https://openweathermap.org/forecast5#name5) il programma riceve i dati meteo della città 
+
+Precisamente con dati meteo vengono restituiti la temperatura reale, percepita, massima, minima e media.
+Ecco alcuni esempi di città
+
+|    "id"   |  "name"    |  "country" |
+|-----------|------------|------------|
+|  3173435  |   "Milan"  |    "IT"    |
+|  3169070  |   "Rome"   |    "IT"    |
+|  3181927  |  "Bologna" |    "IT"    |
+|  6542126  |  "Ancona"  |    "IT"    |
+
 <a name="rotte"></a>
-## 5. Rotte
+## 6. Rotte
+Le richieste effettuate dall'utente su Postman sarnno disponibili all'indirizzo
+```
+localhost:8080
+```
+Le rotte disponibili sono:
+
 
 <a name="test"></a>
-## 6. Test
+## 7. Test
 Sono stati implementati diversi test per controllare la correttezza dell'applicazione. Sono disponibili [qui](https://github.com/FilippoCaterbetti/ProgettoOOP/tree/main/OPENWEATHER/src/test/java/com/project/OPENWEATHER)
 
 
 <a name="software"></a>
-## 7. Software utilizzati
+## 8. Software utilizzati
 * Ambiente di sviluppo : [Eclipse](https://www.eclipse.org/downloads/)
 * Software per diagrammi UML : [StarUML](https://staruml.io/) 
 * Software per la gestione di librerie : [Maven](https://maven.apache.org/)
@@ -77,7 +98,7 @@ Sono stati implementati diversi test per controllare la correttezza dell'applica
 
 
 <a name="autori"></a>
-## 8. Autori
+## 9. Autori
 |         Autori          |   Commit  |
 |-------------------------|-----------|
 | Filippo Caterbetti      |   33.3%   |
