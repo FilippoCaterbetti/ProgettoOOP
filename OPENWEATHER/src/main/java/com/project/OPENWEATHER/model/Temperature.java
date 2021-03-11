@@ -26,6 +26,11 @@ public class Temperature implements  Cloneable { //JSONClass,
 	
 	//This temperature parameter accounts for the human perception of weather
 	private double feels_like;
+	
+	// avg
+	private double temp_avg;
+
+	
 
 	//The date at the moment of calculation from library java.util.Date;
 	String data;
@@ -225,10 +230,17 @@ public class Temperature implements  Cloneable { //JSONClass,
 		this.data = data;
 	}
 
-	@Override
-	public String toString() {
-		return "Statistics [main=" + main + ", description=" + description + ", temp_max=" + temp_max + ", temp_min="
-				+ temp_min + ", feels_like=" + feels_like + ", temp=" + temp + ", data=" + data + "]";
+	/**
+	 * @return the temp_avg
+	 */
+	public double getTemp_avg() {
+		return temp_avg;
+	}
+	/**
+	 * @param temp_avg the temp_avg to set
+	 */
+	public void setTemp_avg(double temp_avg) {
+		this.temp_avg = temp_avg;
 	}
 
 }
