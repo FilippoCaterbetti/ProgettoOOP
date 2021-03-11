@@ -63,7 +63,8 @@ public class Statistics extends ErrorCalculator{
      
      //calcolo della varianza di visibilità
      while(date.equals(Date)) {
-     	i++;
+    	 
+     	 i++;
          Date = "";
          Date += (city.getTemps().get(i).getData()).charAt(0);
          Date += (city.getTemps().get(i).getData()).charAt(1);
@@ -71,6 +72,7 @@ public class Statistics extends ErrorCalculator{
      }
    //calcolo della varianza della temperatura percepita
      while(i<city.getTemps().size()) {
+    	 
      	variance += ((int)((city.getTemps().get(i).getTemp())-real_temp_avg))^2;
      	i++;
      }
@@ -79,6 +81,7 @@ public class Statistics extends ErrorCalculator{
      
    //calcolo della varianza della temperatura reale
      while(i<city.getTemps().size()) {
+    	 
      	variance += ((int)((city.getTemps().get(i).getFeels_like())-feels_like_avg))^2;
      	i++;
      }
