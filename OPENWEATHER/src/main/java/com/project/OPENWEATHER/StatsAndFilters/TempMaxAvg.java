@@ -53,6 +53,7 @@ public class TempMaxAvg implements FiltersStatistics{
 					int i = 0;
 					
 					while(it.hasNext()) {
+						
 						JSONObject object = new JSONObject();
 						object = statistic.todayAvg(it.next());
 						avg.add(object);
@@ -68,11 +69,13 @@ public class TempMaxAvg implements FiltersStatistics{
 						if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
 							
 								if(ave>parameter1) {
+									
 									parameter1 = ave;
 									names = new ArrayList<String>();
 									names.add(cities.get(i));
 								}
 								else if(ave==parameter1) {
+									
 									names.add(cities.get(i));
 								}
 								i++;
@@ -81,11 +84,13 @@ public class TempMaxAvg implements FiltersStatistics{
 						else if(value.equals("min") || value.equals("MIN") || value.equals("Min")) {
 							
 							if(ave<parameter2) {
+								
 								parameter2 = ave;
 								names = new ArrayList<String>();
 								names.add(cities.get(i));
 							}
 							else if(ave==parameter2) {
+								
 								names.add(cities.get(i));
 							}
 							i++;
@@ -97,10 +102,12 @@ public class TempMaxAvg implements FiltersStatistics{
 					JSONObject object = new JSONObject();
 					
 					if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
+						
 						object.put("Città con la media più alta", names);
 						object.put("media massima", parameter1);
 					}
 					else { 
+						
 						object.put("Città con media minima ", names);
 						object.put("media minima", parameter2);
 					}
@@ -137,6 +144,7 @@ public class TempMaxAvg implements FiltersStatistics{
 					int i = 0;
 					
 					while(it.hasNext()) {
+						
 						JSONObject object = new JSONObject();
 						object = statistic.fiveDayAvg(it.next());
 						average.add(object);
@@ -181,10 +189,12 @@ public class TempMaxAvg implements FiltersStatistics{
 					JSONObject object = new JSONObject();
 					
 					if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
+						
 						object.put("Città con la media più alta", names);
 						object.put("media massima", number1);
 					}
 					else { 
+						
 						object.put("Città con la media minima", names);
 						object.put("media minima", number2);
 					}
