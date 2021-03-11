@@ -38,11 +38,11 @@ import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
-import com.project.OPENWEATHER.model.URLgeneration;
 
 
 public class ServiceApplication implements com.project.OPENWEATHER.service.Service {
 	
+	private String Api_key = "666efac3e1caf3f728f8c5860edeb469";
 
 	//RestTemplate permette di effettuare la richiesta e di convertire 
 	//automaticamente il json ricevuto in un oggetto Java strutturato in maniera 
@@ -51,16 +51,19 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	public JSONObject getCityApi(String name) throws MalformedURLException, IOException, ParseException {
 		
 		
-		URLgeneration urlgen = new URLgeneration();
-		
-		urlgen.url(name);
-		String url = urlgen.getUrl();
-		//urlgen.richiesta(name);
-		
 		JSONObject obj;
-		RestTemplate rest = new RestTemplate();
-		obj = new JSONObject(rest.getForObject(url, String.class));
+		
+		
+		//Questo serve epr avere le temperature in gradi centigradi
+		String unit = "&units=metric";
+		String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + name + unit + "&appid="+Api_key;
+		
+		RestTemplate rt = new RestTemplate();
+		
+		obj = new JSONObject(rt.getForObject(url, String.class));
+		
 		return obj;
+
 	}
 
 	
