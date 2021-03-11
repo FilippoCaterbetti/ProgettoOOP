@@ -166,7 +166,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		JSONArray arr = new JSONArray();
 		arr = getTempApi(name);
 		
-		JSONArray wa = obj.getJSONArray("ciao");
+		JSONArray wa = obj.getJSONArray("list");
 		JSONObject cc = new JSONObject();
 		
 		Vector<Temperature> vec = new Vector<Temperature> (wa.length());
@@ -220,20 +220,23 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 				names.add(name);
 			}
 
-			ArrayList<String> matches = new ArrayList<String>();
+			ArrayList<String> x = new ArrayList<String>();
 			
 			Pattern p = Pattern.compile(regex);
-
+			//JSONArray match = new JSONArray();
 			 for (String s:names) {
 			   if (p.matcher(s).matches()) {
-			      matches.add(s);
+			      x.add(s);
 			   }
 			 }
-			 JSONArray match = new JSONArray();
-			 //JsonArray avv = new Gson().toJsonTree(matches).getAsJsonArray();
-			 //
-			 //match.addAll(matches); 
-			 //JSONArray mJSONArray = new JSONArray(Arrays.asList(matches));
+			 /*JSONObject o = new JSONObject();
+			 JSONArray Array = o.getJSONArray(o);		
+			 for(  int i=0; i<x.size(); i++) {
+				 match
+				 ;
+			 }*/
+			 JSONArray match = new JSONArray(x);
+			 
 			 return match;
 	}
 	
