@@ -47,7 +47,7 @@ public class Restcontroller {
 	 *  Rotta POST che mostra le temperature per i 5 giorni successivi della città.
 	 * 	
 	 * {
-     *        
+     *
      *       "name": "Ancona"
      *        
      *  }      
