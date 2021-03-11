@@ -27,6 +27,7 @@ public interface Service {
 	public abstract JSONObject getCityApi(String name);
 	public abstract JSONArray getTempApi(String name);
 	public String FiveHoursInfo(String name);
+	public City getCityInfofromApi(String name);
 	public ArrayList<JSONObject> HistoryOfError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException, InvalidStringException;
 	public abstract City getTempFutureApi(String name) ;
 	public JSONArray Substring(String regex) throws FileNotFoundException, IOException, ParseException;
