@@ -23,8 +23,8 @@ import com.project.OPENWEATHER.model.City;
 
 public interface Service {
 	
-	public abstract JSONObject getCityApi(String name) throws MalformedURLException, IOException, ParseException;
-	public abstract JSONArray getTempApi(String name) throws MalformedURLException, IOException, ParseException;
+	public abstract JSONObject getCityApi(String name);
+	public abstract JSONArray getTempApi(String name);
 	public String FiveHoursInfo(String name);
 	public ArrayList<JSONObject> HistoryOfError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException, InvalidStringException;
 	public abstract City getTempFutureApi(String name) throws MalformedURLException, IOException, ParseException;
