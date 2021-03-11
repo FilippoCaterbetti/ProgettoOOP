@@ -44,6 +44,7 @@ public class FeelsLikeAvg implements FiltersStatistics{
 		int i = 0;
 		
 		while(it.hasNext()) {
+			
 			JSONObject object = new JSONObject();
 			object = statistic.todayAvg(it.next());
 			avg.add(object);
@@ -59,11 +60,13 @@ public class FeelsLikeAvg implements FiltersStatistics{
 			if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
 				
 					if(ave>parameter1) {
+						
 						parameter1 = ave;
 						names = new ArrayList<String>();
 						names.add(cities.get(i));
 					}
 					else if(ave==parameter1) {
+						
 						names.add(cities.get(i));
 					}
 					i++;
@@ -72,11 +75,13 @@ public class FeelsLikeAvg implements FiltersStatistics{
 			else if(value.equals("min") || value.equals("MIN") || value.equals("Min")) {
 				
 				if(ave<parameter2) {
+					
 					parameter2 = ave;
 					names = new ArrayList<String>();
 					names.add(cities.get(i));
 				}
 				else if(ave==parameter2) {
+					
 					names.add(cities.get(i));
 				}
 				i++;
@@ -88,10 +93,12 @@ public class FeelsLikeAvg implements FiltersStatistics{
 		JSONObject object = new JSONObject();
 		
 		if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
+			
 			object.put("Città con la media più alta", names);
 			object.put("media massima", parameter1);
 		}
 		else { 
+			
 			object.put("Città con media minima ", names);
 			object.put("media minima", parameter2);
 		}
@@ -129,6 +136,7 @@ public class FeelsLikeAvg implements FiltersStatistics{
 		int i = 0;
 		
 		while(it.hasNext()) {
+			
 			JSONObject object = new JSONObject();
 			object = statistic.fiveDayAvg(it.next());
 			average.add(object);
@@ -144,11 +152,13 @@ public class FeelsLikeAvg implements FiltersStatistics{
 			if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
 				
 				if(ave>number1) {
+					
 					number1 = ave;
 					names = new ArrayList<String>();
 					names.add(cities.get(i));
 				}
 				else if(ave==number1) {
+					
 					names.add(cities.get(i));
 				}
 				i++;
@@ -166,13 +176,16 @@ public class FeelsLikeAvg implements FiltersStatistics{
 				}
 				i++;
 			}
-			else throw new NotAllowedValueException (value+" è una stringa errata! Devi inserire una stringa tra max/MAX/Max oppure min/MIN/Min");
+			else {
+				throw new NotAllowedValueException (value+" è una stringa errata! Devi inserire una stringa tra max/MAX/Max oppure min/MIN/Min");
+			}
 				
 		}
 		
 		JSONObject object = new JSONObject();
 		
 		if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
+			
 			object.put("Città con la media più alta", names);
 			object.put("media massima", number1);
 		}
