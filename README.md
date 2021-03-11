@@ -75,7 +75,7 @@ Ecco alcuni esempi di città
 
 <a name="rotte"></a>
 ## 6. Rotte
-Le richieste effettuate dall'utente su Postman sarnno disponibili all'indirizzo
+Le richieste effettuate dall'utente su Postman saranno disponibili all'indirizzo
 ```
 localhost:8080
 ```
