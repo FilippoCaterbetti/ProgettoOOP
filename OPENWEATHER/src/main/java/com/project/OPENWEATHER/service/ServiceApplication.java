@@ -62,8 +62,14 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		// http://api.openweathermap.org/data/2.5/forecast?q=Milan&appid=069782b0f7fc9729e6c7151ffd1448ed
 		// http://api.openweathermap.org/data/2.5/forecast?q=Milan&units=metric&appid=069782b0f7fc9729e6c7151ffd1448ed
-		//Questo serve epr avere le temperature in gradi centigradi
+		/**
+		 * Questo serve per avere le temperature in gradi centigradi
+		 * Per la temperatura in Fahrenheit utilizzare &units=imperial
+		 * La temperatura in Kelvin viene utilizzata per impostazione predefinita, non è necessario utilizzare il parametro delle unità nella chiamata API
+		 * quindi basta cancellare il parametro
+		 */
 		String unit = "&units=metric";
+		
 		String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + name + unit + "&appid="+Api_key;
 		
 		RestTemplate rt = new RestTemplate();
@@ -174,18 +180,21 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		try {
 			for(int j = 0; j < wa.length(); j++){
-				Temperature weather = new Temperature();
+				
+				Temperature temps = new Temperature();
 				cc = wa.getJSONObject(j);
-				weather.setData(cc.getString("dt_txt"));
+				temps.setData(cc.getString("dt_txt"));
 				JSONArray arrayW = cc.getJSONArray("weather");
 				JSONObject objectW = arrayW.getJSONObject(0);
-				weather.setDescription(objectW.getString("description"));
-				weather.setMain(objectW.getString("main"));
-				JSONObject objectW2 = cc.getJSONObject("main");
-				weather.setTemp_max(objectW2.getDouble("temp_max"));
-				weather.setTemp_min(objectW2.getDouble("temp_min"));
-				weather.setFeels_like(objectW2.getDouble("feels_like"));
-				vec.add(weather); 
+				temps.setDescription(objectW.getString("description"));
+				temps.setMain(objectW.getString("main"));
+				
+				temps.setTemp(cc.getJSONObject("main").getDouble("temp"));
+				temps.setTemp_max(cc.getJSONObject("main").getDouble("temp_max"));
+				temps.setTemp_min(cc.getJSONObject("main").getDouble("temp_min"));
+				temps.setFeels_like(cc.getJSONObject("main").getDouble("feels_like"));
+				temps.setTemp_avg((temps.getTemp_max()+temps.getTemp_min())/2);
+				vec.add(temps); 
 				/**
 				Temperature temp = new Temperature();
 				cc = wa.getJSONObject(j);
@@ -228,16 +237,15 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		try {
 			
 			JSONObject cityObj = object.getJSONObject("city");
+			String nameCity = (String) cityObj.get("name");
 			String country = (String) cityObj.get("country");
 			int id = (int) cityObj.get("id");
-			JSONObject coordinatesObj = cityObj.getJSONObject("coord");
-			//double latitude = (double) coordinatesObj.get("lat");
-			//double longitude = (double) coordinatesObj.get("lon");
-			//Coordinates coordinates = new Coordinates(latitude,longitude); 
 			city.setCountry(country);
 			city.setId(id);
-			//city.setCoordinates(coordinates);
+			city.setName(nameCity);
+			
 		} catch(Exception e) {
+			
 			e.printStackTrace();
 		}
 		
@@ -258,10 +266,79 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	 */
 	public JSONArray Substring(String regex) throws FileNotFoundException, IOException, ParseException{
 		
+		//String path = System.getProperty("user.dir")+"\\city.list.json";
+		String string;
+		String finale;
+		//BufferedReader br = new BufferedReader(new FileReader(path));
+		
+		JSONParser parser = new JSONParser();
+		List<String> names = new ArrayList<>();
+		String path = System.getProperty("user.dir")+"\\city.list.json";
+		
+		JSONArray a = (JSONArray) parser.parse(new FileReader(path));
+		for (Object o : a){
+			
+			JSONObject person = (JSONObject) o;
+			String name = (String) person.get("name");
+			names.add(name);
+		}
 
+		ArrayList<String> x = new ArrayList<String>();
+		
+		Pattern p = Pattern.compile(regex);
+		//JSONArray match = new JSONArray();
+		 for (String s:names) {
+		   if (p.matcher(s).matches()) {
+		      x.add(s);
+		   }
+		 }
+		 
+		/*
+		try {
+			JSONObject person = new JSONObject(path);
+			StringBuilder sb = new StringBuilder();
+		    String line = br.readLine();
+		    
+		    while( line != null) {
+		    	String name = (String) person.get("name");
+		    	sb.append(name);
+		    	sb.append(System.lineSeparator());
+		    	line = br.readLine();
+		    }
+		    string = sb.toString();
+		
+		Pattern p = Pattern.compile(regex);
+		
+		StringBuilder bb = new StringBuilder();
+		String line2 = br.readLine();
+		
+		for(int i=0; i<string.length(); i++) {
+			
+			if(p.matcher(string).matches()) {
+				
+				bb.append(string);
+				bb.append(System.lineSeparator());
+				line2 = br.readLine();
+			}
+			
+		}
+		
+		finale = bb.toString();
+		//finale += " ]";
+		}
+		finally {
+			br.close();
+		}
+		
+		
+		JSONArray array = new JSONArray(finale);
+		*/
+		
+/*
 			JSONParser parser = new JSONParser();
 			List<String> names = new ArrayList<>();
 			String path = System.getProperty("user.dir")+"\\city.list.json";
+			
 			JSONArray a = (JSONArray) parser.parse(new FileReader(path));
 			for (Object o : a){
 				
@@ -279,15 +356,41 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			      x.add(s);
 			   }
 			 }
-			 /*JSONObject o = new JSONObject();
-			 JSONArray Array = o.getJSONArray(o);		
-			 for(  int i=0; i<x.size(); i++) {
-				 match
-				 ;
-			 }*/
-			 JSONArray match = new JSONArray(x);
+			 */
+			 /*
+			 String lines;
+				
+				//Apriamo e leggiamo il file	
+				
+				BufferedReader br = new BufferedReader(new FileReader(string));
+				
+					try {
+						
+					    StringBuilder sb = new StringBuilder();
+					    String line = br.readLine();
+
+					    while (line != null) {
+					    	
+					        sb.append(line);
+					        sb.append(System.lineSeparator());
+					        line = br.readLine();
+					    }
+					    lines = sb.toString();
+					} 
+					finally {
+						
+					    br.close();
+					}
+						
+				
+					JSONArray array = new JSONArray(lines);
+			
+					return array;
 			 
-			 return match;
+			 */
+		
+			JSONArray array = new JSONArray();
+			return array;
 	}
 	
 	
@@ -316,11 +419,13 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 
 		
 		try {
+			
 			PrintWriter write = new PrintWriter(new BufferedWriter( new FileWriter(path)));
 			write.println(obj.toString());
 			write.close();
 		}
 		catch(IOException e){
+			
 			System.out.println("ERRORE di I/O"); 
 			System.out.println(e);
 		}
@@ -336,11 +441,11 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	 * 
 	 */
 	public String FiveHoursInfo(String name) {
-		//String report = System.getProperty("user.dir") + "/" + name + "HourlyReport.txt";
-		//File file = new File(report);
+		
+		
 		String report;
 		report = System.getProperty("user.dir")+"/"+name+"report.txt";
-		File file = new File(name+"Report.txt");
+		File file = new File(report);
     
 		
 		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
@@ -381,14 +486,12 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	}	
 	
 	/**
-	 * Questo metodo della lettura dello storico della città passata in ingresso. A seconda che il flag sia true o false, il 
-	 * metodo andrà a leggere lo storico per il calcolo della soglia di errore e delle previsioni azzeccate oppure per 
-	 * le statistiche sulla visibilità.
+	 * Questo metodo legge lo storico della città passata in ingresso.
 	 * 
 	 * @param name è il nome della città di cui si vuole leggere lo storico.
 	 * @param choiche è la stringa che l'utente digita per scegliere se vuole le statistiche degli errori o solo le statistiche
 	 * @return il JSONArray che contiene tutte le informazioni sulla visibilità.
-	 * @throws IOException se si verificano errori di input da file.
+	 * @throws IOException per gli errori di input da file.
 	 * @throws InvalidStringException 
 	 */
 	
@@ -400,9 +503,13 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			string = System.getProperty("user.dir") + "/errors/" + name +".txt";
 		}
 		else if (choiche == "temperature") {
+			
 			string = System.getProperty("user.dir") + "/temperature/" + name +".txt";
 		}
-		else throw new InvalidStringException(string); 
+		else {
+			
+			throw new InvalidStringException(string); 
+		}
 			
 		String lines;
 		
@@ -411,16 +518,19 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		BufferedReader br = new BufferedReader(new FileReader(string));
 		
 			try {
+				
 			    StringBuilder sb = new StringBuilder();
 			    String line = br.readLine();
 
 			    while (line != null) {
+			    	
 			        sb.append(line);
 			        sb.append(System.lineSeparator());
 			        line = br.readLine();
 			    }
 			    lines = sb.toString();
 			} finally {
+				
 			    br.close();
 			}
 				
@@ -456,17 +566,30 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	public ArrayList<JSONObject> HistoryOfError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException, InvalidStringException {
 		
 		for(int i=0; i < names.size(); i++) {
-			if(names.get(i).isEmpty())
-				throw new EmptyStringException("Hai dimenticato di inserire la città");
-			else if(!(names.get(i).equals("Ancona") || names.get(i).equals("Milano") || names.get(i).equals("Roma") || names.get(i).equals("Bologna") || names.get(i).equals("Parigi")))
-				throw new CitynotFoundException("La città inserita non è presente nello storico");
 			
-		if(period < 1 || period > 5)
-				throw new NotAllowedPeriodException(period + " Il periodo inserito non è valido. Inserisci un numero compreso tra 1 e 5 inclusi.");
+			if(names.get(i).isEmpty()) {
+				
+				throw new EmptyStringException("Hai dimenticato di inserire la città");
+
+			}
+			else if(!(names.get(i).equals("Ancona") || names.get(i).equals("Milano") || names.get(i).equals("Roma") || names.get(i).equals("Bologna") )) {
+				
+				throw new CitynotFoundException("La città inserita non è presente nello storico");
+
+			}
+			
+		if(period < 1 || period > 5) {
+			
+			throw new NotAllowedPeriodException(period + " Il periodo inserito non è valido. Inserisci un numero compreso tra 1 e 5 inclusi.");
+
+			}
 		}
 		
-		if(!(value.equals("$gt") || value.equals("$lt") || value.equals("=")))
+		if(!(value.equals("$gt") || value.equals("$lt") || value.equals("="))) {
+			
 			throw new NotAllowedValueException(value + " La stringa immessa non è consentita. Devi inserire una stringa tra \"$gt\", \"$lt\" e \"=\"");
+
+		}
 		
 		Iterator<String> list = names.iterator();
 		
@@ -540,10 +663,17 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		ArrayList<JSONArray> info = new ArrayList<JSONArray>();
 		
 		for(int i=0; i < cities.size(); i++) {
-			if(cities.get(i).isEmpty())
+			
+			if(cities.get(i).isEmpty()) {
+				
 				throw new EmptyStringException("Hai dimenticato di inserire la città");
-			else if(!(cities.get(i).equals("Ancona") || cities.get(i).equals("Milano") || cities.get(i).equals("Roma") || cities.get(i).equals("Bologna") || cities.get(i).equals("Parigi")))
+			}
+				
+			else if(!(cities.get(i).equals("Ancona") || cities.get(i).equals("Milano") || cities.get(i).equals("Roma") || cities.get(i).equals("Bologna") )) {
+				
 				throw new CitynotFoundException("La città inserita non è presente nello storico");
+			}
+				
 		}
 		
 		while(pam1.hasNext()) {
@@ -560,14 +690,29 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			PeriodStatistics stats = new PeriodStatistics();
 			JSONArray arrayStats = new JSONArray();
 			
-			if(period.equals("giornaliera"))
+			if(period.equals("giornaliera")) {
+				
 				arrayStats = stats.DailyStats(pam2.next(),tempInfo.get(i));
-			else if(period.equals("settimanale"))
+
+				
+			}
+			else if(period.equals("settimanale")) {
+				
 				arrayStats = stats.OneWeekStats(pam2.next(),tempInfo.get(i));
-			else if(period.equals("mensile"))
+
+				
+			}
+			else if(period.equals("mensile")) {
+				
 				arrayStats = stats.OneMonthStats(pam2.next(),tempInfo.get(i));
-			else throw new NotAllowedPeriodException(period + "non è permessa. Devi inserire una stringa tra \"giornaliera\","
-					+ "\"settimanale\" e \"mensile\". ");
+
+			}
+			else {
+				
+				throw new NotAllowedPeriodException(period + "non è permessa. Devi inserire una stringa tra \"giornaliera\","
+						+ "\"settimanale\" e \"mensile\". ");
+			}
+					
 				
 			info.add(arrayStats);
 			i++;
