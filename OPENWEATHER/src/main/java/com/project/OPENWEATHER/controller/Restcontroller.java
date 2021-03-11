@@ -67,9 +67,11 @@ public class Restcontroller {
 		JSONObject req = new JSONObject(body);
 		
 		String name = req.getString("name");
+		JSONArray reg = new JSONArray();
+		reg = service.getTempApi(name);
 		
 		
-		return new ResponseEntity<> (service.getTempApi(name).toString(), HttpStatus.OK);
+		return new ResponseEntity<> (reg.toString(), HttpStatus.OK);
 		
     }
 	
