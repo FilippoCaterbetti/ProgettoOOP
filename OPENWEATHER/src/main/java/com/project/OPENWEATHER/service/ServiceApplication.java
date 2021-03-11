@@ -42,7 +42,7 @@ import com.project.OPENWEATHER.model.Temperature;
 
 public class ServiceApplication implements com.project.OPENWEATHER.service.Service {
 	
-	private String Api_key = "666efac3e1caf3f728f8c5860edeb469";
+	private String Api_key = "069782b0f7fc9729e6c7151ffd1448ed";
 
 	//RestTemplate permette di effettuare la richiesta e di convertire 
 	//automaticamente il json ricevuto in un oggetto Java strutturato in maniera 
@@ -84,18 +84,46 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		JSONArray TempArray = object.getJSONArray("list");
 		JSONObject sp;
+		
 		double temp;
 		double temp_max;
 		double temp_min;
 		double temp_avg;
 		double feels_like;
-		//String data;
-		String main;
-		String description;
+		String data;
+		 
+
+		/**
+		 * 
+		 *  String main;
+		 *	String description;
+		 * 
+		 */
+		
 		
 		for (int i = 0; i<TempArray.length(); i++) {
 			
+			
 			sp = TempArray.getJSONObject(i);
+			temp = (double) sp.get("temp");
+			temp_max = (double) sp.get("temp_max");
+			temp_min = (double) sp.get("temp_min");
+			feels_like = (double) sp.get("feels_like");
+			temp_avg = ((temp_max+temp_min)/2);
+			data = (String) sp.get("dt_txt");
+			JSONObject giveback = new JSONObject();
+			
+			giveback.put("temp", temp);
+			giveback.put("temp_max", temp_max);
+			giveback.put("temp_min", temp_min);
+			giveback.put("feels_like", feels_like);
+			giveback.put("temp_avg", temp_avg);
+			giveback.put("Data", data);
+			tmp.put(giveback);
+			
+			
+			/**
+			 * sp = TempArray.getJSONObject(i);
 			temp = Double.parseDouble(sp.get("temp").toString());
 			temp_max = Double.parseDouble(sp.get("temp_max").toString());
 			temp_min = Double.parseDouble(sp.get("temp_min").toString());
@@ -116,6 +144,8 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			g.put("description", description);
 			tmp.put(g);
 			
+			 */
+	
 		}
 		return tmp;
 	}
