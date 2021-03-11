@@ -161,10 +161,11 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	 */
 	
 	public City getTempFutureApi(String name) {
+		
+		JSONObject obj = getCityApi(name);
 		City gg = new City();
-		JSONObject obj = new JSONObject();
-		JSONArray arr = new JSONArray();
-		arr = getTempApi(name);
+		//JSONArray arr = new JSONArray();
+		gg = getCityInfofromApi(name);
 		
 		JSONArray wa = obj.getJSONArray("list");
 		JSONObject cc = new JSONObject();
@@ -173,6 +174,19 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		try {
 			for(int j = 0; j < wa.length(); j++){
+				Temperature weather = new Temperature();
+				cc = wa.getJSONObject(j);
+				weather.setData(cc.getString("dt_txt"));
+				JSONArray arrayW = cc.getJSONArray("weather");
+				JSONObject objectW = arrayW.getJSONObject(0);
+				weather.setDescription(objectW.getString("description"));
+				weather.setMain(objectW.getString("main"));
+				JSONObject objectW2 = cc.getJSONObject("main");
+				weather.setTemp_max(objectW2.getDouble("temp_max"));
+				weather.setTemp_min(objectW2.getDouble("temp_min"));
+				weather.setFeels_like(objectW2.getDouble("feels_like"));
+				vec.add(weather); 
+				/**
 				Temperature temp = new Temperature();
 				cc = wa.getJSONObject(j);
 				temp.setTemp(cc.getDouble("temp"));
@@ -180,10 +194,16 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 				temp.setTemp_min(cc.getDouble("temp_min"));
 				temp.setFeels_like(cc.getDouble("feels_like"));
 				temp.setData(cc.getString("dt_txt"));
+				JSONArray arrayW = cc.getJSONArray("weather");
+				JSONObject objectW = arrayW.getJSONObject(0);
 				temp.setDescription(cc.getString("description"));
+				temp.setDescription(objectW.getString("description"));
 				temp.setMain(cc.getString("main"));
+				JSONObject objectW2 = cc.getJSONObject("main");
 				vec.add(temp);
 				}
+				*/
+			}
 			}
 		catch(Exception e){
 			
@@ -193,7 +213,37 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		return gg;
 	}
 
-
+	/**
+	 * Questo metodo serve per ottenere le informazioni sulla città da OpenWeather. Viene richiamato da
+	 * getCityWeatherRistrictfromApi(String name).
+	 * @param nome della città.
+	 * @return un oggetto di tipo città popolato delle informazioni sulla città.
+	 */
+	public City getCityInfofromApi(String name) {
+		
+		JSONObject object = getCityApi(name);
+		
+		City city = new City(name);
+		
+		try {
+			
+			JSONObject cityObj = object.getJSONObject("city");
+			String country = (String) cityObj.get("country");
+			int id = (int) cityObj.get("id");
+			JSONObject coordinatesObj = cityObj.getJSONObject("coord");
+			//double latitude = (double) coordinatesObj.get("lat");
+			//double longitude = (double) coordinatesObj.get("lon");
+			//Coordinates coordinates = new Coordinates(latitude,longitude); 
+			city.setCountry(country);
+			city.setId(id);
+			//city.setCoordinates(coordinates);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return city;
+	}
+	
 	
 	
 	/**
