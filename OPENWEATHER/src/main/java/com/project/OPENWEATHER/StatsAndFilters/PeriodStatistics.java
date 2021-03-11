@@ -22,6 +22,7 @@ public class PeriodStatistics {
 			for(int i = 0;i < temp.length(); i++) {
 				
 				JSONArray oneDayVisibility = new JSONArray();
+				
 				oneDayVisibility = temp.getJSONArray(i);
 				
 				//preimpostiamo dei valori predefiniti di max min affinchè sia più semplice trovare i relativi max e min
@@ -39,11 +40,16 @@ public class PeriodStatistics {
 					average += hour.getInt("temperature");
 					date = hour.getString("data").substring(0,10);
 					
-					if(hour.getInt("temperature") > max)
+					if(hour.getInt("temperature") > max) {
+						
 						max = hour.getInt("temperature");
+
+					}
 					
-					if(hour.getInt("temperature") < min)
+					if(hour.getInt("temperature") < min) {
 						min = hour.getInt("temperature");
+
+					}
 					
 					j++;
 				}
@@ -107,11 +113,17 @@ public class PeriodStatistics {
 						dayInfo = oneDay.getJSONObject(k);
 						average += dayInfo.getInt("average");
 						
-						if(dayInfo.getInt("max") > max)
+						if(dayInfo.getInt("max") > max) {
+							
 							max = dayInfo.getInt("max");
+
+						}
 						
-						if(dayInfo.getInt("min") < min)
+						if(dayInfo.getInt("min") < min) {
+							
 							min = dayInfo.getInt("min");
+
+						}
 						
 						variance += dayInfo.getInt("variance");	
 						k++;
@@ -174,11 +186,17 @@ public class PeriodStatistics {
 				average += info.getInt("average");
 				variance += info.getInt("variance");
 				
-				if(info.getInt("max") > max)
+				if(info.getInt("max") > max) {
+					
 					max = info.getInt("max");
+
+				}
 				
-				if(info.getInt("min") < min)
+				if(info.getInt("min") < min) {
+					
 					min = info.getInt("min");
+
+				}
 				i++;
 					
 			}
