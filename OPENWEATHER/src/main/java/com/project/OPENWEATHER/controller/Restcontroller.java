@@ -43,35 +43,18 @@ public class Restcontroller {
 	Statistics statistic = new Statistics();
 	
 	/**
-	 * 
-	 *  Rotta POST che mostra le temperature per i 5 giorni successivi della città.
-	 * 	
-	 * {
-     *
-     *       "name": "Ancona"
-     *        
-     *  }      
-	 * 
+	 *      
+	 *  localhost:8080/temp?city=Milan
 	 * 
 	 * @param name indica la città da cui vogliamo la temperatura.
 	 * @return restituiamo le previsioni della città indicata
-	 * @throws ParseException 
-	 * @throws IOException 
-	 * @throws MalformedURLException 
 	 * 
 	 */
 	
-	@PostMapping(value="/temps")
-	public ResponseEntity<Object> getTemp(@RequestBody String body) throws MalformedURLException, IOException, ParseException {
+	@GetMapping(value="/temp")
+	public ResponseEntity<Object> getTemp(@RequestParam String city) {
 		
-		JSONObject req = new JSONObject(body);
-		
-		String name = req.getString("name");
-		JSONArray reg = new JSONArray();
-		reg = service.getTempApi(name);
-		
-		
-		return new ResponseEntity<> (reg.toString(), HttpStatus.OK);
+		return new ResponseEntity<> (service.getTempApi(city).toString(), HttpStatus.OK);
 		
     }
 	
