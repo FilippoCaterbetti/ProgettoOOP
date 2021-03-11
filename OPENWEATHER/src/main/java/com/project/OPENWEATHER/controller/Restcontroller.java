@@ -61,7 +61,7 @@ public class Restcontroller {
 	 * 
 	 */
 	
-	@PostMapping(value="/temp")
+	@PostMapping(value="/temps")
 	public ResponseEntity<Object> getTemp(@RequestBody String body) throws MalformedURLException, IOException, ParseException {
 		
 		JSONObject req = new JSONObject(body);
