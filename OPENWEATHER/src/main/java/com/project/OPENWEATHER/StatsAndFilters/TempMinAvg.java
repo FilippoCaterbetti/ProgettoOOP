@@ -90,10 +90,12 @@ public class TempMinAvg implements FiltersStatistics{
 						JSONObject object = new JSONObject();
 						
 						if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
+							
 							object.put("Città con la media più alta", names);
 							object.put("media massima", parameter1);
 						}
 						else { 
+							
 							object.put("Città con media minima ", names);
 							object.put("media minima", parameter2);
 						}
@@ -130,6 +132,7 @@ public class TempMinAvg implements FiltersStatistics{
 						int i = 0;
 						
 						while(it.hasNext()) {
+							
 							JSONObject object = new JSONObject();
 							object = statistic.fiveDayAvg(it.next());
 							average.add(object);
@@ -150,6 +153,7 @@ public class TempMinAvg implements FiltersStatistics{
 									names.add(cities.get(i));
 								}
 								else if(ave==number1) {
+									
 									names.add(cities.get(i));
 								}
 								i++;
@@ -163,6 +167,7 @@ public class TempMinAvg implements FiltersStatistics{
 									names.add(cities.get(i));
 								}
 								else if(ave==number2) {
+									
 									names.add(cities.get(i));
 								}
 								i++;
@@ -174,10 +179,12 @@ public class TempMinAvg implements FiltersStatistics{
 						JSONObject object = new JSONObject();
 						
 						if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
+							
 							object.put("Città con la media più alta", names);
 							object.put("media massima", number1);
 						}
 						else { 
+							
 							object.put("Città con la media minima", names);
 							object.put("media minima", number2);
 						}
