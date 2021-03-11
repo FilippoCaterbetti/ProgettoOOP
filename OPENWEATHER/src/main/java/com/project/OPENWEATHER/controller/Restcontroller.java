@@ -65,20 +65,17 @@ public class Restcontroller {
 	 * 
 	 * @param name è la città 
 	 * @return un JSONObject contenente temperature
-	 * @throws ParseException 
-	 * @throws IOException 
-	 * @throws MalformedURLException 
 	 */
 	
 	@GetMapping(value="/OpenWeather")
 	public ResponseEntity<Object> getCityApi(@RequestParam String name){
 		
-		City citta = service.getTempFutureApi(name);
+		City city = service.getTempFutureApi(name);
 		JSONObject object = new JSONObject();
 		
 		JSONClass gjson = new JSONClass();
 		
-		object = gjson.JSONClass(citta);
+		object = gjson.JSONClass(city);
 		
 		return new ResponseEntity<>(object.toString(),HttpStatus.OK);
 		
