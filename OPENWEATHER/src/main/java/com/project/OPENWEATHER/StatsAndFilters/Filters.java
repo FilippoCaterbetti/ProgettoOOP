@@ -35,28 +35,7 @@ public class Filters {
 	this.value=value;
 	this.period=period;
 	}
-
-	/**
-	 * 
-	 * public Filters(ArrayList<String> cities, int period) {
-	 * super();
-		this.cities=cities;
-		this.period=period;
-	}
-	public Filters(ArrayList<String> cities, String param, int period) {
-		super();
-		this.cities = cities;
-		this.param = param;
-		this.period = period;
-	}
-
-	 * 
-	 * 
-	 * 
-	 */
 		
-		
-	
 	
 	/**
 	 * Questo metodo fa si che a secodna che si scelga 1 o 5 vengano generate le statistiche 
