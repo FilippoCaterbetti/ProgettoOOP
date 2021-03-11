@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -148,6 +149,53 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	
 	
+	
+	/**
+	 * Questo metodo prende le previsioni meteo future (temperatura
+	 * massima, minima, percepita).
+	 * @param name è il nome della città di cui si vogliono conoscere le previsioni ristrette.
+	 * @return un vettore di tipo City che contiene tutte le informazioni richieste e anche le informazioni sulla città.
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
+	 */
+	
+	public City getTempFutureApi(String name) {
+		City gg = new City();
+		JSONObject obj = new JSONObject();
+		JSONArray arr = new JSONArray();
+		arr = getTempApi(name);
+		
+		JSONArray wa = obj.getJSONArray("ciao");
+		JSONObject cc = new JSONObject();
+		
+		Vector<Temperature> vec = new Vector<Temperature> (wa.length());
+		
+		try {
+			for(int j = 0; j < wa.length(); j++){
+				Temperature temp = new Temperature();
+				cc = wa.getJSONObject(j);
+				temp.setTemp(cc.getDouble("temp"));
+				temp.setTemp_max(cc.getDouble("temp_max"));
+				temp.setTemp_min(cc.getDouble("temp_min"));
+				temp.setFeels_like(cc.getDouble("feels_like"));
+				temp.setData(cc.getString("dt_txt"));
+				temp.setDescription(cc.getString("description"));
+				temp.setMain(cc.getString("main"));
+				vec.add(temp);
+				}
+			}
+		catch(Exception e){
+			
+				e.printStackTrace();
+			}
+		gg.setTemps(vec);
+		return gg;
+	}
+
+
+	
+	
 	/**
 	 * Metedo per la ricerca delle regex
 	 * 
@@ -163,17 +211,17 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 
 			JSONParser parser = new JSONParser();
 			List<String> names = new ArrayList<>();
-
-			JSONArray a = (JSONArray) parser.parse(new FileReader("city.list.json"));
+			String path = System.getProperty("user.dir")+"\\city.list.json";
+			JSONArray a = (JSONArray) parser.parse(new FileReader(path));
 			for (Object o : a){
-					
+				
 				JSONObject person = (JSONObject) o;
 				String name = (String) person.get("name");
 				names.add(name);
 			}
 
 			ArrayList<String> matches = new ArrayList<String>();
-
+			
 			Pattern p = Pattern.compile(regex);
 
 			 for (String s:names) {
@@ -181,9 +229,12 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			      matches.add(s);
 			   }
 			 }
-			 JSONArray jsArray = new JSONArray(matches);
-			 
-			 return jsArray;
+			 JSONArray match = new JSONArray();
+			 //JsonArray avv = new Gson().toJsonTree(matches).getAsJsonArray();
+			 //
+			 //match.addAll(matches); 
+			 //JSONArray mJSONArray = new JSONArray(Arrays.asList(matches));
+			 return match;
 	}
 	
 	
@@ -473,51 +524,6 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 	}
 	
-	
-	
-	/**
-	 * Questo metodo prende le previsioni meteo future (temperatura
-	 * massima, minima, percepita).
-	 * @param name è il nome della città di cui si vogliono conoscere le previsioni ristrette.
-	 * @return un vettore di tipo City che contiene tutte le informazioni richieste e anche le informazioni sulla città.
-	 * @throws ParseException 
-	 * @throws IOException 
-	 * @throws MalformedURLException 
-	 */
-	
-	public City getTempFutureApi(String name) throws MalformedURLException, IOException, ParseException {
-		City gg = new City();
-		JSONObject obj = new JSONObject();
-		JSONArray arr = new JSONArray();
-		arr = getTempApi(name);
-		
-		JSONArray wa = obj.getJSONArray("ciao");
-		JSONObject cc = new JSONObject();
-		
-		Vector<Temperature> vec = new Vector<Temperature> (wa.length());
-		
-		try {
-			for(int j = 0; j < wa.length(); j++){
-				Temperature temp = new Temperature();
-				cc = wa.getJSONObject(j);
-				temp.setTemp(cc.getDouble("temp"));
-				temp.setTemp_max(cc.getDouble("temp_max"));
-				temp.setTemp_min(cc.getDouble("temp_min"));
-				temp.setFeels_like(cc.getDouble("feels_like"));
-				temp.setData(cc.getString("dt_txt"));
-				temp.setDescription(cc.getString("description"));
-				temp.setMain(cc.getString("main"));
-				vec.add(temp);
-				}
-			}
-		catch(Exception e){
-			
-				e.printStackTrace();
-			}
-		gg.setTemps(vec);
-		return gg;
-	}
-
 
 
 
