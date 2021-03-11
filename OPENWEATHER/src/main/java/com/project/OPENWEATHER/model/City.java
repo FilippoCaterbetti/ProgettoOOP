@@ -113,12 +113,6 @@ public class City { //jsonclass
 	
 	
 
-
-	@Override
-	public String toString() {
-		return "City [name=" + name + ", country=" + country + ", id=" + id + ", temp=" + "]";
-	}
-
 	/**
 	 * @return the temps
 	 */
