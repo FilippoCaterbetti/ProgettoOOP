@@ -44,16 +44,23 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	private String Api_key = "069782b0f7fc9729e6c7151ffd1448ed";
 
+	
+	/**
+	 * previsioni meteo di una città.
+	 * @param nome città 
+	 * @return un JSONObject con le previsioni meteo.
+	 */
 	//RestTemplate permette di effettuare la richiesta e di convertire 
 	//automaticamente il json ricevuto in un oggetto Java strutturato in maniera 
 	//conforme al json atteso; Noi di seguito usiamo questa funzionalità e trasferiamo i dati
 	//in un tipo JSONObject che useremo poi in seguito nelle altre classi
-	public JSONObject getCityApi(String name) throws MalformedURLException, IOException, ParseException {
+	public JSONObject getCityApi(String name){
 		
 		
 		JSONObject obj;
 		
-		
+		// http://api.openweathermap.org/data/2.5/forecast?q=Milan&appid=069782b0f7fc9729e6c7151ffd1448ed
+		// http://api.openweathermap.org/data/2.5/forecast?q=Milan&units=metric&appid=069782b0f7fc9729e6c7151ffd1448ed
 		//Questo serve epr avere le temperature in gradi centigradi
 		String unit = "&units=metric";
 		String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + name + unit + "&appid="+Api_key;
@@ -72,52 +79,43 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	 * Questo metodo utilizza getCityWeather per andare a prendere i dati sulle varie temperature della città.
 	 * @param name è il nome della città
 	 * @return restituisce il JSONArray contente la temperatura reale 
-	 * @throws ParseException 
-	 * @throws IOException 
-	 * @throws MalformedURLException 
 	 * 
 	 */
 
-	public JSONArray getTempApi(String name) throws MalformedURLException, IOException, ParseException {		
+	public JSONArray getTempApi(String name) {		
+		
 		JSONObject object = getCityApi(name);
 		JSONArray tmp = new JSONArray();
 		
-		JSONArray TempArray = object.getJSONArray("list");
+		JSONArray tempArray = object.getJSONArray("list");		
 		JSONObject sp;
-		
+		//parametri che ci interessano
 		double temp;
 		double temp_max;
 		double temp_min;
 		double temp_avg;
 		double feels_like;
 		String data;
-		 
 
-		/**
-		 * 
-		 *  String main;
-		 *	String description;
-		 * 
-		 */
 		
-		
-		for (int i = 0; i<TempArray.length(); i++) {
+		for (int i=0; i<tempArray.length(); i++) {
 			
 			
-			sp = TempArray.getJSONObject(i);
-			temp = (double) sp.get("temp");
-			temp_max = (double) sp.get("temp_max");
-			temp_min = (double) sp.get("temp_min");
-			feels_like = (double) sp.get("feels_like");
+			sp = tempArray.getJSONObject(i);
+			temp =  (sp.getJSONObject("main").getDouble("temp"));
+			temp_max = (sp.getJSONObject("main").getDouble("temp_max"));
+			temp_min = (sp.getJSONObject("main").getDouble("temp_min"));
+			feels_like = (sp.getJSONObject("main").getDouble("feels_like"));
 			temp_avg = ((temp_max+temp_min)/2);
 			data = (String) sp.get("dt_txt");
+			
 			JSONObject giveback = new JSONObject();
 			
-			giveback.put("temp", temp);
-			giveback.put("temp_max", temp_max);
-			giveback.put("temp_min", temp_min);
-			giveback.put("feels_like", feels_like);
-			giveback.put("temp_avg", temp_avg);
+			giveback.put("Temp", temp);
+			giveback.put("Temp_max", temp_max);
+			giveback.put("Temp_min", temp_min);
+			giveback.put("Feels_like", feels_like);
+			giveback.put("Temp_avg", temp_avg);
 			giveback.put("Data", data);
 			tmp.put(giveback);
 			
@@ -130,8 +128,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			temp_avg = Double.parseDouble(sp.get("temp_avg").toString());
 			feels_like = Double.parseDouble(sp.get("feels_like").toString());
 			//data =  sp.get("dt_txt").toString(); //?
-			main = sp.get("main").toString();
-			description= sp.get("description").toString();
+
 			
 			JSONObject g = new JSONObject();
 			g.put("temp", temp);
@@ -140,8 +137,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			g.put("temp_avg", temp_avg);
 			g.put("feels_like", feels_like);
 			//g.put("Data", data);
-			g.put("main", main);
-			g.put("description", description);
+
 			tmp.put(g);
 			
 			 */
@@ -249,18 +245,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		    public void run() {
 		    	
 		    	JSONArray tempApi = new JSONArray();
-		    	try {
-					tempApi = getTempApi(name);
-				} catch (MalformedURLException e1) {
-					
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					
-					e1.printStackTrace();
-				} catch (ParseException e1) {
-					
-					e1.printStackTrace();
-				}
+				tempApi = getTempApi(name);
 		    	
 		    	JSONObject oggetto = new JSONObject(); 
 		    	oggetto = tempApi.getJSONObject(0);
