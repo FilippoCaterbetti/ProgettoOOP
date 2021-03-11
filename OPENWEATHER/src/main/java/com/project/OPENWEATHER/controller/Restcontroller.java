@@ -2,6 +2,7 @@ package com.project.OPENWEATHER.controller;
 
 import java.io.IOException;
 
+
 import java.lang.Exception;
 import java.net.MalformedURLException;
 import java.io.FileNotFoundException;
@@ -70,7 +71,7 @@ public class Restcontroller {
 	 */
 	
 	@GetMapping(value="/OpenWeather")
-	public ResponseEntity<Object> getCityApi(@RequestParam String name) throws MalformedURLException, IOException, ParseException{
+	public ResponseEntity<Object> getCityApi(@RequestParam String name){
 		
 		City citta = service.getTempFutureApi(name);
 		JSONObject object = new JSONObject();
