@@ -14,7 +14,7 @@ import com.project.OPENWEATHER.model.Temperature;
 
 public interface  FiltersStatistics {
 
-	public abstract JSONArray Day1Avg(ArrayList<String> cities, String value) throws NotAllowedValueException, MalformedURLException, IOException, ParseException;
-	public abstract JSONArray Day5Avg(ArrayList<String> cities, String value) throws NotAllowedValueException, MalformedURLException, IOException, ParseException;
+	public abstract JSONArray Day1Avg(ArrayList<String> cities) throws NotAllowedValueException, MalformedURLException, IOException, ParseException;
+	public abstract JSONArray Day5Avg(ArrayList<String> cities) throws NotAllowedValueException, MalformedURLException, IOException, ParseException;
 
 }
