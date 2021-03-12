@@ -3,7 +3,6 @@ package com.project.OPENWEATHER.model;
 
 import java.util.Vector;
 
-
 import org.json.JSONObject;
 import org.json.JSONArray;
 
