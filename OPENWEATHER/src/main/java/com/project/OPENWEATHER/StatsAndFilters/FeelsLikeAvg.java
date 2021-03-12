@@ -94,13 +94,13 @@ public class FeelsLikeAvg implements FiltersStatistics{
 		
 		if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
 			
-			object.put("Città con la media più alta", names);
-			object.put("media massima", parameter1);
+			object.put("Città con la media più alta ", names);
+			object.put("media massima ", parameter1);
 		}
 		else { 
 			
 			object.put("Città con media minima ", names);
-			object.put("media minima", parameter2);
+			object.put("media minima ", parameter2);
 		}
 		
 		
