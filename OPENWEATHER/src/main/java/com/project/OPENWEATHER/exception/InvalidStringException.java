@@ -14,6 +14,7 @@ public class InvalidStringException extends Exception{
 	 * @param error è il messaggio di errore.
 	 */
 	public InvalidStringException(String error) {
+		
 		this.error = error;
 	}
 	
@@ -22,6 +23,7 @@ public class InvalidStringException extends Exception{
 	 * @return String con messaggio di errore
 	 */
 	public String getError() {
+		
 		return error;
 	}
 }
