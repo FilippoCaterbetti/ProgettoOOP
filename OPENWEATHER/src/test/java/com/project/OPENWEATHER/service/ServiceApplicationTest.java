@@ -1,4 +1,5 @@
 package com.project.OPENWEATHER.service;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -8,13 +9,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import org.json.simple.parser.ParseException;
-import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import com.project.OPENWEATHER.exception.CitynotFoundException;
 import com.project.OPENWEATHER.exception.EmptyStringException;
+
 
 public class ServiceApplicationTest {
 
@@ -61,9 +63,9 @@ public class ServiceApplicationTest {
     
 
 
-	/**
-	 * Questo Test verifica se viene generata correttamente l'eccezione CityNotFound.
-	 */
+	
+	// Questo Test verifica se viene generata correttamente l'eccezione CityNotFound.
+	 
     @Test
     @DisplayName("Corretta generazione dell'eccezione CityNotFoundException.")
     void readHistory1() throws ParseException{
@@ -73,14 +75,14 @@ public class ServiceApplicationTest {
     	
         CitynotFoundException e = assertThrows(CitynotFoundException.class, () -> {service.HistoryOfError(names,1,"max",1);});
     
-        assertEquals("Città non trovata nello storico", e.getError());
+        assertEquals("La città inserita non è presente nello storico", e.getError());
         
     }
     
 
-	/**
-	 * Questo Test verifica se viene generata correttamente l'eccezione EmptyString.
-	 */
+	
+	//Questo Test verifica se viene generata correttamente l'eccezione EmptyString.
+	 
 	@Test
     @DisplayName("Corretta generazione dell'eccezione EmptyStringException.")
     void readHistory2() {
@@ -90,8 +92,8 @@ public class ServiceApplicationTest {
     	
         EmptyStringException e = assertThrows(EmptyStringException.class, () -> {service.HistoryOfError(names,1,"max",1);});
         
-        assertEquals("Hai dimenticato di inserire la città...", e.getError());
-        
+        assertEquals("Hai dimenticato di inserire la città", e.getError());
+       
     }
 	
 	
