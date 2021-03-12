@@ -369,11 +369,10 @@ public class Restcontroller {
         
         int period = obj.getInt("period");
 		String param = obj.getString("param");
-		String value = obj.getString("value");
 		
         Filters filter;
        
-		filter = new Filters(cities, param, value, period);
+		filter = new Filters(cities, param, period);
 		
 		try {
         	return new ResponseEntity<>(filter.analyze().toString(),HttpStatus.OK);
