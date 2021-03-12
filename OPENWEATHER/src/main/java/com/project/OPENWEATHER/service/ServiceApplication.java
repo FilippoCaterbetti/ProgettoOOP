@@ -274,6 +274,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		String path = System.getProperty("user.dir")+"\\city.list.json";
 		
 		JSONArray a = (JSONArray) parser.parse(new FileReader(path));
+		JSONArray c = new JSONArray();
 		for (Object o : a){
 			
 			JSONObject person = (JSONObject) o;
@@ -287,6 +288,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		//JSONArray match = new JSONArray();
 		 for (String s:names) {
 		   if (p.matcher(s).matches()) {
+			   
 		      x.add(s);
 		   }
 		 }
