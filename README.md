@@ -122,7 +122,7 @@ Le rotte disponibili sono:
 /stats
 ```
 {
-	"città" : "name",
+	"città" : "Milano",
 	"period" : "oggi"
 }
 ```
