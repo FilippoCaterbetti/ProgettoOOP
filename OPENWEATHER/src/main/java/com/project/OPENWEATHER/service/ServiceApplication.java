@@ -270,7 +270,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		//BufferedReader br = new BufferedReader(new FileReader(path));
 		
 		JSONParser parser = new JSONParser();
-		List<String> names = new ArrayList<>();
+		//List<String> names = new ArrayList<>();
 		String path = System.getProperty("user.dir")+"\\city.list.json";
 		
 		JSONArray a = (JSONArray) parser.parse(new FileReader(path));
@@ -279,12 +279,27 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			
 			JSONObject person = (JSONObject) o;
 			String name = (String) person.get("name");
-			names.add(name);
-		}
+			//names.add(name);
+			c.put(name);
+			
+			}
 
-		ArrayList<String> x = new ArrayList<String>();
+		//ArrayList<String> x = new ArrayList<String>();
 		
+		
+		Iterator list = c.iterator();
+		
+		JSONArray d = new JSONArray();
 		Pattern p = Pattern.compile(regex);
+		
+		while( list.hasNext() ) {
+			String s = list.toString();
+			if (p.matcher(s).matches()) {
+				   
+			      d.put(s);
+			   }
+		}
+		/*
 		//JSONArray match = new JSONArray();
 		 for (String s:names) {
 		   if (p.matcher(s).matches()) {
@@ -292,7 +307,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		      x.add(s);
 		   }
 		 }
-		 
+		 */
 		/*
 		try {
 			JSONObject person = new JSONObject(path);
@@ -389,8 +404,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			 
 			 */
 		
-			JSONArray array = new JSONArray();
-			return array;
+			return d;
 	}
 	
 	
