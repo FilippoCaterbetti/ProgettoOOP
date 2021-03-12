@@ -39,8 +39,8 @@ public class JSONClass {
 			ow.put("temp_max", (city.getTemps()).get(i).getTemp_max());
 			ow.put("temp_min", (city.getTemps()).get(i).getTemp_min());
 			ow.put("data", (city.getTemps()).get(i).getData());
-			ow.put("main", (city.getTemps()).get(i).getMain());
-			ow.put("description", (city.getTemps()).get(i).getDescription());
+			ow.put("temp_avg", (city.getTemps()).get(i).getTemp_avg());
+
 			arr.add(ow);
 			
 		}
