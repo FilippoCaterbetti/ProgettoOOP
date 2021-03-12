@@ -77,6 +77,7 @@ public class City { //jsonclass
 		
 		JSONArray temps = (JSONArray) city.get("temperature");
 		for(int j=0;j<temps.length(); j++) {
+			
 			this.temps.add(new Temperature( (JSONObject)temps.get(j) ));
 		}
 	}
