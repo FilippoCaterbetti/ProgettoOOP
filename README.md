@@ -88,14 +88,14 @@ localhost:8080
 Le rotte disponibili sono:
 | Tipo      |   Rotta    |  " |
 |:---------:|:----------:|:----------:|
-|  GET  |   "Milan"  |    "IT"    |
-|  GET  |   "Rome"   |    "IT"    |
-|  GET  |  "Bologna" |    "IT"    |
-|  GET  |  "Ancona"  |    "IT"    |
-|  POST  |   "Milan"  |    "IT"    |
-|  POST  |   "Rome"   |    "IT"    |
-|  POST  |  "Bologna" |    "IT"    |
-|  POST  |  "Ancona"  |    "IT"    |
+|  GET  |   /temp?city=Milan  |    "IT"    |
+|  GET  |  /OpenWeather?city=Milan  |    "IT"    |
+|  GET  |  /FiveHoursInfo?city=Milan |    "IT"    |
+|  POST  |  /filters  |    "IT"    |
+|  POST  |   /errors  |    "IT"    |
+|  POST  |   /stats   |    "IT"    |
+|  POST  |  /findRegex |    "IT"    |
+|  POST  |  /statsHistory  |    "IT"    |
 
 
 
