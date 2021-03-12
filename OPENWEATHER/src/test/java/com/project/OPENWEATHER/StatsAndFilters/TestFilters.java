@@ -46,7 +46,7 @@ class TestFilters {
     	cities.add("Milano");
         cities.add("Macerata");
         
-        filter = new Filters(cities,"max","temp",10);
+        filter = new Filters(cities,"temp",10);
     	
         NotAllowedPeriodException e = assertThrows(NotAllowedPeriodException.class, () -> {filter.analyze();});
     
@@ -66,7 +66,7 @@ class TestFilters {
     	cities.add("Milano");
         cities.add("Macerata");
         
-        filter = new Filters(cities,"tem", "max",1);
+        filter = new Filters(cities,"tem",1);
     	
         NotAllowedParamException e = assertThrows(NotAllowedParamException.class, () -> {filter.analyze();});
     
