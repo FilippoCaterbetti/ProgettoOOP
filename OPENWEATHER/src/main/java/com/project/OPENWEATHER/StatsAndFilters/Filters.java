@@ -38,7 +38,7 @@ public class Filters {
 		
 	
 	/**
-	 * Questo metodo fa si che a secodna che si scelga 1 o 5 vengano generate le statistiche 
+	 * Questo metodo fa si che a seconda che si scelga 1 o 5 vengano generate le statistiche 
 	 * in un giorno o per 5 giorni
 	 * @return
 	 * @throws NotAllowedPeriodException se non viene inserito il periodo giusto
