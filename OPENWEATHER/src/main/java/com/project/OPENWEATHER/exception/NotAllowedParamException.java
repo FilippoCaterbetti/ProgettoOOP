@@ -13,6 +13,7 @@ public class NotAllowedParamException extends Exception{
 	 * @param error è il messaggio di errore.
 	 */
 	public NotAllowedParamException(String error) {
+		
 		super(error);
 		this.error = error;
 	}
@@ -21,6 +22,7 @@ public class NotAllowedParamException extends Exception{
 	 * @return String con messaggio di errore
 	 */
 	public String getError() {
+		
 		return error;
 	}
 }
