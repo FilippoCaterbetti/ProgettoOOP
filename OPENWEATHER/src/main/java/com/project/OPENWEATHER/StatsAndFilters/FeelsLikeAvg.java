@@ -27,7 +27,7 @@ public class FeelsLikeAvg implements FiltersStatistics{
  * @throws MalformedURLException 
  * 
  */
-	public JSONArray Day1Avg (ArrayList<String> cities, String value) throws NotAllowedValueException, MalformedURLException, IOException, ParseException{
+	public JSONArray Day1Avg (ArrayList<String> cities) throws NotAllowedValueException, MalformedURLException, IOException, ParseException{
 
         JSONArray array = new JSONArray();
 		
@@ -57,7 +57,17 @@ public class FeelsLikeAvg implements FiltersStatistics{
 			objects.add(obj);
 			array.put(obj);
 			
-			if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
+		}
+		
+		
+		return array;
+
+	}
+	
+	
+	/*
+	 * 
+	 * if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
 				
 					if(ave>parameter1) {
 						
@@ -105,11 +115,8 @@ public class FeelsLikeAvg implements FiltersStatistics{
 		
 		
 		array.put(object);
-		
-		
-		return array;
-
-	}
+	 * 
+	 */
 /**
 * 
 * Questo metodo calcola la media delle 
@@ -120,7 +127,7 @@ public class FeelsLikeAvg implements FiltersStatistics{
 * 
 */
 	
-	public JSONArray Day5Avg (ArrayList<String> cities, String value) throws NotAllowedValueException, MalformedURLException, IOException, ParseException {
+	public JSONArray Day5Avg (ArrayList<String> cities) throws NotAllowedValueException, MalformedURLException, IOException, ParseException {
 		JSONArray array = new JSONArray();
 		
 		ArrayList<JSONObject> average = new ArrayList<JSONObject>();
@@ -130,8 +137,8 @@ public class FeelsLikeAvg implements FiltersStatistics{
 		
 		Iterator<String> it = cities.iterator();
 		
-		double number1 = 0;
-		double number2 = 3000;
+		//double number1 = 0;
+		//double number2 = 3000;
 		
 		int i = 0;
 		
@@ -149,7 +156,15 @@ public class FeelsLikeAvg implements FiltersStatistics{
 			objects.add(obj);
 			array.put(obj);
 			
-			if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
+		}
+		return array;
+		
+	}		
+}	
+
+
+/*
+ * if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
 				
 				if(ave>number1) {
 					
@@ -197,8 +212,6 @@ public class FeelsLikeAvg implements FiltersStatistics{
 		
 		array.put(object);
 		
-		return array;
-		
-	}		
-}	
+ * 
+ */
 	
