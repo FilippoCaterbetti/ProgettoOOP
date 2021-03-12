@@ -108,7 +108,7 @@ public class Restcontroller {
      *        }
      *      ],
      *     "error": 1,
-     *     "value": "$gt" 
+     *     "value": "$gt",
      *     "period": 3    
      *  }
 	 * 
@@ -195,14 +195,14 @@ public class Restcontroller {
 				return new ResponseEntity<>(statistic.todayAvg(cityName).toString(), HttpStatus.OK);
 			}
 			
-			else if(period.equals("5 giorni")) {
+			else if(period.equals("5 giorni") || period.equals("cinque giorni")) {
 				
 				return new ResponseEntity<> (statistic.fiveDayAvg(cityName).toString(), HttpStatus.OK);
 
 			}
 			else {
 			
-				throw new NotAllowedPeriodException("Questo"+ period + "è invalido");
+				throw new NotAllowedPeriodException("Questo "+ period + " è invalido");
 				
 			}
 		}catch (NotAllowedPeriodException e) {
@@ -257,7 +257,7 @@ public class Restcontroller {
      *          "name": "Ancona"
      *        },
      *        {
-     *          "name": "Bologna"  //nel caso fi piu città
+     *          "name": "Bologna"  
      *        }
      *      ],
      *     "period": "giornaliero"
