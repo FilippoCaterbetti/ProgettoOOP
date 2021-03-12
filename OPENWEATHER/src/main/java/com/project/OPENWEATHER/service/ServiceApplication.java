@@ -231,7 +231,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		JSONParser parser = new JSONParser();
 		//List<String> names = new ArrayList<>();
-		String path = System.getProperty("user.dir")+"\\city.list.json";
+		String path = System.getProperty("user.dir")+"/city.list.json";
 		
 		JSONArray a = (JSONArray) parser.parse(new FileReader(path));
 		JSONArray c = new JSONArray();
@@ -384,13 +384,12 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		City city = getTempFutureApi(name);
 		JSONObject obj = new JSONObject();
 		obj = city.toJSONObject();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
 		LocalDateTime now = LocalDateTime.now();	//dtf.format(now)
 		
-		String s = name+dtf.format(now)+".txt";
+		String s = name+ "_"+dtf.format(now);
 		String path;
-		path = System.getProperty("user.dir")+"/"+s+"report.txt";
-
+		path = System.getProperty("user.dir")+s+".txt";
 		
 		try {
 			
@@ -455,7 +454,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		    }
 		}, 0, 5, TimeUnit.HOURS); 
 		
-		return "I dati sono stati inseriti";
+		return "I dati sono stati inseriti in " + report;
 		 
 	}	
 	
@@ -474,11 +473,11 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
         String string = "";
 		if(choiche == "errors") {
 			
-			string = System.getProperty("user.dir") + "/errors/" + name +".txt";
+			string = System.getProperty("user.dir")+"/" + name +".txt";
 		}
 		else if (choiche == "temperature") {
 			
-			string = System.getProperty("user.dir") + "/temperature/" + name +".txt";
+			string = System.getProperty("user.dir")+"/"  + name +".txt";
 		}
 		else {
 			
@@ -554,7 +553,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			
 		if(period < 1 || period > 5) {
 			
-			throw new NotAllowedPeriodException(period + " Il periodo inserito non è valido. Inserisci un numero compreso tra 1 e 5 inclusi.");
+			throw new NotAllowedPeriodException(period + " è un periodo non valido. Inserisci un numero compreso tra 1 e 5 inclusi.");
 
 			}
 		}
