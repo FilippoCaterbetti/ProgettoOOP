@@ -3,8 +3,9 @@ package com.project.OPENWEATHER.model;
 
 import java.util.Vector;
 
+
 import org.json.JSONObject;
-import org.json.simple.JSONArray;
+import org.json.JSONArray;
 
 public class JSONClass {
 	
@@ -41,7 +42,7 @@ public class JSONClass {
 			ow.put("data", (city.getTemps()).get(i).getData());
 			ow.put("temp_avg", (city.getTemps()).get(i).getTemp_avg());
 
-			arr.add(ow);
+			arr.put(ow);
 			
 		}
 		
