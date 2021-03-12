@@ -383,9 +383,11 @@ public class Restcontroller {
 	        	return new ResponseEntity<>(e.getError(), HttpStatus.BAD_REQUEST);
 	        	
 	        }catch(NotAllowedValueException e) {
+	        	
 	        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
 	        }
 			catch(NotAllowedParamException e) {
+				
 	        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
 	        }	
 		
