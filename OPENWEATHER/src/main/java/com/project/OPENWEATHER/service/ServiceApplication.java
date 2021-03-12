@@ -1,5 +1,6 @@
 package com.project.OPENWEATHER.service;
 import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 
 import java.io.File;
@@ -15,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
+import org.json.simple.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -225,12 +226,10 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	public JSONArray Substring(String regex) throws FileNotFoundException, IOException, ParseException{
 		
 		//String path = System.getProperty("user.dir")+"\\city.list.json";
-		String string;
-		String finale;
 		//BufferedReader br = new BufferedReader(new FileReader(path));
 		
 		JSONParser parser = new JSONParser();
-		//List<String> names = new ArrayList<>();
+		List<String> names = new ArrayList<>();
 		String path = System.getProperty("user.dir")+"/city.list.json";
 		
 		JSONArray a = (JSONArray) parser.parse(new FileReader(path));
@@ -239,15 +238,23 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			
 			JSONObject person = (JSONObject) o;
 			String name = (String) person.get("name");
-			//names.add(name);
+			names.add(name);
 			c.put(name);
 			
 			}
-
-		//ArrayList<String> x = new ArrayList<String>();
+		Pattern p = Pattern.compile(regex);
+		ArrayList<String> x = new ArrayList<String>();
+		JSONArray match = new JSONArray();
+		 for (String s: names) {
+		   if (p.matcher(s).matches()) {
+			   
+		      x.add(s);
+		   }
+		 }
+		 JSONArray arr = new JSONArray(x);
+		 return arr;
 		
-		
-		Iterator list = c.iterator();
+		/*Iterator list = c.iterator();
 		
 		JSONArray d = new JSONArray();
 		Pattern p = Pattern.compile(regex);
@@ -259,6 +266,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			      d.put(s);
 			   }
 		}
+		*/
 		/*
 		//JSONArray match = new JSONArray();
 		 for (String s:names) {
@@ -364,7 +372,6 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			 
 			 */
 		
-			return d;
 	}
 	
 	
