@@ -50,8 +50,8 @@ public class Statistics extends ErrorCalculator{
          real_temp_avg += city.getTemps().get(i).getTemp(); 
          i++;
          Date = "";
-         Date += (city.getTemps().get(i).getData()).charAt(0);
-         Date += (city.getTemps().get(i).getData()).charAt(1);
+         Date += (city.getTemps().get(i).getData()).charAt(8);
+         Date += (city.getTemps().get(i).getData()).charAt(9);
      }
      
      temp_max_avg = temp_max_avg/i;
@@ -66,8 +66,8 @@ public class Statistics extends ErrorCalculator{
     	 
      	 i++;
          Date = "";
-         Date += (city.getTemps().get(i).getData()).charAt(0);
-         Date += (city.getTemps().get(i).getData()).charAt(1);
+         Date += (city.getTemps().get(i).getData()).charAt(8);
+         Date += (city.getTemps().get(i).getData()).charAt(9);
      	
      }
    //calcolo della varianza della temperatura percepita
@@ -90,7 +90,7 @@ public class Statistics extends ErrorCalculator{
      JSONObject object = new JSONObject();
      
      object.put("CityName", next);
-     object.put("Temp_Max Average", temp_max_avg);
+     object.put("Temp_Max_Average", temp_max_avg);
      object.put("Temp_Min Average", temp_min_avg);
      object.put("Feels_like Average", feels_like_avg);  
      object.put("Real_temp Average", real_temp_avg);  
@@ -123,8 +123,8 @@ public class Statistics extends ErrorCalculator{
 	         real_temp_avg += city.getTemps().get(i).getTemp(); 
 	         i++;
 	         Date = "";
-	         Date += (city.getTemps().get(i).getData()).charAt(0);
-	         Date += (city.getTemps().get(i).getData()).charAt(1);
+	         Date += (city.getTemps().get(i).getData()).charAt(8);
+	         Date += (city.getTemps().get(i).getData()).charAt(9);
 	     }
 	     
 	     temp_max_avg = temp_max_avg/i;
@@ -138,8 +138,8 @@ public class Statistics extends ErrorCalculator{
 	     while(date.equals(Date)) {
 	     	i++;
 	         Date = "";
-	         Date += (city.getTemps().get(i).getData()).charAt(0);
-	         Date += (city.getTemps().get(i).getData()).charAt(1);
+	         Date += (city.getTemps().get(i).getData()).charAt(8);
+	         Date += (city.getTemps().get(i).getData()).charAt(9);
 	     	
 	     }
 	   //calcolo della varianza della temperatura percepita
