@@ -3,7 +3,6 @@ package com.project.OPENWEATHER.controller;
 import java.io.IOException;
 
 
-
 import java.lang.Exception;
 import java.net.MalformedURLException;
 import java.io.FileNotFoundException;
@@ -31,6 +30,7 @@ import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
+import com.project.OPENWEATHER.service.Service;
 import com.project.OPENWEATHER.service.ServiceApplication;
 import com.project.OPENWEATHER.StatsAndFilters.*;
 
@@ -330,9 +330,8 @@ public class Restcontroller {
      *          "name": ""
      *        }
      *      ],
-     *     "period": 1
-     *     "param" : "temp_max"
-     *     "value": "max"
+     *     "period": 1,
+     *     "param" : "temp_max",
      *  }
 	 * 
 	 *  "param"(temp max o min o feels_like o average) della città 
