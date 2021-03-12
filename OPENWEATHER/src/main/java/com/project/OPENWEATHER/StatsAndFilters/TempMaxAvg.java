@@ -1,6 +1,7 @@
 package com.project.OPENWEATHER.StatsAndFilters;
 
 import java.io.IOException;
+
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -38,7 +39,7 @@ public class TempMaxAvg implements FiltersStatistics{
 
 	public JSONArray Day1Avg (ArrayList<String> cities, String value) throws NotAllowedValueException, MalformedURLException, IOException, ParseException {
 
-		JSONArray array = new JSONArray();
+			JSONArray array = new JSONArray();
 					
 			ArrayList<JSONObject> avg = new ArrayList<JSONObject>();
 			ArrayList<Double> avgMaxTemp= new ArrayList<Double>();
@@ -57,11 +58,11 @@ public class TempMaxAvg implements FiltersStatistics{
 						JSONObject object = new JSONObject();
 						object = statistic.todayAvg(it.next());
 						avg.add(object);
-						double ave = object.getDouble("Temp_Max Avg");
+						double ave = object.getDouble("Temp_Max Average");
 						avgMaxTemp.add(ave);
 						
 						JSONObject obj = new JSONObject();
-						obj.put("name:", cities.get(i)); 
+						obj.put("cityName:", cities.get(i)); 
 						obj.put("temp_max_avg:",ave);
 						objects.add(obj);
 						array.put(obj);
@@ -103,13 +104,13 @@ public class TempMaxAvg implements FiltersStatistics{
 					
 					if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
 						
-						object.put("Città con la media più alta", names);
-						object.put("media massima", parameter1);
+						object.put("Città con la media più alta ", names);
+						object.put("media massima ", parameter1);
 					}
 					else { 
 						
 						object.put("Città con media minima ", names);
-						object.put("media minima", parameter2);
+						object.put("media minima ", parameter2);
 					}
 					
 					
@@ -148,7 +149,7 @@ public class TempMaxAvg implements FiltersStatistics{
 						JSONObject object = new JSONObject();
 						object = statistic.fiveDayAvg(it.next());
 						average.add(object);
-						double ave = object.getDouble("Temp_Max Avg");
+						double ave = object.getDouble("Temp_Max Average");
 						avgMaxTemp.add(ave);
 						
 						JSONObject obj = new JSONObject();
