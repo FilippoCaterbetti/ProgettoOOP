@@ -166,7 +166,7 @@ public class Restcontroller {
 	
 	/**
 	 * Rotta POST che mostra la media della temperatura massima, minima, percepita e la media, la minima,
-	 * la massima 5 giorni, a seconda del periodo (da oggi a 5 giorni )
+	 * la massima di 5 giorni, a seconda del periodo (da oggi a 5 giorni )
 	 * 
 	 * 
 	 * {
@@ -264,7 +264,7 @@ public class Restcontroller {
      *  }
 	 * 
 	 * il "period" può essere solo giornaliero, settimanale, mensile.
-	 * . Le città ammesse sono solo Ancona, Campobasso, Macerata, Roma, San Martino in Pensilis e Tolentino.
+	 * . Le città ammesse sono solo Ancona, Milano, Torino, Bologna
 	 * 
 	 * @param body è il JSONObject sopra.
 	 * @return  statistiche delle città con la periodicità indicata.
