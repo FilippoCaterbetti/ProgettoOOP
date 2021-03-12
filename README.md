@@ -86,6 +86,70 @@ Le richieste effettuate dall'utente su Postman saranno disponibili all'indirizzo
 localhost:8080
 ```
 Le rotte disponibili sono:
+| Tipo      |   Rotta    |  " |
+|:---------:|:----------:|:----------:|
+|  GET  |   "Milan"  |    "IT"    |
+|  GET  |   "Rome"   |    "IT"    |
+|  GET  |  "Bologna" |    "IT"    |
+|  GET  |  "Ancona"  |    "IT"    |
+|  POST  |   "Milan"  |    "IT"    |
+|  POST  |   "Rome"   |    "IT"    |
+|  POST  |  "Bologna" |    "IT"    |
+|  POST  |  "Ancona"  |    "IT"    |
+
+
+
+/errors
+```
+{
+    "città": [
+        {
+         "name": "Ancona"
+        }
+    ],
+     "error": 1,
+     "value": "$gt",
+     "period": 3    
+ }
+ ```
+/findRegex
+```
+{
+    "regex" : "a*"
+}
+```
+
+/stats
+```
+{
+	"città" : "name",
+	"period" : "oggi"
+}
+```
+
+```
+{
+    "città": [
+            {
+            "name": "Milano"
+            }
+        ],
+    "period": 1,
+    "param" : "temp_max"
+}
+```
+
+/statsHistory
+```
+{
+    "città": [
+        {
+            "name": "Bologna"  
+        }
+    ],
+    "period": "giornaliero"
+}
+```
 
 
 <a name="test"></a>
