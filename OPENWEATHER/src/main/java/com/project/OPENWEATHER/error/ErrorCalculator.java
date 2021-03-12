@@ -1,6 +1,7 @@
 package com.project.OPENWEATHER.error;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
 
 import org.json.JSONArray;
