@@ -221,6 +221,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	 * @throws ParseException
 	 * 
 	 */
+	
 	public JSONArray Substring(String regex) throws FileNotFoundException, IOException, ParseException{
 		
 		//String path = System.getProperty("user.dir")+"\\city.list.json";
@@ -240,6 +241,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			c.put(name);
 			
 			}
+		
 		Pattern p = Pattern.compile(regex);
 		ArrayList<String> x = new ArrayList<String>();
 		JSONArray match = new JSONArray();
@@ -373,9 +375,6 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	}
 	
 	
-	
-	
-	
 	/**
 	 * Questo metodo ci serve per andare a salvare le temperature  
 	 * dei 5 giorni successivi e le salva in uno storico.
@@ -410,6 +409,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		return path;
 	}
+	
 	
 	/**
 	 * 
