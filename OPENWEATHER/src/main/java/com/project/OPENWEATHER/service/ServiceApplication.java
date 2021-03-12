@@ -183,17 +183,14 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 				
 				Temperature temps = new Temperature();
 				cc = wa.getJSONObject(j);
-				temps.setData(cc.getString("dt_txt"));
-				JSONArray arrayW = cc.getJSONArray("weather");
-				JSONObject objectW = arrayW.getJSONObject(0);
-				temps.setDescription(objectW.getString("description"));
-				temps.setMain(objectW.getString("main"));
-				
+
 				temps.setTemp(cc.getJSONObject("main").getDouble("temp"));
 				temps.setTemp_max(cc.getJSONObject("main").getDouble("temp_max"));
 				temps.setTemp_min(cc.getJSONObject("main").getDouble("temp_min"));
 				temps.setFeels_like(cc.getJSONObject("main").getDouble("feels_like"));
 				temps.setTemp_avg((temps.getTemp_max()+temps.getTemp_min())/2);
+				temps.setData(cc.getString("dt_txt"));
+				
 				vec.add(temps); 
 				/**
 				Temperature temp = new Temperature();
@@ -212,13 +209,14 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 				vec.add(temp);
 				}
 				*/
+				}
 			}
-			}
-		catch(Exception e){
+			catch(Exception e){
 			
 				e.printStackTrace();
 			}
 		gg.setTemps(vec);
+		
 		return gg;
 	}
 
