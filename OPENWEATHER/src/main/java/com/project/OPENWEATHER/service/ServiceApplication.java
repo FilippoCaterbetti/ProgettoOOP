@@ -28,6 +28,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.OPENWEATHER.StatsAndFilters.PeriodStatistics;
 import com.project.OPENWEATHER.error.ErrorCalculator;
 import com.project.OPENWEATHER.exception.CitynotFoundException;
@@ -228,24 +230,27 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		//BufferedReader br = new BufferedReader(new FileReader(path));
 		
 		JSONParser parser = new JSONParser();
-		List<String> names = new ArrayList<>();
+		List<City> city = new ArrayList<>();
 		String path = System.getProperty("user.dir")+"/city.list.json";
+		//JSONArray a = (JSONArray) parser.parse(new FileReader(path));
+		ObjectMapper mapper = new  ObjectMapper();
+		city = mapper.readValue(new File(path), new TypeReference<ArrayList<City>>() {}); //convertet tutto il  json in array list di oggettoi
 		
-		JSONArray a = (JSONArray) parser.parse(new FileReader(path));
-		JSONArray c = new JSONArray();
-		for (Object o : a){
-			
-			JSONObject person = (JSONObject) o;
-			String name = (String) person.get("name");
-			names.add(name);
-			c.put(name);
+		
+		//JSONArray c = new JSONArray();
+		List<String> name = new ArrayList<String>();
+		for (City o : city){
+
+			String n = o.getName();
+			name.add(n);
+			//c.put(name);
 			
 			}
-		
+		//List<String> names = new ArrayList<>();
 		Pattern p = Pattern.compile(regex);
 		ArrayList<String> x = new ArrayList<String>();
 		JSONArray match = new JSONArray();
-		 for (String s: names) {
+		for (String s: name) {
 		   if (p.matcher(s).matches()) {
 			   
 		      x.add(s);
