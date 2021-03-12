@@ -27,6 +27,7 @@ public class NotAllowedValueException extends Exception{
 	 * @return String che contiene il messaggio d'errore
 	 */
 	public String getError() {
+		
 		return error;
 	}
 }
