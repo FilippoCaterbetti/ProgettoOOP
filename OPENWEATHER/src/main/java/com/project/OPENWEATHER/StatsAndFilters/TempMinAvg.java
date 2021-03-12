@@ -49,7 +49,7 @@ public class TempMinAvg implements FiltersStatistics{
 							JSONObject object = new JSONObject();
 							object = statistic.todayAvg(it.next());
 							avg.add(object);
-							double ave = object.getDouble("Temp_Min Avg");
+							double ave = object.getDouble("Temp_Min Average");
 							avgMinTemp.add(ave);
 							
 							JSONObject obj = new JSONObject();
@@ -136,7 +136,7 @@ public class TempMinAvg implements FiltersStatistics{
 							JSONObject object = new JSONObject();
 							object = statistic.fiveDayAvg(it.next());
 							average.add(object);
-							double ave = object.getDouble("Temp_Min Avg");
+							double ave = object.getDouble("Temp_Min Average");
 							avgMinTemp.add(ave);
 							
 							JSONObject obj = new JSONObject();
