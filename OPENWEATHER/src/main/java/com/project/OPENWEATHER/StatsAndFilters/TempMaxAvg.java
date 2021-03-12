@@ -37,7 +37,7 @@ public class TempMaxAvg implements FiltersStatistics{
  * @throws MalformedURLException 
 */
 
-	public JSONArray Day1Avg (ArrayList<String> cities, String value) throws NotAllowedValueException, MalformedURLException, IOException, ParseException {
+	public JSONArray Day1Avg (ArrayList<String> cities) throws NotAllowedValueException, MalformedURLException, IOException, ParseException {
 
 			JSONArray array = new JSONArray();
 					
@@ -46,28 +46,41 @@ public class TempMaxAvg implements FiltersStatistics{
 			ArrayList<JSONObject> objects = new ArrayList<JSONObject>();
 			ArrayList<String> names = new ArrayList<String>();
 					
-					Iterator<String> it = cities.iterator();
+			Iterator<String> it = cities.iterator();
 					
-					double parameter1 = 0;
-					double parameter2 = 5000;
+					
 				
-					int i = 0;
+			int i = 0;
 					
-					while(it.hasNext()) {
+			while(it.hasNext()) {
 						
-						JSONObject object = new JSONObject();
-						object = statistic.todayAvg(it.next());
-						avg.add(object);
-						double ave = object.getDouble("Temp_Max Average");
-						avgMaxTemp.add(ave);
+					JSONObject object = new JSONObject();
+					object = statistic.todayAvg(it.next());
+					avg.add(object);
+					double ave = object.getDouble("Temp_Max Average");
+					avgMaxTemp.add(ave);
+					
+					JSONObject obj = new JSONObject();
+					obj.put("city:", cities.get(i)); 
+					obj.put("temp_max_avg:",ave);
 						
-						JSONObject obj = new JSONObject();
-						obj.put("cityName:", cities.get(i)); 
-						obj.put("temp_max_avg:",ave);
-						objects.add(obj);
-						array.put(obj);
-						
-						if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
+					objects.add(obj);
+					array.put(obj);
+				}
+					
+				//array.put(object);
+					
+					
+				return array;
+
+			}
+	
+	/*
+	 * 
+	 * double parameter1 = 0;
+					double parameter2 = 5000;
+	 * 
+	 * if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
 							
 								if(ave>parameter1) {
 									
@@ -116,10 +129,9 @@ public class TempMaxAvg implements FiltersStatistics{
 					
 					array.put(object);
 					
-					
-					return array;
-
-				}
+	 * 
+	 */
+	
 	/**
 	* 
 	* Questo metodo calcola la media delle 
@@ -129,7 +141,7 @@ public class TempMaxAvg implements FiltersStatistics{
 	 * @throws MalformedURLException 
 	* 
 	*/
-				public JSONArray Day5Avg (ArrayList<String> cities, String value) throws NotAllowedValueException, MalformedURLException, IOException, ParseException {
+				public JSONArray Day5Avg (ArrayList<String> cities) throws NotAllowedValueException, MalformedURLException, IOException, ParseException {
 					JSONArray array = new JSONArray();
 					
 					ArrayList<JSONObject> average = new ArrayList<JSONObject>();
@@ -139,8 +151,8 @@ public class TempMaxAvg implements FiltersStatistics{
 					
 					Iterator<String> it = cities.iterator();
 					
-					double number1 = 0;
-					double number2 = 3000;
+					//double number1 = 0;
+					//sdouble number2 = 3000;
 					
 					int i = 0;
 					
@@ -158,7 +170,17 @@ public class TempMaxAvg implements FiltersStatistics{
 						objects.add(obj);
 						array.put(obj);
 						
-						if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
+					}
+					
+					//array.put(object);
+					
+					return array;
+					
+				}
+					
+					
+					/**
+					 * if(value.equals("max") || value.equals("MAX") || value.equals("Max")) {
 							
 							if(ave>number1) {
 								number1 = ave;
@@ -200,10 +222,6 @@ public class TempMaxAvg implements FiltersStatistics{
 						object.put("media minima", number2);
 					}
 					
-					
-					array.put(object);
-					
-					return array;
-					
-				}
+					 * 
+					 */
 }
