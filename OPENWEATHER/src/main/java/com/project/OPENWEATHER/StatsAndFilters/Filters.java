@@ -53,8 +53,8 @@ public class Filters {
 		JSONArray array = new JSONArray ();
 	
 	
-			if(period == 1) {
-				
+		if(period == 1) {
+			
 				if(param.equals("temp_max")){
 					
 					TempMaxAvg filters = new TempMaxAvg();
@@ -80,7 +80,7 @@ public class Filters {
 				}
 			}
 			
-		if(period==5) {
+		else if(period==5) {
 					
 					if(param.equals("temp_max")){
 						
@@ -109,6 +109,7 @@ public class Filters {
 		else {
 			throw new NotAllowedPeriodException (period + " non è un numero ammesso. Inserisci un numero che sia o 1 o 5.");
 		}
+		
 		return array;
 	}
 	
