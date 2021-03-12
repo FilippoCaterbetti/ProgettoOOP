@@ -1,6 +1,7 @@
 package com.project.OPENWEATHER.error;
 
 import org.json.JSONArray;
+
 import org.json.JSONObject;
 
 public class ResearchDay {
@@ -25,12 +26,12 @@ public class ResearchDay {
 		Day1 = CityInfo.getJSONArray(0);//tutte le informazioni del 1° giorno salvate nello storico
 		JSONObject obj = new JSONObject();
 		obj = Day1.getJSONObject(0);
-		date = obj.getString("data");//date (dd-MM-yyyy)= data delle prima statistica generata
+		date = obj.getString("data");
 		
 		//firstDate = prende solo il giorno 'dd'
 		String firstDate="";
-		firstDate += date.charAt(0);
-		firstDate += date.charAt(1);
+		firstDate += date.charAt(8);
+		firstDate += date.charAt(9);
 		
 		int i=0;
 		
@@ -43,8 +44,8 @@ public class ResearchDay {
 				String dates = Day1.getJSONObject(i).getString("data");//scorre le date dello storico
 				
 				String justday = "";
-				justday += dates.charAt(0);
-				justday += dates.charAt(1);
+				justday += dates.charAt(8);
+				justday += dates.charAt(9);
 				
 				if(!justday.equals(firstDate)) {
 					
@@ -58,8 +59,8 @@ public class ResearchDay {
 			date = obj1.getString("data");
 			
 			firstDate="";
-			firstDate += date.charAt(0);
-			firstDate += date.charAt(1);
+			firstDate += date.charAt(8);
+			firstDate += date.charAt(9);
 		
 		}
 		
