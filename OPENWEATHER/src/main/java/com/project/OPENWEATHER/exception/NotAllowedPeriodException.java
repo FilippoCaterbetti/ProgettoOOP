@@ -15,6 +15,7 @@ public class NotAllowedPeriodException extends Exception {
 	 * @param error è il messaggio di errore.
 	 */
 	public NotAllowedPeriodException(String error) {
+		
 		this.error= error;
 	}
 	
@@ -23,6 +24,7 @@ public class NotAllowedPeriodException extends Exception {
 	 * @return String con messaggio di errore
 	 */
 	public String getError() {
+		
 		return error;
 	}
 }
