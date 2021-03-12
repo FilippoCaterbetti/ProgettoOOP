@@ -96,6 +96,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		JSONArray tempArray = object.getJSONArray("list");		
 		JSONObject sp;
+		
 		//parametri che ci interessano
 		double temp;
 		double temp_max;
@@ -103,9 +104,8 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		double temp_avg;
 		double feels_like;
 		String data;
-
 		
-		for (int i=0; i<tempArray.length(); i++) {
+		for (int i=0; i<9; i++) {
 			
 			
 			sp = tempArray.getJSONObject(i);
@@ -115,6 +115,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			feels_like = (sp.getJSONObject("main").getDouble("feels_like"));
 			temp_avg = ((temp_max+temp_min)/2);
 			data = (String) sp.get("dt_txt");
+
 			
 			JSONObject giveback = new JSONObject();
 			
@@ -125,29 +126,6 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			giveback.put("Temp_avg", temp_avg);
 			giveback.put("Data", data);
 			tmp.put(giveback);
-			
-			
-			/**
-			 * sp = TempArray.getJSONObject(i);
-			temp = Double.parseDouble(sp.get("temp").toString());
-			temp_max = Double.parseDouble(sp.get("temp_max").toString());
-			temp_min = Double.parseDouble(sp.get("temp_min").toString());
-			temp_avg = Double.parseDouble(sp.get("temp_avg").toString());
-			feels_like = Double.parseDouble(sp.get("feels_like").toString());
-			//data =  sp.get("dt_txt").toString(); //?
-
-			
-			JSONObject g = new JSONObject();
-			g.put("temp", temp);
-			g.put("temp_max", temp_max);
-			g.put("temp_min", temp_min);
-			g.put("temp_avg", temp_avg);
-			g.put("feels_like", feels_like);
-			//g.put("Data", data);
-
-			tmp.put(g);
-			
-			 */
 	
 		}
 		return tmp;
@@ -157,8 +135,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	
 	/**
-	 * Questo metodo prende le previsioni meteo future (temperatura
-	 * massima, minima, percepita).
+	 * Questo metodo prende le previsioni meteo future (temperatura massima, minima, media e percepita).
 	 * @param name è il nome della città di cui si vogliono conoscere le previsioni ristrette.
 	 * @return un vettore di tipo City che contiene tutte le informazioni richieste e anche le informazioni sulla città.
 	 * @throws ParseException 
@@ -192,23 +169,6 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 				temps.setData(cc.getString("dt_txt"));
 				
 				vec.add(temps); 
-				/**
-				Temperature temp = new Temperature();
-				cc = wa.getJSONObject(j);
-				temp.setTemp(cc.getDouble("temp"));
-				temp.setTemp_max(cc.getDouble("temp_max"));
-				temp.setTemp_min(cc.getDouble("temp_min"));
-				temp.setFeels_like(cc.getDouble("feels_like"));
-				temp.setData(cc.getString("dt_txt"));
-				JSONArray arrayW = cc.getJSONArray("weather");
-				JSONObject objectW = arrayW.getJSONObject(0);
-				temp.setDescription(cc.getString("description"));
-				temp.setDescription(objectW.getString("description"));
-				temp.setMain(cc.getString("main"));
-				JSONObject objectW2 = cc.getJSONObject("main");
-				vec.add(temp);
-				}
-				*/
 				}
 			}
 			catch(Exception e){
@@ -412,7 +372,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	
 	/**
-	 *  Questo metodo ci serve per andare a salvare le temperature  
+	 * Questo metodo ci serve per andare a salvare le temperature  
 	 * dei 5 giorni successivi e le salva in uno storico.
 	 * @param nome della città.
 	 * @return file dove vengono salvate le informazioni.
