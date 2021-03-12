@@ -50,7 +50,7 @@ public class RealTempAvg implements FiltersStatistics{
 					JSONObject object = new JSONObject();
 					object = statistic.todayAvg(it.next());
 					avg.add(object);
-					double ave = object.getDouble("Temp Avg");
+					double ave = object.getDouble("Real_temp Average");
 					avgRealTemp.add(ave);
 					
 					JSONObject obj = new JSONObject();
@@ -137,7 +137,7 @@ public class RealTempAvg implements FiltersStatistics{
 					JSONObject object = new JSONObject();
 					object = statistic.fiveDayAvg(it.next());
 					average.add(object);
-					double ave = object.getDouble("Temp Avg");
+					double ave = object.getDouble("Real_temp Average");
 					averageFeelsLike.add(ave);
 					
 					JSONObject obj = new JSONObject();
