@@ -127,6 +127,7 @@ Le rotte disponibili sono:
 }
 ```
 
+/filters
 ```
 {
     "città": [
