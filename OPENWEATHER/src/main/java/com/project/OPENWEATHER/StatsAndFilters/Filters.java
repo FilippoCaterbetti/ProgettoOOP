@@ -1,6 +1,7 @@
 package com.project.OPENWEATHER.StatsAndFilters;
 
 import java.io.IOException;
+
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Vector;
