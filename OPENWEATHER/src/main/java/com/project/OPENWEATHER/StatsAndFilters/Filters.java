@@ -60,22 +60,26 @@ public class Filters {
 					TempMaxAvg filters = new TempMaxAvg();
 					array = filters.Day1Avg(cities, value);
 
-				} else if (param.equals("temp_min")) {
+				} 
+				else if (param.equals("temp_min")) {
 					
 					TempMinAvg filters = new TempMinAvg();
 					array = filters.Day1Avg(cities, value);
 					
-				} else if(param.equals("feels_like")) {
+				} 
+				else if(param.equals("feels_like")) {
 					
 					FeelsLikeAvg filters = new FeelsLikeAvg();
 					array = filters.Day1Avg(cities, value);
 					
-				} else if(param.equals("temp")) {
+				} 
+				else if(param.equals("temp")) {
 					
 					RealTempAvg filters = new RealTempAvg();
 					array = filters.Day1Avg(cities, value);
 				}
 				else  {
+					
 					throw new NotAllowedParamException (param + " non è una stringa ammessa.Inserisci una stringa tra temp_min,temp_max,feels_like e temp");   
 				}
 			}
@@ -87,26 +91,31 @@ public class Filters {
 						TempMaxAvg filters = new TempMaxAvg();
 						array = filters.Day5Avg(cities, value);
 						
-					} else if (param.equals("temp_min")) {
+					} 
+					else if (param.equals("temp_min")) {
 						
 						TempMinAvg filters = new TempMinAvg();
 						array = filters.Day5Avg(cities, value);
 						
-					} else if(param.equals("feels_like")) {
+					} 
+					else if(param.equals("feels_like")) {
 						
 						FeelsLikeAvg filters = new FeelsLikeAvg();
 						array = filters.Day5Avg(cities, value);
 						
-					} else if(param.equals("temp")) {
+					} 
+					else if(param.equals("temp")) {
 						
 						RealTempAvg filters = new RealTempAvg();
 						array = filters.Day5Avg(cities,value);
 					}
 					else {
+						
 						throw new NotAllowedParamException (param + " non è una stringa ammessa.Inserisci una stringa tra temp_min,temp_max,feels_like e temp");
 					}
 				}
 		else {
+			
 			throw new NotAllowedPeriodException (period + " non è un numero ammesso. Inserisci un numero che sia o 1 o 5.");
 		}
 		
