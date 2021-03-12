@@ -9,12 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Temperature implements  Cloneable { //JSONClass,
 	
 	
-	//Group of weather parameters (Rain, Snow, Extreme etc.)
-	private String main;
-	
-	//Weather condition within the group
-	private String description;
-	
 	//Temperature
 	private double temp;
 	
@@ -30,8 +24,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 	// avg
 	private double temp_avg;
 
-	
-
 	//The date at the moment of calculation from library java.util.Date;
 	String data;
 	
@@ -42,8 +34,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * 
      */
 	public Temperature() {
-		this.main = null;
-		this.description = null;
 		this.temp = 0;
 		this.temp_max = 0;
 		this.temp_min = 0;
@@ -52,8 +42,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 	}
 	/**
 	 * 
-	 * @param main
-	 * @param description
 	 * @param temp_max
 	 * @param temp_min
 	 * @param feels_like
@@ -61,15 +49,13 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @param data
 	 * 
 	 */
-	public Temperature(String main, String description, double temp_max, double temp_min,
-			double feels_like, double temp, String data) {
+	public Temperature(double temp_max, double temp_min,double feels_like, double temp, String data) {
+		
 		this.temp = temp;
 		this.feels_like = feels_like;
 		this.temp_max = temp_max;
 		this.temp_min = temp_min;
 		this.data = data;
-		this.main = main;
-		this.description = description;
 	}
 
 		
@@ -89,13 +75,12 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * 
 	 */
 	public Temperature(JSONObject temperature) {
-		this.temp = Double.parseDouble(temperature.get("temp").toString()); //oppure (?) aggiungere alla fine .toString() Penso siano la stessa cosa
-		this.feels_like = Double.parseDouble(temperature.get("feels_like").toString());
+		
+		this.temp = Double.parseDouble(temperature.get("temp").toString());
 		this.temp_max = Double.parseDouble(temperature.get("temp_max").toString());
 		this.temp_min = Double.parseDouble(temperature.get("temp_min").toString());	
+		this.temp_avg = ((temp_max+temp_min)/2);
 		this.data = temperature.get("data").toString();
-		this.main = temperature.get("main").toString();
-		this.description = temperature.get("description").toString();
 	}	
 	
 	/**
@@ -112,9 +97,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 		t.put("temp_max", this.temp_max);
 		t.put("temp_min", this.temp_min);
 		t.put("data", this.data);
-		t.put("main", this.main);
-		t.put("description", this.description);
-		
+
 		return t;
 	}
 	
@@ -133,37 +116,10 @@ public class Temperature implements  Cloneable { //JSONClass,
 	//JSONObject clone = new JSONObject(Temperature.toString());
 
 	/**
-	 * @return the main
-	 */
-	public String getMain() {
-		return main;
-	}
-
-	/**
-	 * @param main the main to set
-	 */
-	public void setMain(String main) {
-		this.main = main;
-	}
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	/**
 	 * @return the temp_max
 	 */
 	public double getTemp_max() {
+		
 		return temp_max;
 	}
 
@@ -171,6 +127,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @param temp_max the temp_max to set
 	 */
 	public void setTemp_max(double temp_max) {
+		
 		this.temp_max = temp_max;
 	}
 
@@ -178,6 +135,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @return the temp_min
 	 */
 	public double getTemp_min() {
+		
 		return temp_min;
 	}
 
@@ -185,13 +143,16 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @param temp_min the temp_min to set
 	 */
 	public void setTemp_min(double temp_min) {
+		
 		this.temp_min = temp_min;
+		
 	}
 
 	/**
 	 * @return the feels_like
 	 */
 	public double getFeels_like() {
+		
 		return feels_like;
 	}
 
@@ -206,6 +167,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @return the temp
 	 */
 	public double getTemp() {
+		
 		return temp;
 	}
 
@@ -213,6 +175,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @param temp the temp to set
 	 */
 	public void setTemp(double temp) {
+		
 		this.temp = temp;
 	}
 	
@@ -220,6 +183,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @return the data
 	 */
 	public String getData() {
+		
 		return data;
 	}
 	
@@ -227,6 +191,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @param data the data to set
 	 */
 	public void setData(String data) {
+		
 		this.data = data;
 	}
 
@@ -234,12 +199,14 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @return the temp_avg
 	 */
 	public double getTemp_avg() {
+		
 		return temp_avg;
 	}
 	/**
 	 * @param temp_avg the temp_avg to set
 	 */
 	public void setTemp_avg(double temp_avg) {
+		
 		this.temp_avg = temp_avg;
 	}
 
