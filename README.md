@@ -115,7 +115,7 @@ Le rotte disponibili sono:
 /findRegex
 ```
 {
-    "regex" : "a*"
+   	"regex" : "a*"
 }
 ```
 
@@ -131,10 +131,10 @@ Le rotte disponibili sono:
 ```
 {
     "città": [
-            {
+          {
             "name": "Milano"
-            }
-        ],
+          }
+       ],
     "period": 1,
     "param" : "temp_max"
 }
