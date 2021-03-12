@@ -12,6 +12,7 @@ public class EmptyStringException extends Exception {
 	 * @param error rappresenta il messaggio di errore.
 	 */
 	public EmptyStringException(String error) {
+		
 		this.error = error;
 	}
 	
@@ -20,6 +21,7 @@ public class EmptyStringException extends Exception {
 	 * @return String che contiene il messaggio d'errore
 	 */
 	public String getError() {
+		
 		return error;
 	}
 
