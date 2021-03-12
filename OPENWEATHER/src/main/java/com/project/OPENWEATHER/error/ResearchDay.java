@@ -46,8 +46,11 @@ public class ResearchDay {
 				justday += dates.charAt(0);
 				justday += dates.charAt(1);
 				
-				if(!justday.equals(firstDate))
+				if(!justday.equals(firstDate)) {
+					
 					 control = false;		
+
+				}
 		}
 			JSONObject obj1 = new JSONObject();
 			obj1 = Day1.getJSONObject(i-1);//i-1(5-1) = 24 ore del primo giorno
