@@ -90,7 +90,7 @@ public class Statistics extends ErrorCalculator{
      JSONObject object = new JSONObject();
      
      object.put("CityName", next);
-     object.put("Temp_Max_Average", temp_max_avg);
+     object.put("Temp_Max Average", temp_max_avg);
      object.put("Temp_Min Average", temp_min_avg);
      object.put("Feels_like Average", feels_like_avg);  
      object.put("Real_temp Average", real_temp_avg);  
