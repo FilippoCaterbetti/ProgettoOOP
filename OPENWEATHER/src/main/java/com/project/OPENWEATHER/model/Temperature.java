@@ -1,6 +1,7 @@
 package com.project.OPENWEATHER.model;
 
 import java.util.Collection;
+
 import java.util.Date;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RestController;
