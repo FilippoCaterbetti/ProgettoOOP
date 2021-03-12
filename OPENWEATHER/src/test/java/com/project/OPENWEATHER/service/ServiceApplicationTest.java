@@ -19,7 +19,7 @@ import com.project.OPENWEATHER.exception.EmptyStringException;
 public class ServiceApplicationTest {
 
 	private ServiceApplication service;
-    private ArrayList<String> cities;
+    private ArrayList<String> names;
     
 	 /**
      * Inizializza i componenti necessari a testare i metodi.
@@ -28,7 +28,7 @@ public class ServiceApplicationTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		service = new ServiceApplication();
-		cities = new ArrayList<String>();
+		names = new ArrayList<String>();
 		}
 
 	/**
@@ -68,10 +68,10 @@ public class ServiceApplicationTest {
     @DisplayName("Corretta generazione dell'eccezione CityNotFoundException.")
     void readHistory1() throws ParseException{
 		
-    	cities.add("Bologna");
-        cities.add("Mantova");
+    	names.add("Bologna");
+        names.add("Mantova");
     	
-        CitynotFoundException e = assertThrows(CitynotFoundException.class, () -> {service.HistoryOfError(cities,1,"max",1);});
+        CitynotFoundException e = assertThrows(CitynotFoundException.class, () -> {service.HistoryOfError(names,1,"max",1);});
     
         assertEquals("Città non trovata nello storico", e.getError());
         
@@ -85,10 +85,10 @@ public class ServiceApplicationTest {
     @DisplayName("Corretta generazione dell'eccezione EmptyStringException.")
     void readHistory2() {
 	
-    	cities.add("Ancona");
-        cities.add("");
+    	names.add("Ancona");
+        names.add("");
     	
-        EmptyStringException e = assertThrows(EmptyStringException.class, () -> {service.HistoryOfError(cities,1,"max",1);});
+        EmptyStringException e = assertThrows(EmptyStringException.class, () -> {service.HistoryOfError(names,1,"max",1);});
         
         assertEquals("Hai dimenticato di inserire la città...", e.getError());
         
