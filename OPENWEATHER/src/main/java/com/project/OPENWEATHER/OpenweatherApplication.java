@@ -1,6 +1,7 @@
 package com.project.OPENWEATHER;
 
 import org.springframework.boot.SpringApplication;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.project.OPENWEATHER.service.ServiceApplication;
@@ -10,10 +11,11 @@ public class OpenweatherApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OpenweatherApplication.class, args);
-		ServiceApplication service = new ServiceApplication();
+		/*ServiceApplication service = new ServiceApplication();
 		service.FiveHoursInfo("Ancona");
 		service.FiveHoursInfo("Milano");
 		service.FiveHoursInfo("Roma");
 		service.FiveHoursInfo("Bologna");
+		*/
 	}
 }
