@@ -32,12 +32,18 @@ Una volta clonata può essere importata su un ambiente di sviluppo Java (come [E
 ## 2. Guida all'uso
 É necessario installare un json-simple-1.1.1.jar disponibile [qui](http://www.java2s.com/Code/Jar/j/Downloadjsonsimple111jar.htm) e aggiungerlo alla libreria del progetto.
 
-Per un'esecuzione più veloce del programma, la ricerca della regex nella lista delle città si avvierà su un file JSON che deve essere salvato in locale e inserito al'interno del progetto con nome:
+Per un'esecuzione più veloce del programma, la ricerca della regex nella lista delle città si avvierà su un file JSON che deve essere salvato nella cartella del progetto e inserito all'interno con nome:
 
 >city.list.json 
 
 Questo file può essere scaricato dal sito ufficiale [qui](https://bulk.openweathermap.org/sample/) . Il file che ci serve è nominato *city.list.json.gz*
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/794fe3f3a130d005049a36febe5b3118b3502047/UML/indexOfSimpleJson.png?raw=true" width="500" height="350"/></h1>
+
+L'unità di misura impostata dal programma è il grado Celsius.
+Se si vuole cambiare unità di misura basterà variare il valore della stringa `unit` [qui](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/31403def4d639860b192962996a7306ad26d0939/OPENWEATHER/src/main/java/com/project/OPENWEATHER/service/ServiceApplication.java) .
+Inserire " &units=imperial " per temperature in Fahrenheit, mentre basterà cancellare `unit` dal `link` e mettere sotto commento la variabile String `unit` se si vuole la temperatura in Kelvin (perché di default secondo documentazione dell'API)
+
+
 
 <a name="api"></a>
 ## 3. API Reference
@@ -45,7 +51,7 @@ Come API abbiamo usato **5 day weather forecast** disponibile [qui](https://open
 
 Questa API, disponibile anche tramite un piano gratuito, permette di avere le previsioni a 5 giorni che sono disponibili in qualsiasi località o città. Include i dati delle previsioni del tempo con incrementi di 3 ore. La previsione è disponibile in formato JSON o XML.
 
-Aprendo un account gratuito è possibile avere accesso a delle API Key personali che possono essre usati. Una volta ottenuta, è possibile sostituirla all'interno del progetto modificando il valore della variabile `ApiKey` nella classe [URLGeneration](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/785c5a309c5c8286b0e6573580c183d8d20fcc27/OPENWEATHER/src/main/java/com/project/OPENWEATHER/model/URLgeneration.java#L17)
+Aprendo un account gratuito è possibile avere accesso a delle API Key personali che possono essre usati. Una volta ottenuta, è possibile sostituirla all'interno del progetto modificando il valore della variabile `ApiKey` nella classe [ServiceApplication](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/31403def4d639860b192962996a7306ad26d0939/OPENWEATHER/src/main/java/com/project/OPENWEATHER/service/ServiceApplication.java#L46)
 
 
 <a name="uml"></a>
