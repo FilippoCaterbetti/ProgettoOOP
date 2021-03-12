@@ -31,7 +31,6 @@ import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
-import com.project.OPENWEATHER.service.Service;
 import com.project.OPENWEATHER.service.ServiceApplication;
 import com.project.OPENWEATHER.StatsAndFilters.*;
 
