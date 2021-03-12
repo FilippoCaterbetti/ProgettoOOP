@@ -6,11 +6,16 @@ import java.util.Vector;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties({"coord"})
 public class City { //jsonclass
 	
 	//Implementazione costruttori
 	
 	private String name;
+	private String state;
 	private String country;
 	private long id;
 	private Vector<Temperature> temps;
@@ -136,11 +141,12 @@ public class City { //jsonclass
 		return name;
 	}
 
-
+	
 
 	/**
 	 * @param name the name to set
 	 */
+	@JsonProperty
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -179,6 +185,21 @@ public class City { //jsonclass
 	 */
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+
+
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 			
