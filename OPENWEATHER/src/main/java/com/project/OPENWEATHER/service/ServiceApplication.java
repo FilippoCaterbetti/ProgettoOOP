@@ -466,7 +466,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 				throw new EmptyStringException("Hai dimenticato di inserire la città");
 
 			}
-			else if(!(names.get(i).equals("Ancona") || names.get(i).equals("Milano") || names.get(i).equals("Roma") || names.get(i).equals("Bologna") )) {
+			else if(!(names.get(i).equals("Ancona") || names.get(i).equals("Milano") || names.get(i).equals("Torino") || names.get(i).equals("Bologna") )) {
 				
 				throw new CitynotFoundException("La città inserita non è presente nello storico");
 
