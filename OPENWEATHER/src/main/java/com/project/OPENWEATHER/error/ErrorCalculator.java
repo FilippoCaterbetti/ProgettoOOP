@@ -64,10 +64,11 @@ public class ErrorCalculator extends ResearchDay {
 		    		if(startDay.equals(tempStats.getString("data"))) {
 		    			
 		    			
-		    			int errore = (infoTempDayOne.getJSONObject(startPosition).getInt("temperature")-tempStats.getInt("temperature"));
+		    			int errore = (infoTempDayOne.getJSONObject(startPosition).getInt("temp")-tempStats.getInt("temp"));
 		    			
-		    			if(errore == 0)
+		    			if(errore == 0) {
 		    				guessPrediction++;
+		    			}
 		    			completeError += errore;
 		    			cont++;
 		    		}
