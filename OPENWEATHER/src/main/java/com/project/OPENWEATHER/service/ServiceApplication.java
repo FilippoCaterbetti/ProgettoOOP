@@ -105,7 +105,11 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		double temp_avg;
 		double feels_like;
 		String data;
+		//String main;
+		//String description;
 		
+		//9 perché sono prende le previsioni fino alle 24 ore successive
+		//API prende dati ogni tre ore
 		for (int i=0; i<9; i++) {
 			
 			
@@ -115,8 +119,10 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			temp_min = (sp.getJSONObject("main").getDouble("temp_min"));
 			feels_like = (sp.getJSONObject("main").getDouble("feels_like"));
 			temp_avg = ((temp_max+temp_min)/2);
+			//main = (sp.getJSONObject("weather").getString("main"));
+			//description = (sp.getJSONObject("weather").getString("description"));
 			data = (String) sp.get("dt_txt");
-
+			
 			
 			JSONObject giveback = new JSONObject();
 			
@@ -126,6 +132,8 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			giveback.put("Feels_like", feels_like);
 			giveback.put("Temp_avg", temp_avg);
 			giveback.put("Data", data);
+			//giveback.put("main", main);
+			//giveback.put("description", description);
 			tmp.put(giveback);
 	
 		}
@@ -134,7 +142,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	
 	
-	/*
+	/**
 	 * 
 	 * 
 	 * @return restituisce il JSONArray contenente città da suggerire
@@ -142,19 +150,20 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	public JSONArray listOfCities() {	
 		String name;
 		String country;
-		double id; 
+		long id; 
+		
 		JSONArray tmp = new JSONArray();
-
+		
 		String[] names = {"Bologna", "Milano", "Ancona", "Torino"};
 		
 		for(int i =0; i<names.length; i++) {
 			
 			String s = names[i];
 			JSONObject obj = getCityApi(s);
-			
-			name = obj.getString("name");
-			id = obj.getDouble("id");
-			country = obj.getJSONObject("sys").getString("country");
+			JSONObject cityObj = obj.getJSONObject("city");
+			name = (String)  cityObj.get("name");
+			id = (int) cityObj.get("id");
+			country = (String) cityObj.get("country");
 			
 
 			JSONObject giveback = new JSONObject();
@@ -182,7 +191,6 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		JSONObject obj = getCityApi(name);
 		City gg = new City();
-		//JSONArray arr = new JSONArray();
 		gg = getCityInfofromApi(name);
 		
 		JSONArray wa = obj.getJSONArray("list");
