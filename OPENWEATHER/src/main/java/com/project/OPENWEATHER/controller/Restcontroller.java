@@ -28,7 +28,7 @@ import com.project.OPENWEATHER.exception.NotAllowedParamException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
 import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.City;
-import com.project.OPENWEATHER.model.JSONClass;
+import com.project.OPENWEATHER.service.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
 import com.project.OPENWEATHER.service.Service;
 import com.project.OPENWEATHER.service.ServiceApplication;
@@ -294,8 +294,6 @@ public class Restcontroller {
         
         ArrayList<String> cities = new ArrayList<String>(array.length());
         
-        String period = object.getString("period");
-
         
         for(int i=0; i<array.length(); i++) {
         	
@@ -305,6 +303,7 @@ public class Restcontroller {
             
         }
 		
+        String period = object.getString("period");
         
         try {
         	return new ResponseEntity<>(service.PeriodHistory(cities,period).toString(),HttpStatus.OK);
