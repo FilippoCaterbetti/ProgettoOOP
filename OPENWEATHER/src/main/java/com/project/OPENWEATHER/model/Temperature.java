@@ -210,5 +210,6 @@ public class Temperature implements  Cloneable { //JSONClass,
 		
 		this.temp_avg = temp_avg;
 	}
+	
 
 }
