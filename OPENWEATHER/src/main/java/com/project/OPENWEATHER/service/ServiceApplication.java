@@ -38,7 +38,7 @@ import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
 import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.City;
-import com.project.OPENWEATHER.model.JSONClass;
+import com.project.OPENWEATHER.service.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
 
 
@@ -504,7 +504,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 				weather = array.getJSONObject(i);
 				
 				JSONArray temp = new JSONArray();
-				temp = weather.getJSONArray("Weather");
+				temp = weather.getJSONArray("OpenWeather");
 				
 				
 				for(int k = 0; k < temp.length(); k++) {
@@ -513,7 +513,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 					JSONObject all = new JSONObject();
 					all = temp.getJSONObject(k);
 					
-					visibility.put("temperature", all.get("temperature"));
+					visibility.put("temp", all.get("temp"));
 					visibility.put("data", all.get("data"));
 					tempDay.put(visibility);
 					
