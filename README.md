@@ -12,6 +12,8 @@ Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui 
    * 4.3 [ Diagramma delle sequenze](#sequenze)
  * 5.[ Applicazione ](#app)
  * 6.[ Rotte ](#rotte)
+   * 6.1 [ Metodo GET](#GET)
+   * 6.2 [ Metodo POST](#POST)
  * 7.[ Test](#test)
  * 8.[ Software utilizzati ](#software)
  * 9.[ Autori ](#autori)
@@ -102,14 +104,18 @@ Le rotte disponibili sono:
 |  POST  |  [/findRegex](#regex) |    "IT"    |
 |  POST  |  [/statsHistory](#statsHistory)  |    "IT"    |
 
+<a name="GET"></a>
+## Metodo GET
+
 <a name="temp"></a>
 ### /temp
 
 
-<a name="OpenWeather"></a>
+<b name="OpenWeather"></b>
 ### /OpenWeather
 
-
+<a name="POST"></a>
+## POST
 <a name="FiveHourInfo"></a>
 ### /FiveHourInfo
 
@@ -165,7 +171,7 @@ Le rotte disponibili sono:
 ```
 
 
-<a name="statsHistory"></a>
+<b name="statsHistory"></b>
 ### /statsHistory
 ```
 {
