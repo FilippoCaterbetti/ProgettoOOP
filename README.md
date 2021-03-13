@@ -105,28 +105,28 @@ Le rotte disponibili sono:
 |  POST  |  [/statsHistory](#statsHistory)  |    "IT"    |
 
 <b name="GET"></b>
-## Metodo GET
+### Metodo GET
 
 <b name="temp"></b>
-### /temp
+#### /temp
 
 
 <b name="OpenWeather"></b>
-### /OpenWeather
+#### /OpenWeather
 
 <a name="FiveHourInfo"></a>
-### /FiveHourInfo
+#### /FiveHourInfo
 
 
 
 <a name="POST"></a>
-## Metodo POST
+### Metodo POST
 
 
 
 
 <b name="errors"></b>
-### /errors
+#### /errors
 ```
 {
     "città": [
@@ -142,7 +142,7 @@ Le rotte disponibili sono:
  
  
  <b name="regex"></b>
-### /findRegex
+#### /findRegex
 ```
 {
    	"regex" : "a*"
@@ -151,7 +151,7 @@ Le rotte disponibili sono:
 
 
 <b name="stats"></b>
-### /stats
+#### /stats
 ```
 {
 	"città" : "Milano",
@@ -161,7 +161,7 @@ Le rotte disponibili sono:
 
 
 <b name="filters"></b>
-### /filters
+#### /filters
 ```
 {
     "città": [
@@ -176,7 +176,7 @@ Le rotte disponibili sono:
 
 
 <b name="statsHistory"></b>
-### /statsHistory
+#### /statsHistory
 ```
 {
     "città": [
