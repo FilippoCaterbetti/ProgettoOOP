@@ -11,11 +11,6 @@ public class OpenweatherApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OpenweatherApplication.class, args);
-		/*ServiceApplication service = new ServiceApplication();
-		service.FiveHoursInfo("Ancona");
-		service.FiveHoursInfo("Milano");
-		service.FiveHoursInfo("Roma");
-		service.FiveHoursInfo("Bologna");
-		*/
+	
 	}
 }
