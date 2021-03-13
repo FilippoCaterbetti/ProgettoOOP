@@ -45,7 +45,7 @@ public class Restcontroller {
 	
 	/**
 	 *      
-	 *  localhost:8080/temp?city=Milan
+	 *  localhost:8080/temp?city=Milano
 	 * 
 	 * @param name indica la città da cui vogliamo la temperatura.
 	 * @return restituiamo le previsioni della città indicata
@@ -58,6 +58,9 @@ public class Restcontroller {
 		return new ResponseEntity<> (service.getTempApi(city).toString(), HttpStatus.OK);
 		
     }
+	
+	
+	
 	
 	/**
 	 * Rotta  GET che mostra le temperature future (temperatura massima, minima, percepita e
