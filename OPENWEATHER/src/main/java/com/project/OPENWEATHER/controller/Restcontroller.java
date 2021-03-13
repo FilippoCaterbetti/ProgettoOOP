@@ -53,14 +53,18 @@ public class Restcontroller {
 	 */
 	
 	@GetMapping(value="/temp")
-	public ResponseEntity<Object> getTemp(@RequestParam String city) {
+	public ResponseEntity<Object> getList(@RequestParam String name) {
 		
-		return new ResponseEntity<> (service.getTempApi(city).toString(), HttpStatus.OK);
+		return new ResponseEntity<> (service.getTempApi(name).toString(), HttpStatus.OK);
 		
     }
 	
-	
-	
+	@GetMapping(value="/cities")
+	public ResponseEntity<Object> getTemp() {
+		
+		return new ResponseEntity<> (service.listOfCities().toString(), HttpStatus.OK);
+		
+    }
 	
 	/**
 	 * Rotta  GET che mostra le temperature future (temperatura massima, minima, percepita e
