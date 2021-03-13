@@ -67,6 +67,7 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 <a name="sequenze"></a>
 ### 4.3 Diagramma delle sequenze
 
+
 ---
 <a name="app"></a>
 ## 5. Applicazione
@@ -80,6 +81,7 @@ Ecco alcuni esempi di città
 |  3165523  |"Torino"    |    "IT"    |
 |  3181927  |  "Bologna" |    "IT"    |
 |  6542126  |  "Ancona"  |    "IT"    |
+
 
 ---
 <a name="rotte"></a>
@@ -100,7 +102,19 @@ Le rotte disponibili sono:
 |  POST  |  [/findRegex](#regex) |    "IT"    |
 |  POST  |  [/statsHistory](#statsHistory)  |    "IT"    |
 
----
+<a name="temp"></a>
+### /temp
+
+
+<a name="OpenWeather"></a>
+### /OpenWeather
+
+
+<a name="FiveHourInfo"></a>
+### /FiveHourInfo
+
+
+
 <a name="errors"></a>
 ### /errors
 ```
@@ -115,7 +129,8 @@ Le rotte disponibili sono:
      "period": 3    
  }
  ```
- ---
+ 
+ 
  <a name="regex"></a>
 ### /findRegex
 ```
@@ -123,7 +138,8 @@ Le rotte disponibili sono:
    	"regex" : "a*"
 }
 ```
----
+
+
 <a name="stats"></a>
 ### /stats
 ```
@@ -132,7 +148,8 @@ Le rotte disponibili sono:
 	"period" : "oggi"
 }
 ```
----
+
+
 <a name="filters"></a>
 ### /filters
 ```
@@ -146,7 +163,8 @@ Le rotte disponibili sono:
     "param" : "temp_max"
 }
 ```
----
+
+
 <a name="statsHistory"></a>
 ### /statsHistory
 ```
