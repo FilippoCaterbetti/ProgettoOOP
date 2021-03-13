@@ -97,7 +97,7 @@ Le rotte disponibili sono:
 |  POST  |  [/findRegex](#regex) |    "IT"    |
 |  POST  |  [/statsHistory](#statsHistory)  |    "IT"    |
 
-
+---
 <a name="errors"></a>
 ### /errors
 ```
@@ -112,7 +112,7 @@ Le rotte disponibili sono:
      "period": 3    
  }
  ```
- 
+ ---
  <a name="regex"></a>
 ### /findRegex
 ```
@@ -120,7 +120,7 @@ Le rotte disponibili sono:
    	"regex" : "a*"
 }
 ```
-
+---
 <a name="stats"></a>
 ### /stats
 ```
@@ -129,7 +129,7 @@ Le rotte disponibili sono:
 	"period" : "oggi"
 }
 ```
-
+---
 <a name="filters"></a>
 ### /filters
 ```
@@ -143,7 +143,7 @@ Le rotte disponibili sono:
     "param" : "temp_max"
 }
 ```
-
+---
 <a name="statsHistory"></a>
 ### /statsHistory
 ```
