@@ -27,6 +27,7 @@ git clone https://github.com/FilippoCaterbetti/ProgettoOOP
 ```
 
 Una volta clonata può essere importata su un ambiente di sviluppo Java (come [Eclipse](https://www.eclipse.org/downloads/)), come *Existing Maven Project* nella cartella *Maven*
+
 ---
 <a name="guida"></a>
 ## 2. Guida all'uso
