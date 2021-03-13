@@ -75,7 +75,7 @@ Ecco alcuni esempi di città
 |    "id"   |  "name"    |  "country" |
 |:---------:|:----------:|:----------:|
 |  3173435  |   "Milan"  |    "IT"    |
-|  3169070  |   "Rome"   |    "IT"    |
+|  3165523  |"Torino"    |    "IT"    |
 |  3181927  |  "Bologna" |    "IT"    |
 |  6542126  |  "Ancona"  |    "IT"    |
 
