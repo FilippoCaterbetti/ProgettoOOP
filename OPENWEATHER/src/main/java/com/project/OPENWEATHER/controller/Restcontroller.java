@@ -44,13 +44,15 @@ public class Restcontroller {
 	Statistics statistic = new Statistics();
 	
 	/**
+	 * Rotta  GET
 	 *      
-	 *  localhost:8080/name?city=Milano
+	 *  localhost:8080/temp?name=Milano
 	 * 
 	 * @param name indica la città da cui vogliamo la temperatura.
 	 * @return restituiamo le previsioni della città indicata
 	 * 
 	 */
+	
 	@GetMapping(value="/temp")
 	public ResponseEntity<Object> getList(@RequestParam String name) {
 		
@@ -60,7 +62,7 @@ public class Restcontroller {
 	
 	
 	/**
-	 * 
+	 * Rotta  GET
 	 * @return un JSONArray contenente città consigliate
 	 */
 	@GetMapping(value="/cities")
