@@ -104,24 +104,28 @@ Le rotte disponibili sono:
 |  POST  |  [/findRegex](#regex) |    "IT"    |
 |  POST  |  [/statsHistory](#statsHistory)  |    "IT"    |
 
-<a name="GET"></a>
+<b name="GET"></b>
 ## Metodo GET
 
-<a name="temp"></a>
+<b name="temp"></b>
 ### /temp
 
 
 <b name="OpenWeather"></b>
 ### /OpenWeather
 
-<a name="POST"></a>
-## POST
 <a name="FiveHourInfo"></a>
 ### /FiveHourInfo
 
 
 
-<a name="errors"></a>
+<a name="POST"></a>
+## Metodo POST
+
+
+
+
+<b name="errors"></b>
 ### /errors
 ```
 {
@@ -137,7 +141,7 @@ Le rotte disponibili sono:
  ```
  
  
- <a name="regex"></a>
+ <b name="regex"></b>
 ### /findRegex
 ```
 {
@@ -146,7 +150,7 @@ Le rotte disponibili sono:
 ```
 
 
-<a name="stats"></a>
+<b name="stats"></b>
 ### /stats
 ```
 {
@@ -156,7 +160,7 @@ Le rotte disponibili sono:
 ```
 
 
-<a name="filters"></a>
+<b name="filters"></b>
 ### /filters
 ```
 {
