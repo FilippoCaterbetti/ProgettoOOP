@@ -35,5 +35,6 @@ public interface Service {
 	public ArrayList<JSONArray> PeriodHistory(ArrayList<String> cities, String period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, IOException, InvalidStringException;
 	public String save(String name) throws IOException, ParseException; 
 	public JSONArray readHistory(String name, String choiche) throws IOException, InvalidStringException;
+	public JSONArray listOfCities();
 
 }
