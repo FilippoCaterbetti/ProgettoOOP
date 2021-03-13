@@ -16,7 +16,7 @@ Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui 
  * 8.[ Software utilizzati ](#software)
  * 9.[ Autori ](#autori)
  
- 
+ ---
 <a name="descr"></a>
 ## 1. Installazione
 
@@ -27,7 +27,7 @@ git clone https://github.com/FilippoCaterbetti/ProgettoOOP
 ```
 
 Una volta clonata può essere importata su un ambiente di sviluppo Java (come [Eclipse](https://www.eclipse.org/downloads/)), come *Existing Maven Project* nella cartella *Maven*
-
+---
 <a name="guida"></a>
 ## 2. Guida all'uso
 É necessario installare un json-simple-1.1.1.jar disponibile [qui](http://www.java2s.com/Code/Jar/j/Downloadjsonsimple111jar.htm) e aggiungerlo alla libreria del progetto.
@@ -44,7 +44,7 @@ Se si vuole cambiare unità di misura basterà variare il valore della stringa `
 Inserire " &units=imperial " per temperature in Fahrenheit, mentre basterà cancellare `unit` dal `link` e mettere sotto commento la variabile String `unit` se si vuole la temperatura in Kelvin (perché di default secondo documentazione dell'API)
 
 
-
+---
 <a name="api"></a>
 ## 3. API Reference
 Come API abbiamo usato **5 day weather forecast** disponibile [qui](https://openweathermap.org/forecast5#name5)
@@ -53,7 +53,7 @@ Questa API, disponibile anche tramite un piano gratuito, permette di avere le pr
 
 Aprendo un account gratuito è possibile avere accesso a delle API Key personali che possono essre usati. Una volta ottenuta, è possibile sostituirla all'interno del progetto modificando il valore della variabile `ApiKey` nella classe [ServiceApplication](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/31403def4d639860b192962996a7306ad26d0939/OPENWEATHER/src/main/java/com/project/OPENWEATHER/service/ServiceApplication.java#L46)
 
-
+---
 <a name="uml"></a>
 ## 4. Diagrammi UML
 
@@ -66,6 +66,7 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 <a name="sequenze"></a>
 ### 4.3 Diagramma delle sequenze
 
+---
 <a name="app"></a>
 ## 5. Applicazione
 Tramite L'API di [OpenWeather](https://openweathermap.org/forecast5#name5) il programma riceve i dati meteo della città 
@@ -79,6 +80,7 @@ Ecco alcuni esempi di città
 |  3181927  |  "Bologna" |    "IT"    |
 |  6542126  |  "Ancona"  |    "IT"    |
 
+---
 <a name="rotte"></a>
 ## 6. Rotte
 Le richieste effettuate dall'utente su Postman saranno disponibili all'indirizzo
@@ -157,12 +159,12 @@ Le rotte disponibili sono:
 }
 ```
 
-
+---
 <a name="test"></a>
 ## 7. Test
 Sono stati implementati diversi test per controllare la correttezza dell'applicazione. Sono disponibili [qui](https://github.com/FilippoCaterbetti/ProgettoOOP/tree/main/OPENWEATHER/src/test/java/com/project/OPENWEATHER)
 
-
+---
 <a name="software"></a>
 ## 8. Software utilizzati
 * Ambiente di sviluppo : [Eclipse](https://www.eclipse.org/downloads/)
@@ -171,7 +173,7 @@ Sono stati implementati diversi test per controllare la correttezza dell'applica
 * Framework per applicazioni in Java : [Spring Boot](https://spring.io/projects/spring-boot)
 * Ambiente di sviluppo API : [Postman](https://www.postman.com/)
 
-
+---
 <a name="autori"></a>
 ## 9. Autori
 |         Autori          |   Commit  |
