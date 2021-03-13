@@ -389,21 +389,12 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	 * @throws InvalidStringException 
 	 */
 	
-	public JSONArray readHistory(String name, String choiche) throws IOException, InvalidStringException {
+	public JSONArray readHistory(String name) throws IOException, InvalidStringException {
 		
         String string = "";
-		if(choiche == "errors") {
-			
-			string = System.getProperty("user.dir")+"/" + name +".txt";
-		}
-		else if (choiche == "temperature") {
-			
-			string = System.getProperty("user.dir")+"/"  + name +".txt";
-		}
-		else {
-			
-			throw new InvalidStringException(string); 
-		}
+		
+		string = System.getProperty("user.dir")+"/temperature/" + name +".txt";
+		
 			
 		String lines;
 		
@@ -493,7 +484,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		while(list.hasNext()) {
 			
 			JSONArray array = new JSONArray();
-			array = readHistory(list.next(),"errors");
+			array = readHistory(list.next());
 			JSONArray tempInfo = new JSONArray();
 			
 			for(int i=0; i < array.length(); i++) {
@@ -573,7 +564,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		while(pam1.hasNext()) {
 			
 			JSONArray arrayTemp = new JSONArray();
-			arrayTemp = readHistory(pam1.next(),"temperature");
+			arrayTemp = readHistory(pam1.next());
 			tempInfo.add(arrayTemp);
 			
 		}
