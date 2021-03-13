@@ -14,11 +14,11 @@ public class PeriodStatistics {
 		public JSONArray DailyStats(String city, JSONArray temp) {
 			
 			JSONArray stats = new JSONArray();
-			
+			int i=0;
 			String date = "";
 			stats.put(city);
 			
-			for(int i = 0; i < temp.length(); i++) {
+			while(i < temp.length()) {
 				
 				JSONArray oneDayVisibility = new JSONArray();
 				
@@ -26,27 +26,28 @@ public class PeriodStatistics {
 				
 				//preimpostiamo dei valori predefiniti di max min affinchè sia più semplice trovare i relativi max e min
 
-				int average=0;
+				double average=0;
 				int j=0;
-				int max=0;
-				int min=10000;
-				int variance=0;
+				double max=0;
+				double min=10000;
+				double variance=0;
 				
 				while(j<oneDayVisibility.length()) {
 					
 					JSONObject hour = new JSONObject();
 					hour = oneDayVisibility.getJSONObject(j);
-					average += hour.getInt("temperature");
+					average += hour.getDouble("temp");
 					date = hour.getString("data").substring(0,10);
 					
-					if(hour.getInt("temperature") > max) {
+					if(hour.getDouble("temp") > max) {
 						
-						max = hour.getInt("temperature");
+						max = hour.getDouble("temp");
 
 					}
 					
-					if(hour.getInt("temperature") < min) {
-						min = hour.getInt("temperature");
+					if(hour.getDouble("temp") < min) {
+						
+						min = hour.getDouble("temp");
 
 					}
 					
@@ -66,8 +67,8 @@ public class PeriodStatistics {
 					
 					JSONObject hour = new JSONObject();
 					hour = oneDayVisibility.getJSONObject(k);
-					hour.getInt("temperature");
-			        variance += ((hour.getInt("temperature")-average))^2;
+					hour.getDouble("temp");
+			        variance += ((hour.getDouble("temp")-average)*(hour.getDouble("temp")-average));
 			       	k++;
 			     }
 				
@@ -75,7 +76,7 @@ public class PeriodStatistics {
 				info.put("variance", variance);
 				
 				stats.put(info);
-			
+				i++;
 			}
 			
 			return stats;
@@ -102,30 +103,30 @@ public class PeriodStatistics {
 			
 			while(i < 21) {
 
-				int average = 0;
-				int max = 0;
-				int min = 10000;
-				int variance = 0;
+				double average = 0;
+				double max = 0;
+				double min = 10000;
+				double variance = 0;
 				
 				while(k < (8 + i) ) {
 					
 						JSONObject dayInfo = new JSONObject();
 						dayInfo = oneDay.getJSONObject(k);
-						average += dayInfo.getInt("average");
+						average += dayInfo.getDouble("average");
 						
-						if(dayInfo.getInt("max") > max) {
+						if(dayInfo.getDouble("max") > max) {
 							
-							max = dayInfo.getInt("max");
+							max = dayInfo.getDouble("max");
 
 						}
 						
-						if(dayInfo.getInt("min") < min) {
+						if(dayInfo.getDouble("min") < min) {
 							
-							min = dayInfo.getInt("min");
+							min = dayInfo.getDouble("min");
 
 						}
 						
-						variance += dayInfo.getInt("variance");	
+						variance += dayInfo.getDouble("variance");	
 						k++;
 					
 				}
@@ -173,28 +174,28 @@ public class PeriodStatistics {
 			
 			stats.put(oneWeek.get(0));
 						
-			int average = 0;
-			int max = 0;
-			int min = 10000;
-			int variance = 0;
+			double average = 0;
+			double max = 0;
+			double min = 10000;
+			double variance = 0;
 			
 			int i = 1;
 			while(i < oneWeek.length()) {
 				
 				JSONObject info = new JSONObject();
 				info = oneWeek.getJSONObject(i);
-				average += info.getInt("average");
-				variance += info.getInt("variance");
+				average += info.getDouble("average");
+				variance += info.getDouble("variance");
 				
-				if(info.getInt("max") > max) {
+				if(info.getDouble("max") > max) {
 					
-					max = info.getInt("max");
+					max = info.getDouble("max");
 
 				}
 				
-				if(info.getInt("min") < min) {
+				if(info.getDouble("min") < min) {
 					
-					min = info.getInt("min");
+					min = info.getDouble("min");
 
 				}
 				i++;
