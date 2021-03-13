@@ -86,20 +86,20 @@ Le richieste effettuate dall'utente su Postman saranno disponibili all'indirizzo
 localhost:8080
 ```
 Le rotte disponibili sono:
-| Metodo      |   Rotta    |  " |
+| Metodo      |   Rotta    |  Descrizione |
 |:---------:|:----------:|:----------:|
-|  GET  |   /temp?city=Milan  |    "IT"    |
-|  GET  |  /OpenWeather?city=Milan  |    "IT"    |
-|  GET  |  /FiveHoursInfo?city=Milan |    "IT"    |
-|  POST  |  /filters  |    "IT"    |
-|  POST  |   /errors  |    "IT"    |
-|  POST  |   /stats   |    "IT"    |
-|  POST  |  /findRegex |    "IT"    |
-|  POST  |  /statsHistory  |    "IT"    |
+|  GET  |   [/temp?city=Milan](#temp)  |    "IT"    |
+|  GET  |  [/OpenWeather?city=Milan](#OpenWeather)  |    "IT"    |
+|  GET  |  [/FiveHoursInfo?city=Milan](#FiveHourInfo) |    "IT"    |
+|  POST  |  [/filters](#filters)  |    "IT"    |
+|  POST  |   [/errors](#errors)  |    "IT"    |
+|  POST  |   [/stats](#stats)   |    "IT"    |
+|  POST  |  [/findRegex](#regex) |    "IT"    |
+|  POST  |  [/statsHistory](#statsHistory)  |    "IT"    |
 
 
-
-/errors
+<a name="errors"></a>
+### /errors
 ```
 {
     "città": [
@@ -112,14 +112,17 @@ Le rotte disponibili sono:
      "period": 3    
  }
  ```
-/findRegex
+ 
+ <a name="regex"></a>
+### /findRegex
 ```
 {
    	"regex" : "a*"
 }
 ```
 
-/stats
+<a name="stats"></a>
+### /stats
 ```
 {
 	"città" : "Milano",
@@ -127,7 +130,8 @@ Le rotte disponibili sono:
 }
 ```
 
-/filters
+<a name="filters"></a>
+### /filters
 ```
 {
     "città": [
@@ -140,7 +144,8 @@ Le rotte disponibili sono:
 }
 ```
 
-/statsHistory
+<a name="statsHistory"></a>
+### /statsHistory
 ```
 {
     "città": [
