@@ -49,7 +49,7 @@ public class ServiceApplicationTest {
     @DisplayName("Salvataggio corretto del file")
     void salvaFile() throws IOException, ParseException {
     	
-        String name = "Milano";
+        String name = "Ancona";
         
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		String today = date.format(new Date());
