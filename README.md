@@ -12,6 +12,8 @@ Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui 
    * 4.3 [ Diagramma delle sequenze](#sequenze)
  * 5.[ Applicazione ](#app)
  * 6.[ Rotte ](#rotte)
+   * 6.1 [ Metodo GET](#GET)
+   * 6.2 [ Metodo POST](#POST)
  * 7.[ Test](#test)
  * 8.[ Software utilizzati ](#software)
  * 9.[ Autori ](#autori)
@@ -102,21 +104,29 @@ Le rotte disponibili sono:
 |  POST  |  [/findRegex](#regex) |    "IT"    |
 |  POST  |  [/statsHistory](#statsHistory)  |    "IT"    |
 
-<a name="temp"></a>
-### /temp
+<b name="GET"></b>
+### Metodo GET
+
+<b name="temp"></b>
+#### /temp
 
 
-<a name="OpenWeather"></a>
-### /OpenWeather
-
+<b name="OpenWeather"></b>
+#### /OpenWeather
 
 <a name="FiveHourInfo"></a>
-### /FiveHourInfo
+#### /FiveHourInfo
 
 
 
-<a name="errors"></a>
-### /errors
+<a name="POST"></a>
+### Metodo POST
+
+
+
+
+<b name="errors"></b>
+#### /errors
 ```
 {
     "città": [
@@ -131,8 +141,8 @@ Le rotte disponibili sono:
  ```
  
  
- <a name="regex"></a>
-### /findRegex
+ <b name="regex"></b>
+#### /findRegex
 ```
 {
    	"regex" : "a*"
@@ -140,8 +150,8 @@ Le rotte disponibili sono:
 ```
 
 
-<a name="stats"></a>
-### /stats
+<b name="stats"></b>
+#### /stats
 ```
 {
 	"città" : "Milano",
@@ -150,8 +160,8 @@ Le rotte disponibili sono:
 ```
 
 
-<a name="filters"></a>
-### /filters
+<b name="filters"></b>
+#### /filters
 ```
 {
     "città": [
@@ -165,8 +175,8 @@ Le rotte disponibili sono:
 ```
 
 
-<a name="statsHistory"></a>
-### /statsHistory
+<b name="statsHistory"></b>
+#### /statsHistory
 ```
 {
     "città": [
