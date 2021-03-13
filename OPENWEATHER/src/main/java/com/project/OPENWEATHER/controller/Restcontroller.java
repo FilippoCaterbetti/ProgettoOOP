@@ -45,13 +45,12 @@ public class Restcontroller {
 	
 	/**
 	 *      
-	 *  localhost:8080/temp?city=Milano
+	 *  localhost:8080/name?city=Milano
 	 * 
 	 * @param name indica la città da cui vogliamo la temperatura.
 	 * @return restituiamo le previsioni della città indicata
 	 * 
 	 */
-	
 	@GetMapping(value="/temp")
 	public ResponseEntity<Object> getList(@RequestParam String name) {
 		
@@ -59,6 +58,11 @@ public class Restcontroller {
 		
     }
 	
+	
+	/**
+	 * 
+	 * @return un JSONArray contenente città consigliate
+	 */
 	@GetMapping(value="/cities")
 	public ResponseEntity<Object> getTemp() {
 		
