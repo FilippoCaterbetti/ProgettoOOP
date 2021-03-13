@@ -8,7 +8,7 @@ public class PeriodStatistics {
 		/**
 		 * Questo metodo restituisce il JSONArray con le statistiche sulle temperature di tutti i giorni presenti nello storico.
 		 * @param city rappresenta il nome della città di cui si vuole fare statistica.
-		 * @param temp contiene tutte le informazioni sulla visibilità presenti nello storico.
+		 * @param temp contiene tutte le informazioni sulla temperatura presenti nello storico.
 		 * @return un JSONArray con le statistiche di ogni giorno
 		 */
 		public JSONArray DailyStats(String city, JSONArray temp) {
@@ -16,10 +16,9 @@ public class PeriodStatistics {
 			JSONArray stats = new JSONArray();
 			
 			String date = "";
-			
 			stats.put(city);
 			
-			for(int i = 0;i < temp.length(); i++) {
+			for(int i = 0; i < temp.length(); i++) {
 				
 				JSONArray oneDayVisibility = new JSONArray();
 				
@@ -62,13 +61,14 @@ public class PeriodStatistics {
 				info.put("min", min);
 				info.put("average", average);
 				
-				while(j < oneDayVisibility.length()) {
+				int k = 0;
+				while(k < oneDayVisibility.length()) {
 					
 					JSONObject hour = new JSONObject();
-					hour = oneDayVisibility.getJSONObject(j);
+					hour = oneDayVisibility.getJSONObject(k);
 					hour.getInt("temperature");
 			        variance += ((hour.getInt("temperature")-average))^2;
-			       	j++;
+			       	k++;
 			     }
 				
 				variance /= j;
