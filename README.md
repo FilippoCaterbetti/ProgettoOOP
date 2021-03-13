@@ -86,7 +86,7 @@ Le richieste effettuate dall'utente su Postman saranno disponibili all'indirizzo
 localhost:8080
 ```
 Le rotte disponibili sono:
-| Tipo      |   Rotta    |  " |
+| Metodo      |   Rotta    |  " |
 |:---------:|:----------:|:----------:|
 |  GET  |   /temp?city=Milan  |    "IT"    |
 |  GET  |  /OpenWeather?city=Milan  |    "IT"    |
