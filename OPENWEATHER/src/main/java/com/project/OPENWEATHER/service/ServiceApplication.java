@@ -134,6 +134,40 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	
 	
+	/*
+	 * 
+	 * 
+	 * @return restituisce il JSONArray contenente città da suggerire
+	 */
+	public JSONArray listOfCities() {	
+		String name;
+		String country;
+		double id; 
+		JSONArray tmp = new JSONArray();
+
+		String[] names = {"Bologna", "Milano", "Ancona", "Torino"};
+		
+		for(int i =0; i<names.length; i++) {
+			
+			String s = names[i];
+			JSONObject obj = getCityApi(s);
+			
+			name = obj.getString("name");
+			id = obj.getDouble("id");
+			country = obj.getJSONObject("sys").getString("country");
+			
+
+			JSONObject giveback = new JSONObject();
+			
+			giveback.put("name", name);
+			giveback.put("id", id);
+			giveback.put("country", country);
+			
+			tmp.put(giveback);
+		}
+		return tmp;
+	}
+	
 	
 	/**
 	 * Questo metodo prende le previsioni meteo future (temperatura massima, minima, media e percepita).
@@ -226,27 +260,21 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	public JSONArray Substring(String regex) throws FileNotFoundException, IOException, ParseException{
 		
-		//String path = System.getProperty("user.dir")+"\\city.list.json";
-		//BufferedReader br = new BufferedReader(new FileReader(path));
 		
-		JSONParser parser = new JSONParser();
 		List<City> city = new ArrayList<>();
 		String path = System.getProperty("user.dir")+"/city.list.json";
-		//JSONArray a = (JSONArray) parser.parse(new FileReader(path));
 		ObjectMapper mapper = new  ObjectMapper();
 		city = mapper.readValue(new File(path), new TypeReference<ArrayList<City>>() {}); //convertet tutto il  json in array list di oggettoi
 		
 		
-		//JSONArray c = new JSONArray();
 		List<String> name = new ArrayList<String>();
 		for (City o : city){
 
 			String n = o.getName();
 			name.add(n);
-			//c.put(name);
 			
 			}
-		//List<String> names = new ArrayList<>();
+
 		Pattern p = Pattern.compile(regex);
 		ArrayList<String> x = new ArrayList<String>();
 		JSONArray match = new JSONArray();
