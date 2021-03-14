@@ -119,8 +119,8 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			temp_min = (sp.getJSONObject("main").getDouble("temp_min"));
 			feels_like = (sp.getJSONObject("main").getDouble("feels_like"));
 			temp_avg = ((temp_max+temp_min)/2);
-			//main = (String) (sp.getJSONObject("weather").get("main"));
-			//description = (String) (sp.getJSONObject("weather").get("description"));
+			//main = (String) (sp.getJSONArray("weather").get("main"));
+			//description = (String) (sp.getJSONObject("weather").get(2));
 			data = (String) sp.get("dt_txt");
 			
 			
