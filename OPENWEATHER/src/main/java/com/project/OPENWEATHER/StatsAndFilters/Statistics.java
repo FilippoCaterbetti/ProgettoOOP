@@ -33,7 +33,11 @@ public class Statistics extends ErrorCalculator{
      double temp_min_avg = 0;
      double feels_like_avg = 0;
      double real_temp_avg = 0;
-     double variance = 0;
+     double variancetempmax = 0;
+     double variancetempmin = 0;
+     double variancefeelslike = 0;
+     double variancetemp= 0;
+
      
      int i=0;
      
@@ -41,59 +45,63 @@ public class Statistics extends ErrorCalculator{
      date += (city.getTemps().get(0).getData()).charAt(8);
      date += (city.getTemps().get(0).getData()).charAt(9);
  
-     String Date = date;
-     while(date.equals(Date)) {
+     String datas = date;
+     
+     while(date.equals(datas)) {
         
     	 temp_max_avg += city.getTemps().get(i).getTemp_max();
          temp_min_avg += city.getTemps().get(i).getTemp_min();
          feels_like_avg += city.getTemps().get(i).getFeels_like();
          real_temp_avg += city.getTemps().get(i).getTemp(); 
          i++;
-         Date = "";
-         Date += (city.getTemps().get(i).getData()).charAt(8);
-         Date += (city.getTemps().get(i).getData()).charAt(9);
+         datas = "";
+         datas += (city.getTemps().get(i).getData()).charAt(8);
+         datas += (city.getTemps().get(i).getData()).charAt(9);
      }
      
      temp_max_avg = temp_max_avg/i;
      temp_min_avg = temp_min_avg/i;
      feels_like_avg = feels_like_avg/i;
      real_temp_avg = real_temp_avg/i;
-     Date = date;
+     datas = date;
      i=0;
      
      //calcolo della varianza di visibilità
-     while(date.equals(Date)) {
-    	 
+     while(date.equals(datas)) {
+      variancetempmax = ((int)((city.getTemps().get(i).getTemp_max())-temp_max_avg))^2;
      	 i++;
-         Date = "";
-         Date += (city.getTemps().get(i).getData()).charAt(8);
-         Date += (city.getTemps().get(i).getData()).charAt(9);
+     	datas = "";
+     	datas += (city.getTemps().get(i).getData()).charAt(8);
+     	datas += (city.getTemps().get(i).getData()).charAt(9);
      	
      }
    //calcolo della varianza della temperatura percepita
      while(i<city.getTemps().size()) {
     	 
-     	variance += ((int)((city.getTemps().get(i).getTemp())-real_temp_avg))^2;
+     	variancetemp += ((int)((city.getTemps().get(i).getTemp())-real_temp_avg))^2;
+     	variancefeelslike += ((int)((city.getTemps().get(i).getFeels_like())-feels_like_avg))^2;
+
      	i++;
      }
      
-     variance /=i;
+     variancetemp /=i; 
+     variancefeelslike /= i;
      
-   //calcolo della varianza della temperatura reale
-     while(i<city.getTemps().size()) {
-    	 
-     	variance += ((int)((city.getTemps().get(i).getFeels_like())-feels_like_avg))^2;
-     	i++;
-     }
      
-     variance /=i;     
      JSONObject object = new JSONObject();
+     JSONObject temp_data = new JSONObject();
+     
+     temp_data.put("Visibility average",visibility_ave);
+     temp_data.put("Max visibility",max_visibility);
+     temp_data.put("Min Visibility", min_visibility);
+     temp_data.put("Visibility variance", variance);
      
      object.put("CityName", next);
      object.put("Temp_Max Average", temp_max_avg);
      object.put("Temp_Min Average", temp_min_avg);
      object.put("Feels_like Average", feels_like_avg);  
-     object.put("Real_temp Average", real_temp_avg);  
+     object.put("Real_temp Average", real_temp_avg); 
+     object.put("Variance_Temp_Max", variancetempmax);
      return object;
  
 	}
@@ -114,32 +122,32 @@ public class Statistics extends ErrorCalculator{
 	     date += (city.getTemps().get(0).getData()).charAt(8);
 	     date += (city.getTemps().get(0).getData()).charAt(9);
 	 
-	     String Date = date;
-	     while(date.equals(Date)) {
+	     String datas = date;
+	     while(date.equals(datas)) {
 	        
 	    	 temp_max_avg += city.getTemps().get(i).getTemp_max();
 	         temp_min_avg += city.getTemps().get(i).getTemp_min();
 	         feels_like_avg += city.getTemps().get(i).getFeels_like();
 	         real_temp_avg += city.getTemps().get(i).getTemp(); 
 	         i++;
-	         Date = "";
-	         Date += (city.getTemps().get(i).getData()).charAt(8);
-	         Date += (city.getTemps().get(i).getData()).charAt(9);
+	         datas = "";
+	         datas += (city.getTemps().get(i).getData()).charAt(8);
+	         datas += (city.getTemps().get(i).getData()).charAt(9);
 	     }
 	     
 	     temp_max_avg = temp_max_avg/i;
 	     temp_min_avg = temp_min_avg/i;
 	     feels_like_avg = feels_like_avg/i;
 	     real_temp_avg = real_temp_avg/i;
-	     Date = date;
+	     datas = date;
 	     i=0;
 	     
 	     //calcolo della varianza di visibilità
-	     while(date.equals(Date)) {
+	     while(date.equals(datas)) {
 	     	i++;
-	         Date = "";
-	         Date += (city.getTemps().get(i).getData()).charAt(8);
-	         Date += (city.getTemps().get(i).getData()).charAt(9);
+	     	datas = "";
+	     	datas += (city.getTemps().get(i).getData()).charAt(8);
+	     	datas += (city.getTemps().get(i).getData()).charAt(9);
 	     	
 	     }
 	   //calcolo della varianza della temperatura percepita
