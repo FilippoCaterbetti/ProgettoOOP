@@ -401,7 +401,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
         String string = "";
 		
-		string = System.getProperty("user.dir")+"/temperature/" + name +".json";
+		string = System.getProperty("user.dir")+"/temperature/" + name +".txt";
 		
 			
 		String all;
