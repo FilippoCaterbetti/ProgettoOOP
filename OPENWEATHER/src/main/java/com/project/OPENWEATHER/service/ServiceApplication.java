@@ -105,11 +105,11 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		double temp_avg;
 		double feels_like;
 		String data;
-		//String main;
-		//String description;
+		String main;
+		String description;
 		
-		//9 perché sono prende le previsioni fino alle 24 ore successive
-		//API prende dati ogni tre ore
+		//i<9 perché sono prende le previsioni fino alle 24 ore successive
+		//API prende dati ogni tre ore (8*3=24)
 		for (int i=0; i<9; i++) {
 			
 			
@@ -119,8 +119,10 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			temp_min = (sp.getJSONObject("main").getDouble("temp_min"));
 			feels_like = (sp.getJSONObject("main").getDouble("feels_like"));
 			temp_avg = ((temp_max+temp_min)/2);
-			//main = (String) (sp.getJSONArray("weather").get("main"));
-			//description = (String) (sp.getJSONObject("weather").get(2));
+			
+			JSONArray arr = sp.getJSONArray("weather");
+			main = (String) (arr.getJSONObject(0).get("main"));
+			description = (String) (arr.getJSONObject(0).get("description"));
 			data = (String) sp.get("dt_txt");
 			
 			
@@ -132,8 +134,8 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			giveback.put("Feels_like", feels_like);
 			giveback.put("Temp_avg", temp_avg);
 			giveback.put("Data", data);
-			//giveback.put("main", main);
-			//giveback.put("description", description);
+			giveback.put("main", main);
+			giveback.put("description", description);
 			tmp.put(giveback);
 	
 		}
