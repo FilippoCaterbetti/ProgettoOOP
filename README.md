@@ -95,8 +95,9 @@ localhost:8080
 Le rotte disponibili sono:
 | Metodo      |   Rotta    |  Descrizione |
 |:---------:|:----------:|:----------:|
-|  GET  |   [/temp?city=Milan](#temp)  |    "IT"    |
-|  GET  |  [/OpenWeather?city=Milan](#OpenWeather)  |    "IT"    |
+|  GET  |   [/temp?city=Milan](#temp)  |    temperature delle prossime 24 ore    |
+|  GET  |   [/cities](#cities)  |    lista predefinita con alcune città consigliate    |
+|  GET  |  [/OpenWeather?city=Milan](#OpenWeather)  | temperature dei prossimi 5 giorni     |
 |  GET  |  [/FiveHoursInfo?city=Milan](#FiveHourInfo) |    "IT"    |
 |  POST  |  [/filters](#filters)  |    "IT"    |
 |  POST  |   [/errors](#errors)  |    "IT"    |
@@ -110,6 +111,8 @@ Le rotte disponibili sono:
 <b name="temp"></b>
 #### /temp
 
+<b name="cities"></b>
+#### /cities
 
 <b name="OpenWeather"></b>
 #### /OpenWeather
