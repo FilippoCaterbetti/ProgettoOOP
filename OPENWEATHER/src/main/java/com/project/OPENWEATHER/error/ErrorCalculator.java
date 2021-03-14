@@ -7,6 +7,8 @@ import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class ErrorCalculator extends ResearchDay {
 	
 	public ErrorCalculator() {
@@ -39,7 +41,7 @@ public class ErrorCalculator extends ResearchDay {
 			int guessPrediction = 0;
 			int cont = 0;
 			
-		
+		    
 			JSONArray cityInfo = new JSONArray();
 			cityInfo = tempInfoIt.next();
 			
