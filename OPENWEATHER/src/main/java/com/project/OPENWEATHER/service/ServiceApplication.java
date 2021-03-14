@@ -524,6 +524,9 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 					all = temp.getJSONObject(k);
 					
 					visibility.put("temp", all.get("temp"));
+					visibility.put("temp_max", all.get("temp_max"));
+					visibility.put("temp_min", all.get("temp_min"));
+					visibility.put("feels_like", all.get("feels_like"));
 					visibility.put("data", all.get("data"));
 					tempDay.put(visibility);
 					
