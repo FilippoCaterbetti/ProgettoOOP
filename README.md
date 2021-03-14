@@ -98,12 +98,12 @@ Le rotte disponibili sono:
 |  GET  |   [/temp?city=Milan](#temp)  |    temperature delle prossime 24 ore    |
 |  GET  |   [/cities](#cities)  |    lista predefinita con alcune città consigliate    |
 |  GET  |  [/OpenWeather?city=Milan](#OpenWeather)  | temperature dei prossimi 5 giorni     |
-|  GET  |  [/FiveHoursInfo?city=Milan](#FiveHourInfo) |    "IT"    |
-|  POST  |  [/filters](#filters)  |    "IT"    |
-|  POST  |   [/errors](#errors)  |    "IT"    |
-|  POST  |   [/stats](#stats)   |    "IT"    |
-|  POST  |  [/findRegex](#regex) |    "IT"    |
-|  POST  |  [/statsHistory](#statsHistory)  |    "IT"    |
+|  GET  |  [/FiveHoursInfo?city=Milan](#FiveHourInfo) |  salva ogni cnque ore le temperature della città    |
+|  POST  |  [/filters](#filters)  |   filtra le statistiche in base alle informazioni che si vogliono |
+|  POST  |   [/errors](#errors)  | filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione       |
+|  POST  |   [/stats](#stats)   | mostra la media della temperatura massima, minima, percepita e la media, la minima, la massima di 5 giorni, a seconda del periodo   |
+|  POST  |  [/findRegex](#regex) |   cercare una regex all'interno della lista delle città disponibili   |
+|  POST  |  [/statsHistory](#statsHistory)  |  filtra in base al periodo le statistiche sulle temperature della città  |
 
 <b name="GET"></b>
 ### Metodo GET
