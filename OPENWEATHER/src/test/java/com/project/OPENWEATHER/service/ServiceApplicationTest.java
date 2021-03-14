@@ -87,7 +87,7 @@ public class ServiceApplicationTest {
     @DisplayName("Corretta generazione dell'eccezione EmptyStringException.")
     void readHistory2() {
 	
-    	names.add("Ancona");
+    	names.add("Torino");
         names.add("");
     	
         EmptyStringException e = assertThrows(EmptyStringException.class, () -> {service.HistoryOfError(names,1,"max",1);});
