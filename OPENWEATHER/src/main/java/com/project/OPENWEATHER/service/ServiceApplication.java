@@ -272,7 +272,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		List<City> city = new ArrayList<>();
 		String path = System.getProperty("user.dir")+"/city.list.json";
 		ObjectMapper mapper = new  ObjectMapper();
-		city = mapper.readValue(new File(path), new TypeReference<ArrayList<City>>() {}); //convertet tutto il  json in array list di oggettoi
+		city = mapper.readValue(new File(path), new TypeReference<ArrayList<City>>() {}); //converte tutto il json in array list di oggetti
 		
 		
 		List<String> name = new ArrayList<String>();
@@ -401,13 +401,25 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
         String string = "";
 		
-		string = System.getProperty("user.dir")+"/temperature/" + name +".txt";
+		string = System.getProperty("user.dir")+"/temperature/" + name +".json";
 		
 			
 		String lines;
 		
-		//Apriamo e leggiamo il file	
+		//Apriamo e leggiamo il file
+		List<Temperature> city = new ArrayList<>();
+		ObjectMapper mapper = new  ObjectMapper();
+		city = mapper.readValue(new File(string), new TypeReference<ArrayList<Temperature>>() {}); 
 		
+		JSONArray temps = new JSONArray();
+		for (Temperature o : city){
+
+			double n = o.getTemp();
+			temps.
+			
+			}
+		
+		/**
 		BufferedReader br = new BufferedReader(new FileReader(string));
 		
 			try {
@@ -427,7 +439,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			    br.close();
 			}
 				
-		
+		*/
 			JSONArray array = new JSONArray(lines);
 	
 			return array;
@@ -602,7 +614,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			}
 			else {
 				
-				throw new NotAllowedPeriodException(period + "non è permessa. Devi inserire una stringa tra \"giornaliera\","
+				throw new NotAllowedPeriodException(period + " non è permessa. Devi inserire una stringa tra \"giornaliera\","
 						+ "\"settimanale\" e \"mensile\". ");
 			}
 					
@@ -615,9 +627,5 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 	}
 	
-
-
-
-
 
 }
