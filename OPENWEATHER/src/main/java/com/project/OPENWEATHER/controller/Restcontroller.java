@@ -1,8 +1,8 @@
 package com.project.OPENWEATHER.controller;
 
 import java.io.IOException;
-
-
+import java.io.Reader;
+import java.io.StringReader;
 import java.lang.Exception;
 import java.net.MalformedURLException;
 import java.io.FileNotFoundException;
@@ -32,6 +32,7 @@ import com.project.OPENWEATHER.service.JSONClass;
 import com.project.OPENWEATHER.model.Temperature;
 import com.project.OPENWEATHER.service.Service;
 import com.project.OPENWEATHER.service.ServiceApplication;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.OPENWEATHER.StatsAndFilters.*;
 
 
@@ -140,8 +141,16 @@ public class Restcontroller {
 	public ResponseEntity<Object> filtersHistory(@RequestBody String body) 
 			throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException, EmptyStringException, NotAllowedValueException { //NotAllowedValueException
 		
+		System.out.print(body);
 		JSONObject object = new JSONObject(body);
+		/*ObjectMapper mapper = new ObjectMapper();
+		Reader reader  = new StringReader(body);
+		Parameters prop = new Parameters();
+		prop = mapper.readValue(reader, Parameters.class);
+		*/
         JSONArray array = new JSONArray();
+        JSONArray array2 = new JSONArray();
+
 
         array = object.getJSONArray("città");
         
@@ -155,13 +164,15 @@ public class Restcontroller {
             
         }
         
+        array2 = object.getJSONArray("parametri");
         int error = object.getInt("error");
         String value = object.getString("value");
         int period = object.getInt("period");
-        
+       
+		
         try {
         	
-        	return new ResponseEntity<>(service.HistoryOfError(names,error,value,period).toString(),HttpStatus.OK);
+        	return new ResponseEntity<>(service.HistoryOfError(names, error, value, period).toString(),HttpStatus.OK);
         }
         catch(CitynotFoundException e) {
         	
@@ -171,7 +182,12 @@ public class Restcontroller {
         	
         	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
         }
-		
+        catch(NotAllowedValueException e) {
+        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+        }
+        catch (EmptyStringException e) {
+        	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+        }
 	}
 
 
