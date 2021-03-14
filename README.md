@@ -146,12 +146,19 @@ Le rotte disponibili sono:
  
  <b name="regex"></b>
 #### /findRegex
+Richiede un Body di questo tipo
 ```
 {
-   	"regex" : "a*"
+   	"regex" : "a.*"
 }
 ```
-
+regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le città con all'interno quello sottostringa, usare la sintassi delle regex per qualsiasi tipo di ricerca
+  |    regex    |   descrizione  |
+|-------------|:---------:|
+| ` .*to  `  |   cerca tutte le parole che iniziano per *to* |
+| ` .*to.* ` |   cerca tutte le parole che hanno *to* all'interno della parola |
+|  ` (?i).*to.*  ` |  per renderlo case insensitive   |
+  
 
 <b name="stats"></b>
 #### /stats
@@ -161,7 +168,7 @@ Le rotte disponibili sono:
 	"period" : "oggi"
 }
 ```
-
+ 	
 
 <b name="filters"></b>
 #### /filters
