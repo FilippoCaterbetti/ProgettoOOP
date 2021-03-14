@@ -404,8 +404,8 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		string = System.getProperty("user.dir")+"/temperature/" + name +".json";
 		
 			
-		String lines;
-		
+		String all;
+		/*
 		//Apriamo e leggiamo il file
 		List<Temperature> city = new ArrayList<>();
 		ObjectMapper mapper = new  ObjectMapper();
@@ -418,8 +418,8 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			temps.
 			
 			}
+		*/
 		
-		/**
 		BufferedReader br = new BufferedReader(new FileReader(string));
 		
 			try {
@@ -433,14 +433,13 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			        sb.append(System.lineSeparator());
 			        line = br.readLine();
 			    }
-			    lines = sb.toString();
+			    all = sb.toString();
 			} finally {
 				
 			    br.close();
 			}
 				
-		*/
-			JSONArray array = new JSONArray(lines);
+			JSONArray array = new JSONArray(all);
 	
 			return array;
 			
@@ -576,7 +575,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 				
 			else if(!(cities.get(i).equals("Ancona") || cities.get(i).equals("Milano") || cities.get(i).equals("Roma") || cities.get(i).equals("Bologna") )) {
 				
-				throw new CitynotFoundException("La città inserita non è presente nello storico");
+				throw new CitynotFoundException("La città " + cities.get(i) +" non è presente nello storico");
 			}
 				
 		}
