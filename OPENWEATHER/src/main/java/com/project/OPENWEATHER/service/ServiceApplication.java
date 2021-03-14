@@ -346,7 +346,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		
 		String report;
-		report = System.getProperty("user.dir")+"/"+name+"report.txt";
+		report = System.getProperty("user.dir")+"/"+name+".txt";
 		File file = new File(report);
     
 		
@@ -361,7 +361,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		    	JSONObject oggetto = new JSONObject(); 
 		    	oggetto = tempApi.getJSONObject(0);
 		    	
-		    	for(int i=0;i<oggetto.length();i++ ) {
+		    	
 		    			    	
 		    			try{
 		    				
@@ -379,7 +379,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		    			} catch(IOException e) {
 		    			    System.out.println(e);
 		    			}
-		    		}
+		    		
 		    }
 		}, 0, 5, TimeUnit.HOURS); 
 		
