@@ -1,6 +1,7 @@
 package com.project.OPENWEATHER.StatsAndFilters;
 
 import org.json.JSONArray;
+
 import org.json.JSONObject;
 
 public class PeriodStatistics {
