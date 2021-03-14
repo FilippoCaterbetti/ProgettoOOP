@@ -233,9 +233,9 @@ public class Restcontroller {
 	 * con .*to.* per esempio cerchiamo tutte le città con all'interno la stringa to ovunque sia posizionata all'interno del nome
 	 * 
 	 * {
-     *		"regex" : ".*to.*"
+     *		"regex" : ".*to.*"   
 	 *	}
-	 * 
+	 * " (?i).*to.* " per case insensitive
 	 * @param body è il JSONObject 
 	 * @return il JSONObject con le statistiche richieste.
 	 * @throws FileNotFoundException
