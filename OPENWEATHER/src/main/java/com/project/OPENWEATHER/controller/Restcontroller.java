@@ -319,6 +319,10 @@ public class Restcontroller {
 			return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
 		
         }
+        catch (CitynotFoundException e) {
+        	
+			return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
+		}
         
         catch (NotAllowedPeriodException e) {
         	
