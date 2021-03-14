@@ -25,6 +25,7 @@ public class PeriodStatistics {
 				
 				oneDayVisibility = temp.getJSONArray(i);
 				
+				
 				//preimpostiamo dei valori predefiniti di max min affinchè sia più semplice trovare i relativi max e min
 
 				double average=0;

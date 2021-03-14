@@ -94,16 +94,16 @@ localhost:8080
 ```
 Le rotte disponibili sono:
 | Metodo      |   Rotta    |  Descrizione |
-|:---------:|:----------:|:----------:|
-|  GET  |   [/temp?city=Milan](#temp)  |    temperature delle prossime 24 ore    |
-|  GET  |   [/cities](#cities)  |    lista predefinita con alcune città consigliate    |
-|  GET  |  [/OpenWeather?city=Milan](#OpenWeather)  | temperature dei prossimi 5 giorni     |
-|  GET  |  [/FiveHoursInfo?city=Milan](#FiveHourInfo) |  salva ogni cnque ore le temperature della città    |
-|  POST  |  [/filters](#filters)  |   filtra le statistiche in base alle informazioni che si vogliono |
-|  POST  |   [/errors](#errors)  | filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione       |
-|  POST  |   [/stats](#stats)   | mostra la media della temperatura massima, minima, percepita e la media, la minima, la massima di 5 giorni, a seconda del periodo   |
-|  POST  |  [/findRegex](#regex) |   cercare una regex all'interno della lista delle città disponibili   |
-|  POST  |  [/statsHistory](#statsHistory)  |  filtra in base al periodo le statistiche sulle temperature della città  |
+|:---------:|:----------:|:----------|
+|  `GET`  |   [/temp?city=Milan](#temp)  |    Temperature delle prossime 24 ore    |
+|  `GET`  |   [/cities](#cities)  |    Lista predefinita con alcune città consigliate    |
+|  `GET`  |  [/OpenWeather?city=Milan](#OpenWeather)  | Temperature dei prossimi 5 giorni     |
+|  `GET`  |  [/FiveHoursInfo?city=Milan](#FiveHourInfo) |  Salva ogni cinque ore le temperature della città    |
+|  `POST`  |  [/filters](#filters)  |   Filtra le statistiche in base alle informazioni che si vogliono |
+|  `POST`  |   [/errors](#errors)  | Filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione  |
+|  `POST`  |   [/stats](#stats)   | Mostra la media della temperatura reale, massima, minima, percepita e la media, la minima, la massima di 5 giorni, a seconda del periodo   |
+|  `POST`  |  [/findRegex](#regex) | Cerca una regex all'interno della lista delle città disponibili   |
+|  `POST`  |  [/statsHistory](#statsHistory)  |  Filtra in base al periodo le statistiche sulle temperature della città  |
 
 <b name="GET"></b>
 ### Metodo GET
