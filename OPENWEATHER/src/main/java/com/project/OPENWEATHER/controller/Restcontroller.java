@@ -44,7 +44,7 @@ public class Restcontroller {
 	Statistics statistic = new Statistics();
 	
 	/**
-	 * Rotta GET che mostra le temperature di una città qualsiasi inserita dall'utente
+	 * Rotta GET che mostra le temperature di una città qualsiasi inserita dall'utente 
 	 *      
 	 *  localhost:8080/temp?name=Milano
 	 * 
