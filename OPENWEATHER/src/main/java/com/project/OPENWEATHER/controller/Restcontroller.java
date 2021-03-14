@@ -44,7 +44,7 @@ public class Restcontroller {
 	Statistics statistic = new Statistics();
 	
 	/**
-	 * Rotta  GET
+	 * Rotta GET che mostra le temperature di una città qualsiasi inserita dall'utente
 	 *      
 	 *  localhost:8080/temp?name=Milano
 	 * 
@@ -62,7 +62,7 @@ public class Restcontroller {
 	
 	
 	/**
-	 * Rotta  GET
+	 * Rotta GET che mostra la lista predefinita delle città 
 	 * @return un JSONArray contenente città consigliate
 	 */
 	@GetMapping(value="/cities")
@@ -94,8 +94,8 @@ public class Restcontroller {
 		
 	}
 	 /**
-	  *Rotta GET che salva ogni cnque ore le temperature della città.
-	  * 
+	 * Rotta GET che salva ogni cnque ore le temperature della città.
+	 * 
 	 *  @param name indica la città da cui vogliamo la temperatura
 	 * 	@return il file dove vengono salvati i dati.
 	 * 	@throws IOException per gli errori di output del file.
