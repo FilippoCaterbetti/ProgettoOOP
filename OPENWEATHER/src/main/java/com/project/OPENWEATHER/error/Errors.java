@@ -36,7 +36,7 @@ public class Errors{
 		
 		String cities = "";
 		
-		if(value.equals("&gt")) {
+		if(value.equals("$gt")) {
 			
 			for(int i=0; i < cityErrors.size(); i++) {
 				
@@ -44,8 +44,9 @@ public class Errors{
 				cityInfo = cityErrors.get(i);
 				int cityError = cityInfo.getInt("error");
 				
-				if (cityError > error)
+				if (cityError > error) {
 					cities += cityInfo.getString("Città") + " ";
+				}
 			}
 			
 			JSONObject max = new JSONObject();
@@ -53,8 +54,7 @@ public class Errors{
 			cityErrors.add(max);	
 		}
 		
-		else 
-			if(value.equals("&lt")) {
+		else if(value.equals("$lt")) {
 				
 			for(int i=0;i < cityErrors.size();i++) {
 				
@@ -62,34 +62,35 @@ public class Errors{
 				cityInfo = cityErrors.get(i);
 				int cityError = cityInfo.getInt("error");
 				
-				if (cityError < error)
+				if (cityError < error) {
 					cities += cityInfo.getString("Città") + " ";
+				}
 			}
 			
 			JSONObject min = new JSONObject();
 			min.put("minore"+ error, cities);
 			cityErrors.add(min);//associa alla città individuata il valore min	
-		}
-		else 
-			if(value.equals("=")) {
+		  }
+		
+		else if(value.equals("=")) {
 				
 			for(int i=0;i < cityErrors.size(); i++) {
 				
 				JSONObject cityInfo = new JSONObject();
 				cityInfo = cityErrors.get(i);
-				int cityError = cityInfo.getInt("error");
+				int cityError = cityInfo.getJSONObject("node").getString("nodeID");
 				
-				if (cityError == error)
+				if (cityError == error) {
 					cities += cityInfo.getString("Città")+ " ";
+				}
 			}
 			
 			JSONObject similar = new JSONObject();
 			similar.put("uguale"+ error,cities);
 			cityErrors.add(similar);
 				
-		}
-		
-		return cityErrors;
-	}
+		   }
+	    return cityErrors;
+	   }
+   }
 	
-}
