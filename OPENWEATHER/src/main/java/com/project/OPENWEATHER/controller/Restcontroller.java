@@ -164,7 +164,7 @@ public class Restcontroller {
             
         }
         
-        array2 = object.getJSONArray("parametri");
+        //array2 = object.getJSONArray("parametri");
         int error = object.getInt("error");
         String value = object.getString("value");
         int period = object.getInt("period");
