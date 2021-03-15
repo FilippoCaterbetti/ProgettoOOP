@@ -351,7 +351,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		
 		String report;
-		report = System.getProperty("user.dir")+"/"+name+".txt";
+		report = System.getProperty("user.dir") + "/" + name + ".txt";
 		File file = new File(report);
     
 		
@@ -397,19 +397,19 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	 * 
 	 * @param name è il nome della città di cui si vuole leggere lo storico.
 	 * @param choiche è la stringa che l'utente digita per scegliere se vuole le statistiche degli errori o solo le statistiche
-	 * @return il JSONArray che contiene tutte le informazioni sulla visibilità.
+	 * @return il JSONArray che contiene tutte le informazioni sulle temperature.
 	 * @throws IOException per gli errori di input da file.
 	 * @throws InvalidStringException 
 	 */
 	
-	public JSONArray readHistory(String name) throws IOException, InvalidStringException {
+	public JSONObject readHistory(String name) throws IOException, InvalidStringException {
 		
         String string = "";
 		
-		string = System.getProperty("user.dir")+"/temperature/" + name +".txt";
+		string = System.getProperty("user.dir") + "/temperature/" + name + ".txt";
 		
 			
-		String all;
+		String all = "";
 		/*
 		//Apriamo e leggiamo il file
 		List<Temperature> city = new ArrayList<>();
@@ -438,15 +438,16 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 			        sb.append(System.lineSeparator());
 			        line = br.readLine();
 			    }
+			    
 			    all = sb.toString();
 			} finally {
 				
 			    br.close();
 			}
 				
-			JSONArray array = new JSONArray(all);
+			JSONObject obj = new JSONObject(all);
 	
-			return array;
+			return obj;
 			
 	}
 	
@@ -486,12 +487,12 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 				throw new CitynotFoundException("La città inserita non è presente nello storico");
 
 			}
+		}
 			
 		if(period < 1 || period > 5) {
 			
-			throw new NotAllowedPeriodException(period + " è un periodo non valido. Inserisci un numero compreso tra 1 e 5 inclusi.");
+	       throw new NotAllowedPeriodException(period + " è un periodo non valido. Inserisci un numero compreso tra 1 e 5 inclusi.");
 
-			}
 		}
 		
 		if(!(value.equals("$gt") || value.equals("$lt") || value.equals("="))) {
@@ -508,30 +509,35 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		while(list.hasNext()) {
 			
 			JSONArray array = new JSONArray();
-			array = readHistory(list.next());
+			array = readHistory(list.next()).getJSONArray("OpenWeather");
+			
 			JSONArray tempInfo = new JSONArray();
 			
-			for(int i=0; i < array.length(); i++) {
+			 /*
+				JSONArray tempArray = new JSONArray ();
+				JSONObject obj = new JSONObject(array);
+				tempArray = obj.getJSONArray("OpenWeather");
+				*/
 				
 				JSONArray tempDay = new JSONArray();
-				
+				/*
 				JSONObject weather = new JSONObject();
-				weather = array.getJSONObject(i);
+				weather = array.getJSONObject(0);
 				
 				JSONArray temp = new JSONArray();
 				temp = weather.getJSONArray("OpenWeather");
+				*/
 				
-				
-				for(int k = 0; k < temp.length(); k++) {
+				for(int k = 0; k < array.length(); k++) {
 					
 					JSONObject visibility = new JSONObject();
 					JSONObject all = new JSONObject();
-					all = temp.getJSONObject(k);
+					all = array.getJSONObject(k);
 					
 					visibility.put("temp", all.get("temp"));
+					visibility.put("feels_like", all.get("feels_like"));
 					visibility.put("temp_max", all.get("temp_max"));
 					visibility.put("temp_min", all.get("temp_min"));
-					visibility.put("feels_like", all.get("feels_like"));
 					visibility.put("data", all.get("data"));
 					tempDay.put(visibility);
 					
@@ -539,8 +545,6 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 				
 				tempInfo.put(tempDay);
 				
-			}
-			
 			statisticArray.add(tempInfo);
 		}
 		
@@ -591,7 +595,9 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		while(pam1.hasNext()) {
 			
 			JSONArray arrayTemp = new JSONArray();
-			arrayTemp = readHistory(pam1.next());
+			JSONObject obj = new JSONObject();
+			obj = readHistory(pam1.next());
+			arrayTemp.put(obj);
 			tempInfo.add(arrayTemp);
 			
 		}
