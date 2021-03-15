@@ -13,11 +13,14 @@ public class Temperature implements  Cloneable { //JSONClass,
 	//Temperature
 	private double temp;
 	
-	//Maximum temperature at the moment of calculation
-	private double temp_max;
 	
 	//Minimum temperature at the moment of calculation
 	private double temp_min;
+		
+	//Maximum temperature at the moment of calculation
+	private double temp_max;
+	
+	
 	
 	//This temperature parameter accounts for the human perception of weather
 	private double feels_like;
@@ -37,6 +40,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	public Temperature() {
 		this.temp = 0;
 		this.temp_max = 0;
+		this.temp_avg = 0;
 		this.temp_min = 0;
 		this.feels_like = 0;
 		this.data = null;
@@ -50,7 +54,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	 * @param data
 	 * 
 	 */
-	public Temperature(double temp_max, double temp_min,double feels_like, double temp, String data) {
+	public Temperature( double temp, double feels_like, double temp_max, double temp_min, String data) {
 		
 		this.temp = temp;
 		this.feels_like = feels_like;
@@ -58,7 +62,16 @@ public class Temperature implements  Cloneable { //JSONClass,
 		this.temp_min = temp_min;
 		this.data = data;
 	}
-
+	
+public Temperature(double temp, double feels_like, double temp_max, double temp_min, double temp_avg,  String data) {
+		
+		this.temp = temp;
+		this.feels_like = feels_like;
+		this.temp_max = temp_max;
+		this.temp_min = temp_min;
+		this.temp_avg = temp_avg;
+		this.data = data;
+	}
 		
 	
 	/**
@@ -78,6 +91,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 	public Temperature(JSONObject temperature) {
 		
 		this.temp = Double.parseDouble(temperature.get("temp").toString());
+		this.feels_like = Double.parseDouble(temperature.get("feels_like").toString());
 		this.temp_max = Double.parseDouble(temperature.get("temp_max").toString());
 		this.temp_min = Double.parseDouble(temperature.get("temp_min").toString());	
 		this.temp_avg = ((temp_max+temp_min)/2);
@@ -97,6 +111,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 		t.put("feels_like", this.feels_like);
 		t.put("temp_max", this.temp_max);
 		t.put("temp_min", this.temp_min);
+		t.put("temp_avg", this.temp_avg);
 		t.put("data", this.data);
 
 		return t;
