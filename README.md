@@ -109,16 +109,16 @@ Le rotte disponibili sono:
 ### Metodo GET
 
 <b name="temp"></b>
-#### /temp
+### /temp
 
 <b name="cities"></b>
-#### /cities
+### /cities
 
 <b name="OpenWeather"></b>
-#### /OpenWeather
+### /OpenWeather
 
 <a name="FiveHourInfo"></a>
-#### /FiveHourInfo
+### /FiveHourInfo
 
 
 
@@ -129,7 +129,7 @@ Le rotte disponibili sono:
 
 
 <b name="errors"></b>
-#### /errors
+### /errors
 ```
 {
     "città": [
@@ -145,7 +145,7 @@ Le rotte disponibili sono:
  
  
  <b name="regex"></b>
-#### /findRegex
+### /findRegex
 Richiede un Body di questo tipo
 ```
 {
@@ -153,7 +153,7 @@ Richiede un Body di questo tipo
 }
 ```
 regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le città con all'interno quello sottostringa, usare la sintassi delle regex per qualsiasi tipo di ricerca
-  |    regex    |   descrizione  |
+  |    Regex    |   Descrizione  |
 |-------------|:---------:|
 | ` .*to  `  |   cerca tutte le parole che iniziano per *to* |
 | ` .*to.* ` |   cerca tutte le parole che hanno *to* all'interno della parola |
@@ -161,7 +161,7 @@ regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le cit
   
 
 <b name="stats"></b>
-#### /stats
+### /stats
 ```
 {
 	"città" : "Milano",
@@ -171,7 +171,7 @@ regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le cit
  	
 
 <b name="filters"></b>
-#### /filters
+### /filters
 ```
 {
     "città": [
@@ -186,7 +186,7 @@ regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le cit
 
 
 <b name="statsHistory"></b>
-#### /statsHistory
+### /statsHistory
 ```
 {
     "città": [
