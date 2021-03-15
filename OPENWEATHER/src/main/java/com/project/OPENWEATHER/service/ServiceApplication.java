@@ -145,7 +145,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	
 	/**
-	 * 
+	 * Serve per suggerire all'utente una lista di città con id e stato di appartenenza
 	 * 
 	 * @return restituisce il JSONArray contenente città da suggerire
 	 */
@@ -181,7 +181,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	
 	/**
-	 * Questo metodo prende le previsioni meteo future (temperatura massima, minima, media e percepita).
+	 * Questo metodo prende le previsioni meteo future (temperatura reale, massima, minima, media e percepita).
 	 * @param name è il nome della città di cui si vogliono conoscere le previsioni ristrette.
 	 * @return un vettore di tipo City che contiene tutte le informazioni richieste e anche le informazioni sulla città.
 	 * @throws ParseException 
