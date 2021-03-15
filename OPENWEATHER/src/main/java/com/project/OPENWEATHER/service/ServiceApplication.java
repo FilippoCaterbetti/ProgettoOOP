@@ -313,14 +313,16 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	public String save(String name) throws IOException, ParseException  {
 		
 		City city = getTempFutureApi(name);
+		JSONClass tojson = new JSONClass();
 		JSONObject obj = new JSONObject();
-		obj = city.toJSONObject();
+		obj = tojson.JSONClass(city);
+		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
 		LocalDateTime now = LocalDateTime.now();	//dtf.format(now)
 		
 		String s = name+ "_"+dtf.format(now);
 		String path;
-		path = System.getProperty("user.dir")+s+".txt";
+		path = System.getProperty("user.dir")+"\\"+s+".txt";
 		
 		try {
 			
@@ -330,7 +332,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		}
 		catch(IOException e){
 			
-			System.out.println("ERRORE di I/O"); 
+			System.out.println("ERRORE di I/O: "); 
 			System.out.println(e);
 		}
 		
