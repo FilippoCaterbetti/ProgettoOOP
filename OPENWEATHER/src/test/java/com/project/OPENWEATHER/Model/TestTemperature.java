@@ -22,7 +22,7 @@ class TestTemperature {
 		
 		@BeforeEach
 		void setUp() throws Exception {
-			number = new Temperature(30,0,15,17,"05-03-2021");
+			number = new Temperature(17,15,30,0,"15-03-2021");
 		}
 
 		
@@ -32,11 +32,13 @@ class TestTemperature {
 		
 		@Test
 		void toJSONObject() {
+		assertEquals(17D, number.toJSONObject().get("temp"));
+		assertEquals(15D, number.toJSONObject().get("feels_like"));
 		assertEquals(30D, number.toJSONObject().get("temp_max"));
 		assertEquals(0D, number.toJSONObject().get("temp_min"));
-		assertEquals(15D, number.toJSONObject().get("feels_like"));
-		assertEquals(17D, number.toJSONObject().get("temp"));
-		assertEquals("05-03-2021", number.toJSONObject().get("data"));
+		
+	
+		assertEquals("15-03-2021", number.toJSONObject().get("data"));
 	}
 		
 }
