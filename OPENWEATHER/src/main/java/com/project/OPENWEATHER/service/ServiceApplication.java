@@ -599,24 +599,24 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		int i = 0;
 		while(pam2.hasNext()) {
 			
-			PeriodStatistics stats = new PeriodStatistics();
+			PeriodStatistics periodStats = new PeriodStatistics();
 			JSONArray arrayStats = new JSONArray();
 			
 			if(period.equals("giornaliera")) {
 				
-				arrayStats = stats.DailyStats(pam2.next(),tempInfo.get(i));
+				arrayStats = periodStats.DailyStats(pam2.next(),tempInfo.get(i));
 
 				
 			}
 			else if(period.equals("settimanale")) {
 				
-				arrayStats = stats.OneWeekStats(pam2.next(),tempInfo.get(i));
+				arrayStats = periodStats.OneWeekStats(pam2.next(),tempInfo.get(i));
 
 				
 			}
 			else if(period.equals("mensile")) {
 				
-				arrayStats = stats.OneMonthStats(pam2.next(),tempInfo.get(i));
+				arrayStats = periodStats.OneMonthStats(pam2.next(),tempInfo.get(i));
 
 			}
 			else {
