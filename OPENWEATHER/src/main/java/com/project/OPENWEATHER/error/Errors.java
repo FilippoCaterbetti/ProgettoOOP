@@ -42,7 +42,7 @@ public class Errors{
 				
 				JSONObject cityInfo = new JSONObject();
 				cityInfo = cityErrors.get(i);
-				int cityError = cityInfo.getInt("error");
+				int cityError = cityInfo.getInt("errori testati ");
 				
 				if (cityError > error) {
 					cities += cityInfo.getString("Città") + " ";
@@ -50,7 +50,7 @@ public class Errors{
 			}
 			
 			JSONObject max = new JSONObject();
-			max.put("maggiore" + error, cities);
+			max.put("maggiore di " + error, cities);
 			cityErrors.add(max);	
 		}
 		
@@ -60,7 +60,7 @@ public class Errors{
 				
 				JSONObject cityInfo = new JSONObject();
 				cityInfo = cityErrors.get(i);
-				int cityError = cityInfo.getInt("error");
+				int cityError = cityInfo.getInt("errori testati ");
 				
 				if (cityError < error) {
 					cities += cityInfo.getString("Città") + " ";
@@ -68,7 +68,7 @@ public class Errors{
 			}
 			
 			JSONObject min = new JSONObject();
-			min.put("minore"+ error, cities);
+			min.put("minore di "+ error, cities);
 			cityErrors.add(min);//associa alla città individuata il valore min	
 		  }
 		
@@ -78,7 +78,7 @@ public class Errors{
 				
 				JSONObject cityInfo = new JSONObject();
 				cityInfo = cityErrors.get(i);
-				int cityError = cityInfo.getJSONObject("node").getString("nodeID");
+				int cityError = cityInfo.getInt("errori testati ");
 				
 				if (cityError == error) {
 					cities += cityInfo.getString("Città")+ " ";
@@ -86,10 +86,11 @@ public class Errors{
 			}
 			
 			JSONObject similar = new JSONObject();
-			similar.put("uguale"+ error,cities);
+			similar.put("uguale a "+ error,cities);
 			cityErrors.add(similar);
 				
 		   }
+		
 	    return cityErrors;
 	   }
    }
