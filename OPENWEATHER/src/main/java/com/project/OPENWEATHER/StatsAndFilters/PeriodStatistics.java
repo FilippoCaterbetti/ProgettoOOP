@@ -18,12 +18,16 @@ public class PeriodStatistics {
 			int i=0;
 			String date = "";
 			stats.put(city);
+			JSONObject obj = new JSONObject(temp);
+			JSONArray tempArray = obj.getJSONArray("OpenWeather");		
+			JSONObject sp = new JSONObject();
 			
 			while(i < temp.length()) {
 				
+							
 				JSONArray oneDayVisibility = new JSONArray();
 				
-				oneDayVisibility = temp.getJSONArray(i);
+				oneDayVisibility = tempArray.getJSONArray(i);
 				
 				
 				//preimpostiamo dei valori predefiniti di max min affinchè sia più semplice trovare i relativi max e min
@@ -83,6 +87,23 @@ public class PeriodStatistics {
 			
 			return stats;
 		}
+		
+		/*
+		 * 
+		 * JSONArray stats = new JSONArray();
+			int i=0;
+			String date = "";
+			stats.put(city);
+			
+			while(i < temp.length()) {
+				
+				JSONArray oneDayVisibility = new JSONArray();
+				
+				oneDayVisibility = temp.getJSONArray(i);
+				
+		 * 
+		 */
+		
 		
 		
 		/**
