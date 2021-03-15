@@ -22,11 +22,9 @@ public class ResearchDay {
 		
 		String date = "";
 		
-		JSONArray Day1 = new JSONArray();
-		Day1 = CityInfo.getJSONArray(0);//tutte le informazioni del 1° giorno salvate nello storico
-		JSONObject obj = new JSONObject();
-		obj = Day1.getJSONObject(0);
-		date = obj.getString("data");
+		JSONObject Day1 = new JSONObject();
+		Day1 = CityInfo.getJSONObject(0);     //tutte le informazioni della prima ora
+		date = Day1.getString("data");
 		
 		//firstDate = prende solo il giorno 'dd'
 		String firstDate="";
@@ -39,9 +37,9 @@ public class ResearchDay {
 		for(int j = 0; j < period; j++) {
 			
 			boolean control = true;
-			for(i=0; i < Day1.length() && control; i++) { //day1.length() = 4 blocchi di statistiche per 24 ore
+			for(i=0; i < CityInfo.length() && control; i++) { //day1.length() = 4 blocchi di statistiche per 24 ore
 			
-				String dates = Day1.getJSONObject(i).getString("data");//scorre le date dello storico
+				String dates = CityInfo.getJSONObject(i).getString("data");//scorre le date dello storico
 				
 				String justday = "";
 				justday += dates.charAt(8);
@@ -52,11 +50,10 @@ public class ResearchDay {
 					 control = false;		
 				}
 		    }   
+			// i è il valore che fa scattare al giorno successivo
+		
 			
-			JSONObject obj1 = new JSONObject();
-			obj1 = Day1.getJSONObject(i-1);//i-1(5-1) = 24 ore del primo giorno
-			
-			date = obj1.getString("data");
+			date = CityInfo.getJSONObject(i-1).getString("data");
 			
 			firstDate="";
 			firstDate += date.charAt(8);
@@ -64,11 +61,12 @@ public class ResearchDay {
 		
 		}
 		
+		i -=1;
 		JSONObject info = new JSONObject();
-		info.put("date", Day1.getJSONObject(i-1).getString("data"));
-		info.put("position", i-1);//posizione che ha nell'array
+		info.put("date", CityInfo.getJSONObject(i).getString("data"));
+		info.put("position", i);   //posizione che ha nell'array
 		
-		System.out.print(info);
+		//System.out.print(info);
 		return info;
 		
 	}
