@@ -82,7 +82,7 @@ public class ErrorCalculator extends ResearchDay {
 		    
 		    }
 		  try {
-			  completeError /= cont;
+			 //////OOOOOOOOOOd completeError /= cont;
 		  }
 		  catch (ArithmeticException e) {
 			  e.printStackTrace();
