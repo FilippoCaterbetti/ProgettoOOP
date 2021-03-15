@@ -14,24 +14,24 @@ import org.json.JSONObject;
  */
 public class Errors{
 
-/**
- * Costruttore della classe
- */
-	public Errors() {
+	/**
+	 * Costruttore della classe
+	 */
+		public Errors() {
 		
 	}
 	
-/** 
-* Questo metodo filtra le città in base alla soglia di errore che l'utente inserisce 
-* in base alla stringa value, il metodo troverà le città che hanno errore maggiore, 
-* minore o uguale alla soglia di errore inserita dall'utente.
-* 
-* @param cityErrors ArrayList di JSONObject, ciascuno dei quali contiene il nome delle città e il relativo errore.
-* @param error rappresenta la soglia di errore immessa dall'utente.
-* @param value può assumere i valori "&gt","&lt" e "=" a seconda che l'utente voglia sapere quali città abbiano un
-*        errore maggiore, minore o uguale 
-*/
-	
+	/** 
+	* Questo metodo filtra le città in base alla soglia di errore che l'utente inserisce 
+	* in base alla stringa value, il metodo troverà le città che hanno errore maggiore, 
+	* minore o uguale alla soglia di errore inserita dall'utente.
+	* 
+	* @param cityErrors ArrayList di JSONObject, ciascuno dei quali contiene il nome delle città e il relativo errore.
+	* @param error rappresenta la soglia di errore immessa dall'utente.
+	* @param value può assumere i valori "&gt","&lt" e "=" a seconda che l'utente voglia sapere quali città abbiano un
+	*        errore maggiore, minore o uguale 
+	*/
+		
 	public ArrayList<JSONObject> ErrorFilter(ArrayList<JSONObject> cityErrors, int error, String value) {
 		
 		String cities = "";
