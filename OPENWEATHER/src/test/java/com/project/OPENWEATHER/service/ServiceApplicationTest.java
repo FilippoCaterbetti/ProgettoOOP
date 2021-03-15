@@ -54,7 +54,7 @@ public class ServiceApplicationTest {
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		String today = date.format(new Date());
 		
-		String path = System.getProperty("user.dir") +name+"_"+today+ ".txt";
+		String path = System.getProperty("user.dir") +"\\"+name+"_"+today+ ".txt";
 		
         assertEquals(path,service.save(name));
         
@@ -87,7 +87,7 @@ public class ServiceApplicationTest {
     @DisplayName("Corretta generazione dell'eccezione EmptyStringException.")
     void readHistory2() {
 	
-    	names.add("Torino");
+    	names.add("Ancona");
         names.add("");
     	
         EmptyStringException e = assertThrows(EmptyStringException.class, () -> {service.HistoryOfError(names,1,"max",1);});
