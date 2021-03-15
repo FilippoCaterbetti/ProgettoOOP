@@ -34,6 +34,7 @@ public class ErrorCalculator extends ResearchDay {
 		
 		Iterator<JSONArray> tempInfoIt = tempInfo.iterator();
 		Iterator<String> citiesIt = cities.iterator();
+		String s = "";
 		
 		while(tempInfoIt.hasNext() && citiesIt.hasNext()) {
 			
@@ -52,8 +53,9 @@ public class ErrorCalculator extends ResearchDay {
 			
 			JSONObject information = new JSONObject();
 			information = researchDay(cityInfo,period);
-		    String startDay = information.getString("date");
+		    String startDay = information.getString("data");
 		    int startPosition = information.getInt("position");
+		    
 		    int endPosition = researchDay(cityInfo, period + 1).getInt("position");
 		    
 		    while(startPosition < endPosition) {
@@ -66,7 +68,7 @@ public class ErrorCalculator extends ResearchDay {
 		    		if(startDay.equals(tempStats.getString("data"))) {
 		    			
 		    			
-		    			int errore = (infoTempDayOne.getJSONObject(startPosition).getInt("temp")-tempStats.getInt("temp"));
+		    			double errore = (infoTempDayOne.getJSONObject(startPosition).getDouble("temp")-tempStats.getDouble("temp"));
 		    			
 		    			if(errore == 0) {
 		    				guessPrediction++;
@@ -74,15 +76,16 @@ public class ErrorCalculator extends ResearchDay {
 		    			completeError += errore;
 		    			cont++;
 		    		}
-		    		
+		    		s = startDay;
 		    	}
 		    	
 		    	startPosition++;
-		    	startDay = infoTempDayOne.getJSONObject(startPosition).getString("data");
+		    	
+		    	startDay = s;
 		    
 		    }
 		  try {
-			 //////OOOOOOOOOOd completeError /= cont;
+			 completeError /= cont;
 		  }
 		  catch (ArithmeticException e) {
 			  e.printStackTrace();
