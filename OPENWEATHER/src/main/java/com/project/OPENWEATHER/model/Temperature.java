@@ -63,7 +63,7 @@ public class Temperature implements  Cloneable { //JSONClass,
 		this.data = data;
 	}
 	
-public Temperature(double temp, double feels_like, double temp_max, double temp_min, double temp_avg,  String data) {
+	public Temperature(double temp, double feels_like, double temp_max, double temp_min, double temp_avg,  String data) {
 		
 		this.temp = temp;
 		this.feels_like = feels_like;
