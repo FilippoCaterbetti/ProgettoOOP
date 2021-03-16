@@ -58,6 +58,7 @@ public class Statistics extends ErrorCalculator{
          temp_min_avg += city.getTemps().get(i).getTemp_min();
          feels_like_avg += city.getTemps().get(i).getFeels_like();
          real_temp_avg += city.getTemps().get(i).getTemp(); 
+         
          if(city.getTemps().get(i).getTemp()>max_temp) {
         	 
         	 max_temp = city.getTemps().get(i).getTemp();
@@ -126,6 +127,8 @@ public class Statistics extends ErrorCalculator{
      object.put("City", next);
      object.put("Temp_Max Average", temp_max_avg);
      object.put("Temp_Min Average", temp_min_avg);
+     object.put("Real_temp Average", real_temp_avg);
+     object.put("Feels_like Average", feels_like_avg);
      object.put("Temp and Feels like data", temp_data);
      return object;
  
@@ -223,6 +226,8 @@ public class Statistics extends ErrorCalculator{
 	     object.put("City", next);
 	     object.put("Temp_Max Average", temp_max_avg);
 	     object.put("Temp_Min Average", temp_min_avg);
+	     object.put("Real_temp Average", real_temp_avg);
+	     object.put("Feels_like Average", feels_like_avg);
 	     object.put("Temp and Feels like data", temp_data);
 	     return object;
 	 
