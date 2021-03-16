@@ -96,10 +96,10 @@ localhost:8080
 Le rotte disponibili sono:
 | Metodo      |   Rotta    |  Descrizione |
 |:---------:|:----------:|:----------|
-|  `GET`  |   [/temp?name=Milan](#temp)  |    Temperature delle prossime 24 ore    |
+|  `GET`  |   [/temp?name=Ancona](#temp)  |    Temperature delle prossime 24 ore    |
 |  `GET`  |   [/cities](#cities)  |    Lista predefinita con alcune città consigliate    |
-|  `GET`  |  [/OpenWeather?name=Milan](#OpenWeather)  | Temperature dei prossimi 5 giorni     |
-|  `GET`  |  [/FiveHoursInfo?name=Milan](#FiveHourInfo) |  Salva ogni cinque ore le temperature della città    |
+|  `GET`  |  [/OpenWeather?name=Ancona](#OpenWeather)  | Temperature dei prossimi 5 giorni     |
+|  `GET`  |  [/FiveHoursInfo?name=Ancona](#FiveHourInfo) |  Salva ogni cinque ore le temperature della città    |
 |  `POST`  |  [/filters](#filters)  |   Filtra le statistiche in base alle informazioni che si vogliono |
 |  `POST`  |   [/errors](#errors)  | Filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione  |
 |  `POST`  |   [/stats](#stats)   | Mostra la media della temperatura reale, massima, minima, percepita e la media, la minima, la massima di 5 giorni, a seconda del periodo   |
