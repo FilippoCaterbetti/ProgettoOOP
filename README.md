@@ -149,12 +149,12 @@ Le rotte disponibili sono:
 Richiede un Body di questo tipo
 ```
 {
-   	"regex" : "a.*"
+   	"regex" : "A.*"
 }
 ```
-regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le città con all'interno quello sottostringa, usare la sintassi delle regex per qualsiasi tipo di ricerca
+regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le città con all'interno quello sottostringa, usare la sintassi delle regex per qualsiasi tipo di ricerca, ricordiamo che è case sensitive, se vogliamo renderlo insensitive usare la sintassi come sotto riportata
   |    Regex    |   Descrizione  |
-|-------------|:---------:|
+|:-----------:|:---------:|
 | ` .*to  `  |   cerca tutte le parole che iniziano per *to* |
 | ` .*to.* ` |   cerca tutte le parole che hanno *to* all'interno della parola |
 |  ` (?i).*to.*  ` |  per renderlo case insensitive   |
