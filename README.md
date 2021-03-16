@@ -33,14 +33,15 @@ Una volta clonata può essere importata su un ambiente di sviluppo Java (come [E
 ---
 <a name="guida"></a>
 ## 2. Guida all'uso
-É necessario installare un json-simple-1.1.1.jar disponibile [qui](http://www.java2s.com/Code/Jar/j/Downloadjsonsimple111jar.htm) e aggiungerlo alla libreria del progetto.
+É necessario installare un json-simple-1.1.1.jar disponibile [qui](http://www.java2s.com/Code/Jar/j/Downloadjsonsimple111jar.htm) e aggiungerlo alla libreria del progetto su *Build path* -> *Configure build path* -> *Libraries* -> *Add External Jar* .
 
-Per un'esecuzione più veloce del programma, la ricerca della regex nella lista delle città si avvierà su un file JSON che deve essere salvato nella cartella del progetto e inserito all'interno con nome:
+Per un'esecuzione più veloce del programma, la ricerca della regex nella lista delle città si avvierà su un file JSON che deve essere salvato all'interno della cartella  *ProgettoOOP\OPENWEATHER*  del progetto e inserito all'interno con nome:
 
 >city.list.json 
 
 Questo file può essere scaricato dal sito ufficiale [qui](https://bulk.openweathermap.org/sample/) . Il file che ci serve è nominato *city.list.json.gz*
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/794fe3f3a130d005049a36febe5b3118b3502047/UML/indexOfSimpleJson.png?raw=true" width="500" height="350"/></h1>
+IL file è stato inserito zippato per via delle dimensioni ( circa 40 MB ) che superano il limite imposto da GitHub di 25 MB
 
 L'unità di misura impostata dal programma è il grado Celsius.
 Se si vuole cambiare unità di misura basterà variare il valore della stringa `unit` [qui](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/31403def4d639860b192962996a7306ad26d0939/OPENWEATHER/src/main/java/com/project/OPENWEATHER/service/ServiceApplication.java) .
