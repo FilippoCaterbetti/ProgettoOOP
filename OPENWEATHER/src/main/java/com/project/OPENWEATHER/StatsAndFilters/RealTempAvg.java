@@ -52,8 +52,8 @@ public class RealTempAvg implements FiltersStatistics{
 					avgRealTemp.add(ave);
 					
 					JSONObject obj = new JSONObject();
-					obj.put("name:", cities.get(i)); 
-					obj.put("temp_avg:",ave);
+					obj.put("Name:", cities.get(i)); 
+					obj.put("real_temp_avg:",ave);
 					objects.add(obj);
 					array.put(obj);
 					
@@ -94,8 +94,8 @@ public class RealTempAvg implements FiltersStatistics{
 					averageFeelsLike.add(ave);
 					
 					JSONObject obj = new JSONObject();
-					obj.put("name:",cities.get(i));
-					obj.put("temp_avg:",ave);
+					obj.put("Name:",cities.get(i));
+					obj.put("real_temp_avg:", ave);
 					objects.add(obj);
 					array.put(obj);
 					

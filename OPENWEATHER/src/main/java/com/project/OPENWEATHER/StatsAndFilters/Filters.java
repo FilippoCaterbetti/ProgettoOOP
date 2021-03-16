@@ -44,7 +44,7 @@ public class Filters {
 	 * @throws ParseException 
 	 * @throws IOException 
 	 * @throws MalformedURLException 
-	 * @throws NotAllowedValueException 	 * 
+	 * @throws NotAllowedValueException 	  
 	 */
 	
 	public JSONArray analyze() throws NotAllowedPeriodException, NotAllowedParamException, MalformedURLException, IOException, ParseException, NotAllowedValueException {

@@ -50,7 +50,7 @@ public class FeelsLikeAvg implements FiltersStatistics{
 			avgFeelsLike.add(ave);
 			
 			JSONObject obj = new JSONObject();
-			obj.put("cityName:", cities.get(i)); 
+			obj.put("Name:", cities.get(i)); 
 			obj.put("feels_like_average:",ave);
 			objects.add(obj);
 			array.put(obj);
@@ -94,7 +94,7 @@ public class FeelsLikeAvg implements FiltersStatistics{
 			averageFeelsLike.add(ave);
 			
 			JSONObject obj = new JSONObject();
-			obj.put("name:",cities.get(i));
+			obj.put("Name:",cities.get(i));
 			obj.put("feels_like_avg:",ave);
 			objects.add(obj);
 			array.put(obj);
