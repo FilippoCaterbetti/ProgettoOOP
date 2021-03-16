@@ -50,7 +50,7 @@ public class TempMinAvg implements FiltersStatistics{
 							avgMinTemp.add(ave);
 							
 							JSONObject obj = new JSONObject();
-							obj.put("name:", cities.get(i)); 
+							obj.put("Name:", cities.get(i)); 
 							obj.put("temp_min_avg:",ave);
 							objects.add(obj);
 							array.put(obj);
@@ -92,7 +92,7 @@ public class TempMinAvg implements FiltersStatistics{
 							avgMinTemp.add(ave);
 							
 							JSONObject obj = new JSONObject();
-							obj.put("name:",cities.get(i));
+							obj.put("Name:",cities.get(i));
 							obj.put("temp_min_avg:",ave);
 							objects.add(obj);
 							array.put(obj);
