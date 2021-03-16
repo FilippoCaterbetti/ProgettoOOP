@@ -60,7 +60,7 @@ public class TempMaxAvg implements FiltersStatistics{
 					avgMaxTemp.add(ave);
 					
 					JSONObject obj = new JSONObject();
-					obj.put("city:", cities.get(i)); 
+					obj.put("Name:", cities.get(i)); 
 					obj.put("temp_max_avg:",ave);
 						
 					objects.add(obj);
@@ -105,7 +105,7 @@ public class TempMaxAvg implements FiltersStatistics{
 						avgMaxTemp.add(ave);
 						
 						JSONObject obj = new JSONObject();
-						obj.put("name:",cities.get(i));
+						obj.put("Name:",cities.get(i));
 						obj.put("temp_max_avg:",ave);
 						objects.add(obj);
 						array.put(obj);
