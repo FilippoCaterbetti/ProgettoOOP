@@ -62,8 +62,6 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		
 		JSONObject obj;
 		
-		// http://api.openweathermap.org/data/2.5/forecast?q=Milan&appid=069782b0f7fc9729e6c7151ffd1448ed
-		// http://api.openweathermap.org/data/2.5/forecast?q=Milan&units=metric&appid=069782b0f7fc9729e6c7151ffd1448ed
 		/**
 		 * Questo serve per avere le temperature in gradi centigradi
 		 * Per la temperatura in Fahrenheit utilizzare &units=imperial
@@ -86,6 +84,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	/**
 	 * 
 	 * Questo metodo utilizza getCityWeather per andare a prendere i dati sulle varie temperature della città.
+	 * 
 	 * @param name è il nome della città
 	 * @return restituisce il JSONArray contente la temperatura reale 
 	 * 
@@ -148,7 +147,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	/**
 	 * Serve per suggerire all'utente una lista di città con id e stato di appartenenza
 	 * 
-	 * @return restituisce il JSONArray contenente città da suggerire
+	 * @return restituisce il JSONArray contenente le città da suggerire
 	 */
 	public JSONArray listOfCities() {	
 		String name;
@@ -183,11 +182,11 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	/**
 	 * Questo metodo prende le previsioni meteo future (temperatura reale, massima, minima, media e percepita).
-	 * @param name è il nome della città di cui si vogliono conoscere le previsioni ristrette.
+	 * 
+	 * @param name è il nome della città di cui si vogliono conoscere le previsioni future.
 	 * @return un vettore di tipo City che contiene tutte le informazioni richieste e anche le informazioni sulla città.
-	 * @throws ParseException 
-	 * @throws IOException 
-	 * @throws MalformedURLException 
+	 * @throws IOException per errori di input e output 
+	 * @throws MalformedURLException per errore di url
 	 */
 	
 	public City getTempFutureApi(String name) {
@@ -227,10 +226,11 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	}
 
 	/**
-	 * Questo metodo serve per ottenere le informazioni sulla città da OpenWeather. Viene richiamato da
-	 * getCityWeatherRistrictfromApi(String name).
+	 * Questo metodo serve per ottenere le informazioni sulla città dal sito di OpenWeather. 
+	 * Viene richiamato da getTempFutureApi (String name).
+	 * 
 	 * @param nome della città.
-	 * @return un oggetto di tipo città popolato delle informazioni sulla città.
+	 * @return un oggetto di tipo City con le informazioni sulla città.
 	 */
 	public City getCityInfofromApi(String name) {
 		
@@ -259,13 +259,13 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	
 	/**
-	 * Metedo per la ricerca delle regex
+	 * Metedo per la ricerca della regex
 	 * 
 	 * @param regex indica la regex da cercare 
 	 * @return JSONArray con all0interno la lista delle città con all'interno la regex richiesta
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 * @throws ParseException
+	 * @throws FileNotFoundException se il file non viene trovato
+	 * @throws IOException per errore di input e output
+	 * @throws ParseException per errore di parsing
 	 * 
 	 */
 	
@@ -275,7 +275,7 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		List<City> city = new ArrayList<>();
 		String path = System.getProperty("user.dir")+"/city.list.json";
 		ObjectMapper mapper = new  ObjectMapper();
-		city = mapper.readValue(new File(path), new TypeReference<ArrayList<City>>() {}); //converte tutto il json in array list di oggetti
+		city = mapper.readValue(new File(path), new TypeReference<ArrayList<City>>() {}); //converte tutto il json in un arrayList di oggetti
 		
 		List<String> name = new ArrayList<String>();
 		for (City o : city){
@@ -302,11 +302,12 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	
 	/**
-	 * Questo metodo ci serve per andare a salvare le temperature  
-	 * dei 5 giorni successivi e le salva in uno storico.
+	 * Questo metodo serve per andare a salvare in uno storico le temperature  
+	 * dei 5 giorni successivi .
+	 * 
 	 * @param nome della città.
-	 * @return file dove vengono salvate le informazioni.
-	 * @throws ParseException 
+	 * @return il path file dove vengono salvate le informazioni.
+	 * @throws ParseException  per errore di parsing
 	 */
 	
 	public String save(String name) throws IOException, ParseException  {
@@ -341,7 +342,8 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	/**
 	 * 
-	 * Questo metodo richiama x e salva le previsioni ogni 5 ore.
+	 * Questo metodo salva le previsioni ogni 5 ore.
+	 * 
 	 * @param name è il nome della città
 	 * @return una stringa contenente il path del file salvato.
 	 * 
@@ -392,13 +394,12 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	}	
 	
 	/**
-	 * Questo metodo legge lo storico della città passata in ingresso.
+	 * Questo metodo legge lo storico della città inserita dall'utente.
 	 * 
 	 * @param name è il nome della città di cui si vuole leggere lo storico.
-	 * @param choiche è la stringa che l'utente digita per scegliere se vuole le statistiche degli errori o solo le statistiche
-	 * @return il JSONArray che contiene tutte le informazioni sulle temperature.
+	 * @return il JSONObject che contiene tutte le informazioni sulle temperature.
 	 * @throws IOException per gli errori di input da file.
-	 * @throws InvalidStringException 
+	 * @throws InvalidStringException per errore di stringa
 	 */
 	
 	public JSONObject readHistory(String name) throws IOException, InvalidStringException {
@@ -453,23 +454,23 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 
 
 	/**
-	 * Questo metodo serve per raccogliere le informazioni dallo storico di ogni città passata in ingresso 
-	 * e richiama altri metodi che servono per leggere lo storico stesso e metodi per calcolare statistiche e filtrarle.
+	 * Questo metodo, utilizzando le informazioni dello storico e chiamando il metodo Calculate della classe Error Calculator,
+	 * restituisce l'errore della città inserita dall'utente
 	 * 
 	 * @param names contiene i nomi di tutte le città su cui si vogliono fare statistiche sulla soglia di
 	 *        errore e applicare i filtri.
 	 * @param error è l'intero che rappresenta la soglia con cui si vuole filtrare.
-	 * @param value esprime il filtro che si vuole applicare, cioè se si vuole sapere quali città hanno un errore maggiore
-	 *        o minore dell'intero error che è stato inserito. Le stringhe ammesse sono: "$lt", "$gt" e "=".
-	 * @param period rappresenta i giorni di predizione (da 1 a 5 inclusi).
-	 * @return restituisce l'ArrayList di JSONObject filtrati secondo i filtri indicati.
-	 * @throws EmptyStringException se almeno uno dei nomi inseriti è uguale alla stringa vuota.
-	 * @throws CityNotFoundException se l'utente ha inserito una città di cui non è presente lo storico. Le stringhe ammesse
-	 *         sono: "Ancona","Milano","Roma","Bologna", "Parigi".
-	 * @throws WrongPeriodException se l'utente ha inserito un numero che non è compreso tra 1 e 5 (inclusi).
-	 * @throws WrongValueException se l'utente ha inserito una stringa non ammessa per il value.
+	 * @param value esprime il filtro che si vuole applicare, cioè se si vuole sapere quali città hanno un errore maggiore,
+	 *  minore o uguale dell'intero error che è stato inserito. Le stringhe ammesse sono: "$lt", "$gt" e "=".
+	 * @param period rappresenta i giorni di predizione ( 1 o 5 ).
+	 * @return restituisce un ArrayList di JSONObject filtrati 
+	 * @throws EmptyStringException se uno dei nomi inseriti è una stringa vuota.
+	 * @throws CitynotFoundException se l'utente ha inserito una città di cui non è presente lo storico. Le stringhe ammesse
+	 *         sono: "Ancona","Milano","Torino","Bologna".
+	 * @throws NotAllowedPeriodException se l'utente ha inserito un numero che non è compreso tra 1 e 5 (inclusi).
+	 * @throws NotAllowedValueException se l'utente ha inserito una stringa non ammessa per il value.
 	 * @throws IOException se si verificano problemi nella lettura del file.
-	 * @throws InvalidStringException 
+	 * @throws InvalidStringException per eccezioni di stringa
 	 */
 	
 	public ArrayList<JSONObject> HistoryOfError(ArrayList<String> names ,int error, String value,int period) throws EmptyStringException, CitynotFoundException, NotAllowedPeriodException, NotAllowedValueException, IOException, InvalidStringException {
@@ -556,17 +557,18 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 	
 	
 	/**
-	 * Questo metodo va a richiamare readHistory per leggere i file su cui sono salvate le informazioni relative 
-	 * alle temperature per 1 giorno/1 settimana/1mese. Dopo aver salvato in un ArrayList di JSONArray le informazioni di ogni città, 
-	 * lo passa al metodo che serve per calcolare le statistiche sulle temperature.
+	 * Questo metodo dopo aver letto i file su cui sono salvate le 
+	 * temperature per 1 giorno, 1 settimana o 1 mese,
+	 * salva in un ArrayList di JSONArray le informazioni richieste di ogni città, 
+	 * e lo passa al metodo per calcolare le statistiche.
 	 * 
-	 * @param cities rappresenta i nomi delle città su cui si vogliono fare statistiche.
-	 * @param period rappresenta il periodo su cui si vuole fare la statistica.
-	 * @throws EmptyStringException se almeno una delle stringhe immesse è vuota.
-	 * @throws CityNotFoundException se la città immessa non è una tra quelle indicate sopra.
-	 * @throws WrongPeriodException se viene inserita una stringa errata per period.
-	 * @throws IOException se si verifica un errore di lettura del file.
-	 * @throws InvalidStringException 
+	 * @param cities rappresenta le città inserite
+	 * @param period rappresenta il periodo di cui si vuole  la statistica.
+	 * @throws EmptyStringException se la stringa è vuota.
+	 * @throws CitynotFoundException se la città inserita non è tra quelle indicate
+	 * @throws NotAllowedPeriodException se viene inserita una stringa errata per period.
+	 * @throws IOException per errori di input e output
+	 * @throws InvalidStringException per eccezioni delle stringhe
 	 */
 	
 	public ArrayList<JSONArray> PeriodHistory(ArrayList<String> cities, String period) 
