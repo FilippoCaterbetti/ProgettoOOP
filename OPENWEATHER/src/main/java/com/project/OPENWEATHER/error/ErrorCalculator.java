@@ -30,7 +30,7 @@ public class ErrorCalculator extends ResearchDay {
 	 */
 	public ArrayList<JSONObject> calculate(ArrayList<String> cities,ArrayList<JSONArray> tempInfo,int error,String value,int period) {
 		
-		ArrayList<JSONObject> acceptableCities = new ArrayList<JSONObject> ();
+		ArrayList<JSONObject> tester = new ArrayList<JSONObject> ();
 		
 		Iterator<JSONArray> tempInfoIt = tempInfo.iterator();
 		Iterator<String> citiesIt = cities.iterator();
@@ -85,9 +85,11 @@ public class ErrorCalculator extends ResearchDay {
 		    
 		    }
 		  try {
+			  
 			 completeError /= cont;
 		  }
 		  catch (ArithmeticException e) {
+			  
 			  e.printStackTrace();
 		  }
 		  
@@ -95,16 +97,16 @@ public class ErrorCalculator extends ResearchDay {
             errorInfo.put("errori testati ", completeError);
             errorInfo.put("previsioni azzeccate su "+ cont, guessPrediction);
             errorInfo.put("Città", citiesIt.next());
-            acceptableCities.add(errorInfo);
+            tester.add(errorInfo);
            
            
         }
        
         Errors filter = new Errors();
        
-        acceptableCities = filter.ErrorFilter(acceptableCities,error,value);
+        tester = filter.ErrorFilter(tester,error,value);
 		
-		return acceptableCities;
+		return tester;
 	}
 
 	
