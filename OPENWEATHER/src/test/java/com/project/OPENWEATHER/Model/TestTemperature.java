@@ -17,28 +17,39 @@ import com.project.OPENWEATHER.model.City;
 import com.project.OPENWEATHER.model.Temperature;
 
 class TestTemperature {
-	
-	private Temperature number;		
-		
-		@BeforeEach
-		void setUp() throws Exception {
-			number = new Temperature(17,15,30,0,"15-03-2021");
-		}
 
-		
-		@AfterEach
-		void tearDown() throws Exception {
-		}
-		
-		@Test
-		void toJSONObject() {
+	private Temperature number;
+
+	/**
+	 * Inizializza i componenti necessari a testare i metodi.
+	 * 
+	 * @throws java.lang.Exception
+	 */
+	@BeforeEach
+	void setUp() throws Exception {
+		number = new Temperature(17, 15, 30, 0, "15-03-2021");
+	}
+
+	/**
+	 * Serve per distruggere ciò che è stato inizializzato dal metodo setUp.
+	 * 
+	 * @throws java.lang.Exception
+	 */
+	@AfterEach
+	void tearDown() throws Exception {
+	}
+
+	/*
+	 * serve per controllare se i parametri inseriti sono giusti
+	 */
+	@Test
+	void toJSONObject() {
 		assertEquals(17D, number.toJSONObject().get("temp"));
 		assertEquals(15D, number.toJSONObject().get("feels_like"));
 		assertEquals(30D, number.toJSONObject().get("temp_max"));
 		assertEquals(0D, number.toJSONObject().get("temp_min"));
-		
-	
+
 		assertEquals("15-03-2021", number.toJSONObject().get("data"));
 	}
-		
+
 }
