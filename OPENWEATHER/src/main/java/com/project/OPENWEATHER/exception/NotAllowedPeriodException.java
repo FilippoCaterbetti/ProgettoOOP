@@ -9,22 +9,20 @@ import java.lang.Exception;
 
 public class NotAllowedPeriodException extends Exception {
 	String error;
-	
-	
+
 	/**
 	 * @param error è il messaggio di errore.
 	 */
 	public NotAllowedPeriodException(String error) {
-		
-		this.error= error;
+
+		this.error = error;
 	}
-	
-	
+
 	/**
 	 * @return String con messaggio di errore
 	 */
 	public String getError() {
-		
+
 		return error;
 	}
 }
