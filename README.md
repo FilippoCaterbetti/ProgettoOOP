@@ -110,19 +110,25 @@ Le rotte disponibili sono:
 ### Metodo GET
 
 <b name="temp"></b>
-### /temp
+### /temp?name=
+Rotta GET che mostra le temperature attuale e delle prossime 24 ore di una città qualsiasi inserita dall'utente 
 
+---
 <b name="cities"></b>
 ### /cities
+Rotta GET che mostra la lista predefinita delle città, se si vuole modificare le città basterà cambiare l'aarray di stringhe e la rotta troverà automaticamente tutti i dati  necessari
 
+---
 <b name="OpenWeather"></b>
-### /OpenWeather
+### /OpenWeather?name=
+Rotta  GET che mostra le temperature future dei 5 giorni successivi della città inserita (temperatura reale, massima, minima, percepita e media)
 
+---
 <a name="FiveHourInfo"></a>
-### /FiveHourInfo
+### /FiveHourInfo?name=
+Rotta GET che salva ogni cnque ore le temperature della città inserita dall'utente
 
-
-
+---
 <a name="POST"></a>
 ### Metodo POST
 
@@ -131,6 +137,9 @@ Le rotte disponibili sono:
 
 <b name="errors"></b>
 ### /errors
+Rotta POST che filtra le statistiche sulle temperature di una o più città in base ad una soglia di errore e ai giorni di predizione (da 1 a 5 giorni successivi)
+L'utente deve inserisce un Body di questo tipo:
+
 ```
 {
     "città": [
@@ -143,6 +152,14 @@ Le rotte disponibili sono:
      "period": 3    
  }
  ```
+ Il value può essere di questo tipo
+ |    Value    |   Significato  |
+|:-----------:|:---------:|
+| ` $gt `  |   > |
+| ` =  ` |   = |
+|  ` $lt  ` | <   |
+  
+ ---
  
  
  <b name="regex"></b>
@@ -160,19 +177,25 @@ regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le cit
 | ` .*to.* ` |   cerca tutte le parole che hanno *to* all'interno della parola |
 |  ` (?i).*to.*  ` |  per renderlo case insensitive   |
   
+  ---
 
 <b name="stats"></b>
 ### /stats
+Rotta POST che mostra la media della temperatura massima, minima, percepita e la media, la minima, la massima di 5 giorni, a seconda del periodo (da oggi a 5 giorni )
 ```
 {
 	"città" : "Milano",
 	"period" : "oggi"
 }
 ```
- 	
+Il period può essere `oggi` per le statistiche giornaliere o `5 giorni` / `cinque giorni` per le statistiche dei prossimi cinque giorni
+
+---
 
 <b name="filters"></b>
 ### /filters
+Rotta  POST che filtra le statistiche in base alle informazioni che si vogliono
+Richiesto un Body di questo tipo:
 ```
 {
     "città": [
@@ -184,10 +207,19 @@ regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le cit
     "param" : "temp_max"
 }
 ```
+|    param disponibili    |   Period disponibili  |
+|:-----------:|:---------:|
+| ` temp_max `  |   ` 1 ` |
+| ` temp_min ` |   ` 5 ` |
+|  ` feels_like ` | /  |
+|  ` temp ` | /  |
 
+---
 
 <b name="statsHistory"></b>
 ### /statsHistory
+Rotta di tipo POST che filtra, in base al periodo, le statistiche sulle temperature di una o più città
+Il Body deve essere di questo tipo: 
 ```
 {
     "città": [
@@ -198,8 +230,15 @@ regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le cit
     "period": "giornaliero"
 }
 ```
+ |    Città disponibili    |   Period disponibili  |
+|:-----------:|:---------:|
+| ` Ancona `  |   ` giornaliera ` |
+| ` Milano ` |   ` settimanale ` |
+|  ` Torino ` | ` mensile `   |
+|  ` Bologna ` | /  |
 
 ---
+
 <a name="test"></a>
 ## 7. Test
 Sono stati implementati diversi test per controllare la correttezza dell'applicazione. Sono disponibili [qui](https://github.com/FilippoCaterbetti/ProgettoOOP/tree/main/OPENWEATHER/src/test/java/com/project/OPENWEATHER)
