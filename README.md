@@ -75,6 +75,29 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 
 <a name="classi"></a>
 ### 4.2 Diagramma delle classi
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class.PNG?raw=true"/></h1>
+
+main
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(main).PNG?raw=true"/></h1>
+
+model
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(model).PNG?raw=true"/></h1>
+
+controller
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(controller).PNG?raw=true"/></h1>
+
+service
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagram%20Class%20(service).PNG?raw=true"/></h1>
+
+error
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(error).PNG?raw=true"/></h1>
+
+StatsAnsFilters
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(StatsAndFilters).PNG?raw=true"/></h1>
+
+Exception
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagram%20Class%20(exception).PNG?raw=true"/></h1>
+
 
 <a name="sequenze"></a>
 ### 4.3 Diagramma delle sequenze
