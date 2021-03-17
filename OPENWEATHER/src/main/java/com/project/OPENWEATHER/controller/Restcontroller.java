@@ -182,7 +182,7 @@ public class Restcontroller {
 	 * { "città" : "name", "period" : "oggi" }
 	 * 
 	 * @param body è il JSONObject
-	 * @return il JSONObject con le statistiche richieste.
+	 * @return il JSONArray con le statistiche richieste.
 	 * @throws NotAllowedPeriodException per period non ammessi
 	 * @throws IOException               per errori di lettura del file.
 	 * @throws ParseException            per errore di parsing
