@@ -46,9 +46,7 @@ public class Restcontroller {
 	
 	/**
 	 * Rotta GET che mostra le temperature di una città qualsiasi inserita dall'utente 
-	 *      
-	 *  localhost:8080/temp?name=Milano
-	 * 
+	 *      	 
 	 * @param name indica la città da cui vogliamo la temperatura.
 	 * @return restituiamo le previsioni della città indicata
 	 * 
@@ -64,7 +62,7 @@ public class Restcontroller {
 	
 	/**
 	 * Rotta GET che mostra la lista predefinita delle città 
-	 * @return un JSONArray contenente città consigliate
+	 * @return un JSONArray contenente delle città consigliate
 	 */
 	@GetMapping(value="/cities")
 	public ResponseEntity<Object> getTemp() {
