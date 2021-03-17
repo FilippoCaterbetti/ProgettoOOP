@@ -70,7 +70,7 @@ class TestFilters {
     	
         NotAllowedParamException e = assertThrows(NotAllowedParamException.class, () -> {filter.analyze();});
     
-        assertEquals( "tem non è una stringa ammessa.Inserisci una stringa tra temp_min,temp_max,feels_like e temp", e.getError());
+        assertEquals( " La stringa tem non è ammessa.Inserisci una stringa tra temp_min,temp_max,feels_like e temp", e.getError());
         
     }
 }
