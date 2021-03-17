@@ -13,7 +13,16 @@ Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui 
  * 5.[ Applicazione ](#app)
  * 6.[ Rotte ](#rotte)
    * 6.1 [ Metodo GET](#GET)
+        * 6.1.1 [ /temp](#temp)
+        * 6.1.2 [ /cities](#cities)
+        * 6.1.3 [ /OpenWeather](#OpenWeather)
+        * 6.1.4 [ /FiveHourInfo](#FiveHourInfo)
    * 6.2 [ Metodo POST](#POST)
+        * 6.2.1 [ /errors](#errors)
+        * 6.2.2 [ /regex](#regex)
+        * 6.2.3 [ /stats](#stats)
+        * 6.2.4 [ /filters](#filters)
+        * 6.2.5 [ /statsHistory](#statsHistory)
  * 7.[ Test](#test)
  * 8.[ Software utilizzati ](#software)
  * 9.[ Autori ](#autori)
@@ -107,36 +116,36 @@ Le rotte disponibili sono:
 |  `POST`  |  [/statsHistory](#statsHistory)  |  Filtra in base al periodo le statistiche sulle temperature della città  |
 
 <b name="GET"></b>
-### Metodo GET
+### 6.1 Metodo GET
 
 <b name="temp"></b>
-### /temp?name=
+### 6.1.1 /temp?name=
 Rotta GET che mostra le temperature attuale e delle prossime 24 ore di una città qualsiasi inserita dall'utente 
 
 ---
 <b name="cities"></b>
-### /cities
+### 6.1.2 /cities
 Rotta GET che mostra la lista predefinita delle città, se si vuole modificare le città basterà cambiare l'aarray di stringhe e la rotta troverà automaticamente tutti i dati  necessari
 
 ---
 <b name="OpenWeather"></b>
-### /OpenWeather?name=
+### 6.1.3 /OpenWeather?name=
 Rotta  GET che mostra le temperature future dei 5 giorni successivi della città inserita (temperatura reale, massima, minima, percepita e media)
 
 ---
 <a name="FiveHourInfo"></a>
-### /FiveHourInfo?name=
+### 6.1.4 /FiveHourInfo?name=
 Rotta GET che salva ogni cnque ore le temperature della città inserita dall'utente
 
 ---
 <a name="POST"></a>
-### Metodo POST
+### 6.2 Metodo POST
 
 
 
 
 <b name="errors"></b>
-### /errors
+### 6.2.1 /errors
 Rotta POST che filtra le statistiche sulle temperature di una o più città in base ad una soglia di errore e ai giorni di predizione (da 1 a 5 giorni successivi)
 L'utente deve inserisce un Body di questo tipo:
 
@@ -163,7 +172,7 @@ L'utente deve inserisce un Body di questo tipo:
  
  
  <b name="regex"></b>
-### /findRegex
+###  6.2.2 /findRegex
 Richiede un Body di questo tipo
 ```
 {
@@ -180,7 +189,7 @@ regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le cit
   ---
 
 <b name="stats"></b>
-### /stats
+###  6.2.3 /stats
 Rotta POST che mostra la media della temperatura massima, minima, percepita e la media, la minima, la massima di 5 giorni, a seconda del periodo (da oggi a 5 giorni )
 ```
 {
@@ -189,11 +198,15 @@ Rotta POST che mostra la media della temperatura massima, minima, percepita e la
 }
 ```
 Il period può essere `oggi` per le statistiche giornaliere o `5 giorni` / `cinque giorni` per le statistiche dei prossimi cinque giorni
+|    period disponibili    |  
+|:-----------:|
+| ` oggi ` 
+| ` 5 giorni ` o  ` cinque giorni` |
 
 ---
 
 <b name="filters"></b>
-### /filters
+###  6.2.4 /filters
 Rotta  POST che filtra le statistiche in base alle informazioni che si vogliono
 Richiesto un Body di questo tipo:
 ```
@@ -217,7 +230,7 @@ Richiesto un Body di questo tipo:
 ---
 
 <b name="statsHistory"></b>
-### /statsHistory
+###  6.2.5 /statsHistory
 Rotta di tipo POST che filtra, in base al periodo, le statistiche sulle temperature di una o più città
 Il Body deve essere di questo tipo: 
 ```
