@@ -61,8 +61,9 @@ public class Restcontroller {
 	
 	
 	/**
-	 * Rotta GET che mostra la lista predefinita delle città 
-	 * @return un JSONArray contenente delle città consigliate
+	 * Rotta GET che mostra una lista predefinita di città 
+	 * 
+	 * @return un JSONArray contenente delle città consigliate con ID e Stato di appartenenza
 	 */
 	@GetMapping(value="/cities")
 	public ResponseEntity<Object> getTemp() {
@@ -72,7 +73,7 @@ public class Restcontroller {
     }
 	
 	/**
-	 * Rotta  GET che mostra le temperature future (temperatura massima, minima, percepita e
+	 * Rotta  GET che mostra le temperature future (temperatura reale, massima, minima, percepita e
 	 * media) dei 5 giorni successivi della città
 	 * 
 	 * @param name è la città 
@@ -92,14 +93,15 @@ public class Restcontroller {
 		return new ResponseEntity<>(object.toString(),HttpStatus.OK);
 		
 	}
+	
+	
 	 /**
-	 * Rotta GET che salva ogni cnque ore le temperature della città.
+	 * Rotta GET che restituisce il path del file contenente le temperature della città selezionata con una cadenza di cinque ore  .
 	 * 
 	 *  @param name indica la città da cui vogliamo la temperatura
-	 * 	@return il file dove vengono salvati i dati.
+	 * 	@return il path del file dove vengono salvati i dati.
 	 * 	@throws IOException per gli errori di output del file.
 	 */
-		
 	@GetMapping("/FiveHoursInfo")
 	public ResponseEntity<Object> saveFiveHour(@RequestParam String name) throws IOException {
 		
@@ -111,8 +113,8 @@ public class Restcontroller {
 	
 	/**
 	 * Rotta POST che filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione (da 1 a 5 giorni successivi)
-	 * L'utente inserisce un JSONObject
-	 * >, $gte >=, $lt <, $lte <=
+	 * L'utente deve inserire  un Body di questo tipo:
+	 * 
 	 * {
      *     "città": [
      *        {
@@ -131,24 +133,17 @@ public class Restcontroller {
 	 * 
 	 * @throws NotAllowedPeriodException  per invalid period.
 	 * @throws IOException per errori di input da file.
-	 * @throws NotAllowedValueException 
-	 * @throws EmptyStringException 
+	 * @throws NotAllowedValueException  se inserito un value non valido
+	 * @throws EmptyStringException  se stringa vuota
 	 */
-	
 	@PostMapping(value="/errors")
 	public ResponseEntity<Object> filtersHistory(@RequestBody String body) 
 			throws InvalidStringException, CitynotFoundException, NotAllowedPeriodException, IOException, EmptyStringException, NotAllowedValueException { //NotAllowedValueException
 		
 		System.out.print(body);
 		JSONObject object = new JSONObject(body);
-		/*ObjectMapper mapper = new ObjectMapper();
-		Reader reader  = new StringReader(body);
-		Parameters prop = new Parameters();
-		prop = mapper.readValue(reader, Parameters.class);
-		*/
-        JSONArray array = new JSONArray();
-        JSONArray array2 = new JSONArray();
 
+        JSONArray array = new JSONArray();
 
         array = object.getJSONArray("città");
         
@@ -162,7 +157,6 @@ public class Restcontroller {
             
         }
         
-        //array2 = object.getJSONArray("parametri");
         int error = object.getInt("error");
         String value = object.getString("value");
         int period = object.getInt("period");
@@ -181,9 +175,11 @@ public class Restcontroller {
         	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
         }
         catch(NotAllowedValueException e) {
+        	
         	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
         }
         catch (EmptyStringException e) {
+        	
         	return new ResponseEntity<>(e.getError(),HttpStatus.BAD_REQUEST);
         }
 	}
@@ -192,9 +188,10 @@ public class Restcontroller {
 	
 	
 	/**
-	 * Rotta POST che mostra la media della temperatura massima, minima, percepita e la media, la minima,
-	 * la massima di 5 giorni, a seconda del periodo (da oggi a 5 giorni )
-	 * 
+	 * Rotta POST che mostra la media della temperatura massima, minima, percepita  e reale 
+	 * e la varianza della temperatura percepita e reale,
+	 *  a seconda del periodo scelto (da oggi a 5 giorni )
+	 * L'utente deve inserire  un Body di questo tipo:
 	 * 
 	 * {
      *		"città" : "name",
@@ -205,7 +202,7 @@ public class Restcontroller {
 	 * @return il JSONObject con le statistiche richieste.
 	 * @throws NotAllowedPeriodException per period non ammessi
 	 * @throws IOException per errori di lettura del file.
-	 * @throws ParseException 
+	 * @throws ParseException per errore di parsing
 	 */
 	
 	@PostMapping(value="/stats") 
@@ -240,11 +237,13 @@ public class Restcontroller {
 	}
 	
 	/**
-	 * Rotta POST per cercare una regex all'interno della lista delle città disponibili in 
-	 * OPENWEATHER e restituire un JSONArrray con i nomi delle città
+	 * Rotta POST per cercare una regex all'interno del file contenente la lista delle città disponibili in 
+	 * OPENWEATHER e restituisce un JSONArrray con i nomi delle città trovate.
 	 * 
-	 * Body deve essere di questo tipo
-	 * con .*to.* per esempio cerchiamo tutte le città con all'interno la stringa to ovunque sia posizionata all'interno del nome
+	 *  .*to.* cerca tutte le città con all'interno la stringa
+	 *  "to"  posizionata all'interno del file
+	 *  
+	 * Body deve essere di questo tipo:
 	 * 
 	 * {
      *		"regex" : ".*to.*"   
@@ -252,9 +251,9 @@ public class Restcontroller {
 	 * " (?i).*to.* " per case insensitive
 	 * @param body è il JSONObject 
 	 * @return il JSONObject con le statistiche richieste.
-	 * @throws FileNotFoundException
+	 * @throws FileNotFoundException se non trova il file
 	 * @throws IOException per errori di lettura del file.
-	 * @throws ParseException 
+	 * @throws ParseException per errore di parsing
 	 */
 	@PostMapping(value="/findRegex") 
     public ResponseEntity<Object> Substring(@RequestBody String body) throws FileNotFoundException, IOException, ParseException {
@@ -276,7 +275,7 @@ public class Restcontroller {
 	
 	/**
 	 * Rotta di tipo POST che filtra in base al periodo le statistiche sulle temperature della città
-	 * Il JSONObject deve essere di questo tipo per funzionare: 
+	 * Il Body deve essere di questo tipo per funzionare: 
 	 * 
 	 * {
      *     "città": [
@@ -290,17 +289,16 @@ public class Restcontroller {
      *     "period": "giornaliero"
      *  }
 	 * 
-	 * il "period" può essere solo giornaliero, settimanale, mensile.
-	 * . Le città ammesse sono solo Ancona, Milano, Torino, Bologna
+	 * Il "period" può essere solo giornaliero, settimanale, mensile.
+	 * Le città ammesse sono solo Ancona, Milano, Torino, Bologna
 	 * 
-	 * @param body è il JSONObject sopra.
+	 * @param body è il JSONObject.
 	 * @return  statistiche delle città con la periodicità indicata.
-	 * 
 	 * @throws InvalidStringException se la stringa è errata/vuota.
 	 * @throws CitynotFoundException se la città non esiste.
 	 * @throws NotAllowedPeriodException se viene inserita un  period errato
 	 * @throws IOException se ci sono errori di input da file.
-	 * @throws EmptyStringException 
+	 * @throws EmptyStringException se la stringa è vuota
 	 * 
 	 */
 	
@@ -348,8 +346,8 @@ public class Restcontroller {
 	
 	
 	/**
-	 * Rotta  POST che filtra le statistiche in base alle informazioni che si vogliono
-	 * è richiesto un JSONObject di questo tipo:
+	 * Rotta  POST che filtra le statistiche in base alle informazioni che si vogliono.
+	 * E' richiesto un body di questo tipo:
 	 * 
 	 * {
      *     "città": [
@@ -364,20 +362,21 @@ public class Restcontroller {
      *     "param" : "temp_max",
      *  }
 	 * 
-	 *  "param"(temp max o min o feels_like o average) della città 
-	 * e in che "period"(da 1 a 5 giorni).
+	 *  "param"(temp max, min, feels_like o average)
+	 *  "period"( 1 o 5 giorni).
 	 * 
 	 * 
 	 * @param body è un JSONObject 
-	 * @return il JSONArray che contiene tanti JSONObject quante sono le città specificate nella richiesta
+	 * @return il JSONArray che contiene tanti JSONObject quante sono le città specificate nella richiesta,
 	 *         ognuno dei quali contiene il nome della città
-	 *         In più il JSONArray contienenun ultimo JSONObject al cui interno è contenuta la massima o minima media a seconda del valore indicato.
+	 *         In più il JSONArray contienenun ultimo JSONObject al cui interno è contenuta la massima 
+	 *         o minima media a seconda del valore indicato.
 	 * @throws NotAllowedPeriodException se il numero immesso è errato.
-	 * @throws InvalidStringException 
-	 * @throws NotAllowedValueException 
-	 * @throws ParseException 
-	 * @throws IOException 
-	 * @throws MalformedURLException 
+	 * @throws InvalidStringException per errore di stringa
+	 * @throws NotAllowedValueException per value non ammessi
+	 * @throws ParseException  per errore di parsing
+	 * @throws IOException per errori di input o output
+	 * @throws MalformedURLException per errore di formazione di URL
 	 *  
 	 */
 	@PostMapping(value="/filters")
