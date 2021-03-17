@@ -28,8 +28,8 @@ public class TempMaxAvg implements FiltersStatistics{
 	Statistics statistic = new Statistics();
 /**
 * 
-* @param cities
-* @return
+* @param cities con le città 
+* @return array con temperatura desiderata 
 * @throws NotAllowedValueException
  * @throws ParseException 
  * @throws IOException 
@@ -65,6 +65,7 @@ public class TempMaxAvg implements FiltersStatistics{
 						
 					objects.add(obj);
 					array.put(obj);
+					i++;
 				}
 										
 					
@@ -78,6 +79,7 @@ public class TempMaxAvg implements FiltersStatistics{
 	* 
 	* Questo metodo calcola la media delle 
 	* temperature percepita delle città in 5 giorno 
+	* @param cities con le città
 	 * @throws ParseException 
 	 * @throws IOException 
 	 * @throws MalformedURLException 
@@ -109,6 +111,8 @@ public class TempMaxAvg implements FiltersStatistics{
 						obj.put("temp_max_avg:",ave);
 						objects.add(obj);
 						array.put(obj);
+						
+						i++;
 						
 					}
 
