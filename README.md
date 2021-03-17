@@ -189,6 +189,10 @@ Rotta POST che mostra la media della temperatura massima, minima, percepita e la
 }
 ```
 Il period può essere `oggi` per le statistiche giornaliere o `5 giorni` / `cinque giorni` per le statistiche dei prossimi cinque giorni
+|    period disponibili    |  
+|:-----------:|
+| ` oggi ` 
+| ` 5 giorni ` o  ` cinque giorni` |
 
 ---
 
