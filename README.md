@@ -75,7 +75,7 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 
 <a name="classi"></a>
 ### 4.2 Diagramma delle classi
-<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class.PNG?raw=true"/></h1>
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagram%20Class.png?raw=true"/></h1>
 
 main
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(main).PNG?raw=true"/></h1>
@@ -101,6 +101,11 @@ Exception
 
 <a name="sequenze"></a>
 ### 4.3 Diagramma delle sequenze
+SequenceDiagram1
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/SequenceDiagram1.png?raw=true"/></h1>
+
+SequenceDiagram2
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/SequenceDiagram2.png?raw=true"/></h1>
 
 
 ---
