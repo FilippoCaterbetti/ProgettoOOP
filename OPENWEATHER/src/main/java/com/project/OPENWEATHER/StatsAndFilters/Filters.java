@@ -79,7 +79,7 @@ public class Filters {
 				}
 				else  {
 					
-					throw new NotAllowedParamException (param + " non è una stringa ammessa.Inserisci una stringa tra temp_min,temp_max,feels_like e temp");   
+					throw new NotAllowedParamException (" La stringa " + param + " non è ammessa.Inserisci una stringa tra temp_min,temp_max,feels_like e temp");   
 				}
 			}
 			
