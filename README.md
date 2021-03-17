@@ -75,6 +75,7 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 
 <a name="classi"></a>
 ### 4.2 Diagramma delle classi
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class.PNG?raw=true"/></h1>
 
 <a name="sequenze"></a>
 ### 4.3 Diagramma delle sequenze
