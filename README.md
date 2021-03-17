@@ -208,7 +208,7 @@ Il period può essere `oggi` per le statistiche giornaliere o `5 giorni` / `cinq
 <b name="filters"></b>
 ###  6.2.4 /filters
 Rotta  POST che filtra le statistiche in base alle informazioni che si vogliono
-Richiesto un Body di questo tipo:
+Richiede un Body di questo tipo:
 ```
 {
     "città": [
