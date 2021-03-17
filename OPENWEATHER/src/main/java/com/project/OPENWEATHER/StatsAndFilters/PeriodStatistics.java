@@ -1,8 +1,16 @@
 package com.project.OPENWEATHER.StatsAndFilters;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import org.json.JSONArray;
 
 import org.json.JSONObject;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.OPENWEATHER.model.City;
 
 public class PeriodStatistics {
 
@@ -21,15 +29,26 @@ public class PeriodStatistics {
 			JSONObject open = new JSONObject(temp);
 			JSONObject obj = new JSONObject();
 			obj = open.getJSONObject("OpenWeather");	
+			
+			
 			//JSONObject sp = new JSONObject();
+			
 			
 			while(i < temp.length()) {
 				
-			    for(int k = 0; k < open.length(); k++) {	
-			    		
-				JSONObject oneDayVisibility = new JSONObject();
 				
-				oneDayVisibility += ;
+				JSONObject tempFirstDay = new JSONObject();
+				
+				/*
+				List<Objects> oggetto = new ArrayList<>();
+				ObjectMapper mapper = new  ObjectMapper();
+				oggetto = mapper.readValue(temp, new TypeReference<List<Objects>>() {});
+				*/
+					
+			    for(int k = 0; k < obj.length(); k++) {	
+
+				
+				//tempFirstDay += open.append(date, tempFirstDay) ;
 				
 			    }
 				
@@ -41,10 +60,10 @@ public class PeriodStatistics {
 				double min=10000;
 				double variance=0;
 				
-				while(j<oneDayVisibility.length()) {
+				while(j<tempFirstDay.length()) {
 					
 					JSONObject hour = new JSONObject();
-					hour = oneDayVisibility.getJSONObject(j);
+					//hour = tempFirstDay.getJSONObject(j);
 					average += hour.getDouble("temp");
 					date = hour.getString("data").substring(0,10);
 					
@@ -72,10 +91,10 @@ public class PeriodStatistics {
 				info.put("average", average);
 				
 				int k = 0;
-				while(k < oneDayVisibility.length()) {
+				while(k < tempFirstDay.length()) {
 					
 					JSONObject hour = new JSONObject();
-					hour = oneDayVisibility.getJSONObject(k);
+					//hour = tempFirstDay.getJSONObject(k);
 					hour.getDouble("temp");
 			        variance += ((hour.getDouble("temp")-average)*(hour.getDouble("temp")-average));
 			       	k++;
