@@ -57,6 +57,8 @@ public class RealTempAvg implements FiltersStatistics{
 					objects.add(obj);
 					array.put(obj);
 					
+					i++;
+					
 				}
 				
 				return array;
@@ -98,6 +100,8 @@ public class RealTempAvg implements FiltersStatistics{
 					obj.put("real_temp_avg:", ave);
 					objects.add(obj);
 					array.put(obj);
+					
+					i++;
 					
 				}
 				return array;
