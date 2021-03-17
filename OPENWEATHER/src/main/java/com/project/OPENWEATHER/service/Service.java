@@ -21,7 +21,6 @@ import com.project.OPENWEATHER.exception.InvalidStringException;
 import com.project.OPENWEATHER.exception.NotAllowedPeriodException;
 import com.project.OPENWEATHER.exception.NotAllowedValueException;
 import com.project.OPENWEATHER.model.City;
-// name indica la città desiderata
 
 public interface Service {
 	
