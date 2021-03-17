@@ -277,7 +277,6 @@ public class ServiceApplication implements com.project.OPENWEATHER.service.Servi
 		ObjectMapper mapper = new  ObjectMapper();
 		city = mapper.readValue(new File(path), new TypeReference<ArrayList<City>>() {}); //converte tutto il json in array list di oggetti
 		
-		
 		List<String> name = new ArrayList<String>();
 		for (City o : city){
 
