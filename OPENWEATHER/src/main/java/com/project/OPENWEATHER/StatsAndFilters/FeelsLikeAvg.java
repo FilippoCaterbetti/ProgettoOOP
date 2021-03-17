@@ -55,6 +55,8 @@ public class FeelsLikeAvg implements FiltersStatistics{
 			objects.add(obj);
 			array.put(obj);
 			
+			i++;
+			
 		}
 		
 		
@@ -98,6 +100,8 @@ public class FeelsLikeAvg implements FiltersStatistics{
 			obj.put("feels_like_avg:",ave);
 			objects.add(obj);
 			array.put(obj);
+			
+			i++;
 			
 		}
 		return array;
