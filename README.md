@@ -73,11 +73,11 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 
 <a name="casiuso"></a>
 ### 4.1 Diagramma dei casi d'uso
-<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/ClassDiagram3.png?raw=true"/></h1>
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/UseCaseDiagram1%20.png?raw=true"/></h1>
 
 <a name="classi"></a>
 ### 4.2 Diagramma delle classi
-<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagram%20Class.png?raw=true"/></h1>
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/ClassDiagram3.png?raw=true"/></h1>
 
 com.project.OPENWEATHER
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(main).PNG?raw=true"/></h1>
