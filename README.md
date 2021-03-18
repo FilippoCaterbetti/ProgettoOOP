@@ -116,6 +116,8 @@ SequenceDiagram2
 Tramite L'API di [OpenWeather](https://openweathermap.org/forecast5#name5) il programma riceve i dati meteo della città. 
 
 Precisamente con dati meteo vengono restituiti la temperatura reale, percepita, massima, minima e media.
+[Qui](https://github.com/FilippoCaterbetti/ProgettoOOP/tree/main/OPENWEATHER/temperature) trovate la cartella contenente i file con le temperature delle rispettive città con cui sono stati eseguite le prove.
+
 Ecco alcuni esempi di città:
 |    "id"   |  "name"    |  "country" |
 |:---------:|:----------:|:----------:|
