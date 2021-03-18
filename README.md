@@ -161,7 +161,7 @@ Restituisce un JSONArray contenente i JSONObject con all'interno le informazioni
 ### 6.1.2 /cities
 Rotta GET che mostra una lista di città consigliate all'utente.
 Se si vogliono modificare le città basterà cambiare l'array di stringhe e la rotta troverà automaticamente tutti i valori necessari.
-<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/postman/Rotta:cities.png?raw=true"/></h1>
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/rotte/Rottacities.png?raw=true"/></h1>
 
 
 ---
