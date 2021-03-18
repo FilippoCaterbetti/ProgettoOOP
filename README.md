@@ -72,6 +72,7 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 
 <a name="casiuso"></a>
 ### 4.1 Diagramma dei casi d'uso
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/UseCaseDiagram.png?raw=true"/></h1>
 
 <a name="classi"></a>
 ### 4.2 Diagramma delle classi
