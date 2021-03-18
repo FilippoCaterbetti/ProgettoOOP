@@ -16,7 +16,7 @@ Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui 
         * 6.1.1 [ /temp](#temp)
         * 6.1.2 [ /cities](#cities)
         * 6.1.3 [ /OpenWeather](#OpenWeather)
-        * 6.1.4 [ /FiveHourInfo](#FiveHourInfo)
+        * 6.1.4 [ /FiveHoursInfo](#FiveHourInfo)
    * 6.2 [ Metodo POST](#POST)
         * 6.2.1 [ /errors](#errors)
         * 6.2.2 [ /regex](#regex)
@@ -139,7 +139,7 @@ Le rotte disponibili sono:
 |  `GET`  |   [/temp?name=Ancona](#temp)  |    Temperature delle prossime 24 ore    |
 |  `GET`  |   [/cities](#cities)  |    Lista predefinita con alcune città consigliate    |
 |  `GET`  |  [/OpenWeather?name=Ancona](#OpenWeather)  | Temperature dei prossimi 5 giorni     |
-|  `GET`  |  [/FiveHoursInfo?name=Ancona](#FiveHourInfo) |  Salva ogni cinque ore le temperature della città    |
+|  `GET`  |  [/FiveHoursInfo?name=Milano](#FiveHourInfo) |  Salva ogni cinque ore le temperature della città    |
 |  `POST`  |  [/filters](#filters)  |   Filtra le statistiche in base alle informazioni che si vogliono |
 |  `POST`  |   [/errors](#errors)  | Filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione  |
 |  `POST`  |   [/stats](#stats)   | Mostra la media della temperatura reale, massima, minima, percepita e la media, la minima, la massima di 5 giorni, a seconda del periodo   |
@@ -151,22 +151,33 @@ Le rotte disponibili sono:
 
 <b name="temp"></b>
 ### 6.1.1 /temp?name=
-Rotta GET che mostra le temperature attuale e delle prossime 24 ore di una città qualsiasi inserita dall'utente 
+Rotta GET che mostra le temperature attuali e delle prossime 24 ore di una città qualsiasi inserita dall'utente.
+Restituisce un JSONArray contenente i JSONObject con all'interno le informazioni sulle varie temperature disponibili, la data, l'ora.
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/postman/Rotta%20:temps.png?raw=true"/></h1>
+
 
 ---
 <b name="cities"></b>
 ### 6.1.2 /cities
-Rotta GET che mostra la lista predefinita delle città, se si vuole modificare le città basterà cambiare l'aarray di stringhe e la rotta troverà automaticamente tutti i dati  necessari
+Rotta GET che mostra una lista di città consigliate all'utente.
+Se si vogliono modificare le città basterà cambiare l'array di stringhe e la rotta troverà automaticamente tutti i valori necessari.
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/postman/Rotta%20:cities.png?raw=true"/></h1>
+
 
 ---
 <b name="OpenWeather"></b>
 ### 6.1.3 /OpenWeather?name=
-Rotta  GET che mostra le temperature future dei 5 giorni successivi della città inserita (temperatura reale, massima, minima, percepita e media)
+Rotta  GET che mostra le temperature future della città inserita per i 5 giorni successivi (temperatura reale, massima, minima, percepita e media)
+
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/postman/Rotta%20:OpenWeather.png?raw=true"/></h1>
 
 ---
 <a name="FiveHourInfo"></a>
-### 6.1.4 /FiveHourInfo?name=
-Rotta GET che salva ogni cnque ore le temperature della città inserita dall'utente
+### 6.1.4 /FiveHoursInfo?name=
+Rotta GET che salva ogni cinque ore le temperature della città inserita dall'utente e restituisce il path del file dove vengono salvati.
+
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/postman/Rotta%20:FiveHoursInfo.png?raw=true"/></h1>
+
 
 ---
 <a name="POST"></a>
@@ -192,12 +203,15 @@ L'utente deve inserisce un Body di questo tipo:
      "period": 3    
  }
  ```
- Il value può essere di questo tipo
+ **error** è la soglia di errore
+ Il **period** indica i giorni di predizione ed è compreso tra 1 e 5 (inclusi)
+ Il **value** può essere di questo tipo
  |    Value    |   Significato  |
 |:-----------:|:---------:|
 | ` $gt `  |   > |
 | ` =  ` |   = |
 |  ` $lt  ` | <   |
+  
   
  ---
  
@@ -207,32 +221,36 @@ L'utente deve inserisce un Body di questo tipo:
 Richiede un Body di questo tipo
 ```
 {
-   	"regex" : "A.*"
+   	"regex" : "Ancon.*"
 }
 ```
-regex rappresenta la sottostringa da trovare contenuta nel nome e ricerca le città con all'interno quello sottostringa, usare la sintassi delle regex per qualsiasi tipo di ricerca, ricordiamo che è case sensitive, se vogliamo renderlo insensitive usare la sintassi come sotto riportata
+
+
+regex rappresenta la sottostringa da trovare e ricercare nel file JSON contenente le città con all'interno quella sottostringa, si prega di la sintassi delle regex per qualsiasi tipo di ricerca. Ricordiamo che è case sensitive, se vogliamo renderlo case insensitive usare la sintassi come riportato qui sotto nella tabella
   |    Regex    |   Descrizione  |
 |:-----------:|:---------:|
-| ` .*to  `  |   cerca tutte le parole che iniziano per *to* |
+| ` To.*  `  |   cerca tutte le parole che iniziano per *To* |
+| ` .*to  `  |   cerca tutte le parole che finiscono per *to* |
 | ` .*to.* ` |   cerca tutte le parole che hanno *to* all'interno della parola |
 |  ` (?i).*to.*  ` |  per renderlo case insensitive   |
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/postman/Rotta%20:findRegex.png?raw=true"/></h1>
   
   ---
 
 <b name="stats"></b>
 ###  6.2.3 /stats
-Rotta POST che mostra la media della temperatura massima, minima, percepita e la media, la minima, la massima di 5 giorni, a seconda del periodo (da oggi a 5 giorni )
+Rotta POST che mostra la media della temperatura reale, massima, minima e percepita, a seconda del periodo scelto (da oggi a 5 giorni )
 ```
 {
 	"città" : "Milano",
 	"period" : "oggi"
 }
 ```
-Il period può essere `oggi` per le statistiche giornaliere o `5 giorni` / `cinque giorni` per le statistiche dei prossimi cinque giorni
 |    period disponibili    |  
 |:-----------:|
 | ` oggi ` 
 | ` 5 giorni ` o  ` cinque giorni` |
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/postman/Rotta%20:stats.png?raw=true"/></h1>
 
 ---
 
@@ -251,12 +269,14 @@ Richiede un Body di questo tipo:
     "param" : "temp_max"
 }
 ```
-|    param disponibili    |   Period disponibili  |
+|    param disponibili   |   Period disponibili  |
 |:-----------:|:---------:|
 | ` temp_max `  |   ` 1 ` |
 | ` temp_min ` |   ` 5 ` |
 |  ` feels_like ` | /  |
 |  ` temp ` | /  |
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/postman/Rotta%20:filters.png?raw=true"/></h1>
+
 
 ---
 
