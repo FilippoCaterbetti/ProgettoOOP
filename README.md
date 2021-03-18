@@ -113,10 +113,10 @@ SequenceDiagram2
 ---
 <a name="app"></a>
 ## 5. Applicazione
-Tramite L'API di [OpenWeather](https://openweathermap.org/forecast5#name5) il programma riceve i dati meteo della città 
+Tramite L'API di [OpenWeather](https://openweathermap.org/forecast5#name5) il programma riceve i dati meteo della città. 
 
 Precisamente con dati meteo vengono restituiti la temperatura reale, percepita, massima, minima e media.
-Ecco alcuni esempi di città
+Ecco alcuni esempi di città:
 |    "id"   |  "name"    |  "country" |
 |:---------:|:----------:|:----------:|
 |  3173435  |   "Milano"  |    "IT"    |
