@@ -84,16 +84,16 @@ com.project.OPENWEATHER.model
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(model).PNG?raw=true" width="500" height="350"/></h1>
 
 com.project.OPENWEATHER.controller
-<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(controller).PNG?raw=true"/></h1>
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(controller).PNG?raw=true" width="500" height="350"/></h1>
 
 com.project.OPENWEATHER.service
-<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagram%20Class%20(service).PNG?raw=true"/></h1>
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagram%20Class%20(service).PNG?raw=true" width="500" height="350"/></h1>
 
 com.project.OPENWEATHER.error
-<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(error).PNG?raw=true"/></h1>
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(error).PNG?raw=true" width="500" height="350"/></h1>
 
 com.project.OPENWEATHER.StatsAndFilters
-<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(StatsAndFilters).PNG?raw=true"/></h1>
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(StatsAndFilters).PNG?raw=true" width="500" height="350"/></h1>
 
 com.project.OPENWEATHER.exception
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagram%20Class%20(exception).PNG?raw=true"/></h1>
@@ -102,7 +102,7 @@ com.project.OPENWEATHER.exception
 <a name="sequenze"></a>
 ### 4.3 Diagramma delle sequenze
 SequenceDiagram1
-<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/SequenceDiagram1.png?raw=true"/></h1>
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/SequenceDiagram1.png?raw=true" width="500" height="350"/></h1>
 
 SequenceDiagram2
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/SequenceDiagram2.png?raw=true"/></h1>
