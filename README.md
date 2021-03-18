@@ -77,25 +77,25 @@ Aprendo un account gratuito è possibile avere accesso a delle API Key personali
 ### 4.2 Diagramma delle classi
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagram%20Class.png?raw=true"/></h1>
 
-main
+com.project.OPENWEATHER
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(main).PNG?raw=true"/></h1>
 
-model
+com.project.OPENWEATHER.model
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(model).PNG?raw=true"/></h1>
 
-controller
+com.project.OPENWEATHER.controller
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(controller).PNG?raw=true"/></h1>
 
-service
+com.project.OPENWEATHER.service
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagram%20Class%20(service).PNG?raw=true"/></h1>
 
-error
+com.project.OPENWEATHER.error
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(error).PNG?raw=true"/></h1>
 
-StatsAnsFilters
+com.project.OPENWEATHER.StatsAndFilters
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagramm%20Class%20(StatsAndFilters).PNG?raw=true"/></h1>
 
-Exception
+com.project.OPENWEATHER.exception
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/Diagram%20Class%20(exception).PNG?raw=true"/></h1>
 
 
