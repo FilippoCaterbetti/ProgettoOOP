@@ -66,6 +66,7 @@ Questa API, disponibile anche tramite un piano gratuito, permette di avere le pr
 
 Aprendo un account gratuito è possibile avere accesso a delle API Key personali che possono essre usati. Una volta ottenuta, è possibile sostituirla all'interno del progetto modificando il valore della variabile `ApiKey` nella classe [ServiceApplication](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/31403def4d639860b192962996a7306ad26d0939/OPENWEATHER/src/main/java/com/project/OPENWEATHER/service/ServiceApplication.java#L46)
 
+
 ---
 <a name="uml"></a>
 ## 4. Diagrammi UML
