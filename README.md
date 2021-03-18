@@ -122,7 +122,7 @@ Ecco alcuni esempi di città
 |  3173435  |   "Milano"  |    "IT"    |
 |  3165523  |"Torino"    |    "IT"    |
 |  3181927  |  "Bologna" |    "IT"    |
-|  6542126  |  "Ancona"  |    "IT"    |
+|  3183087  |  "Ancona"  |    "IT"    |
 
 
 
