@@ -188,8 +188,9 @@ Rotta GET che salva ogni cinque ore le temperature della città inserita dall'ut
 
 <b name="errors"></b>
 ### 6.2.1 /errors
-Rotta POST che filtra le statistiche sulle temperature di una o più città in base ad una soglia di errore e ai giorni di predizione (da 1 a 5 giorni successivi)
-L'utente deve inserisce un Body di questo tipo:
+Rotta POST che filtra le statistiche sulle temperature di una o più città in base ad una soglia di errore e ai giorni di predizione (da 1 a 5 giorni successivi).
+
+L'utente deve inserire un Body di questo tipo:
 
 ```
 {
@@ -218,7 +219,7 @@ L'utente deve inserisce un Body di questo tipo:
  
  <b name="regex"></b>
 ###  6.2.2 /findRegex
-Richiede un Body di questo tipo
+Richiede un Body di questo tipo:
 ```
 {
    	"regex" : "Ancon.*"
@@ -226,7 +227,7 @@ Richiede un Body di questo tipo
 ```
 
 
-regex rappresenta la sottostringa da trovare e ricercare nel file JSON contenente le città con all'interno quella sottostringa, si prega di la sintassi delle regex per qualsiasi tipo di ricerca. Ricordiamo che è case sensitive, se vogliamo renderlo case insensitive usare la sintassi come riportato qui sotto nella tabella
+"regex" rappresenta la sottostringa da trovare e ricercare nel file JSON contenente le città con all'interno quella sottostringa, si prega di la sintassi delle regex per qualsiasi tipo di ricerca. Ricordiamo che è case sensitive, se vogliamo renderlo case insensitive usare la sintassi come riportato qui sotto nella tabella:
   |    Regex    |   Descrizione  |
 |:-----------:|:---------:|
 | ` To.*  `  |   cerca tutte le parole che iniziano per *To* |
@@ -239,7 +240,9 @@ regex rappresenta la sottostringa da trovare e ricercare nel file JSON contenent
 
 <b name="stats"></b>
 ###  6.2.3 /stats
-Rotta POST che mostra la media della temperatura reale, massima, minima e percepita, a seconda del periodo scelto (da oggi a 5 giorni )
+Rotta POST che mostra la media della temperatura reale, massima, minima e percepita, e la varianza delle tempertura reale e percepita a seconda del periodo scelto (da oggi a 5 giorni ).
+
+Il Body deve essere di questo tipo:
 ```
 {
 	"città" : "Milano",
@@ -256,7 +259,8 @@ Rotta POST che mostra la media della temperatura reale, massima, minima e percep
 
 <b name="filters"></b>
 ###  6.2.4 /filters
-Rotta  POST che filtra le statistiche in base alle informazioni che si vogliono
+Rotta  POST che filtra le statistiche in base alle informazioni che si vogliono sapere.
+
 Richiede un Body di questo tipo:
 ```
 {
@@ -282,7 +286,8 @@ Richiede un Body di questo tipo:
 
 <b name="statsHistory"></b>
 ###  6.2.5 /statsHistory
-Rotta di tipo POST che filtra, in base al periodo, le statistiche sulle temperature di una o più città
+Rotta di tipo POST che filtra, in base al periodo, le statistiche sulle temperature di una o più città.
+
 Il Body deve essere di questo tipo: 
 ```
 {
@@ -291,7 +296,7 @@ Il Body deve essere di questo tipo:
             "name": "Bologna"  
         }
     ],
-    "period": "giornaliero"
+    "period": "giornaliera"
 }
 ```
  |    Città disponibili    |   Period disponibili  |
