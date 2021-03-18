@@ -66,12 +66,14 @@ Questa API, disponibile anche tramite un piano gratuito, permette di avere le pr
 
 Aprendo un account gratuito è possibile avere accesso a delle API Key personali che possono essre usati. Una volta ottenuta, è possibile sostituirla all'interno del progetto modificando il valore della variabile `ApiKey` nella classe [ServiceApplication](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/31403def4d639860b192962996a7306ad26d0939/OPENWEATHER/src/main/java/com/project/OPENWEATHER/service/ServiceApplication.java#L46)
 
+
 ---
 <a name="uml"></a>
 ## 4. Diagrammi UML
 
 <a name="casiuso"></a>
 ### 4.1 Diagramma dei casi d'uso
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/UseCaseDiagram1%20.png?raw=true"/></h1>
 
 <a name="classi"></a>
 ### 4.2 Diagramma delle classi
@@ -284,6 +286,8 @@ Il Body deve essere di questo tipo:
 <a name="test"></a>
 ## 7. Test
 Sono stati implementati diversi test per controllare la correttezza dell'applicazione. Sono disponibili [qui](https://github.com/FilippoCaterbetti/ProgettoOOP/tree/main/OPENWEATHER/src/test/java/com/project/OPENWEATHER)
+
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/test/Class%20Diagram%20(Test).PNG?raw=true"/></h1>
 
 ---
 <a name="software"></a>
