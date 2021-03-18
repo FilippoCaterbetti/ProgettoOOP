@@ -285,6 +285,8 @@ Il Body deve essere di questo tipo:
 ## 7. Test
 Sono stati implementati diversi test per controllare la correttezza dell'applicazione. Sono disponibili [qui](https://github.com/FilippoCaterbetti/ProgettoOOP/tree/main/OPENWEATHER/src/test/java/com/project/OPENWEATHER)
 
+<h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/main/UML/test/Class%20Diagram%20(Test).PNG?raw=true"/></h1>
+
 ---
 <a name="software"></a>
 ## 8. Software utilizzati
