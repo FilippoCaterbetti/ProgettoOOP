@@ -50,7 +50,7 @@ Per un'esecuzione più veloce del programma, la ricerca della regex nella lista 
 
 Questo file può essere scaricato dal sito ufficiale [qui](https://bulk.openweathermap.org/sample/) . Il file che ci serve è nominato *city.list.json.gz*
 <h1 align="center"><img src="https://github.com/FilippoCaterbetti/ProgettoOOP/blob/794fe3f3a130d005049a36febe5b3118b3502047/UML/indexOfSimpleJson.png?raw=true" width="500" height="350"/></h1>
-Il file è stato inserito compresso per via delle dimensioni ( circa 40 MB ) che superano il limite imposto da GitHub di 25 MB
+Il file è stato inserito compresso per via delle dimensioni ( circa 40 MB ) che superano il limite imposto da GitHub di 25 MB.
 
 L'unità di misura impostata dal programma è il grado Celsius.
 Se si vuole cambiare unità di misura basterà variare il valore della stringa `unit` [qui](https://github.com/FilippoCaterbetti/ProgettoOOP/blob/31403def4d639860b192962996a7306ad26d0939/OPENWEATHER/src/main/java/com/project/OPENWEATHER/service/ServiceApplication.java) .
