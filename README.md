@@ -116,6 +116,7 @@ SequenceDiagram2
 Tramite L'API di [OpenWeather](https://openweathermap.org/forecast5#name5) il programma riceve i dati meteo della città. 
 
 Precisamente con dati meteo vengono restituiti la temperatura reale, percepita, massima, minima e media.
+
 [Qui](https://github.com/FilippoCaterbetti/ProgettoOOP/tree/main/OPENWEATHER/temperature) trovate la cartella contenente i file con le temperature delle rispettive città con cui sono stati eseguite le prove.
 
 Ecco alcuni esempi di città:
@@ -131,7 +132,7 @@ Ecco alcuni esempi di città:
 ---
 <a name="rotte"></a>
 ## 6. Rotte
-Le richieste effettuate dall'utente su Postman saranno disponibili all'indirizzo
+Le richieste effettuate dall'utente su Postman saranno disponibili all'indirizzo:
 ```
 localhost:8080
 ```
@@ -143,8 +144,8 @@ Le rotte disponibili sono:
 |  `GET`  |  [/OpenWeather?name=Ancona](#OpenWeather)  | Temperature dei prossimi 5 giorni     |
 |  `GET`  |  [/FiveHoursInfo?name=Milano](#FiveHourInfo) |  Salva ogni cinque ore le temperature della città    |
 |  `POST`  |  [/filters](#filters)  |   Filtra le statistiche in base alle informazioni che si vogliono |
-|  `POST`  |   [/errors](#errors)  | Filtra le statistiche sulle temperature in base ad una soglia di errore e ai  giorni di predizione  |
-|  `POST`  |   [/stats](#stats)   | Mostra la media della temperatura reale, massima, minima, percepita e la media, la minima, la massima di 5 giorni, a seconda del periodo   |
+|  `POST`  |   [/errors](#errors)  | Filtra le statistiche sulle temperature in base ad una soglia di errore e ai giorni di predizione  |
+|  `POST`  |   [/stats](#stats)   | Mostra la media della temperatura reale, massima, minima, percepita e la la varianza delle tempertura reale e percepita a seconda del periodo   |
 |  `POST`  |  [/findRegex](#regex) | Cerca una regex all'interno della lista delle città disponibili   |
 |  `POST`  |  [/statsHistory](#statsHistory)  |  Filtra in base al periodo le statistiche sulle temperature della città  |
 
