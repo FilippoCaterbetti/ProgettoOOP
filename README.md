@@ -1,6 +1,6 @@
 # <h1 align="center">OPENWEATHER - Forecast Città, temperatura</h1>
 
-Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui l'applicazione sviluppata è un servizio meteo che, data una città, faccia visualizzare tutte le informazioni attuali relative alla temperatura e le relative previsioni per i successivi 5 giorni. Il servizio dovrà salvare le informazioni attuali ogni 5 ore, infine dovrà generare delle statistiche. Inoltre l'applicazione filtrando un periodo,una stringa, che gli viene passata e una soglia di errore consente di generare, a richiesta dell'utente, delle statistiche. Il sistema potrà suggerire all'utente una lista predefinita di città da poter utilizzare.
+Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui l'applicazione sviluppata è un servizio meteo che, data una città, faccia visualizzare tutte le informazioni attuali relative alla temperatura e le relative previsioni per i successivi 5 giorni. Il servizio dovrà salvare le informazioni attuali ogni 5 ore, infine dovrà generare delle statistiche. Inoltre l'applicazione, filtrando un periodo, una stringa e una soglia di errore, consente di generare delle statistiche. Il sistema potrà suggerire all'utente una lista predefinita di città da poter utilizzare.
  
  ### Indice
  * 1.[ Installazione ](#descr)
@@ -230,7 +230,7 @@ Richiede un Body di questo tipo:
 ```
 
 
-"regex" rappresenta la sottostringa da trovare e ricercare nel file JSON contenente le città con all'interno quella sottostringa, si prega di la sintassi delle regex per qualsiasi tipo di ricerca. Ricordiamo che è case sensitive, se vogliamo renderlo case insensitive usare la sintassi come riportato qui sotto nella tabella:
+"regex" rappresenta la sottostringa da trovare e ricercare nel file JSON contenente le città con all'interno quella sottostringa, si prega di inserire la sintassi delle regex per qualsiasi tipo di ricerca. Nella tabella sono riportati alcuni esempi. Ricordiamo che è case sensitive, se vogliamo renderlo case insensitive usare la sintassi adatta.
   |    Regex    |   Descrizione  |
 |:-----------:|:---------:|
 | ` To.*  `  |   cerca tutte le parole che iniziano per *To* |
