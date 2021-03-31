@@ -1,6 +1,6 @@
 # <h1 align="center">OPENWEATHER - Forecast Città, temperatura</h1>
 
-Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui l'applicazione sviluppata è un servizio meteo che, data una città, faccia visualizzare tutte le informazioni attuali relative alla temperatura e le relative previsioni per i successivi 5 giorni. Il servizio dovrà salvare le informazioni attuali ogni 5 ore, infine dovrà generare delle statistiche. Inoltre l'applicazione, filtrando un periodo, una stringa e una soglia di errore, consente di generare delle statistiche. Il sistema potrà suggerire all'utente una lista predefinita di città da poter utilizzare.
+Questo è un progetto per l'esame di Programmazione ad Oggetti 2020/2021 in cui l'applicazione sviluppata è un servizio meteo che, data una città, faccia visualizzare tutte le informazioni attuali relative alla temperatura e le relative previsioni per i successivi 5 giorni. Il servizio dovrà salvare le informazioni attuali ogni 5 ore, infine dovrà generare delle statistiche con filtraggio di un periodo, di una stringa e di una soglia di errore. Il sistema potrà suggerire all'utente una lista predefinita di città da poter utilizzare.
  
  ### Indice
  * 1.[ Installazione ](#descr)
